@@ -1,10 +1,11 @@
 import { createRoot } from 'react-dom/client'
-import { Main } from '../components/pages/Main/Main'
+import { Home } from '../components/pages/Home/Home'
 import { Login } from '../components/pages/Login/Login'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { WithoutHeaderLayout } from '../components/layouts/WithoutHeaderLayout/WithoutHeaderLayout';
 
 import './styles/global.scss';
+import { AppLayout } from '../components/layouts/AppLayout/AppLayout';
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -12,7 +13,9 @@ createRoot(document.getElementById('root')!).render(
       <Route element={<WithoutHeaderLayout />}>
         <Route path='/login' element={<Login />} />
       </Route>
-      <Route path='/' element={<Main />} />
+      <Route element={<AppLayout />} >
+        <Route path='/' element={<Home />} />
+      </Route>
     </Routes>
   </BrowserRouter>
 )

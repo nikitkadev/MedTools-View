@@ -1,0 +1,16 @@
+.appRoot {
+    display: flex;
+    flex-direction: column;
+
+    height: 100dvh;
+    box-sizing: border-box;
+
+    justify-content: space-between;
+
+    .contentRoot {
+        height: 100%;
+        margin: 0 auto;
+
+        width: 1920px;
+    }
+}

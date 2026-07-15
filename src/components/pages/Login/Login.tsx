@@ -1,4 +1,4 @@
-import { authService } from '../../../api/services/authService';
+import { authService } from '../../../api/services/Auth/authService';
 import { AppButton } from '../../ui/AppButton/AppButton';
 import { AppInput } from '../../ui/AppInput/AppInput';
 import { Divider } from '../../ui/Divider/Divider';
@@ -13,10 +13,10 @@ export const Login = () => {
     const [password, setPassword] = useState("");
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log("Пук");
+        e.preventDefault();
+
         const response = await authService.login(email, password);
-        console.log(response);
+        console.log(response.data.isSuccess);
     }
 
     return (
