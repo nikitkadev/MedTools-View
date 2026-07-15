@@ -1,0 +1,20 @@
+:root {
+    --fs-base: 1rem;
+
+    --fs-body: var(var(--fs-base));
+    --fs-body2: calc(var(--fs-base) * 0.875);
+    --fs-caption: calc(var(--fs-base)* 0.75);
+    --fs-overline: calc(var(--fs-base)* 0.65);
+
+    --fs-h6: calc(var(--fs-base) * 0.75);
+    --fs-h5: calc(var(--fs-base) * 0.875);
+    --fs-h4: var(--fs-base);
+    --fs-h3: calc(var(--fs-base) * 1.25);
+    --fs-h2: calc(var(--fs-base) * 1.5);
+    --fs-h1: calc(var(--fs-base) * 2);
+
+
+    --fw-bold: 600;
+    --fw-semibold: 500;
+    --fw-default: 400;
+}

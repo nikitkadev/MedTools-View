@@ -1,0 +1,11 @@
+@use './colors.scss' as *;
+
+:root {
+    --app-background: var(--gray-50);
+
+    --text-default: var(--gray-1500);
+    --text-secondary: var(--gray-800);
+
+    --border-default: var(--gray-200);
+    --border-focus: var(--gray-500);
+}

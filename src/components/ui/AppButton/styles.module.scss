@@ -1,0 +1,25 @@
+.appButton {
+    border: none;
+    background: none;
+
+    border-radius: var(--radius-l);
+
+    font-size: var(--fs-body1);
+    font-weight: var(--fw-semibold);
+}
+
+.primary {
+    color: var(--white);
+    background: var(--black);
+}
+
+.primary:hover {
+    background: var(--gray-1400);
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.md {
+    padding: var(--space-4) var(--space-5);
+}
