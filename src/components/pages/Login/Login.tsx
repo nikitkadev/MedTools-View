@@ -1,3 +1,4 @@
+import { useAuthStore } from '../../../api/services/Auth/authStore';
 import { authService } from '../../../api/services/Auth/authService';
 import { AppButton } from '../../ui/AppButton/AppButton';
 import { AppInput } from '../../ui/AppInput/AppInput';
@@ -5,18 +6,35 @@ import { Divider } from '../../ui/Divider/Divider';
 import React, { useState } from 'react';
 
 import styles from './styles.module.scss';
-import config from '../../../../package.json';
+import { useNavigate } from 'react-router';
 
 export const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const { setSession } = useAuthStore();
+    const navigator = useNavigate();
+
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+
         e.preventDefault();
 
         const response = await authService.login(email, password);
-        console.log(response.data.isSuccess);
+        const result = response.data;
+
+        if (!result.isSuccess) {
+            return;
+        }
+
+        setSession(result.value.accessToken, ({
+            email: result.value.email,
+            uid: result.value.uid,
+            role: result.value.role,
+            username: result.value.username
+        }));
+
+        navigator('/');
     }
 
     return (
@@ -25,7 +43,7 @@ export const Login = () => {
             <header className={styles.loginHeader}>
 
                 <h1>
-                    Войти в MedTools Web v{config.version}
+                    Войти в MedTools Web
                 </h1>
 
             </header>
@@ -70,10 +88,11 @@ export const Login = () => {
                 <section className={styles.actions}>
 
                     <AppButton
-                        text='Войти'
                         size='md'
                         variant='primary'
-                        type='submit' />
+                        type='submit'>
+                        Войти
+                    </AppButton>
 
                 </section>
             </form>

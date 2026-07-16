@@ -1,11 +1,18 @@
 @use './colors.scss' as *;
 
 :root {
-    --app-background: var(--gray-50);
+    --app-background: var(--gray-100);
+
+    --selected-background: var(--gray-100);
+    --selected-hover-background: var(--gray-400);
+
+    --card-background: var(--white);
 
     --text-default: var(--gray-1500);
     --text-secondary: var(--gray-800);
 
-    --border-default: var(--gray-200);
+    --border-default: var(--gray-300);
     --border-focus: var(--gray-500);
+
+    --badge-background-default: var(--gray-300);
 }

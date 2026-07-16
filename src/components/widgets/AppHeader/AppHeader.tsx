@@ -5,7 +5,7 @@ export const AppHeader = () => {
         <header className={styles.appHeaderRoot}>
             <article className={styles.logo}>
                 <h1>
-                    MedTools Web
+                    MTW
                 </h1>
             </article>
         </header>

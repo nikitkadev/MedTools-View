@@ -6,6 +6,7 @@ import { WithoutHeaderLayout } from '../components/layouts/WithoutHeaderLayout/W
 
 import './styles/global.scss';
 import { AppLayout } from '../components/layouts/AppLayout/AppLayout';
+import { RControl } from '../components/pages/RControl/RControl';
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
       </Route>
       <Route element={<AppLayout />} >
         <Route path='/' element={<Home />} />
+        <Route path='/rcontrol' element={<RControl />} />
       </Route>
     </Routes>
   </BrowserRouter>
