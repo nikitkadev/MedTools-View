@@ -17,9 +17,9 @@ export const Toggle = ({
     return (
 
         <ToggleButtonGroup
+            size='small'
             value={value}
             exclusive
-
             onChange={onChange}
             aria-label='Database type'
 
@@ -30,7 +30,8 @@ export const Toggle = ({
                     fontFamily: 'var(--inter)',
                     border: '1px solid var(--border-default)',
                     margin: '0',
-                    padding: 'var(--space-5) var(--space-5)'
+                    paddingLeft: 'var(--space-5)',
+                    paddingRight: 'var(--space-5)'
                 },
                 '& .MuiToggleButtonGroup-firstButton': {
                     borderTopLeftRadius: 'var(--radius-l)',

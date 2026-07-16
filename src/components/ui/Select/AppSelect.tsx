@@ -23,12 +23,13 @@ export const AppSelect = ({
     }
 
     return (
-        <Box sx={{ minWidth: 175}}>
+        <Box sx={{ minWidth: 175 }}>
             <FormControl fullWidth>
                 <InputLabel>
                     {label}
                 </InputLabel>
                 <Select
+                    size="small"
                     value={value}
                     label={label}
                     onChange={handleChange}>

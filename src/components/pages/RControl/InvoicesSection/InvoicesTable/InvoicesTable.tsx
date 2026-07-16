@@ -14,7 +14,7 @@ export const InvoicesTable = () => {
                     placeholder='Поиск по номеру счета' />
             </div>
 
-            <div className={styles.tableContainer}>
+            <div className="tableContainer">
                 <table className={styles.invoicesTable}>
 
                     <thead>
@@ -30,78 +30,6 @@ export const InvoicesTable = () => {
                     </thead>
 
                     <tbody>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
 
                         <tr>
                             <td>№ счета</td>

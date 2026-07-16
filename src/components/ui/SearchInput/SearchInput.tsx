@@ -13,6 +13,7 @@ export const SearchInput = ({
             placeholder={placeholder}
             variant="outlined"
             size="small"
+            fullWidth={true}
             slotProps={{
                 input: {
                     startAdornment: <InputAdornment position="start">

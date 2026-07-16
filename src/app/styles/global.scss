@@ -62,21 +62,31 @@ h6 {
     padding: 0;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.tableContainer {
+    padding: 0 var(--space-5);
 
-    font-size: var(--fs-body2);
+    tbody {
 
-    th,
-    td {
-        text-align: left;
-        padding: var(--space-5) var(--space-3);
+        tr:last-child {
+            border: none;
+        }
+
     }
 
-    tr {
-        border-bottom: 1px solid var(--border-default);
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        font-size: var(--fs-body2);
+
+        th,
+        td {
+            text-align: left;
+            padding: var(--space-5) var(--space-3);
+        }
+
+        tr {
+            border-bottom: 1px solid var(--border-default);
+        }
     }
-
-
 }
