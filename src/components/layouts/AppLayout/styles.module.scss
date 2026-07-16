@@ -10,12 +10,11 @@
     .contentRoot {
         display: flex;
         flex-direction: column;
-        
-        height: 100%;
+
         margin: 0 auto;
         width: 1920px;
 
         padding: var(--space-10);
-        gap: var(--lg-space-1);
+        gap: var(--space-10);
     }
 }

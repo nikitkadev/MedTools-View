@@ -51,7 +51,7 @@ export const Toggle = ({
             }}>
 
             <ToggleButton value='smorx'>СМО РХ</ToggleButton>
-            <ToggleButton value='inogorod'>Иногородние</ToggleButton>
+            <ToggleButton value='inogorod'>Иногород</ToggleButton>
 
         </ToggleButtonGroup>
     )
