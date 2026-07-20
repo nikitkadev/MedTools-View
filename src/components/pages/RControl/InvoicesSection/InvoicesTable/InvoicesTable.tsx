@@ -6,13 +6,11 @@ export const InvoicesTable = () => {
         <article className={styles.invoicesTableRoot}>
 
             <header className={styles.invoicesTableHeader}>
-                <h1>Счета</h1>
-            </header>
 
-            <div className={styles.searchPanel}>
-                <SearchInput
-                    placeholder='Поиск по номеру счета' />
-            </div>
+                <h1>Счета</h1>
+                <SearchInput />
+
+            </header>
 
             <div className="tableContainer">
                 <table className={styles.invoicesTable}>

@@ -1,18 +1,17 @@
+import { AppPagination } from '../../../ui/Pagination/AppPagination';
 import { SearchInput } from '../../../ui/SearchInput/SearchInput';
 import styles from './styles.module.scss';
 
-export const FinishedCasesTable = () => {
+export const FinishedCases = () => {
     return (
         <article className={styles.finishedCasesTableRoot}>
 
             <header className={styles.finishedCasesTableHeader}>
-                <h1>Закончанные случаи</h1>
-            </header>
 
-            <div className={styles.searchPanel}>
-                <SearchInput
-                    placeholder='Поиск по законченным случаям' />
-            </div>
+                <h1>Законченные случаи</h1>
+                <SearchInput />
+
+            </header>
 
             <div className="tableContainer">
                 <table className={styles.finishedCasesTable}>

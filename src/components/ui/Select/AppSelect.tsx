@@ -25,14 +25,36 @@ export const AppSelect = ({
     return (
         <Box sx={{ minWidth: 175 }}>
             <FormControl fullWidth>
-                <InputLabel>
+                <InputLabel
+                    sx={{
+                        '&.MuiInputLabel-root': {
+                            fontFamily: 'var(--inter)'
+                        },
+                        '&.Mui-focused': {
+                            color: 'var(--text-primary)'
+                        }
+                    }}>
                     {label}
                 </InputLabel>
                 <Select
                     size="small"
                     value={value}
                     label={label}
-                    onChange={handleChange}>
+                    onChange={handleChange}
+                    sx={{
+                        '& .MuiOutlinedInput-notchedOutline': {
+                            borderRadius: 'var(--radius-l)',
+                            borderColor: 'var(--border-default)',
+                        },
+                        '&.MuiSelect-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'var(--border-hover)',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'var(--border-focus)',
+                            borderWidth: '1px',
+                        }
+                    }}
+                >
 
                     {options.map((opt) => (
                         <MenuItem key={opt.value}>

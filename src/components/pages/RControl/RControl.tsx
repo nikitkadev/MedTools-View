@@ -1,6 +1,7 @@
-import { CasesTable } from "./CasesTable/CasesTable"
+import { Cases } from "./Cases/Cases"
+import { Categories } from "./Categories/Categories"
 import { FilterPanel } from "./FilterPanel/FilterPanel"
-import { FinishedCasesTable } from "./FinishedCasesTable/FinishedCasesTable"
+import { FinishedCases } from "./FinishedCases/FinishedCases"
 import { InvoicesSection } from "./InvoicesSection/InvoicesSection"
 
 export const RControl = () => {
@@ -8,8 +9,9 @@ export const RControl = () => {
         <>
             <FilterPanel />
             <InvoicesSection />
-            <FinishedCasesTable />
-            <CasesTable />
+            <FinishedCases />
+            <Cases />
+            <Categories />
         </>
     )
 }

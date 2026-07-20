@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-export const CasesTable = () => {
+export const Cases = () => {
     return (
         <article className={styles.casesTableRoot}>
             <header className={styles.casesTableRootHeader}>

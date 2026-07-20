@@ -18,4 +18,12 @@
 
         border-bottom: 1px solid var(--border-default);
     }
+
+    .invoicesTableHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: var(--space-5);
+    }
 }

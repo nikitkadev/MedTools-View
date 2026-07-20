@@ -14,8 +14,17 @@
 
         h1 {
             font-size: var(--fs-h3);
+            text-wrap: nowrap;
         }
 
         border-bottom: 1px solid var(--border-default);
+    }
+
+    .finishedCasesTableHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: var(--space-5);
     }
 }

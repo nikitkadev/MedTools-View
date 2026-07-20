@@ -20,6 +20,20 @@ export const SearchInput = ({
                         <SearchIcon />
                     </InputAdornment>
                 }
+            }}
+            sx={{
+                '& .MuiOutlinedInput-notchedOutline': {
+                    borderRadius: 'var(--radius-l)',
+                    borderColor: 'var(--border-default)',
+                    color: 'var(--text-secondary)'
+                },
+                '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'var(--border-hover)',  
+                },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'var(--border-focus)',  
+                    borderWidth: '1px',                  
+                }
             }} />
 
     )
