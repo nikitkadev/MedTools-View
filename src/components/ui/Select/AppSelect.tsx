@@ -37,7 +37,7 @@ export const AppSelect = ({
                     {label}
                 </InputLabel>
                 <Select
-                    size="small"
+                    size="medium"
                     value={value}
                     label={label}
                     onChange={handleChange}
@@ -56,11 +56,19 @@ export const AppSelect = ({
                     }}
                 >
 
-                    {options.map((opt) => (
-                        <MenuItem key={opt.value}>
-                            {opt.label}
+                    {options.length > 0 ? (
+                        options.map((opt) => (
+                            <MenuItem
+                                key={opt.value}
+                                value={opt.value}>
+                                {opt.label}
+                            </MenuItem>
+                        ))) : (
+                        <MenuItem disabled>
+                            Нет данных
                         </MenuItem>
-                    ))}
+                    )}
+
 
                 </Select>
             </FormControl>

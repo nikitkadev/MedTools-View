@@ -17,7 +17,7 @@ export const Toggle = ({
     return (
 
         <ToggleButtonGroup
-            size='small'
+            size='medium'
             value={value}
             exclusive
             onChange={onChange}
@@ -30,8 +30,7 @@ export const Toggle = ({
                     fontFamily: 'var(--inter)',
                     border: '1px solid var(--border-default)',
                     margin: '0',
-                    paddingLeft: 'var(--space-5)',
-                    paddingRight: 'var(--space-5)'
+                    padding: 'var(--space-5)',
                 },
                 '& .MuiToggleButtonGroup-firstButton': {
                     borderTopLeftRadius: 'var(--radius-l)',
@@ -51,8 +50,8 @@ export const Toggle = ({
                 },
             }}>
 
-            <ToggleButton value='smorx'>СМО РХ</ToggleButton>
-            <ToggleButton value='inogorod'>Иногород</ToggleButton>
+            <ToggleButton value='SMODB18'>СМО РХ</ToggleButton>
+            <ToggleButton value='INOGOROD18'>Иногород</ToggleButton>
 
         </ToggleButtonGroup>
     )

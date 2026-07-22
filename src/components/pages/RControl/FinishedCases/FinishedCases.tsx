@@ -1,4 +1,3 @@
-import { AppPagination } from '../../../ui/Pagination/AppPagination';
 import { SearchInput } from '../../../ui/SearchInput/SearchInput';
 import styles from './styles.module.scss';
 

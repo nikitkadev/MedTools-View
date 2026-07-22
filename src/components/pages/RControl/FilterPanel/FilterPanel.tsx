@@ -1,11 +1,29 @@
-import { useRControlStore } from '../RControlStore';
+import { useMemo } from 'react';
 import { Toggle } from '../../../ui/Toggle/Toggle';
+import { useRControlStore } from '../RControlStore';
 import { AppSelect } from '../../../ui/Select/AppSelect';
+import { useMedOrganizations } from '../../../../api/services/RControl/hooks/useMedOrganizations';
+import { useBillingPeriods } from '../../../../api/services/RControl/hooks/useBillingPeriods';
+
 import styles from './styles.module.scss';
 
 export const FilterPanel = () => {
 
-    const { dbType, setDbType, setSelectedOrgCode } = useRControlStore();
+    useMedOrganizations();
+    useBillingPeriods();
+
+    const {
+        dbType,
+        selectedOrgCode,
+        selectedYear,
+        selectedMonth,
+        medOrganizations,
+        billingPeriods,
+        setDbType,
+        setSelectedOrgCode,
+        setSelectedYear,
+        setSelectedMonth } = useRControlStore();
+
 
     const handleToggle = (
         event: React.MouseEvent<HTMLElement>,
@@ -18,15 +36,55 @@ export const FilterPanel = () => {
                 return;
             }
         }
-    }
+    };
 
     const handleSelectOrg = (value: string) => {
         if (value !== null) {
             setSelectedOrgCode(value);
         }
+    };
+
+    const handleSelectYear = (value: string) => {
+        if (value !== null) {
+            setSelectedYear(value);
+        }
+    };
+
+    const handleSelectMonth = (value: string) => {
+        if (value !== null) {
+            setSelectedMonth(value);
+        }
     }
+    
+    const orgOptions = medOrganizations.map((med) => ({
+        value: med.code,
+        label: med.code
+    }));
+
+    const yearOptions = useMemo(() => {
+
+        const uniqueYears = [...new Set(billingPeriods.map(period => period.year))];
+
+        return uniqueYears.map(year => ({
+            value: year.toString(),
+            label: year.toString()
+        }))
+
+    }, [billingPeriods]);
+
+    const monthOptions = useMemo(() => {
+
+        const months = billingPeriods.filter(f => f.year.toString() === selectedYear).map(period => period.month);
+
+        return months.map(month => ({
+            value: month.toString(),
+            label: month.toString()
+        }));
+
+    }, [selectedYear])
 
     return (
+
         <section className={styles.filterPanel}>
 
             <Toggle
@@ -37,37 +95,26 @@ export const FilterPanel = () => {
 
                 <AppSelect
                     label='Код МО'
-                    value='OrgCode'
-                    options={[{
-                        value: '190001',
-                        label: '190001'
-                    }]}
+                    value={selectedOrgCode}
+                    options={orgOptions}
                     onChange={handleSelectOrg}
                 />
 
                 <AppSelect
                     label='Год'
-                    value='OrgCode'
-                    options={[{
-                        value: '2026',
-                        label: '2026'
-                    }]}
-                    onChange={handleSelectOrg}
+                    value={selectedYear}
+                    options={yearOptions}
+                    onChange={handleSelectYear}
                 />
 
                 <AppSelect
                     label='Месяц'
-                    value='OrgCode'
-                    options={[{
-                        value: '3',
-                        label: 'Март'
-                    }]}
-                    onChange={handleSelectOrg}
+                    value={selectedMonth}
+                    options={monthOptions}
+                    onChange={handleSelectMonth}
                 />
 
             </div>
-
-
 
         </section>
     )
