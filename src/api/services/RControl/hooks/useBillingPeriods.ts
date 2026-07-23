@@ -1,25 +1,28 @@
 import { useEffect } from "react"
 import { rControlService } from "../rControlService";
-import { useRControlStore } from "../../../../components/pages/RControl/RControlStore";
+import { useDictionariesStore } from "../stores/dictionaries/useDictionariesStore";
+import { useFiltersStore } from "../stores/filters/useFiltersStore";
 
 export const useBillingPeriods = () => {
 
-    const {
-        dbType,
-        selectedOrgCode,
-        setBillingPeriods
-    } = useRControlStore();
+    const { targetDb, selectedOrgCode } = useFiltersStore();
+    const { setPeriods } = useDictionariesStore();
 
     useEffect(() => {
 
         const fetchPeriods = async () => {
-            const response = await rControlService.getBillingPeriods(dbType, selectedOrgCode);
+
+            if (!targetDb) {
+                return;
+            }
+
+            const response = await rControlService.getBillingPeriods(targetDb, selectedOrgCode);
 
             if (response.data.isFailure) {
                 return;
             }
 
-            setBillingPeriods(response.data.value.billingPeriods);
+            setPeriods(response.data.value.billingPeriods);
         }
 
         fetchPeriods();

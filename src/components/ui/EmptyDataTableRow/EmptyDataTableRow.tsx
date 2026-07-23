@@ -7,7 +7,7 @@ export const EmptyDataTableRow = () => {
             <FolderOffOutlinedIcon
                 sx={{
                     color: 'var(--text-secondary)',
-                    fontSize: 25,
+                    fontSize: 20,
                 }} />
 
             <p className={styles.messsage}>Данных не обнаружено</p>

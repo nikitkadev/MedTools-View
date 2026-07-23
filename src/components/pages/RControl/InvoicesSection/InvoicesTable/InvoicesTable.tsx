@@ -1,12 +1,12 @@
 import { SearchInput } from '../../../../ui/SearchInput/SearchInput';
-import { useRControlStore } from '../../RControlStore';
+import { EmptyDataTableRow } from '../../../../ui/EmptyDataTableRow/EmptyDataTableRow';
+import { useInvoicesStore } from '../../../../../api/services/RControl/stores/tables/useInvoicesStore';
 import dayjs from 'dayjs';
 import styles from './styles.module.scss';
-import { EmptyDataTableRow } from '../../../../ui/EmptyDataTableRow/EmptyDataTableRow';
 
 export const InvoicesTable = () => {
 
-    const { invoicesShortlies } = useRControlStore();
+    const { invoicesShortlies } = useInvoicesStore();
 
     return (
         <article className={styles.invoicesTableRoot}>

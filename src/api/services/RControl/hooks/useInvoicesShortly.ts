@@ -1,24 +1,24 @@
 import { useEffect } from "react";
-import { useRControlStore } from "../../../../components/pages/RControl/RControlStore"
 import { rControlService } from "../rControlService";
+import { useInvoicesStore } from "../stores/tables/useInvoicesStore";
+import { useFiltersStore } from "../stores/filters/useFiltersStore";
 
 export const useInvoicesShortly = () => {
 
-    const {
-        selectedMonth,
-        setInvoicesShortlies,
-        invoicesPagination,
-        selectedOrgCode,
-        selectedYear,
-        dbType } = useRControlStore();
+    const { targetDb, selectedOrgCode, selectedYear, selectedMonth } = useFiltersStore();
+    const { setInvoicesShortlies, pagination } = useInvoicesStore();
 
     useEffect(() => {
 
         const fetchCases = async () => {
 
+            if (!targetDb) {
+                return;
+            }
+
             const response = await rControlService.getInvoicesShortlyRecords(
-                { dbType: dbType },
-                { currentPage: invoicesPagination.page, pageSize: invoicesPagination.pageSize },
+                { dbType: targetDb },
+                { currentPage: pagination.page, pageSize: pagination.pageSize },
                 { globalSearchString: '' },
                 selectedOrgCode,
                 selectedYear,

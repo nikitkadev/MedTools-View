@@ -1,15 +1,22 @@
 import { useEffect } from "react";
 import { rControlService } from "../rControlService";
-import { useRControlStore } from "../../../../components/pages/RControl/RControlStore"
+import { useDictionariesStore } from "../stores/dictionaries/useDictionariesStore";
+import { useFiltersStore } from "../stores/filters/useFiltersStore";
 
 export const useMedOrganizations = () => {
 
-    const { dbType, setMedOrganizations } = useRControlStore();
+    const { targetDb } = useFiltersStore();
+    const { setMedOrganizations } = useDictionariesStore();
+
 
     useEffect(() => {
 
+        if (!targetDb) {
+            return;
+        }
+
         const fetchMedOrganizations = async () => {
-            const response = await rControlService.getOrganizations(dbType);
+            const response = await rControlService.getOrganizations(targetDb);
 
             if (response.data.isFailure) {
                 console.log(response.data.error);
@@ -21,5 +28,5 @@ export const useMedOrganizations = () => {
 
         fetchMedOrganizations();
 
-    }, [dbType]);
+    }, [targetDb]);
 }

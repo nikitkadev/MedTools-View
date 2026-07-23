@@ -1,7 +1,7 @@
 :root {
     --fs-base: 1rem;
 
-    --fs-body: var(var(--fs-base));
+    --fs-body: var(--fs-base);
     --fs-body2: calc(var(--fs-base) * 0.875);
     --fs-caption: calc(var(--fs-base)* 0.75);
     --fs-overline: calc(var(--fs-base)* 0.65);

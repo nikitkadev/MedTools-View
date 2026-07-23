@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import { Toggle } from '../../../ui/Toggle/Toggle';
-import { useRControlStore } from '../RControlStore';
 import { AppSelect } from '../../../ui/Select/AppSelect';
 import { useMedOrganizations } from '../../../../api/services/RControl/hooks/useMedOrganizations';
 import { useBillingPeriods } from '../../../../api/services/RControl/hooks/useBillingPeriods';
+import { useInvoicesShortly } from '../../../../api/services/RControl/hooks/useInvoicesShortly';
+import { useFiltersStore } from '../../../../api/services/RControl/stores/filters/useFiltersStore';
+import { useDictionariesStore } from '../../../../api/services/RControl/stores/dictionaries/useDictionariesStore';
 
 import styles from './styles.module.scss';
-import { useInvoicesShortly } from '../../../../api/services/RControl/hooks/useInvoicesShortly';
 
 export const FilterPanel = () => {
 
@@ -15,28 +16,26 @@ export const FilterPanel = () => {
     useInvoicesShortly();
 
     const {
-        dbType,
+        medOrganizations,
+        periods } = useDictionariesStore();
+
+    const {
+        targetDb,
         selectedOrgCode,
         selectedYear,
         selectedMonth,
-        medOrganizations,
-        billingPeriods,
-        setDbType,
+        setTargetDb,
         setSelectedOrgCode,
         setSelectedYear,
-        setSelectedMonth } = useRControlStore();
+        setSelectedMonth } = useFiltersStore();
 
 
     const handleToggle = (
-        event: React.MouseEvent<HTMLElement>,
+        _event: React.MouseEvent<HTMLElement>,
         newValue: string) => {
 
-        if (newValue !== null) {
-            setDbType(newValue);
-
-            if (event) {
-                return;
-            }
+        if (newValue === "SMODB18" || newValue === "INOGOROD18") {
+            setTargetDb(newValue);
         }
     };
 
@@ -65,18 +64,18 @@ export const FilterPanel = () => {
 
     const yearOptions = useMemo(() => {
 
-        const uniqueYears = [...new Set(billingPeriods.map(period => period.year))];
+        const uniqueYears = [...new Set(periods.map(period => period.year))];
 
         return uniqueYears.map(year => ({
             value: year.toString(),
             label: year.toString()
         }))
 
-    }, [billingPeriods]);
+    }, [periods]);
 
     const monthOptions = useMemo(() => {
 
-        const months = billingPeriods.filter(f => f.year.toString() === selectedYear).map(period => period.month);
+        const months = periods.filter(f => f.year.toString() === selectedYear).map(period => period.month);
 
         return months.map(month => ({
             value: month.toString(),
@@ -90,7 +89,7 @@ export const FilterPanel = () => {
         <section className={styles.filterPanel}>
 
             <Toggle
-                value={dbType}
+                value={targetDb ?? ''}
                 onChange={handleToggle} />
 
             <div className={styles.selections}>

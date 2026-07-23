@@ -3,10 +3,11 @@ import type { ResultResponse } from "./responses/ResultResponse";
 import type { BillingPeriodsQueryResult } from "./responses/BillingPeriodsQueryResult";
 import apiClient from "../../aliClient"
 import type { InvoicesShortlyQueryResult } from "./responses/InvoicesShortlyQueryResult";
+import type { TargetDbType } from "../../../common/types/TargetDbType";
 
 export const rControlService = {
 
-    getOrganizations: (targetDbType: string) => {
+    getOrganizations: (targetDbType: TargetDbType) => {
         return apiClient.get<ResultResponse<MedOrganizationsQueryResult>>("/rcontrol/med-organizations", {
             params: {
                 targetDbType: targetDbType
@@ -14,7 +15,7 @@ export const rControlService = {
         });
     },
 
-    getBillingPeriods: (targetDbType: string, orgCode: string) => {
+    getBillingPeriods: (targetDbType: TargetDbType, orgCode: string) => {
         return apiClient.get<ResultResponse<BillingPeriodsQueryResult>>("/rcontrol/billing-periods", {
             params: {
                 targetDbType: targetDbType,
