@@ -1,4 +1,4 @@
-import { ChevronRight } from '../../../ui/Icons/ChevronRight/ChevronRight';
+import { ChevronRight } from '../../../ui/Icons/ChevronRight';
 import { AppButton } from '../../../ui/AppButton/AppButton';
 import { Badge } from '../../../ui/Badge/Badge';
 import { useNavigate } from 'react-router';

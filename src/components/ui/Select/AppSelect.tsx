@@ -37,6 +37,12 @@ export const AppSelect = ({
                     {label}
                 </InputLabel>
                 <Select
+                    MenuProps={{
+                        transitionDuration: 50,
+                        sx: {
+                            maxHeight: 500
+                        }
+                    }}
                     size="medium"
                     value={value}
                     label={label}
@@ -52,6 +58,9 @@ export const AppSelect = ({
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'var(--border-focus)',
                             borderWidth: '1px',
+                        },
+                        '& .MuiMenuList-root': {
+                            minWidth: '10rem'
                         }
                     }}
                 >
@@ -68,8 +77,6 @@ export const AppSelect = ({
                             Нет данных
                         </MenuItem>
                     )}
-
-
                 </Select>
             </FormControl>
         </Box>

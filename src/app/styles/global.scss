@@ -63,7 +63,7 @@ h6 {
 }
 
 .tableContainer {
-    padding: 0 var(--space-5);
+    padding: var(--space-10);
 
     tbody {
 
@@ -71,10 +71,23 @@ h6 {
             border: none;
         }
 
+        tr:hover {
+            cursor: pointer;
+            background-color: var(--row-hover);
+
+            transition: 0.3s ease-in-out;
+        }
+
+        tr.noneHover:hover {
+            cursor: default; 
+            background-color: transparent; 
+            transition: none; 
+        }
+
     }
 
     table {
-        
+
         width: 100%;
         border-collapse: collapse;
         table-layout: fixed;
@@ -84,11 +97,23 @@ h6 {
         th,
         td {
             text-align: left;
-            padding: var(--space-7) 0;
+            padding: var(--space-5);
+            font-weight: var(--fw-semibold);
         }
 
         tr {
             border-bottom: 1px solid var(--border-default);
         }
+
+
+
+        .tdCenter,
+        .thCenter {
+            text-align: center;
+
+        }
+
     }
+
+
 }

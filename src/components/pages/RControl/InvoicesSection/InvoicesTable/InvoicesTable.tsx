@@ -1,7 +1,13 @@
 import { SearchInput } from '../../../../ui/SearchInput/SearchInput';
+import { useRControlStore } from '../../RControlStore';
+import dayjs from 'dayjs';
 import styles from './styles.module.scss';
+import { EmptyDataTableRow } from '../../../../ui/EmptyDataTableRow/EmptyDataTableRow';
 
 export const InvoicesTable = () => {
+
+    const { invoicesShortlies } = useRControlStore();
+
     return (
         <article className={styles.invoicesTableRoot}>
 
@@ -13,6 +19,7 @@ export const InvoicesTable = () => {
             </header>
 
             <div className="tableContainer">
+
                 <table className={styles.invoicesTable}>
 
                     <thead>
@@ -22,24 +29,34 @@ export const InvoicesTable = () => {
                             <th>Дата счета</th>
                             <th>Сумма</th>
                             <th>Случаев</th>
-                            <th>Статус</th>
+                            <th className='thCenter'>Статус</th>
                         </tr>
 
                     </thead>
 
                     <tbody>
 
-                        <tr>
-                            <td>№ счета</td>
-                            <td>Дата счета</td>
-                            <td>Сумма</td>
-                            <td>Случаев</td>
-                            <td>Статус</td>
-                        </tr>
-
+                        {invoicesShortlies.length > 0 ? (
+                            invoicesShortlies.map((invoice) => (
+                                <tr>
+                                    <td>{invoice.invoiceNumber}</td>
+                                    <td>{dayjs(invoice.invoiceDate).format("DD.MM.YYYY")}</td>
+                                    <td>{invoice.invoiceAmount}</td>
+                                    <td>{invoice.cases}</td>
+                                    <td className='tdCenter'>{invoice.status}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr className='noneHover'>
+                                <td colSpan={5}>
+                                    <EmptyDataTableRow />
+                                </td>
+                            </tr>
+                        )}
                     </tbody>
 
                 </table>
+
             </div>
 
         </article>

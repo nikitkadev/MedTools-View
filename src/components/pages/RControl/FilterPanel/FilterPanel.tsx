@@ -6,11 +6,13 @@ import { useMedOrganizations } from '../../../../api/services/RControl/hooks/use
 import { useBillingPeriods } from '../../../../api/services/RControl/hooks/useBillingPeriods';
 
 import styles from './styles.module.scss';
+import { useInvoicesShortly } from '../../../../api/services/RControl/hooks/useInvoicesShortly';
 
 export const FilterPanel = () => {
 
     useMedOrganizations();
     useBillingPeriods();
+    useInvoicesShortly();
 
     const {
         dbType,
@@ -55,7 +57,7 @@ export const FilterPanel = () => {
             setSelectedMonth(value);
         }
     }
-    
+
     const orgOptions = medOrganizations.map((med) => ({
         value: med.code,
         label: med.code
