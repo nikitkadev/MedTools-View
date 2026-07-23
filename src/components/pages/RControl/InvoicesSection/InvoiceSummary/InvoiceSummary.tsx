@@ -1,7 +1,14 @@
+import { useInvoicesStore } from '../../../../../modules/r-control/stores/tables/useInvoicesStore';
 import { Divider } from '../../../../ui/Divider/Divider';
+import { EmptyDataTableRow } from '../../../../ui/EmptyDataTableRow/EmptyDataTableRow';
+
 import styles from './styles.module.scss';
+import dayjs from 'dayjs';
 
 export const InvoiceSummary = () => {
+
+    const { invoiceSummary } = useInvoicesStore();
+
     return (
         <section className={styles.invoiceSummaryRoot}>
 
@@ -12,81 +19,86 @@ export const InvoiceSummary = () => {
             </header>
 
 
+
             <article className={styles.invoiceSummaryCard}>
 
-                <div className={styles.cardSection}>
-                    <div className={styles.item}>
-                        <label>Предъявлено</label>
-                        <p>219630.9 ₽</p>
-                    </div>
+                {invoiceSummary ? (
+                    <>
+                        <div className={styles.cardSection}>
+                            <div className={styles.item}>
+                                <label>Предъявлено</label>
+                                <p>{invoiceSummary.summav} ₽</p>
+                            </div>
 
-                    <div className={styles.item}>
-                        <label>Принято ТФОМС</label>
-                        <p>219630.9 ₽</p>
-                    </div>
+                            <div className={styles.item}>
+                                <label>Принято ТФОМС</label>
+                                <p>{invoiceSummary.summap} ₽</p>
+                            </div>
 
-                    <div className={styles.item}>
-                        <label>Принято СМО</label>
-                        <p>219630.9 ₽</p>
-                    </div>
-                </div>
+                            <div className={styles.item}>
+                                <label>Принято СМО</label>
+                                <p>{invoiceSummary.smoSummap} ₽</p>
+                            </div>
+                        </div>
 
-                <Divider />
+                        <Divider />
 
-                <div className={styles.cardSection}>
-                    <div className={styles.item}>
-                        <label>Снято МЭК ТФОМС</label>
-                        <p>0 ₽</p>
-                    </div>
+                        <div className={styles.cardSection}>
+                            <div className={styles.item}>
+                                <label>Снято МЭК ТФОМС</label>
+                                <p>{invoiceSummary.sankMek} ₽</p>
+                            </div>
 
-                    <div className={styles.item}>
-                        <label>Снято МЭЭ ТФОМС</label>
-                        <p>0 ₽</p>
-                    </div>
+                            <div className={styles.item}>
+                                <label>Снято МЭЭ ТФОМС</label>
+                                <p>{invoiceSummary.sankMee} ₽</p>
+                            </div>
 
-                    <div className={styles.item}>
-                        <label>Снято ЭКМР ТФОМС</label>
-                        <p>0 ₽</p>
-                    </div>
-                </div>
+                            <div className={styles.item}>
+                                <label>Снято ЭКМР ТФОМС</label>
+                                <p>{invoiceSummary.sankEkmp} ₽</p>
+                            </div>
+                        </div>
 
-                <Divider />
+                        <div className={styles.cardSection}>
+                            <div className={styles.item}>
+                                <label>Снято МЭК СМО</label>
+                                <p>{invoiceSummary.smoSankMek} ₽</p>
+                            </div>
 
-                <div className={styles.cardSection}>
-                    <div className={styles.item}>
-                        <label>Снято МЭК СМО</label>
-                        <p>0 ₽</p>
-                    </div>
+                            <div className={styles.item}>
+                                <label>Снято МЭЭ СМО</label>
+                                <p>{invoiceSummary.smoSankMee} ₽</p>
+                            </div>
 
-                    <div className={styles.item}>
-                        <label>Снято МЭЭ СМО</label>
-                        <p>0 ₽</p>
-                    </div>
+                            <div className={styles.item}>
+                                <label>Снято ЭКМР СМО</label>
+                                <p>{invoiceSummary.smoSankEkmp} ₽</p>
+                            </div>
+                        </div>
 
-                    <div className={styles.item}>
-                        <label>Снято ЭКМР СМО</label>
-                        <p>0 ₽</p>
-                    </div>
-                </div>
+                        <Divider />
 
-                <Divider />
+                        <div className={styles.cardSection}>
+                            <div className={styles.item}>
+                                <label>Имя файла</label>
+                                <p>{invoiceSummary.filename}</p>
+                            </div>
 
-                <div className={styles.cardSection}>
-                    <div className={styles.item}>
-                        <label>Имя файла</label>
-                        <p>HM190001S19001_26060255</p>
-                    </div>
+                            <div className={styles.item}>
+                                <label>UID счета</label>
+                                <p>{invoiceSummary.schetUid}</p>
+                            </div>
 
-                    <div className={styles.item}>
-                        <label>UID счета</label>
-                        <p>2681</p>
-                    </div>
-
-                    <div className={styles.item}>
-                        <label>Дата загрузки</label>
-                        <p>07.07.2026 09:49:00</p>
-                    </div>
-                </div>
+                            <div className={styles.item}>
+                                <label>Дата загрузки</label>
+                                <p>{dayjs(invoiceSummary.uploadDate).format("DD.MM.YYYY")}</p>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <EmptyDataTableRow />
+                )}
 
             </article>
 

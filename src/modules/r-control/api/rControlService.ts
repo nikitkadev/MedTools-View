@@ -1,9 +1,10 @@
 import type { MedOrganizationsQueryResult } from "../types/MedOrganizationsQueryResult";
 import type { ResultResponse } from "../../../shared/types/ResultResponse";
 import type { BillingPeriodsQueryResult } from "../types/BillingPeriodsQueryResult";
-import apiClient from "../../../shared/api/aliClient"
 import type { InvoicesShortlyQueryResult } from "../types/InvoicesShortlyQueryResult";
 import type { TargetDbType } from "../../../common/types/TargetDbType";
+import type { InvoiceSummaryQueryResult } from "../types/InvoiceSummaryQueryResult";
+import apiClient from "../../../shared/api/aliClient"
 
 export const rControlService = {
 
@@ -44,6 +45,15 @@ export const rControlService = {
             month
         });
 
+    },
+
+    getInvoiceSummary: (targetDb: TargetDbType, schetUid: number) => {
+        return apiClient.get<ResultResponse<InvoiceSummaryQueryResult>>("/rcontrol/invoice-summary", {
+            params: {
+                schetUid: schetUid,
+                targetDb: targetDb
+            }
+        });
     }
 
 }

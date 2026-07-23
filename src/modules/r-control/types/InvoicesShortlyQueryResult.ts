@@ -4,6 +4,7 @@ export interface InvoicesShortlyQueryResult {
 }
 
 export interface InvoiceShortly {
+    invoiceUid: number;
     invoiceNumber: string;
     invoiceDate: Date;
     invoiceAmount: number,

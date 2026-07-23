@@ -1,12 +1,20 @@
 import { SearchInput } from '../../../../ui/SearchInput/SearchInput';
 import { EmptyDataTableRow } from '../../../../ui/EmptyDataTableRow/EmptyDataTableRow';
 import { useInvoicesStore } from '../../../../../modules/r-control/stores/tables/useInvoicesStore';
+import { useInvoiceSummary } from '../../../../../modules/r-control/hooks/useInvoiceSummary';
+
 import dayjs from 'dayjs';
 import styles from './styles.module.scss';
 
 export const InvoicesTable = () => {
 
-    const { invoicesShortlies } = useInvoicesStore();
+    const {
+        invoicesShortlies,
+        setSelectedRecord,
+        selectedRecord } = useInvoicesStore();
+
+    useInvoiceSummary();
+
 
     return (
         <article className={styles.invoicesTableRoot}>
@@ -38,7 +46,14 @@ export const InvoicesTable = () => {
 
                         {invoicesShortlies.length > 0 ? (
                             invoicesShortlies.map((invoice) => (
-                                <tr>
+
+                                <tr
+                                    className={
+                                        selectedRecord && invoice.invoiceUid === selectedRecord.invoiceUid
+                                            ? styles.selectedRow
+                                            : ''
+                                    }
+                                    onClick={() => setSelectedRecord(invoice)}>
                                     <td>{invoice.invoiceNumber}</td>
                                     <td>{dayjs(invoice.invoiceDate).format("DD.MM.YYYY")}</td>
                                     <td>{invoice.invoiceAmount}</td>
