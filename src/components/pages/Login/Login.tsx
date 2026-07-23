@@ -1,12 +1,12 @@
-import { useAuthStore } from '../../../api/services/Auth/authStore';
-import { authService } from '../../../api/services/Auth/authService';
+import { useAuthStore } from '../../../modules/auth/stores/authStore';
 import { AppButton } from '../../ui/AppButton/AppButton';
 import { AppInput } from '../../ui/AppInput/AppInput';
 import { Divider } from '../../ui/Divider/Divider';
-import React, { useState } from 'react';
-
-import styles from './styles.module.scss';
 import { useNavigate } from 'react-router';
+import { authService } from '../../../modules/auth/api/authService';
+
+import React, { useState } from 'react';
+import styles from './styles.module.scss';
 
 export const Login = () => {
 

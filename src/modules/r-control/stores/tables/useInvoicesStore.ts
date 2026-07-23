@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import type { PaginationState } from "../../../../../common/types/PaginationState";
-import type { InvoiceShortly } from "../../responses/InvoicesShortlyQueryResult";
+import type { PaginationState } from "../../../../common/types/PaginationState";
+import type { InvoiceShortly } from "../../types/InvoicesShortlyQueryResult";
 
 interface InvoicesStore {
     invoicesShortlies: InvoiceShortly[];

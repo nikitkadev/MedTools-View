@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 import { Toggle } from '../../../ui/Toggle/Toggle';
 import { AppSelect } from '../../../ui/Select/AppSelect';
-import { useMedOrganizations } from '../../../../api/services/RControl/hooks/useMedOrganizations';
-import { useBillingPeriods } from '../../../../api/services/RControl/hooks/useBillingPeriods';
-import { useInvoicesShortly } from '../../../../api/services/RControl/hooks/useInvoicesShortly';
-import { useFiltersStore } from '../../../../api/services/RControl/stores/filters/useFiltersStore';
-import { useDictionariesStore } from '../../../../api/services/RControl/stores/dictionaries/useDictionariesStore';
+import { useFiltersStore } from '../../../../modules/r-control/stores/filters/useFiltersStore';
+import { useDictionariesStore } from '../../../../modules/r-control/stores/dictionaries/useDictionariesStore';
 
 import styles from './styles.module.scss';
+import { useMedOrganizations } from '../../../../modules/r-control/hooks/useMedOrganizations';
+import { useBillingPeriods } from '../../../../modules/r-control/hooks/useBillingPeriods';
+import { useInvoicesShortly } from '../../../../modules/r-control/hooks/useInvoicesShortly';
 
 export const FilterPanel = () => {
 

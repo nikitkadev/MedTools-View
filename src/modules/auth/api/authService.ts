@@ -1,5 +1,5 @@
-import type { LoginResponse } from "./LoginReponse";
-import apiClient from "../../aliClient"
+import type { LoginResponse } from "../types/LoginReponse";
+import apiClient from "../../../shared/api/aliClient";
 
 export const authService = {
 
@@ -9,7 +9,7 @@ export const authService = {
             email,
             password
         });
-        
+
     }
 
 }

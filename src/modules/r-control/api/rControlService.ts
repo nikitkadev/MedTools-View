@@ -1,8 +1,8 @@
-import type { MedOrganizationsQueryResult } from "./responses/MedOrganizationsQueryResult";
-import type { ResultResponse } from "./responses/ResultResponse";
-import type { BillingPeriodsQueryResult } from "./responses/BillingPeriodsQueryResult";
-import apiClient from "../../aliClient"
-import type { InvoicesShortlyQueryResult } from "./responses/InvoicesShortlyQueryResult";
+import type { MedOrganizationsQueryResult } from "../types/MedOrganizationsQueryResult";
+import type { ResultResponse } from "../../../shared/types/ResultResponse";
+import type { BillingPeriodsQueryResult } from "../types/BillingPeriodsQueryResult";
+import apiClient from "../../../shared/api/aliClient"
+import type { InvoicesShortlyQueryResult } from "../types/InvoicesShortlyQueryResult";
 import type { TargetDbType } from "../../../common/types/TargetDbType";
 
 export const rControlService = {

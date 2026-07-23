@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { rControlService } from "../rControlService";
 import { useInvoicesStore } from "../stores/tables/useInvoicesStore";
 import { useFiltersStore } from "../stores/filters/useFiltersStore";
+import { rControlService } from "../api/rControlService";
 
 export const useInvoicesShortly = () => {
 

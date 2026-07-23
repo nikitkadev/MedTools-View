@@ -1,4 +1,4 @@
-import type { TargetDbType } from "../../../../../common/types/TargetDbType";
+import type { TargetDbType } from "../../../../common/types/TargetDbType";
 import { create } from "zustand";
 
 interface FiltersStore {

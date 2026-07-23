@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import type { BillingPeriod } from "../../responses/BillingPeriodsQueryResult";
-import type { MedOrganization } from "../../responses/MedOrganizationsQueryResult";
+import type { BillingPeriod } from "../../types/BillingPeriodsQueryResult";
+import type { MedOrganization } from "../../types/MedOrganizationsQueryResult";
 
 interface DictionariesStore {
     medOrganizations: MedOrganization[];

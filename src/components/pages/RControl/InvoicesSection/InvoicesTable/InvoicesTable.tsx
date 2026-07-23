@@ -1,6 +1,6 @@
 import { SearchInput } from '../../../../ui/SearchInput/SearchInput';
 import { EmptyDataTableRow } from '../../../../ui/EmptyDataTableRow/EmptyDataTableRow';
-import { useInvoicesStore } from '../../../../../api/services/RControl/stores/tables/useInvoicesStore';
+import { useInvoicesStore } from '../../../../../modules/r-control/stores/tables/useInvoicesStore';
 import dayjs from 'dayjs';
 import styles from './styles.module.scss';
 
