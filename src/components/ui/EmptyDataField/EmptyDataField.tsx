@@ -1,7 +1,11 @@
 import styles from './styles.module.scss';
 import FolderOffOutlinedIcon from '@mui/icons-material/FolderOffOutlined';
 
-export const EmptyDataTableRow = () => {
+interface EmptyDataFieldProps {
+    text?: string;
+}
+
+export const EmptyDataField = ({ text = "Данных не обнаружено" }: EmptyDataFieldProps) => {
     return (
         <div className={styles.emptyDataTableRowRoot}>
             <FolderOffOutlinedIcon
@@ -10,7 +14,7 @@ export const EmptyDataTableRow = () => {
                     fontSize: 20,
                 }} />
 
-            <p className={styles.messsage}>Данных не обнаружено</p>
+            <p className={styles.messsage}>{text}</p>
         </div>
     )
 }

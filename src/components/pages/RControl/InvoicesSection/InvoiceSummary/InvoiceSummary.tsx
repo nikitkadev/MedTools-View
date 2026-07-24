@@ -1,7 +1,6 @@
 import { useInvoicesStore } from '../../../../../modules/r-control/stores/tables/useInvoicesStore';
 import { Divider } from '../../../../ui/Divider/Divider';
-import { EmptyDataTableRow } from '../../../../ui/EmptyDataTableRow/EmptyDataTableRow';
-
+import { EmptyDataField } from '../../../../ui/EmptyDataField/EmptyDataField';
 import styles from './styles.module.scss';
 import dayjs from 'dayjs';
 
@@ -97,7 +96,7 @@ export const InvoiceSummary = () => {
                         </div>
                     </>
                 ) : (
-                    <EmptyDataTableRow />
+                    <EmptyDataField text='Информации по счету не найдено' />
                 )}
 
             </article>

@@ -1,6 +1,7 @@
 export interface InvoicesShortlyQueryResult {
     invoicesShortlies: InvoiceShortly[];
     totalRecords: number;
+    currentPage: number;
 }
 
 export interface InvoiceShortly {

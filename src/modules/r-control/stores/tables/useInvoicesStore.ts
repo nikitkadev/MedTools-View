@@ -22,7 +22,7 @@ export const useInvoicesStore = create<InvoicesStore>((set) => ({
     invoiceSummary: null,
 
     pagination: {
-        page: 1,
+        page: 0,
         pageSize: 10,
         totalItems: 0,
         totalPages: 1

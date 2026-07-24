@@ -4,6 +4,7 @@
     align-self: flex-start;
 
     width: 50%;
+    min-height: 20rem;
 
     border: 1px solid var(--border-default);
     border-radius: var(--radius-l);
@@ -12,12 +13,20 @@
     .searchPanel,
     .invoicesTableHeader {
         padding: var(--space-5);
+        border-bottom: 1px solid var(--border-default);
+
+        .titleWithSearchField {
+            width: 50%;
+            display: flex;
+            gap: var(--space-5);
+
+            align-items: center;
+        }
 
         h1 {
             font-size: var(--fs-h3);
         }
 
-        border-bottom: 1px solid var(--border-default);
     }
 
     .invoicesTableHeader {
@@ -26,5 +35,10 @@
         align-items: center;
 
         gap: var(--space-5);
+    }
+
+    .paginationContainer {
+        padding: var(--space-5);
+
     }
 }

@@ -6,7 +6,7 @@ import { rControlService } from "../api/rControlService";
 export const useInvoicesShortly = () => {
 
     const { targetDb, selectedOrgCode, selectedYear, selectedMonth } = useFiltersStore();
-    const { setInvoicesShortlies, pagination } = useInvoicesStore();
+    const { setInvoicesShortlies, pagination, setPagination } = useInvoicesStore();
 
     useEffect(() => {
 
@@ -18,7 +18,7 @@ export const useInvoicesShortly = () => {
 
             const response = await rControlService.getInvoicesShortlyRecords(
                 { dbType: targetDb },
-                { currentPage: pagination.page, pageSize: pagination.pageSize },
+                { currentPage: pagination.page + 1, pageSize: pagination.pageSize },
                 { globalSearchString: '' },
                 selectedOrgCode,
                 selectedYear,
@@ -30,12 +30,14 @@ export const useInvoicesShortly = () => {
             }
 
             setInvoicesShortlies(response.data.value.invoicesShortlies);
-
+            setPagination({
+                totalItems: response.data.value.totalRecords
+            })
         }
 
         fetchCases();
 
-    }, [selectedMonth]);
+    }, [selectedMonth, pagination.page, pagination.pageSize]);
 
-    
+
 }

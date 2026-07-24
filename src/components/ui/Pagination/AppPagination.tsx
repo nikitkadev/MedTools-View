@@ -1,13 +1,46 @@
-import { Pagination, Stack } from "@mui/material"
+import type { PaginationState } from "../../../common/types/PaginationState"
+import { TablePagination } from '@mui/material';
 
+interface AppPaginationProps {
+    pagination: PaginationState;
+    onPageChange: (event: React.MouseEvent<HTMLButtonElement>, page: number) => void;
+    onRowsPerPageChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
 
-export const AppPagination = () => {
+export const AppPagination = ({
+    pagination,
+    onPageChange,
+    onRowsPerPageChange }: AppPaginationProps) => {
+
     return (
-        <Stack spacing={1}>
-            <Pagination
-                count={50}
-                shape="rounded"
-                variant="outlined" />
-        </Stack>
+        <TablePagination
+            component='div'
+            count={pagination.totalItems}
+            page={pagination.page}
+            rowsPerPage={pagination.pageSize}
+            onRowsPerPageChange={onRowsPerPageChange}
+            onPageChange={onPageChange}
+            labelRowsPerPage="Показывать по"
+            labelDisplayedRows={({ from, to, count }) => {
+                return `${from} - ${to} из ${count}`
+            }}
+            sx={{
+                '& .MuiTablePagination-displayedRows': {
+                    fontFamily: 'var(--inter)',
+                    fontSize: 'var(--fs-body2)',
+                    color: 'var(--text-primary)',
+                },
+                '& .MuiSelect-select': {
+                    fontFamily: 'var(--inter)',
+                    fontSize: 'var(--fs-body2)',
+                    color: 'var(--text-primary)',
+                },
+                '& .MuiTablePagination-selectLabel': {
+                    fontFamily: 'var(--inter)',
+                    fontSize: 'var(--fs-body2)',
+                    color: 'var(--text-primary)',
+                },
+
+            }} />
     )
 }

@@ -1,7 +1,8 @@
 import { SearchInput } from '../../../../ui/SearchInput/SearchInput';
-import { EmptyDataTableRow } from '../../../../ui/EmptyDataTableRow/EmptyDataTableRow';
+import { EmptyDataField } from '../../../../ui/EmptyDataField/EmptyDataField';
 import { useInvoicesStore } from '../../../../../modules/r-control/stores/tables/useInvoicesStore';
 import { useInvoiceSummary } from '../../../../../modules/r-control/hooks/useInvoiceSummary';
+import { AppPagination } from '../../../../ui/Pagination/AppPagination';
 
 import dayjs from 'dayjs';
 import styles from './styles.module.scss';
@@ -9,20 +10,45 @@ import styles from './styles.module.scss';
 export const InvoicesTable = () => {
 
     const {
+        pagination,
+        setPagination,
         invoicesShortlies,
         setSelectedRecord,
         selectedRecord } = useInvoicesStore();
 
     useInvoiceSummary();
 
+    const onPageChange = (
+        _event: React.MouseEvent<HTMLButtonElement>,
+        page: number) => {
+
+        if (page >= 0) {
+            setPagination({ page: page })
+        }
+    }
+
+    const onRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const newPageSize = parseInt(event.target.value, 10);
+        setPagination({
+            pageSize: newPageSize,
+            page: 0
+        })
+    }
 
     return (
         <article className={styles.invoicesTableRoot}>
 
             <header className={styles.invoicesTableHeader}>
 
-                <h1>Счета</h1>
-                <SearchInput />
+                <div className={styles.titleWithSearchField}>
+                    <h1>Счета</h1>
+                    <SearchInput />
+                </div>
+
+                <AppPagination
+                    pagination={pagination}
+                    onPageChange={onPageChange}
+                    onRowsPerPageChange={onRowsPerPageChange} />
 
             </header>
 
@@ -35,7 +61,7 @@ export const InvoicesTable = () => {
                         <tr>
                             <th>№ счета</th>
                             <th>Дата счета</th>
-                            <th>Сумма</th>
+                            <th>Сумма, ₽</th>
                             <th>Случаев</th>
                             <th className='thCenter'>Статус</th>
                         </tr>
@@ -64,7 +90,7 @@ export const InvoicesTable = () => {
                         ) : (
                             <tr className='noneHover'>
                                 <td colSpan={5}>
-                                    <EmptyDataTableRow />
+                                    <EmptyDataField />
                                 </td>
                             </tr>
                         )}
@@ -73,7 +99,6 @@ export const InvoicesTable = () => {
                 </table>
 
             </div>
-
         </article>
     )
 }
