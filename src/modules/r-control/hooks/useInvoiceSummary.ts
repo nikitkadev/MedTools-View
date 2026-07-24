@@ -12,7 +12,7 @@ export const useInvoiceSummary = () => {
 
         const fetchInvoiceSummary = async () => {
 
-            if (!targetDb) {
+            if (!targetDb || !selectedRecord) {
                 return;
             }
 

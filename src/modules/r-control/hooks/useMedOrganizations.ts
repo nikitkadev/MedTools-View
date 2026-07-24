@@ -17,9 +17,8 @@ export const useMedOrganizations = () => {
 
         const fetchMedOrganizations = async () => {
             const response = await rControlService.getOrganizations(targetDb);
-            
+
             if (response.data.isFailure) {
-                console.log(response.data.error);
                 return;
             }
 

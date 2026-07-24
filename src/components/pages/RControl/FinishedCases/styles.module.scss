@@ -11,13 +11,21 @@
     .searchPanel,
     .finishedCasesTableHeader {
         padding: var(--space-5);
+        border-bottom: 1px solid var(--border-default);
 
         h1 {
             font-size: var(--fs-h3);
             text-wrap: nowrap;
         }
 
-        border-bottom: 1px solid var(--border-default);
+        .titleWithSearchField {
+            width: 50%;
+            display: flex;
+            gap: var(--space-5);
+
+            align-items: center;
+        }
+
     }
 
     .finishedCasesTableHeader {

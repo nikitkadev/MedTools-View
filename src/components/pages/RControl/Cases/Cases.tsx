@@ -1,6 +1,18 @@
+import { useCases } from '../../../../modules/r-control/hooks/useCases';
+import { useCasesStore } from '../../../../modules/r-control/stores/tables/useCasesStore';
+import { EmptyDataField } from '../../../ui/EmptyDataField/EmptyDataField';
 import styles from './styles.module.scss';
+import dayjs from 'dayjs';
 
 export const Cases = () => {
+
+    useCases();
+
+    const {
+        cases,
+        setSelectedRecordUid
+    } = useCasesStore();
+
     return (
         <article className={styles.casesTableRoot}>
             <header className={styles.casesTableRootHeader}>
@@ -13,7 +25,7 @@ export const Cases = () => {
                     <thead>
 
                         <tr>
-                            <th>SL_UID</th>
+                            <th>Uid</th>
                             <th>Профиль</th>
                             <th>Дет.</th>
                             <th>Спец.</th>
@@ -31,21 +43,32 @@ export const Cases = () => {
 
                     <tbody>
 
-                        <tr>
-                            <td>SL_UID</td>
-                            <td>Профиль</td>
-                            <td>Дет.</td>
-                            <td>Спец.</td>
-                            <td>Лечение с</td>
-                            <td>Лечение по</td>
-                            <td>Диагноз</td>
-                            <td>Кол-во</td>
-                            <td>Тариф</td>
-                            <td>Предъявлено</td>
-                            <td>Принято</td>
-                            <td>Принято СМО</td>
-                        </tr>
+                        {cases.length > 0 ? (
 
+                            cases.map((generalCase) => (
+                                <tr
+                                    onClick={() => setSelectedRecordUid(generalCase.uid)}>
+                                    <td>{generalCase.uid}</td>
+                                    <td>{generalCase.profil ? generalCase.profil : ''}</td>
+                                    <td>{generalCase.det}</td>
+                                    <td>{generalCase.prvs}</td>
+                                    <td>{dayjs(generalCase.startingAt).format("DD.MM.YYYY")}</td>
+                                    <td>{dayjs(generalCase.endingAt).format("DD.MM.YYYY")}</td>
+                                    <td>{generalCase.ds1}</td>
+                                    <td>{generalCase.edCol ? generalCase.edCol : ''}</td>
+                                    <td>{generalCase.tarif}</td>
+                                    <td>{generalCase.sumM}</td>
+                                    <td>{generalCase.sump ? generalCase.sump : ''}</td>
+                                    <td>{generalCase.smoSump ? generalCase.smoSump : ''}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr className='noneHover'>
+                                <td colSpan={12}>
+                                    <EmptyDataField />
+                                </td>
+                            </tr>
+                        )}
                     </tbody>
 
                 </table>

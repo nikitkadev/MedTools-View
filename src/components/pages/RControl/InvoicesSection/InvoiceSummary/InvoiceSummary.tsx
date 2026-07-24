@@ -59,6 +59,8 @@ export const InvoiceSummary = () => {
                             </div>
                         </div>
 
+                        <Divider />
+
                         <div className={styles.cardSection}>
                             <div className={styles.item}>
                                 <label>Снято МЭК СМО</label>

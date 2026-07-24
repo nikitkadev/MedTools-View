@@ -4,7 +4,9 @@ import type { BillingPeriodsQueryResult } from "../types/BillingPeriodsQueryResu
 import type { InvoicesShortlyQueryResult } from "../types/InvoicesShortlyQueryResult";
 import type { TargetDbType } from "../../../common/types/TargetDbType";
 import type { InvoiceSummaryQueryResult } from "../types/InvoiceSummaryQueryResult";
+import type { FinishedCasesQueryResult } from "../types/FinishedCasesQueryResult";
 import apiClient from "../../../shared/api/aliClient"
+import type { CasesQueryResult } from "../types/CasesQueryResult";
 
 export const rControlService = {
 
@@ -54,6 +56,32 @@ export const rControlService = {
                 targetDb: targetDb
             }
         });
+    },
+
+    getFinishedCases: (
+        dbType: { dbType: string },
+        pagination: {
+            currentPage: number,
+            pageSize: number
+        },
+        search: { globalSearchString: string },
+        schetUid: number
+    ) => {
+        return apiClient.post<ResultResponse<FinishedCasesQueryResult>>("/rcontrol/finished-cases", {
+            pagination,
+            dbType,
+            search,
+            schetUid
+        });
+    },
+
+    getCases: (targetDb: TargetDbType, zSlUid: number) => {
+        return apiClient.get<ResultResponse<CasesQueryResult>>("/rcontrol/cases", ({
+            params: {
+                zSlUid: zSlUid,
+                targetDb: targetDb
+            }
+        }))
     }
 
 }

@@ -32,19 +32,23 @@ export const Toggle = ({
                     margin: '0',
                     padding: 'var(--space-5)',
                 },
+
                 '& .MuiToggleButtonGroup-firstButton': {
                     borderTopLeftRadius: 'var(--radius-l)',
                     borderBottomLeftRadius: 'var(--radius-l)',
                 },
+
                 '& .MuiToggleButtonGroup-lastButton': {
                     borderTopRightRadius: 'var(--radius-l)',
                     borderBottomRightRadius: 'var(--radius-l)',
                     borderLeft: 'none'
                 },
+
                 '& .Mui-selected': {
                     color: 'var(--black)',
                     background: 'var(--selected-background)',
                 },
+
                 '& .Mui-selected:hover': {
                     background: 'none',
                 },
