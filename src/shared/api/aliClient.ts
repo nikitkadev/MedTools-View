@@ -4,7 +4,7 @@ const apiClient = axios.create({
 
     baseURL: import.meta.env.DEV
         ? 'http://localhost:5256/api'
-        : 'http://localhost:5256/api',
+        : 'http://localhost:5256/api', //Заглушка до релиза
 
     timeout: 10000,
     headers: {

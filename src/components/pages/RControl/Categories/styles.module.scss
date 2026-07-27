@@ -4,24 +4,26 @@
     flex-direction: column;
 
     width: 100%;
+    gap: var(--space-10);
 
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius-l);
-    background: var(--card-background);
+
 
     .categoriesHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         padding: var(--space-5);
 
         h1 {
             font-size: var(--fs-h3);
         }
 
-        border-bottom: 1px solid var(--border-default);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-l);
+        background: var(--card-background);
     }
 
     .categoriesMenu {
-
-        border-bottom: 1px solid var(--border-default);
 
         ul {
             display: flex;
@@ -38,7 +40,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 10rem;
+        min-height: 20rem;
     }
 
 }
