@@ -5,8 +5,8 @@ import type { InvoicesShortlyQueryResult } from "../types/InvoicesShortlyQueryRe
 import type { TargetDbType } from "../../../common/types/TargetDbType";
 import type { InvoiceSummaryQueryResult } from "../types/InvoiceSummaryQueryResult";
 import type { FinishedCasesQueryResult } from "../types/FinishedCasesQueryResult";
-import apiClient from "../../../shared/api/aliClient"
 import type { CasesQueryResult } from "../types/CasesQueryResult";
+import apiClient from "../../../shared/api/aliClient"
 
 export const rControlService = {
 
