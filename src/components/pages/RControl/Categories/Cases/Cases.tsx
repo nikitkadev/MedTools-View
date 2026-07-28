@@ -1,9 +1,12 @@
 import { Divider } from '../../../../ui/Divider/Divider';
 import { useCasesCategoryStore } from '../../../../../modules/r-control/stores/categories/useCasesCategoryStore';
+import { useCasesCategory } from '../../../../../modules/r-control/hooks/categories/useCasesCategory';
 import dayjs from 'dayjs';
 import styles from './styles.module.scss';
 
 const Cases = () => {
+
+    useCasesCategory();
 
     const { caseCategory, finishedCaseCategory } = useCasesCategoryStore();
 
@@ -19,12 +22,13 @@ const Cases = () => {
                 <article className={styles.сaseCard}>
 
                     <header className={styles.cardHeader}>
-                        <h2>Законченный случай</h2>
+                        <h2>Случай</h2>
                     </header>
 
                     <Divider />
 
                     <div className={styles.subcategory}>
+                        
                         <header className={styles.subcategoryHeader}>
                             <h3>Общая информация</h3>
                         </header>

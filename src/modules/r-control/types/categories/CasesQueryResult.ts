@@ -1,5 +1,5 @@
 export interface CasesQueryResult {
-    cases: CaseCategory;
+    case: CaseCategory;
     finishedCase: FinishedCaseCategory;
 }
 

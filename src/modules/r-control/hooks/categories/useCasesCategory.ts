@@ -19,7 +19,7 @@ export const useCasesCategory = () => {
                 return;
             }
 
-            setCategoryCase(response.data.value.cases);
+            setCategoryCase(response.data.value.case);
             setCategoryFinishedCase(response.data.value.finishedCase);
         }
 

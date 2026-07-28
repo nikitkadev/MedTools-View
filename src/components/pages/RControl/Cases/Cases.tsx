@@ -15,6 +15,7 @@ export const Cases = () => {
 
     return (
         <article className={styles.casesTableRoot}>
+            
             <header className={styles.casesTableRootHeader}>
                 <h1>Случаи</h1>
             </header>

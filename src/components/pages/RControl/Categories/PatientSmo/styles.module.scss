@@ -8,10 +8,12 @@
 
     .cardsGrid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         column-gap: var(--space-10);
 
+        .documentCard,
         .smoCard,
+        .representativeCard,
         .patientCard {
             display: flex;
             flex-direction: column;
@@ -43,7 +45,7 @@
 
                 .cardLine {
                     display: grid;
-                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-columns: repeat(2, 1fr);
 
                     .cardField {
                         display: flex;
@@ -65,10 +67,6 @@
             }
 
 
-        }
-
-        .smoCard {
-            align-self: flex-start;
         }
 
     }

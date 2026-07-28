@@ -30,4 +30,7 @@ export interface Smo {
     polisNumber: string;
     polisType: number;
     enp?: string | null;
+    umpname: string;
+    vmpname: string;
+    frmmpname: string;
 }

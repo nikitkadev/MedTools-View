@@ -27,15 +27,15 @@ const PatientSmo = () => {
                     <Divider />
 
                     <div className={styles.subcategory}>
-                        <header className={styles.subcategoryHeader}>
-                            <h3>Общая информация</h3>
-                        </header>
 
                         <div className={styles.cardLine}>
                             <div className={styles.cardField}>
                                 <label>Фамилия</label>
                                 <p>{patient.surname}</p>
                             </div>
+                        </div>
+
+                        <div className={styles.cardLine}>
                             <div className={styles.cardField}>
                                 <label>Имя</label>
                                 <p>{patient.name}</p>
@@ -59,19 +59,72 @@ const PatientSmo = () => {
 
                     </div>
 
+                </article>
+
+                <article className={styles.documentCard}>
+
+                    <header className={styles.cardHeader}>
+                        <h2>Документ</h2>
+                    </header>
+
                     <Divider />
 
                     <div className={styles.subcategory}>
 
-                        <header className={styles.subcategoryHeader}>
-                            <h3>Представитель</h3>
-                        </header>
+                        <div className={styles.cardLine}>
+                            <div className={styles.cardField}>
+                                <label>Тип</label>
+                                <p>{patient.documentType ?? '-'}</p>
+                            </div>
+                        </div>
+
+                        <div className={styles.cardLine}>
+                            <div className={styles.cardField}>
+                                <label>Серия</label>
+                                <p>{patient.documentSeries ?? '-'}</p>
+                            </div>
+                            <div className={styles.cardField}>
+                                <label>Номер</label>
+                                <p>{patient.documentNumber ?? '-'}</p>
+                            </div>
+                        </div>
+
+                        <div className={styles.cardLine}>
+                            <div className={styles.cardField}>
+                                <label>Дата выдачи</label>
+                                <p>{patient.issueDate ? dayjs(patient.issueDate).format("DD.MM.YYYY") : '-'}</p>
+                            </div>
+                        </div>
+
+                        <div className={styles.cardLine}>
+                            <div className={styles.cardField}>
+                                <label>Кем выдан</label>
+                                <p>{patient.issuedBy ?? '-'}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <article className={styles.representativeCard}>
+
+                    <header className={styles.cardHeader}>
+                        <h2>Представитель</h2>
+                    </header>
+
+                    <Divider />
+
+                    <div className={styles.subcategory}>
 
                         <div className={styles.cardLine}>
                             <div className={styles.cardField}>
                                 <label>Фамилия</label>
                                 <p>{patient.representativeSurname ?? '-'}</p>
                             </div>
+                        </div>
+
+                        <div className={styles.cardLine}>
                             <div className={styles.cardField}>
                                 <label>Имя</label>
                                 <p>{patient.representativeName ?? '-'}</p>
@@ -95,44 +148,6 @@ const PatientSmo = () => {
 
                     </div>
 
-                    <Divider />
-
-                    <div className={styles.subcategory}>
-
-                        <header className={styles.subcategoryHeader}>
-                            <h3>Документ</h3>
-                        </header>
-
-                        <div className={styles.cardLine}>
-                            <div className={styles.cardField}>
-                                <label>Тип</label>
-                                <p>{patient.documentType ?? '-'}</p>
-                            </div>
-                            <div className={styles.cardField}>
-                                <label>Серия</label>
-                                <p>{patient.documentSeries ?? '-'}</p>
-                            </div>
-                            <div className={styles.cardField}>
-                                <label>Номер</label>
-                                <p>{patient.documentNumber ?? '-'}</p>
-                            </div>
-                        </div>
-
-                        <div className={styles.cardLine}>
-                            <div className={styles.cardField}>
-                                <label>Дата выдачи</label>
-                                <p>{patient.issueDate ? dayjs(patient.issueDate).format("DD.MM.YYYY") : '-'}</p>
-                            </div>
-                            <div className={styles.cardField}>
-                                <label>Кем выдан</label>
-                                <p>{patient.issuedBy ?? '-'}</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
                 </article>
 
                 <article className={styles.smoCard}>
@@ -144,15 +159,16 @@ const PatientSmo = () => {
                     <Divider />
 
                     <div className={styles.subcategory}>
-                        <header className={styles.subcategoryHeader}>
-                            <h3>Общая информация</h3>
-                        </header>
 
                         <div className={styles.cardLine}>
                             <div className={styles.cardField}>
                                 <label>Код СМО</label>
                                 <p>{smo.smoCode ?? '-'}</p>
                             </div>
+
+                        </div>
+
+                        <div className={styles.cardLine}>
                             <div className={styles.cardField}>
                                 <label>ОГРН СМО</label>
                                 <p>{smo.smoOGRN ?? '-'}</p>
@@ -161,6 +177,7 @@ const PatientSmo = () => {
                                 <label>ОКАТО СМО</label>
                                 <p>{smo.smoOKATO ?? '-'}</p>
                             </div>
+
                         </div>
 
                         <div className={styles.cardLine}>

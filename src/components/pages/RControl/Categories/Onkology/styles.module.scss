@@ -1,0 +1,201 @@
+.onkologyRoot {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+    height: 100%;
+    width: 100%;
+
+    .line1 {
+        display: flex;
+        gap: var(--space-10);
+
+        .onkSluchCard {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-start;
+
+            min-width: 30rem;
+
+            padding: var(--space-10);
+            gap: var(--space-5);
+
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-l);
+            background: var(--card-background);
+
+            .cardHeader {
+                h2 {
+                    font-size: var(--fs-h3);
+                    font-weight: var(--fw-bold);
+                }
+            }
+
+            .subcategory {
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-5);
+
+                .subcategoryHeader {
+                    h3 {
+                        font-size: var(--fs-h4);
+                        font-weight: var(--fw-semibold);
+                    }
+                }
+
+                .cardField {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--space-2);
+
+                    label {
+                        color: var(--text-secondary);
+                        font-size: var(--fs-body2);
+                    }
+
+                    p {
+                        color: var(--text-primary);
+                        font-weight: var(--fw-default);
+                        font-size: var(--fs-body);
+                    }
+                }
+
+                .cardLine {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+
+
+                }
+
+                .cardLineOneRow {
+                    display: grid;
+                    grid-template-columns: repeat(1, 1fr);
+                }
+
+            }
+        }
+
+        .onkSluchTableRoot {
+            display: flex;
+            flex-direction: column;
+
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-l);
+            background: var(--card-background);
+
+            .onkSluchTableRootHeader {
+                padding: var(--space-5);
+                border-bottom: 1px solid var(--border-default);
+
+                h1 {
+                    font-size: var(--fs-h3);
+                }
+
+            }
+        }
+
+    }
+
+    .line2 {
+        display: flex;
+        gap: var(--space-10);
+
+        .onkUslTableRoot,
+        .bProtsTableRoot {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-start;
+
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-l);
+            background: var(--card-background);
+
+            .onkUslTableRootHeader,
+            .bProtsTableRootHeader {
+                padding: var(--space-5);
+                border-bottom: 1px solid var(--border-default);
+
+                h1 {
+                    font-size: var(--fs-h3);
+                }
+            }
+        }
+
+        .onkUslTableRoot {
+            flex: 1 1 0;
+        }
+
+        .bProtsTableRoot {
+            flex: 0 0 50rem;
+        }
+    }
+
+    .line3 {
+        display: flex;
+        gap: var(--space-10);
+
+        .lekPrTableRoot {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-start;
+
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-l);
+            background: var(--card-background);
+
+            .lekPrTableRootHeader {
+                padding: var(--space-5);
+                border-bottom: 1px solid var(--border-default);
+
+                h1 {
+                    font-size: var(--fs-h3);
+                }
+            }
+        }
+    }
+
+    .line4 {
+        display: flex;
+
+        .injDateTableRoot {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-start;
+
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-l);
+            background: var(--card-background);
+
+            .injDateTableRootHeader {
+                padding: var(--space-5);
+                border-bottom: 1px solid var(--border-default);
+
+                h1 {
+                    font-size: var(--fs-h3);
+                }
+            }
+        }
+    }
+
+    .line5 {
+        display: flex;
+
+        .injTableRoot {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-start;
+
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-l);
+            background: var(--card-background);
+
+            .injTableRootHeader {
+                padding: var(--space-5);
+                border-bottom: 1px solid var(--border-default);
+
+                h1 {
+                    font-size: var(--fs-h3);
+                }
+            }
+        }
+    }
+}
