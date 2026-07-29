@@ -1,8 +1,8 @@
-export interface OnkSluchQueryResult {
-    onkSluch: OnkSluch;
+export interface OncSluchQueryResult {
+    oncSluch: OncSluch;
 }
 
-export interface OnkSluch {
+export interface OncSluch {
     uid: number;
     ds1T?: number | null;
     stad?: number | null;

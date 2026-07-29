@@ -1,9 +1,9 @@
-import dayjs from 'dayjs';
 import { useOnkologyCategory } from '../../../../../modules/r-control/hooks/categories/useOnkologyCategory';
-import { useOnkologyCategoryStore } from '../../../../../modules/r-control/stores/categories/useOnkologyCategoryStore';
+import { useOnkologyCategoryStore } from '../../../../../modules/r-control/stores/categories/useOncologyCategoryStore';
 import { CategoryLineHeader } from '../../../../ui/CategoryLineHeader/CategoryLineHeader';
 import { Divider } from '../../../../ui/Divider/Divider';
 import { EmptyDataField } from '../../../../ui/EmptyDataField/EmptyDataField';
+import dayjs from 'dayjs';
 
 import styles from './styles.module.scss';
 
@@ -11,7 +11,12 @@ const Onkology = () => {
 
     useOnkologyCategory();
 
-    const { onkSluch, consultations } = useOnkologyCategoryStore();
+    const {
+        oncSluch,
+        consultations,
+        services,
+        contraindications,
+        diags } = useOnkologyCategoryStore();
 
     return (
         <section className={styles.onkologyRoot}>
@@ -35,28 +40,28 @@ const Onkology = () => {
 
                         <Divider />
 
-                        {onkSluch ? (
+                        {oncSluch ? (
                             <div className={styles.subcategory}>
 
                                 <div className={styles.cardLine}>
                                     <div className={styles.cardField}>
                                         <label>Повод обращения</label>
-                                        <p>{onkSluch.ds1T ?? '-'}</p>
+                                        <p>{oncSluch.ds1T ?? '-'}</p>
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Стадия заболевания</label>
-                                        <p>{onkSluch.stad ?? '-'}</p>
+                                        <p>{oncSluch.stad ?? '-'}</p>
                                     </div>
                                 </div>
 
                                 <div className={styles.cardLine}>
                                     <div className={styles.cardField}>
                                         <label>Tumor</label>
-                                        <p>{onkSluch.onkT ?? '-'}</p>
+                                        <p>{oncSluch.onkT ?? '-'}</p>
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Nodus</label>
-                                        <p>{onkSluch.onkM ?? '-'}</p>
+                                        <p>{oncSluch.onkM ?? '-'}</p>
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Metastasis</label>
@@ -67,36 +72,36 @@ const Onkology = () => {
                                 <div className={styles.cardLineOneRow}>
                                     <div className={styles.cardField}>
                                         <label>Признак выявления отдаленных метастазов</label>
-                                        <p>{onkSluch.mtstz ?? '-'}</p>
+                                        <p>{oncSluch.mtstz ?? '-'}</p>
                                     </div>
                                 </div>
 
                                 <div className={styles.cardLineOneRow}>
                                     <div className={styles.cardField}>
                                         <label>Суммарная очаговая доза</label>
-                                        <p>{onkSluch.sod ?? '-'}</p>
+                                        <p>{oncSluch.sod ?? '-'}</p>
                                     </div>
                                 </div>
 
                                 <div className={styles.cardLineOneRow}>
                                     <div className={styles.cardField}>
                                         <label>Количество фракций проведения лучевой терапии</label>
-                                        <p>{onkSluch.kFr ?? '-'}</p>
+                                        <p>{oncSluch.kFr ?? '-'}</p>
                                     </div>
                                 </div>
 
                                 <div className={styles.cardLine}>
                                     <div className={styles.cardField}>
                                         <label>Масса тела (кг)</label>
-                                        <p>{onkSluch.wei ?? '-'}</p>
+                                        <p>{oncSluch.wei ?? '-'}</p>
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Рост (см)</label>
-                                        <p>{onkSluch.onkM ?? '-'}</p>
+                                        <p>{oncSluch.onkM ?? '-'}</p>
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Площадь тела</label>
-                                        <p>{onkSluch.bsa ?? '-'}</p>
+                                        <p>{oncSluch.bsa ?? '-'}</p>
                                     </div>
                                 </div>
 
@@ -127,7 +132,7 @@ const Onkology = () => {
                                     {consultations.length > 0 ? (
 
                                         consultations.map((consultation) => (
-                                            <tr>
+                                            <tr className='noneHover'>
                                                 <td>{consultation.dtCons ? dayjs(consultation.dtCons).format("DD.MM.YYYY") : '-'}</td>
                                                 <td>{consultation.prCons}</td>
                                             </tr>
@@ -167,7 +172,7 @@ const Onkology = () => {
                     <article className={styles.bProtsTableRoot}>
 
                         <header className={styles.bProtsTableRootHeader}>
-                            <h1>Сведения о противопоказаниях</h1>
+                            <h1>Противопоказания</h1>
                         </header>
 
                         <div className='tableContainer'>
@@ -179,10 +184,24 @@ const Onkology = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Код</td>
-                                        <td>Дата регистрации</td>
-                                    </tr>
+
+                                    {contraindications.length > 0 ? (
+
+                                        contraindications.map((contraindication) => (
+                                            <tr className='noneHover'>
+                                                <td>{contraindication.prot}</td>
+                                                <td>{dayjs(contraindication.dProt).format("DD.MM.YYYY")}</td>
+                                            </tr>
+                                        ))
+
+                                    ) : (
+                                        <tr className='noneHover'>
+                                            <td colSpan={2}>
+                                                <EmptyDataField />
+                                            </td>
+                                        </tr>
+                                    )}
+
                                 </tbody>
                             </table>
                         </div>
@@ -191,13 +210,13 @@ const Onkology = () => {
                     <article className={styles.onkSluchTableRoot}>
 
                         <header className={styles.onkSluchTableRootHeader}>
-                            <h1>Диагностический блок</h1>
+                            <h1>Диагностика</h1>
                         </header>
 
                         <div className='tableContainer'>
                             <table>
                                 <thead>
-                                    <tr>
+                                    <tr className='noneHover'>
                                         <th>Дата взятия материала</th>
                                         <th>Тип д. п.</th>
                                         <th>Код д. п.</th>
@@ -206,13 +225,26 @@ const Onkology = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Дата взятия материала</td>
-                                        <td>Тип д. п.</td>
-                                        <td>Код д. п.</td>
-                                        <td>Код результата диагностики</td>
-                                        <td>Результат диагностики</td>
-                                    </tr>
+                                    {diags.length > 0 ? (
+
+                                        diags.map((diag) => (
+                                            <tr>
+                                                <td>{diag.diagDate ? dayjs(diag.diagDate).format("DD.MM.YYYY") : '-'}</td>
+                                                <td>{diag.diagTip ?? '-'}</td>
+                                                <td>{diag.diagCode ?? '-'}</td>
+                                                <td>{diag.diagRslt ?? '-'}</td>
+                                                <td>{diag.recRslt ?? '-'}</td>
+                                            </tr>
+                                        ))
+
+                                    ) : (
+                                        <tr className='noneHover'>
+                                            <td colSpan={5}>
+                                                <EmptyDataField />
+                                            </td>
+                                        </tr>
+                                    )}
+
                                 </tbody>
                             </table>
                         </div>
@@ -240,13 +272,27 @@ const Onkology = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Тип услуги</td>
-                                        <td>Тип хир. лечения</td>
-                                        <td>Линия лек. терапии</td>
-                                        <td>Профиль тошноты</td>
-                                        <td>Тип лучевой терапии</td>
-                                    </tr>
+
+                                    {services.length > 0 ? (
+
+                                        services.map((service) => (
+                                            <tr>
+                                                <td>{service.uslTip}</td>
+                                                <td>{service.hirTip ?? '-'}</td>
+                                                <td>{service.lekTipL ?? '-'}</td>
+                                                <td>{service.pptR ?? '-'}</td>
+                                                <td>{service.luchTip ?? '-'}</td>
+                                            </tr>
+                                        ))
+
+                                    ) : (
+                                        <tr className='noneHover'>
+                                            <td colSpan={5}>
+                                                <EmptyDataField />
+                                            </td>
+                                        </tr>
+                                    )}
+
                                 </tbody>
                             </table>
                         </div>
