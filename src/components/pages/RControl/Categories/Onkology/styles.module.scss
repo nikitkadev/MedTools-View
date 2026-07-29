@@ -5,9 +5,61 @@
     height: 100%;
     width: 100%;
 
-    .line1 {
+
+    .lineContainer {
+
         display: flex;
-        gap: var(--space-10);
+        flex-direction: column;
+        gap: var(--space-5);
+
+        .categoryLine {
+            display: flex;
+            gap: var(--space-5);
+
+            .lekPrTableRoot,
+            .injTableRoot,
+            .injDateTableRoot,
+            .onkUslTableRoot,
+            .bProtsTableRoot,
+            .onkSluchTableRoot,
+            .consTableRoot {
+                display: flex;
+                flex-direction: column;
+                align-self: flex-start;
+
+                border: 1px solid var(--border-default);
+                border-radius: var(--radius-l);
+                background: var(--card-background);
+
+                .lekPrTableRootHeader,
+                .injTableRootHeader,
+                .injDateTableRootHeader,
+                .onkUslTableRootHeader,
+                .bProtsTableRootHeader,
+                .onkSluchTableRootHeader,
+                .consTableRootHeader {
+                    padding: var(--space-5);
+                    border-bottom: 1px solid var(--border-default);
+
+                    h1 {
+                        font-size: var(--fs-h3);
+                    }
+
+                }
+            }
+
+            .bProtsTableRoot {
+                flex: 0 0 30rem;
+            }
+
+            .onkUslTableRoot {
+                flex: 1 1 0;
+            }
+
+            .injDateTableRoot{
+                flex: 0 0 20rem;
+            }
+        }
 
         .onkSluchCard {
             display: flex;
@@ -73,129 +125,7 @@
 
             }
         }
-
-        .onkSluchTableRoot {
-            display: flex;
-            flex-direction: column;
-
-            border: 1px solid var(--border-default);
-            border-radius: var(--radius-l);
-            background: var(--card-background);
-
-            .onkSluchTableRootHeader {
-                padding: var(--space-5);
-                border-bottom: 1px solid var(--border-default);
-
-                h1 {
-                    font-size: var(--fs-h3);
-                }
-
-            }
-        }
-
     }
 
-    .line2 {
-        display: flex;
-        gap: var(--space-10);
 
-        .onkUslTableRoot,
-        .bProtsTableRoot {
-            display: flex;
-            flex-direction: column;
-            align-self: flex-start;
-
-            border: 1px solid var(--border-default);
-            border-radius: var(--radius-l);
-            background: var(--card-background);
-
-            .onkUslTableRootHeader,
-            .bProtsTableRootHeader {
-                padding: var(--space-5);
-                border-bottom: 1px solid var(--border-default);
-
-                h1 {
-                    font-size: var(--fs-h3);
-                }
-            }
-        }
-
-        .onkUslTableRoot {
-            flex: 1 1 0;
-        }
-
-        .bProtsTableRoot {
-            flex: 0 0 50rem;
-        }
-    }
-
-    .line3 {
-        display: flex;
-        gap: var(--space-10);
-
-        .lekPrTableRoot {
-            display: flex;
-            flex-direction: column;
-            align-self: flex-start;
-
-            border: 1px solid var(--border-default);
-            border-radius: var(--radius-l);
-            background: var(--card-background);
-
-            .lekPrTableRootHeader {
-                padding: var(--space-5);
-                border-bottom: 1px solid var(--border-default);
-
-                h1 {
-                    font-size: var(--fs-h3);
-                }
-            }
-        }
-    }
-
-    .line4 {
-        display: flex;
-
-        .injDateTableRoot {
-            display: flex;
-            flex-direction: column;
-            align-self: flex-start;
-
-            border: 1px solid var(--border-default);
-            border-radius: var(--radius-l);
-            background: var(--card-background);
-
-            .injDateTableRootHeader {
-                padding: var(--space-5);
-                border-bottom: 1px solid var(--border-default);
-
-                h1 {
-                    font-size: var(--fs-h3);
-                }
-            }
-        }
-    }
-
-    .line5 {
-        display: flex;
-
-        .injTableRoot {
-            display: flex;
-            flex-direction: column;
-            align-self: flex-start;
-
-            border: 1px solid var(--border-default);
-            border-radius: var(--radius-l);
-            background: var(--card-background);
-
-            .injTableRootHeader {
-                padding: var(--space-5);
-                border-bottom: 1px solid var(--border-default);
-
-                h1 {
-                    font-size: var(--fs-h3);
-                }
-            }
-        }
-    }
 }

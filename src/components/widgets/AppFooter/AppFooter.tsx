@@ -5,7 +5,7 @@ export const AppFooter = () => {
     return (
         <footer className={styles.appFooterRoot}>
             <p>MedTools Web v{config.version}</p>
-            <p>Developed by Nikita Pavlov</p>
+            <p>Developed by nikitkadev</p>
         </footer>
     )
 }

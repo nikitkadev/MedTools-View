@@ -1,4 +1,4 @@
-import type { Patient, Smo } from "../../types/categories/PatientSmoQueryResult";
+import type { Patient, Smo } from "../../types/categories/PatientSmo/PatientSmoQueryResult";
 import { create } from "zustand";
 
 interface PatientSmoStore {

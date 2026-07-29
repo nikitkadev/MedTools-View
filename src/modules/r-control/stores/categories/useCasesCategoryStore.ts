@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { CaseCategory, FinishedCaseCategory } from "../../types/categories/CasesQueryResult";
+import type { CaseCategory, FinishedCaseCategory } from "../../types/categories/AllCases/CasesQueryResult";
 
 interface CasesCategoryStore {
     caseCategory: CaseCategory | null;

@@ -30,7 +30,7 @@ export const Categories = () => {
                         [
                             { label: "Пациент / СМО", value: "patientSmoId" },
                             { label: "Случаи", value: "casesId" },
-                            { label: "Окнозаболевания", value: "onkId" },
+                            { label: "Онкозаболевания", value: "onkId" },
                             { label: "Услуги", value: "uslId" },
                             { label: "КСГ / ВМП", value: "ksgVmpId" },
                             { label: "Назначения / Направления", value: "nazNaprId" },
