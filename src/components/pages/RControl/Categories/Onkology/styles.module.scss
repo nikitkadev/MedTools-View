@@ -1,7 +1,7 @@
 .onkologyRoot {
     display: flex;
     flex-direction: column;
-    gap: var(--space-10);
+    gap: var(--lg-space-2);
     height: 100%;
     width: 100%;
 
@@ -40,7 +40,7 @@
                 .consTableRootHeader {
                     padding: var(--space-5);
                     border-bottom: 1px solid var(--border-default);
-
+                    
                     h1 {
                         font-size: var(--fs-h3);
                     }

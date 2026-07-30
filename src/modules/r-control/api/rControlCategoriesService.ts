@@ -6,8 +6,10 @@ import type { PatientSmoQueryResult } from '../types/categories/PatientSmo/Patie
 import type { MedicamentsQueryResult } from '../types/categories/Oncology/MedicamentsQueryResult';
 import type { ConsultationQueryResult } from '../types/categories/Oncology/ConsultationQueryResult';
 import type { DetailedOncSluchQueryResult } from '../types/categories/Oncology/DetailedOncSluchQueryResult';
-import apiClient from '../../../shared/api/aliClient';
 import type { InjectionsQueryResult } from '../types/categories/Oncology/InjectionsQueryResult';
+import type { ProvidedServicesQueryResult } from '../types/categories/ProvidedServices/ProvidedServicesQueryResult';
+import type { MedDevQueryResult } from '../types/categories/ProvidedServices/MedDevQueryResult';
+import apiClient from '../../../shared/api/aliClient';
 
 export const rControlCategoriesService = {
 
@@ -93,6 +95,33 @@ export const rControlCategoriesService = {
                 targetDb: targetDb
             }
         }))
+    },
+
+    getProvidedServices: (
+        sluchUid: number,
+        targetDb: TargetDbType
+    ) => {
+
+        return apiClient.get<ResultResponse<ProvidedServicesQueryResult>>('/rcontrol/categories/provided-services/services', ({
+            params: {
+                sluchUid: sluchUid,
+                targetDb: targetDb
+            }
+        }));
+
+    },
+
+    getMedDevs: (
+        providedServiceUid: number,
+        targetDb: TargetDbType
+    ) => {
+
+        return apiClient.get<ResultResponse<MedDevQueryResult>>('/rcontrol/categories/provided-services/med-devs', ({
+            params: {
+                providedServiceUid: providedServiceUid,
+                targetDb: targetDb
+            }
+        }));
     }
 
 }

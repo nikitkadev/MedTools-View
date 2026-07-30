@@ -386,13 +386,13 @@ const Onkology = () => {
                                 <tbody>
                                     {injDates.length > 0 ? (
                                         injDates.map((date) => (
-                                            <tr>
+                                            <tr className='noneHover'>
                                                 <td>{dayjs(date.date).format("DD.MM.YYYY")}</td>
                                             </tr>
                                         ))
 
                                     ) : (
-                                        <tr>
+                                        <tr className='noneHover'>
                                             <td colSpan={1}>
                                                 <EmptyDataField />
                                             </td>
@@ -426,9 +426,9 @@ const Onkology = () => {
                                 <tbody>
 
                                     {injs.length > 0 ? (
-                                        
+
                                         injs.map((inj) => (
-                                            <tr>
+                                            <tr className='noneHover'>
                                                 <td>{dayjs(inj.dateinj).format('DD.MM.YYYY')}</td>
                                                 <td>{inj.kvInj ?? '-'}</td>
                                                 <td>{inj.kizInj ?? '-'}</td>
@@ -440,7 +440,7 @@ const Onkology = () => {
                                         ))
 
                                     ) : (
-                                        <tr>
+                                        <tr className='noneHover'>
                                             <td colSpan={7}>
                                                 <EmptyDataField />
                                             </td>
