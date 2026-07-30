@@ -3,7 +3,7 @@
     align-self: flex-start;
     flex-direction: column;
 
-    flex: 1;
+    width: 40rem;
 
     border: 1px solid var(--border-default);
     border-radius: var(--radius-l);
@@ -22,23 +22,38 @@
     .invoiceSummaryCard {
         display: flex;
         flex-direction: column;
-        gap: var(--space-8);
-        padding: var(--space-10);
 
-        .cardSection {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .cardServiceInformation,
+        .cardMainInformation {
+
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-5);
+            padding: var(--space-10);
+
+
+            h2 {
+                font-size: var(--fs-h4);
+                font-weight: var(--fw-bold);
+            }
+
+            .cardLineGridTwoRow {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                column-gap: var(--lg-space-2);
+            }
+
+            .cardLineGridOneRow {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
 
             .item {
                 display: flex;
                 flex-direction: column;
-                padding: var(--space-5);
 
                 gap: var(--space-2);
-
-                &:not(:nth-child(3n+1)) {
-                    border-left: 1px solid var(--border-default);
-                }
 
                 label {
                     font-size: var(--fs-body2);
@@ -52,6 +67,8 @@
 
             }
         }
+
+
 
     }
 

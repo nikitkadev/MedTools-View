@@ -1,5 +1,5 @@
 export interface ProvidedServicesQueryResult {
-    services: ProvidedService[];
+    providedServices: ProvidedService[];
 }
 
 export interface ProvidedService {

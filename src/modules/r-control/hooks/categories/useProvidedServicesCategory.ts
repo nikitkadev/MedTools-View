@@ -22,12 +22,12 @@ export const useProvidedServicesCategory = () => {
                 targetDb
             )
 
-            if (!response || (await response).data.isFailure) {
+            if (!response || response.data.isFailure) {
                 return;
             }
 
-            setServices(response.data.value.services);
-            setServiceUid(response.data.value.services[0]?.uid);
+            setServices(response.data.value.providedServices);
+            setServiceUid(response.data.value.providedServices[0]?.uid);
         }
 
         fetchProvidedServices();
