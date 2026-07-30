@@ -1,7 +1,7 @@
 import { SearchInput } from '../../../../ui/SearchInput/SearchInput';
 import { EmptyDataField } from '../../../../ui/EmptyDataField/EmptyDataField';
 import { useInvoicesStore } from '../../../../../modules/r-control/stores/tables/useInvoicesStore';
-import { useInvoiceSummary } from '../../../../../modules/r-control/hooks/useInvoiceSummary';
+import { useInvoiceSummary } from '../../../../../modules/r-control/hooks/main/useInvoiceSummary';
 import { AppPagination } from '../../../../ui/Pagination/AppPagination';
 
 import dayjs from 'dayjs';
@@ -19,7 +19,7 @@ export const InvoicesTable = () => {
     useInvoiceSummary();
 
     const onPageChange = (
-        _event: React.MouseEvent<HTMLButtonElement>,
+        _event: React.MouseEvent<HTMLButtonElement> | null,
         page: number) => {
 
         if (page >= 0) {

@@ -1,4 +1,4 @@
-import { useFinishedCases } from '../../../../modules/r-control/hooks/useFinishedCases';
+import { useFinishedCases } from '../../../../modules/r-control/hooks/main/useFinishedCases';
 import { useFinishedCasesStore } from '../../../../modules/r-control/stores/tables/useFinishedCasesStore';
 import { EmptyDataField } from '../../../ui/EmptyDataField/EmptyDataField';
 import { AppPagination } from '../../../ui/Pagination/AppPagination';
@@ -16,7 +16,7 @@ export const FinishedCases = () => {
         setSelectedRecordUid } = useFinishedCasesStore();
 
     const onPageChange = (
-        _event: React.MouseEvent<HTMLButtonElement>,
+        _event: React.MouseEvent<HTMLButtonElement> | null,
         page: number) => {
 
         if (page >= 0) {

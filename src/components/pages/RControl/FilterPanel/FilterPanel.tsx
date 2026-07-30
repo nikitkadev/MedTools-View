@@ -3,11 +3,11 @@ import { Toggle } from '../../../ui/Toggle/Toggle';
 import { AppSelect } from '../../../ui/Select/AppSelect';
 import { useFiltersStore } from '../../../../modules/r-control/stores/filters/useFiltersStore';
 import { useDictionariesStore } from '../../../../modules/r-control/stores/dictionaries/useDictionariesStore';
+import { useMedOrganizations } from '../../../../modules/r-control/hooks/filters/useMedOrganizations';
+import { useBillingPeriods } from '../../../../modules/r-control/hooks/filters/useBillingPeriods';
+import { useInvoicesShortly } from '../../../../modules/r-control/hooks/main/useInvoicesShortly';
 
 import styles from './styles.module.scss';
-import { useMedOrganizations } from '../../../../modules/r-control/hooks/useMedOrganizations';
-import { useBillingPeriods } from '../../../../modules/r-control/hooks/useBillingPeriods';
-import { useInvoicesShortly } from '../../../../modules/r-control/hooks/useInvoicesShortly';
 
 export const FilterPanel = () => {
 

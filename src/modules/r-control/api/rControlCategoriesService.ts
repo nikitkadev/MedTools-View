@@ -7,10 +7,13 @@ import type { MedicamentsQueryResult } from '../types/categories/Oncology/Medica
 import type { ConsultationQueryResult } from '../types/categories/Oncology/ConsultationQueryResult';
 import type { DetailedOncSluchQueryResult } from '../types/categories/Oncology/DetailedOncSluchQueryResult';
 import apiClient from '../../../shared/api/aliClient';
+import type { InjectionsQueryResult } from '../types/categories/Oncology/InjectionsQueryResult';
 
 export const rControlCategoriesService = {
 
-    getPatientSmoData: (sluchUid: number, targetDb: TargetDbType) => {
+    getPatientSmoData: (
+        sluchUid: number,
+        targetDb: TargetDbType) => {
 
         return apiClient.get<ResultResponse<PatientSmoQueryResult>>('/rcontrol/categories/patient-smo', ({
             params: {
@@ -20,7 +23,9 @@ export const rControlCategoriesService = {
         }));
     },
 
-    getCasesData: (sluchUid: number, targetDb: TargetDbType) => {
+    getCasesData: (
+        sluchUid: number,
+        targetDb: TargetDbType) => {
 
         return apiClient.get<ResultResponse<CasesQueryResult>>('/rcontrol/categories/cases', ({
             params: {
@@ -30,18 +35,21 @@ export const rControlCategoriesService = {
         }));
     },
 
-    getOnkSluchData: (sluchUid: number, targetDb: TargetDbType) => {
+    getOnkSluchData: (
+        sluchUid: number,
+        targetDb: TargetDbType) => {
 
         return apiClient.get<ResultResponse<OncSluchQueryResult>>('/rcontrol/categories/oncology/onc-sluch', ({
             params: {
                 sluchUid: sluchUid,
                 targetDb: targetDb
             }
-
         }));
     },
 
-    getConsultations: (sluchUid: number, targetDb: TargetDbType) => {
+    getConsultations: (
+        sluchUid: number,
+        targetDb: TargetDbType) => {
 
         return apiClient.get<ResultResponse<ConsultationQueryResult>>('/rcontrol/categories/oncology/consultations', ({
             params: {
@@ -51,7 +59,9 @@ export const rControlCategoriesService = {
         }));
     },
 
-    getOncSluchDetailedInformation: (oncSluchUid: number, targetDb: TargetDbType) => {
+    getOncSluchDetailedInformation: (
+        oncSluchUid: number,
+        targetDb: TargetDbType) => {
 
         return apiClient.get<ResultResponse<DetailedOncSluchQueryResult>>('/rcontrol/categories/oncology/onc-sluch-detailed', ({
             params: {
@@ -61,15 +71,28 @@ export const rControlCategoriesService = {
         }));
     },
 
-    getMedicaments: (oncServiceUid: number, targetDb: TargetDbType) => {
+    getMedicaments: (
+        oncServiceUid: number,
+        targetDb: TargetDbType) => {
 
         return apiClient.get<ResultResponse<MedicamentsQueryResult>>('/rcontrol/categories/oncology/medicaments', ({
             params: {
                 oncServiceUid: oncServiceUid,
                 targetDb: targetDb
             }
-
         }));
+    },
+
+    getInjections: (
+        medicamentUid: number,
+        targetDb: TargetDbType) => {
+
+        return apiClient.get<ResultResponse<InjectionsQueryResult>>('/rcontrol/categories/oncology/injections', ({
+            params: {
+                medicamentUid: medicamentUid,
+                targetDb: targetDb
+            }
+        }))
     }
 
 }

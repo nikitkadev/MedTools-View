@@ -13,6 +13,11 @@ export const useCasesCategory = () => {
     useEffect(() => {
 
         const fetchCasesCategoryData = async () => {
+
+            if (!selectedRecordUid || !targetDb) {
+                return;
+            }
+            
             const response = await rControlCategoriesService.getCasesData(selectedRecordUid, targetDb);
 
             if (response.data.isFailure) {

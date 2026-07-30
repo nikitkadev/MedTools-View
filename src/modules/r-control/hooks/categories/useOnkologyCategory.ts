@@ -10,13 +10,18 @@ export const useOnkologyCategory = () => {
     const {
         setOncSluch,
         setConsultations,
-        setOncSluchUid,
         setOncologyServices,
         setContraindications,
+        setInjDates,
+        setInjs,
         setDiags,
         setMedicaments,
+        setOncSluchUid,
+        setOncServiceUid,
+        setMedicamentUid,
         oncSluchUid,
-        oncServiceUid } = useOnkologyCategoryStore();
+        oncServiceUid,
+        medicamentUid } = useOnkologyCategoryStore();
     const { targetDb } = useFiltersStore();
 
     useEffect(() => {
@@ -77,6 +82,9 @@ export const useOnkologyCategory = () => {
             setContraindications(response.data.value.contraindications);
             setDiags(response.data.value.diags);
 
+            setMedicaments([]);
+            setOncServiceUid(response.data.value.services[0]?.uid);
+
         };
 
         getDetailedOnkSluchInformation();
@@ -101,10 +109,35 @@ export const useOnkologyCategory = () => {
             }
 
             setMedicaments(response.data.value.medicaments);
+            setMedicamentUid(response.data.value.medicaments[0]?.uid);
         }
 
         fetchMedicaments();
-        
-    }, [oncServiceUid])
+
+    }, [oncServiceUid]);
+
+    useEffect(() => {
+        const fetchInjectionData = async() => {
+            
+            if(!medicamentUid || !targetDb){
+                return;
+            }
+
+            const response = await rControlCategoriesService.getInjections(
+                medicamentUid,
+                targetDb
+            );
+
+            if(!response || response.data.isFailure){
+                return;
+            }
+
+            setInjDates(response.data.value.injDates);
+            setInjs(response.data.value.injs);
+        }
+
+        fetchInjectionData();
+
+    },[medicamentUid]);
 
 };

@@ -1,4 +1,4 @@
-import { useCases } from '../../../../modules/r-control/hooks/useCases';
+import { useCases } from '../../../../modules/r-control/hooks/main/useCases';
 import { useCasesStore } from '../../../../modules/r-control/stores/tables/useCasesStore';
 import { EmptyDataField } from '../../../ui/EmptyDataField/EmptyDataField';
 import styles from './styles.module.scss';

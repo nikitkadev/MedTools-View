@@ -1,8 +1,8 @@
 import { useEffect } from "react"
-import { useFinishedCasesStore } from "../stores/tables/useFinishedCasesStore";
-import { useInvoicesStore } from "../stores/tables/useInvoicesStore";
-import { useFiltersStore } from "../stores/filters/useFiltersStore";
-import { rControlService } from "../api/rControlService";
+import { useFinishedCasesStore } from "../../stores/tables/useFinishedCasesStore";
+import { useInvoicesStore } from "../../stores/tables/useInvoicesStore";
+import { useFiltersStore } from "../../stores/filters/useFiltersStore";
+import { rControlService } from "../../api/rControlService";
 
 export const useFinishedCases = () => {
 
@@ -16,6 +16,10 @@ export const useFinishedCases = () => {
     useEffect(() => {
 
         const fetchFinishedCases = async () => {
+
+            if (!selectedRecord || !targetDb) {
+                return;
+            }
 
             const response = await rControlService.getFinishedCases(
                 { dbType: targetDb },

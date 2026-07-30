@@ -14,6 +14,10 @@ export const usePatientSmo = () => {
 
         const fetchPatientSmoCategoryData = async () => {
 
+            if (!selectedRecordUid || !targetDb) {
+                return;
+            }
+
             const response = await rControlCategoriesService.getPatientSmoData(
                 selectedRecordUid,
                 targetDb);

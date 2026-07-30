@@ -3,7 +3,7 @@ import { TablePagination } from '@mui/material';
 
 interface AppPaginationProps {
     pagination: PaginationState;
-    onPageChange: (event: React.MouseEvent<HTMLButtonElement>, page: number) => void;
+    onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
     onRowsPerPageChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 

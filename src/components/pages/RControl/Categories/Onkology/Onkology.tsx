@@ -17,7 +17,9 @@ const Onkology = () => {
         services,
         contraindications,
         medicaments,
-        diags } = useOnkologyCategoryStore();
+        diags,
+        injs,
+        injDates } = useOnkologyCategoryStore();
 
     return (
         <section className={styles.onkologyRoot}>
@@ -382,9 +384,21 @@ const Onkology = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Дата введения</td>
-                                    </tr>
+                                    {injDates.length > 0 ? (
+                                        injDates.map((date) => (
+                                            <tr>
+                                                <td>{dayjs(date.date).format("DD.MM.YYYY")}</td>
+                                            </tr>
+                                        ))
+
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={1}>
+                                                <EmptyDataField />
+                                            </td>
+                                        </tr>
+                                    )}
+
                                 </tbody>
                             </table>
                         </div>
@@ -410,15 +424,29 @@ const Onkology = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Дата инъекции</td>
-                                        <td>Количество в. л. п.</td>
-                                        <td>Количество и. л. п.</td>
-                                        <td>Факт. стоимость л.п.</td>
-                                        <td>Стоимость в. л. п.</td>
-                                        <td>Стоимость и. л. п.</td>
-                                        <td>Признак редукции</td>
-                                    </tr>
+
+                                    {injs.length > 0 ? (
+                                        
+                                        injs.map((inj) => (
+                                            <tr>
+                                                <td>{dayjs(inj.dateinj).format('DD.MM.YYYY')}</td>
+                                                <td>{inj.kvInj ?? '-'}</td>
+                                                <td>{inj.kizInj ?? '-'}</td>
+                                                <td>{inj.sInj ?? '-'}</td>
+                                                <td>{inj.svInj ?? '-'}</td>
+                                                <td>{inj.sizInj ?? '-'}</td>
+                                                <td>{inj.redInj ?? '-'}</td>
+                                            </tr>
+                                        ))
+
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={7}>
+                                                <EmptyDataField />
+                                            </td>
+                                        </tr>
+                                    )}
+
                                 </tbody>
                             </table>
                         </div>

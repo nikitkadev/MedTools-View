@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { useDictionariesStore } from "../stores/dictionaries/useDictionariesStore";
-import { useFiltersStore } from "../stores/filters/useFiltersStore";
-import { rControlService } from "../api/rControlService";
+import { useFiltersStore } from "../../stores/filters/useFiltersStore";
+import { useDictionariesStore } from "../../stores/dictionaries/useDictionariesStore";
+import { rControlService } from "../../api/rControlService";
 
 export const useBillingPeriods = () => {
 
