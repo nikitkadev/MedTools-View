@@ -14,7 +14,9 @@ export const useOnkologyCategory = () => {
         setOncologyServices,
         setContraindications,
         setDiags,
-        oncSluchUid } = useOnkologyCategoryStore();
+        setMedicaments,
+        oncSluchUid,
+        oncServiceUid } = useOnkologyCategoryStore();
     const { targetDb } = useFiltersStore();
 
     useEffect(() => {
@@ -78,7 +80,31 @@ export const useOnkologyCategory = () => {
         };
 
         getDetailedOnkSluchInformation();
+
+    }, [oncSluchUid]);
+
+    useEffect(() => {
+
+        const fetchMedicaments = async () => {
+
+            if (!oncServiceUid || !targetDb) {
+                return;
+            }
+
+            const response = await rControlCategoriesService.getMedicaments(
+                oncServiceUid,
+                targetDb
+            );
+
+            if (!response || response.data.isFailure) {
+                return;
+            }
+
+            setMedicaments(response.data.value.medicaments);
+        }
+
+        fetchMedicaments();
         
-    }, [oncSluchUid])
+    }, [oncServiceUid])
 
 };

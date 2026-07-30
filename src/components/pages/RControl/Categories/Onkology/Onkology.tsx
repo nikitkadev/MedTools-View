@@ -16,6 +16,7 @@ const Onkology = () => {
         consultations,
         services,
         contraindications,
+        medicaments,
         diags } = useOnkologyCategoryStore();
 
     return (
@@ -61,11 +62,11 @@ const Onkology = () => {
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Nodus</label>
-                                        <p>{oncSluch.onkM ?? '-'}</p>
+                                        <p>{oncSluch.onkN ?? '-'}</p>
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Metastasis</label>
-                                        <p>-</p>
+                                        <p>{oncSluch.onkM ?? '-'}</p>
                                     </div>
                                 </div>
 
@@ -97,7 +98,7 @@ const Onkology = () => {
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Рост (см)</label>
-                                        <p>{oncSluch.onkM ?? '-'}</p>
+                                        <p>{oncSluch.hei ?? '-'}</p>
                                     </div>
                                     <div className={styles.cardField}>
                                         <label>Площадь тела</label>
@@ -185,7 +186,7 @@ const Onkology = () => {
                                 </thead>
                                 <tbody>
 
-                                    {contraindications.length > 0 ? (
+                                    {(contraindications.length > 0) ? (
 
                                         contraindications.map((contraindication) => (
                                             <tr className='noneHover'>
@@ -216,7 +217,7 @@ const Onkology = () => {
                         <div className='tableContainer'>
                             <table>
                                 <thead>
-                                    <tr className='noneHover'>
+                                    <tr>
                                         <th>Дата взятия материала</th>
                                         <th>Тип д. п.</th>
                                         <th>Код д. п.</th>
@@ -225,10 +226,10 @@ const Onkology = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {diags.length > 0 ? (
+                                    {(diags.length > 0) ? (
 
                                         diags.map((diag) => (
-                                            <tr>
+                                            <tr className='noneHover'>
                                                 <td>{diag.diagDate ? dayjs(diag.diagDate).format("DD.MM.YYYY") : '-'}</td>
                                                 <td>{diag.diagTip ?? '-'}</td>
                                                 <td>{diag.diagCode ?? '-'}</td>
@@ -273,7 +274,7 @@ const Onkology = () => {
                                 </thead>
                                 <tbody>
 
-                                    {services.length > 0 ? (
+                                    {(services.length > 0) ? (
 
                                         services.map((service) => (
                                             <tr>
@@ -319,7 +320,7 @@ const Onkology = () => {
 
                     <article className={styles.lekPrTableRoot}>
                         <header className={styles.lekPrTableRootHeader}>
-                            <h1>Сведения о введенном противоопухолевом лекарственном препарате</h1>
+                            <h1>Сведения о лекарственном препарате</h1>
                         </header>
 
                         <div className='tableContainer'>
@@ -331,10 +332,23 @@ const Onkology = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Регистрационный номер</td>
-                                        <td>Схема лекарственной терапии</td>
-                                    </tr>
+
+                                    {medicaments.length > 0 ? (
+                                        medicaments.map((medicament) => (
+                                            <tr>
+                                                <td>{medicament.regnum}</td>
+                                                <td>{medicament.codeSh ?? '-'}</td>
+                                            </tr>
+                                        ))
+
+                                    ) : (
+                                        <tr className='noneHover'>
+                                            <td colSpan={2}>
+                                                <EmptyDataField />
+                                            </td>
+                                        </tr>
+                                    )}
+
                                 </tbody>
                             </table>
                         </div>

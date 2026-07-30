@@ -1,4 +1,4 @@
-export interface OncSluchDetailedQueryResult {
+export interface DetailedOncSluchQueryResult {
     diags: Diag[],
     contraindications: OncologyСontraindication[],
     services: OncologyService[]
