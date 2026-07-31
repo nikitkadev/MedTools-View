@@ -2,8 +2,8 @@ import { Divider } from '@mui/material';
 import { CategoryLineHeader } from '../../../../ui/CategoryLineHeader/CategoryLineHeader';
 import { useKsgVmpCategory } from '../../../../../modules/r-control/hooks/categories/useKsgVmpCategory';
 import { useKsgVmpCategoryStore } from '../../../../../modules/r-control/stores/categories/useKsgVmpCategoryStore';
-import styles from './styles.module.scss';
 import { EmptyDataField } from '../../../../ui/EmptyDataField/EmptyDataField';
+import styles from './styles.module.scss';
 import dayjs from 'dayjs';
 
 const KsgVmp = () => {
@@ -13,6 +13,7 @@ const KsgVmp = () => {
     const { ksgKpg, vmp, crits, slKoefs } = useKsgVmpCategoryStore();
 
     return (
+
         <section className={styles.ksgVmpRoot}>
 
             <article className={styles.lineContainer}>
@@ -20,8 +21,8 @@ const KsgVmp = () => {
                 <header className={styles.lineContainerHeader}>
                     <CategoryLineHeader
                         number={1}
-                        title='КСГ'
-                        description='Основная информация по КСГ' />
+                        title='КСГ / ВМП'
+                        description='Основная информация категории' />
                 </header>
 
                 <section className={styles.categoryLine}>
@@ -114,97 +115,6 @@ const KsgVmp = () => {
 
                     </article>
 
-                    <div className={styles.ksgTablesContainer}>
-
-                        <article className={styles.classCritTableRoot}>
-                            <header className={styles.classCritTableRootHeader}>
-                                <h1>Классификационный критерий</h1>
-                            </header>
-
-                            <div className='tableContainer'>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Критерий</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {crits.length > 0 ? (
-                                            crits.map((crit) => (
-                                                <tr className='noneHover'>
-                                                    <th>{crit.crit}</th>
-                                                </tr>
-                                            ))
-
-                                        ) : (
-                                            <tr>
-                                                <td colSpan={1}>
-                                                    <EmptyDataField />
-                                                </td>
-                                            </tr>
-                                        )}
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </article>
-
-                        <article className={styles.classCritTableRoot}>
-                            <header className={styles.classCritTableRootHeader}>
-                                <h1>КСЛП</h1>
-                            </header>
-
-                            <div className='tableContainer'>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>№</th>
-                                            <th>КСЛП</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {slKoefs.length > 0 ? (
-
-                                            slKoefs.map((koef) => (
-                                                <tr className='noneHover'>
-                                                    <td>{koef.idSl}</td>
-                                                    <td>{koef.zSl}</td>
-                                                </tr>
-                                            ))
-                                        ) : (
-                                            <tr>
-                                                <td colSpan={2}>
-                                                    <EmptyDataField />
-                                                </td>
-                                            </tr>
-                                        )}
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </article>
-
-                    </div>
-
-                </section>
-
-            </article>
-
-            <Divider />
-
-            <article className={styles.lineContainer}>
-
-                <header className={styles.lineContainerHeader}>
-                    <CategoryLineHeader
-                        number={2}
-                        title='ВМП'
-                        description='Основная информация по ВМП' />
-                </header>
-
-                <section className={styles.categoryLine}>
-
                     <article className={styles.vmpCard}>
 
                         <header className={styles.cardHeader}>
@@ -249,7 +159,7 @@ const KsgVmp = () => {
 
                                         <div className={styles.cardField}>
                                             <label>Дата планируемой госпитализации</label>
-                                            <p>{vmp.talP ?? '-'}</p>
+                                            <p>{vmp.talP ? dayjs(vmp.talP).format('DD.MM.YYYY') : '-'}</p>
                                         </div>
 
                                     </div>
@@ -259,6 +169,93 @@ const KsgVmp = () => {
                             )}
 
                         </div>
+                    </article>
+
+                </section>
+
+            </article>
+
+            <Divider />
+
+            <article className={styles.lineContainer}>
+
+                <header className={styles.lineContainerHeader}>
+                    <CategoryLineHeader
+                        number={2}
+                        title='Таблицы критериев / КСЛП'
+                        description='Дополнительная информация по КСГ' />
+                </header>
+
+                <section className={styles.categoryLine}>
+
+                    <article className={styles.critTableRoot}>
+                        <header className={styles.critTableRootHeader}>
+                            <h1>Классификационный критерий</h1>
+                        </header>
+
+                        <div className='tableContainer'>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Критерий</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {crits.length > 0 ? (
+                                        crits.map((crit) => (
+                                            <tr className='noneHover'>
+                                                <th>{crit.crit}</th>
+                                            </tr>
+                                        ))
+
+                                    ) : (
+                                        <tr className='noneHover'>
+                                            <td colSpan={1}>
+                                                <EmptyDataField />
+                                            </td>
+                                        </tr>
+                                    )}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </article>
+
+                    <article className={styles.slKoefTableRoot}>
+                        <header className={styles.slKoefTableRootHeader}>
+                            <h1>КСЛП</h1>
+                        </header>
+
+                        <div className='tableContainer'>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>КСЛП</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {slKoefs.length > 0 ? (
+
+                                        slKoefs.map((koef) => (
+                                            <tr className='noneHover'>
+                                                <td>{koef.idSl}</td>
+                                                <td>{koef.zSl}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr className='noneHover'>
+                                            <td colSpan={2}>
+                                                <EmptyDataField />
+                                            </td>
+                                        </tr>
+                                    )}
+
+                                </tbody>
+                            </table>
+                        </div>
+
                     </article>
                 </section>
             </article>

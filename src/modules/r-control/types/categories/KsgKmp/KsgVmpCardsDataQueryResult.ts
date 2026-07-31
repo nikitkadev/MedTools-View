@@ -1,6 +1,6 @@
 export interface KsgVmpCardsDataQueryResult {
-    ksgKpg: KsgKpg;
-    vmp: Vmp;
+    ksgKpg?: KsgKpg | null;
+    vmp?: Vmp | null;
 }
 
 export interface KsgKpg {
@@ -24,5 +24,5 @@ export interface Vmp {
     metodHmp?: number | null;
     talD?: Date | null;
     talNum?: string | null;
-    talP?: string | null;
+    talP?: Date | null;
 }

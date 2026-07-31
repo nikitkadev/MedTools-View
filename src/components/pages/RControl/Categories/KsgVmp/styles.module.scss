@@ -16,35 +16,29 @@
             display: flex;
             gap: var(--space-5);
 
-            .ksgTablesContainer {
+            .slKoefTableRoot,
+            .critTableRoot {
                 display: flex;
                 flex-direction: column;
+                align-self: flex-start;
 
-                flex: 1;
+                border: 1px solid var(--border-default);
+                border-radius: var(--radius-l);
+                background: var(--card-background);
 
-                gap: var(--space-5);
 
-                .classCritTableRoot {
-                    display: flex;
-                    flex-direction: column;
-                    align-self: flex-start;
+                .slKoefTableRootHeader,
+                .critTableRootHeader {
+                    padding: var(--space-5);
+                    border-bottom: 1px solid var(--border-default);
 
-                    border: 1px solid var(--border-default);
-                    border-radius: var(--radius-l);
-                    background: var(--card-background);
-
-                    .classCritTableRootHeader {
-                        padding: var(--space-5);
-                        border-bottom: 1px solid var(--border-default);
-
-                        h1 {
-                            font-size: var(--fs-h3);
-                        }
-
+                    h1 {
+                        font-size: var(--fs-h3);
                     }
-                }
 
+                }
             }
+            
         }
 
         .vmpCard,
@@ -116,11 +110,11 @@
             }
         }
 
-        .ksgCard{
+        .ksgCard {
             width: 60%;
         }
 
-        .vmpCard{
+        .vmpCard {
             min-width: 50%;
         }
     }
