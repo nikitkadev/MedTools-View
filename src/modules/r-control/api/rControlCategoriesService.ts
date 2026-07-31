@@ -9,7 +9,9 @@ import type { DetailedOncSluchQueryResult } from '../types/categories/Oncology/D
 import type { InjectionsQueryResult } from '../types/categories/Oncology/InjectionsQueryResult';
 import type { ProvidedServicesQueryResult } from '../types/categories/ProvidedServices/ProvidedServicesQueryResult';
 import type { MedDevQueryResult } from '../types/categories/ProvidedServices/MedDevQueryResult';
+import type { KsgVmpCardsDataQueryResult } from '../types/categories/KsgKmp/KsgVmpCardsDataQueryResult';
 import apiClient from '../../../shared/api/aliClient';
+import type { KsgVmpTablesDataQueryResult } from '../types/categories/KsgKmp/KsgVmpTablesDataQueryResult';
 
 export const rControlCategoriesService = {
 
@@ -122,6 +124,32 @@ export const rControlCategoriesService = {
                 targetDb: targetDb
             }
         }));
+    },
+
+    getKsgVmpCardsData: (
+        sluchUid: number,
+        targetDb: TargetDbType
+    ) => {
+
+        return apiClient.get<ResultResponse<KsgVmpCardsDataQueryResult>>('/rcontrol/categories/ksg-vmp/cards-data', ({
+            params: {
+                sluchUid: sluchUid,
+                targetDb: targetDb
+            }
+        }));
+    },
+
+    getKsgVmpTablesData: (
+        ksgKpgUid: number,
+        targetDb: TargetDbType
+    ) => {
+
+        return apiClient.get<ResultResponse<KsgVmpTablesDataQueryResult>>('/rcontrol/categories/ksg-vmp/tabes-data', ({
+            params: {
+                ksgKpgUid: ksgKpgUid,
+                targetDb: targetDb
+            }
+        }))
     }
 
 }
