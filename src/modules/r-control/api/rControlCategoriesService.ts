@@ -12,6 +12,7 @@ import type { MedDevQueryResult } from '../types/categories/ProvidedServices/Med
 import type { KsgVmpCardsDataQueryResult } from '../types/categories/KsgKmp/KsgVmpCardsDataQueryResult';
 import apiClient from '../../../shared/api/aliClient';
 import type { KsgVmpTablesDataQueryResult } from '../types/categories/KsgKmp/KsgVmpTablesDataQueryResult';
+import type { NazNaprQueryResult } from '../types/categories/NazNapr/NazNaprQueryResult';
 
 export const rControlCategoriesService = {
 
@@ -150,6 +151,19 @@ export const rControlCategoriesService = {
                 targetDb: targetDb
             }
         }))
-    }
+    },
+
+    getNazNaprCategoryData: (
+        sluchUid: number,
+        targetDb: TargetDbType
+    ) => {
+
+        return apiClient.get<ResultResponse<NazNaprQueryResult>>('/rcontrol/categories/naz-napr/purposes', ({
+            params: {
+                sluchUid: sluchUid,
+                targetDb: targetDb
+            }
+        }));
+    },
 
 }
