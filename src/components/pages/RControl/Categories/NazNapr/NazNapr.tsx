@@ -13,6 +13,7 @@ const NazNapr = () => {
 
     return (
         <section className={styles.nazNaprRoot}>
+
             <article className={styles.lineContainer}>
 
                 <header className={styles.lineContainerHeader}>
@@ -123,6 +124,7 @@ const NazNapr = () => {
                 </section>
 
             </article>
+            
         </section>
     )
 };

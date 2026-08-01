@@ -13,6 +13,7 @@ import type { KsgVmpCardsDataQueryResult } from '../types/categories/KsgKmp/KsgV
 import apiClient from '../../../shared/api/aliClient';
 import type { KsgVmpTablesDataQueryResult } from '../types/categories/KsgKmp/KsgVmpTablesDataQueryResult';
 import type { NazNaprQueryResult } from '../types/categories/NazNapr/NazNaprQueryResult';
+import type { DefectsSanksQueryResult } from '../types/categories/Defects/DefectsSanksQueryResult';
 
 export const rControlCategoriesService = {
 
@@ -165,5 +166,18 @@ export const rControlCategoriesService = {
             }
         }));
     },
+
+    getDefectsSanksCategoryData: (
+        sluchUid: number,
+        targetDb: TargetDbType
+    ) => {
+
+        return apiClient.get<ResultResponse<DefectsSanksQueryResult>>('//rcontrol/categories/defects-sanks', ({
+            params: {
+                sluchUid: sluchUid,
+                targetDb: targetDb
+            }
+        }));
+    }
 
 }
