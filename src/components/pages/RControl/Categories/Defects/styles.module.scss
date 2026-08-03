@@ -24,9 +24,14 @@
 
                 .defectsTableRootHeader,
                 .sanksTableRootHeader {
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
                     padding: var(--space-5);
                     border-bottom: 1px solid var(--border-default);
-                    
+
                     h1 {
                         font-size: var(--fs-h3);
                     }
@@ -35,6 +40,6 @@
             }
 
         }
-        
+
     }
 }

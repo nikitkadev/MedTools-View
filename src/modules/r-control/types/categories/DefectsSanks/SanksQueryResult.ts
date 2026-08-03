@@ -1,12 +1,5 @@
-export interface DefectsSanksQueryResult {
-    defects: Defect[];
+export interface SanksQueryResult {
     sanks: Sank[];
-}
-
-export interface Defect {
-    uid: number;
-    code?: number | null;
-    comment: string;
 }
 
 export interface Sank {

@@ -13,7 +13,8 @@ import type { KsgVmpCardsDataQueryResult } from '../types/categories/KsgKmp/KsgV
 import apiClient from '../../../shared/api/aliClient';
 import type { KsgVmpTablesDataQueryResult } from '../types/categories/KsgKmp/KsgVmpTablesDataQueryResult';
 import type { NazNaprQueryResult } from '../types/categories/NazNapr/NazNaprQueryResult';
-import type { DefectsSanksQueryResult } from '../types/categories/Defects/DefectsSanksQueryResult';
+import type { SanksQueryResult } from '../types/categories/DefectsSanks/SanksQueryResult';
+import type { DefectsQueryResult } from '../types/categories/DefectsSanks/DefectsQueryResult';
 
 export const rControlCategoriesService = {
 
@@ -159,7 +160,7 @@ export const rControlCategoriesService = {
         targetDb: TargetDbType
     ) => {
 
-        return apiClient.get<ResultResponse<NazNaprQueryResult>>('/rcontrol/categories/naz-napr/purposes', ({
+        return apiClient.get<ResultResponse<NazNaprQueryResult>>('/rcontrol/categories/naz-napr', ({
             params: {
                 sluchUid: sluchUid,
                 targetDb: targetDb
@@ -167,17 +168,36 @@ export const rControlCategoriesService = {
         }));
     },
 
-    getDefectsSanksCategoryData: (
+    getSanks: (
         sluchUid: number,
         targetDb: TargetDbType
     ) => {
 
-        return apiClient.get<ResultResponse<DefectsSanksQueryResult>>('//rcontrol/categories/defects-sanks', ({
+        return apiClient.get<ResultResponse<SanksQueryResult>>('/rcontrol/categories/defects-sanks/sanks', ({
             params: {
                 sluchUid: sluchUid,
                 targetDb: targetDb
             }
         }));
+    },
+
+    getDefects: (
+        sluchUid: number,
+        targetDb: TargetDbType,
+        page: number,
+        pageSize: number
+
+    ) => {
+
+        return apiClient.get<ResultResponse<DefectsQueryResult>>('/rcontrol/categories/defects-sanks/defects', ({
+            params: {
+                sluchUid: sluchUid,
+                targetDb: targetDb,
+                page: page + 1,
+                pageSize: pageSize
+            }
+        }));
     }
+
 
 }

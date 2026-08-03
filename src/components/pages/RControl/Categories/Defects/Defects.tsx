@@ -1,15 +1,33 @@
-import dayjs from 'dayjs';
 import { useDefectsCategory } from '../../../../../modules/r-control/hooks/categories/useDefectsCategory';
 import { useDefectsCategoryStore } from '../../../../../modules/r-control/stores/categories/useDefectsCategoryStore';
 import { CategoryLineHeader } from '../../../../ui/CategoryLineHeader/CategoryLineHeader';
 import { EmptyDataField } from '../../../../ui/EmptyDataField/EmptyDataField';
+import { AppPagination } from '../../../../ui/Pagination/AppPagination';
+import dayjs from 'dayjs';
 import styles from './styles.module.scss';
 
 const Defects = () => {
 
     useDefectsCategory();
 
-    const { defects, sanks } = useDefectsCategoryStore();
+    const { defects, sanks, defectsPaginationState, setDefectsTablePagination } = useDefectsCategoryStore();
+
+    const onPageChange = (
+        _event: React.MouseEvent<HTMLButtonElement> | null,
+        page: number) => {
+
+        if (page >= 0) {
+            setDefectsTablePagination({ page: page })
+        }
+    }
+
+    const onRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const newPageSize = parseInt(event.target.value, 10);
+        setDefectsTablePagination({
+            pageSize: newPageSize,
+            page: 0
+        })
+    }
 
     return (
         <section className={styles.defectsRoot}>
@@ -29,6 +47,12 @@ const Defects = () => {
 
                         <header className={styles.defectsTableRootHeader}>
                             <h1>Дефекты</h1>
+
+                            <AppPagination
+                                pagination={defectsPaginationState}
+                                onPageChange={onPageChange}
+                                onRowsPerPageChange={onRowsPerPageChange} />
+
                         </header>
 
                         <div className='tableContainer'>
@@ -43,7 +67,7 @@ const Defects = () => {
                                     {defects.length > 0 ? (
                                         defects.map((defect) => (
                                             <tr>
-                                                <td>{defect.code ?? '-'}</td>
+                                                <td>{defect.kod ?? '-'}</td>
                                                 <td>{defect.comment}</td>
                                             </tr>
                                         ))

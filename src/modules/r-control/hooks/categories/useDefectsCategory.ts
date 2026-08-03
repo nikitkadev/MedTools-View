@@ -8,17 +8,17 @@ export const useDefectsCategory = () => {
 
     const { targetDb } = useFiltersStore();
     const { selectedRecordUid } = useCasesStore();
-    const { setDefects, setSanks } = useDefectsCategoryStore();
+    const { setSanks, setDefects, setDefectsTablePagination, defectsPaginationState } = useDefectsCategoryStore();
 
     useEffect(() => {
 
-        const fetchDefectsSanksCategoryData = async () => {
+        const fetchSanks = async () => {
 
             if (!selectedRecordUid || !targetDb) {
                 return;
             }
 
-            const response = await rControlCategoriesService.getDefectsSanksCategoryData(
+            const response = await rControlCategoriesService.getSanks(
                 selectedRecordUid,
                 targetDb
             );
@@ -27,11 +27,40 @@ export const useDefectsCategory = () => {
                 return;
             }
 
-            setDefects(response.data.value.defects);
             setSanks(response.data.value.sanks);
         }
 
-        fetchDefectsSanksCategoryData();
+        fetchSanks();
 
-    }, []);
+    }, [selectedRecordUid]);
+
+    useEffect(() => {
+
+        const fetchDefects = async () => {
+
+            if (!selectedRecordUid || !targetDb) {
+                return;
+            }
+
+            const response = await rControlCategoriesService.getDefects(
+                selectedRecordUid,
+                targetDb,
+                defectsPaginationState.page,
+                defectsPaginationState.pageSize
+            );
+
+            if (response.data.isFailure) {
+                return;
+            }
+
+            setDefects(response.data.value.defects);
+            setDefectsTablePagination({ totalItems: response.data.value.totalItems });
+        }
+
+        fetchDefects();
+
+    }, [
+        selectedRecordUid,
+        defectsPaginationState.page,
+        defectsPaginationState.pageSize])
 }

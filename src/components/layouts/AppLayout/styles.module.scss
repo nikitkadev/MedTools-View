@@ -16,5 +16,9 @@
 
         padding: var(--space-10);
         gap: var(--space-10);
+
+        @media screen and (min-width: 1921px) {
+            max-width: 1920px;
+        }
     }
 }
