@@ -1,0 +1,15 @@
+import type { LoginResponse } from "../types/LoginReponse";
+import apiClient from "../../../shared/api/aliClient";
+
+export const authService = {
+
+    login: (email: string, password: string) => {
+
+        return apiClient.post<LoginResponse>('/auth/login', {
+            email,
+            password
+        });
+
+    }
+
+}

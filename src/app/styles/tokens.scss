@@ -1,0 +1,22 @@
+@use './colors.scss' as *;
+
+:root {
+    --app-background: var(--gray-100);
+
+    --selected-background: var(--gray-100);
+    --selected-hover-background: var(--gray-400);
+
+    --card-background: var(--white);
+
+    --text-default: var(--gray-1500);
+    --text-secondary: var(--gray-600);
+
+    --border-default: var(--gray-300);
+    --border-hover: var(--gray-400);
+    --border-focus: var(--gray-700);
+
+    --badge-background-default: var(--gray-300);
+
+    --row-hover: var(--gray-100);
+    --row-selected: var(--gray-200);
+}

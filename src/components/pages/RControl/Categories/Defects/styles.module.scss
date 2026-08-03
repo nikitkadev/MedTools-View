@@ -1,0 +1,45 @@
+.defectsRoot {
+    display: flex;
+    flex-direction: column;
+
+    .lineContainer {
+
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+
+        .categoryLine {
+            display: flex;
+            gap: var(--space-5);
+
+            .defectsTableRoot,
+            .sanksTableRoot {
+                display: flex;
+                flex-direction: column;
+                align-self: flex-start;
+
+                border: 1px solid var(--border-default);
+                border-radius: var(--radius-l);
+                background: var(--card-background);
+
+                .defectsTableRootHeader,
+                .sanksTableRootHeader {
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    padding: var(--space-5);
+                    border-bottom: 1px solid var(--border-default);
+
+                    h1 {
+                        font-size: var(--fs-h3);
+                    }
+
+                }
+            }
+
+        }
+
+    }
+}

@@ -1,0 +1,73 @@
+.patientSmoRoot {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+
+    width: 100%;
+    height: 100%;
+
+    .cardsGrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: var(--space-10);
+
+        .documentCard,
+        .smoCard,
+        .representativeCard,
+        .patientCard {
+            display: flex;
+            flex-direction: column;
+            padding: var(--space-10);
+            gap: var(--space-5);
+
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-l);
+            background: var(--card-background);
+
+            .cardHeader {
+                h2 {
+                    font-size: var(--fs-h3);
+                    font-weight: var(--fw-bold);
+                }
+            }
+
+            .subcategory {
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-5);
+
+                .subcategoryHeader {
+                    h3 {
+                        font-size: var(--fs-h4);
+                        font-weight: var(--fw-semibold);
+                    }
+                }
+
+                .cardLine {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+
+                    .cardField {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--space-2);
+
+                        label {
+                            color: var(--text-secondary);
+                            font-size: var(--fs-body2);
+                        }
+
+                        p {
+                            color: var(--text-primary);
+                            font-weight: var(--fw-default);
+                            font-size: var(--fs-body);
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+    }
+}
