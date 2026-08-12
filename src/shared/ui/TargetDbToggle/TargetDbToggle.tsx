@@ -2,17 +2,17 @@ import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 import type React from 'react';
 
-interface JournalTypeToggleProps {
+interface TargetDbToggleProps {
     value: string;
     onChange: (
         event: React.MouseEvent<HTMLElement>,
         newAligment: string) => void;
 }
 
-export const Toggle = ({
+export const TargetDbToggle = ({
     value,
     onChange
-}: JournalTypeToggleProps) => {
+}: TargetDbToggleProps) => {
 
     return (
 
@@ -30,17 +30,17 @@ export const Toggle = ({
                     fontFamily: 'var(--inter)',
                     border: '1px solid var(--border-default)',
                     margin: '0',
-                    padding: 'var(--space-5)',
+                    padding: 'var(--space-4)',
                 },
 
                 '& .MuiToggleButtonGroup-firstButton': {
-                    borderTopLeftRadius: 'var(--radius-l)',
-                    borderBottomLeftRadius: 'var(--radius-l)',
+                    borderTopLeftRadius: 'var(--radius-xl)',
+                    borderBottomLeftRadius: 'var(--radius-xl)',
                 },
 
                 '& .MuiToggleButtonGroup-lastButton': {
-                    borderTopRightRadius: 'var(--radius-l)',
-                    borderBottomRightRadius: 'var(--radius-l)',
+                    borderTopRightRadius: 'var(--radius-xl)',
+                    borderBottomRightRadius: 'var(--radius-xl)',
                     borderLeft: 'none'
                 },
 

@@ -1,4 +1,4 @@
-import { FilterPanel } from "./filters/FilterPanel/FilterPanel"
+import { FilterPanel } from "../widgets/filters/ui/FilterPanel/FilterPanel"
 
 
 export const RControl = () => {
