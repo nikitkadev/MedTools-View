@@ -1,43 +1,16 @@
-import type { TargetDbType } from "../../../../common/types/TargetDbType";
+import type { TargetDbType } from "../../../../shared/types/TargetDbType";
 import { create } from "zustand";
-import type { CategoryId } from "../../types/CategoryId";
 
-interface FiltersStore {
+interface FiltersPanelStore {
     targetDb: TargetDbType | null;
-    selectedOrgCode: string;
-    selectedYear: string;
-    selectedMonth: string;
-    selectedCategory: CategoryId;
 
-    setTargetDb: (targetDb: TargetDbType) => void;
-    setSelectedOrgCode: (orgCode: string) => void;
-    setSelectedYear: (year: string) => void;
-    setSelectedMonth: (month: string) => void;
-    setSelectedCategory: (category: CategoryId) => void;
+    selectTargetDb: (targetDb: TargetDbType) => void;
 }
 
-export const useFiltersStore = create<FiltersStore>((set) => ({
-
+export const useFiltersStore = create<FiltersPanelStore>((set) => ({
     targetDb: null,
-    selectedOrgCode: '',
-    selectedYear: '',
-    selectedMonth: '',
-    selectedCategory: 'default',
 
-    setTargetDb: (targetDb) => set({
+    selectTargetDb: (targetDb) => set({
         targetDb: targetDb
-    }),
-    setSelectedOrgCode: (orgCode) => set({
-        selectedOrgCode: orgCode
-    }),
-    setSelectedYear: (year) => set({
-        selectedYear: year
-    }),
-    setSelectedMonth: (month) => set({
-        selectedMonth: month
-    }),
-    setSelectedCategory: (category) => set({
-        selectedCategory: category
     })
-
-})); 
+}))

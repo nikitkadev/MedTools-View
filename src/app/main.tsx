@@ -3,7 +3,7 @@ import { Home } from '../components/pages/Home/Home'
 import { Login } from '../components/pages/Login/Login'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { WithoutHeaderLayout } from '../components/layouts/WithoutHeaderLayout/WithoutHeaderLayout';
-import { RControl } from '../modules/rControl/page/RControl';
+import { RControl } from '../modules/rControl/pages/RControl';
 
 import './styles/global.scss';
 import { AppLayout } from '../components/layouts/AppLayout/AppLayout';

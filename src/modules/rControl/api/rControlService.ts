@@ -2,7 +2,7 @@ import type { MedOrganizationsQueryResult } from "../types/MedOrganizationsQuery
 import type { ResultResponse } from "../../../shared/types/ResultResponse";
 import type { BillingPeriodsQueryResult } from "../types/BillingPeriodsQueryResult";
 import type { InvoicesShortlyQueryResult } from "../types/InvoicesShortlyQueryResult";
-import type { TargetDbType } from "../../../common/types/TargetDbType";
+import type { TargetDbType } from "../../../shared/types/TargetDbType";
 import type { InvoiceSummaryQueryResult } from "../types/InvoiceSummaryQueryResult";
 import type { FinishedCasesQueryResult } from "../types/FinishedCasesQueryResult";
 import type { CasesQueryResult } from "../types/CasesQueryResult";

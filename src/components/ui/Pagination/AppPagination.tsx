@@ -1,4 +1,4 @@
-import type { PaginationState } from "../../../common/types/PaginationState"
+import type { PaginationState } from "../../../shared/types/PaginationState"
 import { TablePagination } from '@mui/material';
 
 interface AppPaginationProps {

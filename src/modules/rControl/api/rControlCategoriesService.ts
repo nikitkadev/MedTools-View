@@ -1,4 +1,4 @@
-import { type TargetDbType } from '../../../common/types/TargetDbType';
+import { type TargetDbType } from '../../../shared/types/TargetDbType';
 import type { ResultResponse } from '../../../shared/types/ResultResponse';
 import type { CasesQueryResult } from '../types/categories/AllCases/CasesQueryResult';
 import type { OncSluchQueryResult } from '../types/categories/Oncology/OncSluchQueryResult';
