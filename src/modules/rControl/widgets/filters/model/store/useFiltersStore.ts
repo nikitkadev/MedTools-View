@@ -3,32 +3,37 @@ import type { TargetDbType } from "../../../../../../shared/types/TargetDbType";
 
 interface FiltersStore {
   targetDb: TargetDbType | null;
-  selectedMedicalOrganization: string;
-  selectedBillingYear: string;
-  selectedBillingMonth: string;
+  selectedMedicalOrganization: string | null;
+  selectedBillingYear: number | null;
+  selectedBillingMonth: number | null;
   selectTargetDb: (targetDb: TargetDbType) => void;
   selectMedicalOrganization: (medicalOrganization: string) => void;
-  selectBillingYear: (billingYear: string) => void;
-  selectBillingMonth: (billingMonth: string) => void;
+  selectBillingYear: (billingYear: number) => void;
+  selectBillingMonth: (billingMonth: number) => void;
 }
 
 export const useFiltersStore = create<FiltersStore>((set) => ({
   targetDb: null,
-  selectedMedicalOrganization: "",
-  selectedBillingYear: "",
-  selectedBillingMonth: "",
+  selectedMedicalOrganization: null,
+  selectedBillingYear: null,
+  selectedBillingMonth: null,
   selectTargetDb: (targetDb) =>
     set({
       targetDb: targetDb,
-      selectedMedicalOrganization: "",
+      selectedMedicalOrganization: null,
+      selectedBillingYear: null,
+      selectedBillingMonth: null,
     }),
   selectMedicalOrganization: (medicalOrganization) =>
     set({
       selectedMedicalOrganization: medicalOrganization,
+      selectedBillingYear: null,
+      selectedBillingMonth:null
     }),
   selectBillingYear: (billingYear) =>
     set({
       selectedBillingYear: billingYear,
+      selectedBillingMonth: null
     }),
   selectBillingMonth: (billingMonth) =>
     set({

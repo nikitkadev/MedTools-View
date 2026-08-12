@@ -4,9 +4,10 @@ import type { BillingPeriodsResult } from "../model/types/BillingPeriodsResult";
 import apiClient from "../../../../../app/providers/apiClient";
 
 export const getBillingPeriods = async (
-  medicalOrganizationCode: string,
+  medicalOrganizationCode: string | null,
   targetDb: TargetDbType,
 ) => {
+  
   const response = await apiClient.get<ResultResponse<BillingPeriodsResult>>(
     "/rcontrol/lookups/billing-periods",
     {

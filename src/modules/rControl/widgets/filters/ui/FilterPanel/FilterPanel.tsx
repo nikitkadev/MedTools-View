@@ -40,7 +40,7 @@ export const FilterPanel = () => {
       <div className={styles.selections}>
         <AppSelect
           label="Организация"
-          value={selectedMedicalOrganization}
+          value={selectedMedicalOrganization?.toString() ?? ""}
           disabled={isMedicalOrganizationsFetching}
           options={medicalOrganizations.map((medicalOrganization) => ({
             label: medicalOrganization.medicalOrganizationCode,
@@ -55,36 +55,36 @@ export const FilterPanel = () => {
 
         <AppSelect
           label="Год"
-          value={selectedBillingYear}
+          value={selectedBillingYear?.toString() ?? ""}
           disabled={isBillingPeriodsFetching}
           options={billingPeriods.map((period) => ({
-            label: period.billingYear,
-            value: period.billingYear,
+            label: period.billingYear.toString(),
+            value: period.billingYear.toString(),
           }))}
           onChange={(value: string) => {
             if (value !== null) {
-              selectBillingYear(value);
+              selectBillingYear(parseInt(value));
             }
           }}
         />
 
         <AppSelect
           label="Месяц"
-          value={selectedBillingMonth}
-          disabled={selectedBillingYear === ""}
+          value={selectedBillingMonth?.toString() ?? ""}
+          disabled={!selectedBillingYear}
           options={(() => {
             const found = billingPeriods.find(
               (period) => period.billingYear === selectedBillingYear,
             );
             console.log(found);
             return (found?.billingMonths ?? []).map((month) => ({
-              label: month,
-              value: month,
+              label: month.toString(),
+              value: month.toString(),
             }));
           })()}
           onChange={(value: string) => {
             if (value !== null) {
-              selectBillingMonth(value);
+              selectBillingMonth(parseInt(value));
             }
           }}
         />

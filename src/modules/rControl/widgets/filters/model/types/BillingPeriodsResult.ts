@@ -3,6 +3,6 @@ export interface BillingPeriodsResult {
 }
 
 export interface BillingPeriodDto {
-  billingYear: string;
-  billingMonths: string[];
+  billingYear: number;
+  billingMonths: number[];
 }

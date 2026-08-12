@@ -3,7 +3,7 @@ import type { TargetDbType } from "../../../../../../shared/types/TargetDbType";
 import { getBillingPeriods } from "../../api/getBillingPeriods";
 
 export const useBillingPeriodsQuery = (
-  medicalOrganizationCode: string,
+  medicalOrganizationCode: string | null,
   targetDb: TargetDbType | null,
 ) => {
   return useQuery({
@@ -13,7 +13,7 @@ export const useBillingPeriodsQuery = (
       medicalOrganizationCode,
       targetDb,
     ],
-    enabled: targetDb !== null && medicalOrganizationCode !== "",
+    enabled: targetDb !== null && medicalOrganizationCode !== null,
     queryFn: () => getBillingPeriods(medicalOrganizationCode, targetDb!),
   });
 };
