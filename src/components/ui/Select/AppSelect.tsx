@@ -36,9 +36,8 @@ export const AppSelect = ({
       <FormControl fullWidth>
         <InputLabel
           sx={{
-            "&.MuiInputLabel-root": {
-              fontFamily: "var(--inter)",
-            },
+            fontSize: "var(--fs-body)",
+            fontFamily: "var(--inter)",
             "&.Mui-focused": {
               color: "var(--text-primary)",
             },
@@ -59,6 +58,8 @@ export const AppSelect = ({
           onChange={handleChange}
           disabled={disabled}
           sx={{
+            display: "flex",
+            alignItems: "center",
             "& .MuiOutlinedInput-notchedOutline": {
               borderRadius: "var(--radius-xl)",
               borderColor: "var(--border-default)",
@@ -70,8 +71,8 @@ export const AppSelect = ({
               borderColor: "var(--border-focus)",
               borderWidth: "1px",
             },
-            "& .MuiMenuList-root": {
-              minWidth: "10rem",
+            "&.MuiFormLabel-root": {
+              fontSize: "var(--fs-body2)",
             },
           }}
         >

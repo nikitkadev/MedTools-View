@@ -24,13 +24,15 @@ export const TargetDbToggle = ({
             aria-label='Database type'
 
             sx={{
+                height: '100%',
                 '& .MuiToggleButtonGroup-grouped': {
-                    fontSize: 'var(--fs-body2)',
+                    fontSize: 'var(--fs-body)',
                     fontWeight: 'var(--fw-default)',
                     fontFamily: 'var(--inter)',
+                    textTransform: 'none',
                     border: '1px solid var(--border-default)',
                     margin: '0',
-                    padding: 'var(--space-4)',
+                    padding: '0 var(--space-10)',
                 },
 
                 '& .MuiToggleButtonGroup-firstButton': {
