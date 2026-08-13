@@ -1,4 +1,4 @@
-export interface BillingPeriodsResult {
+export interface GetBillingPeriodsResult {
   billingPeriods: BillingPeriodDto[];
 }
 

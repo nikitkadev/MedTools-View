@@ -6,7 +6,7 @@ interface FiltersStore {
   selectedMedicalOrganization: string | null;
   selectedBillingYear: number | null;
   selectedBillingMonth: number | null;
-  selectTargetDb: (targetDb: TargetDbType) => void;
+  selectTargetDb: (targetDb: TargetDbType | null) => void;
   selectMedicalOrganization: (medicalOrganization: string) => void;
   selectBillingYear: (billingYear: number) => void;
   selectBillingMonth: (billingMonth: number) => void;

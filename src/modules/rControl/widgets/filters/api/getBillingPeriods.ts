@@ -1,6 +1,6 @@
 import type { ResultResponse } from "../../../../../shared/types/ResultResponse";
 import type { TargetDbType } from "../../../../../shared/types/TargetDbType";
-import type { BillingPeriodsResult } from "../model/types/BillingPeriodsResult";
+import type { GetBillingPeriodsResult } from "../model/types/BillingPeriodsResult";
 import apiClient from "../../../../../app/providers/apiClient";
 
 export const getBillingPeriods = async (
@@ -8,7 +8,7 @@ export const getBillingPeriods = async (
   targetDb: TargetDbType,
 ) => {
   
-  const response = await apiClient.get<ResultResponse<BillingPeriodsResult>>(
+  const response = await apiClient.get<ResultResponse<GetBillingPeriodsResult>>(
     "/rcontrol/lookups/billing-periods",
     {
       params: {

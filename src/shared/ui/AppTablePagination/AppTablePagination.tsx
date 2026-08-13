@@ -1,21 +1,23 @@
-import type { PaginationState } from "../../../shared/types/PaginationState"
+import type { PaginationState } from "../../types/PaginationState"
 import { TablePagination } from '@mui/material';
 
 interface AppPaginationProps {
     pagination: PaginationState;
+    totalCount: number;
     onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
     onRowsPerPageChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-export const AppPagination = ({
+export const AppTablePagination = ({
     pagination,
+    totalCount,
     onPageChange,
     onRowsPerPageChange }: AppPaginationProps) => {
 
     return (
         <TablePagination
             component='div'
-            count={pagination.totalItems}
+            count={totalCount}
             page={pagination.page}
             rowsPerPage={pagination.pageSize}
             onRowsPerPageChange={onRowsPerPageChange}

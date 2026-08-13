@@ -1,0 +1,21 @@
+.invoicesTableRoot {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  background: var(--card-background);
+
+  .invoicesTableRootHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5);
+    gap: var(--space-5);
+
+    h1 {
+      flex-shrink: 0;
+      font-size: var(--fs-h2);
+    }
+  }
+}
