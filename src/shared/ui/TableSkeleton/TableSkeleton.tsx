@@ -7,7 +7,7 @@ interface TableSkeletonProps {
 
 export const TableSkeleton = ({ rows, columns }: TableSkeletonProps) => {
   return Array.from({ length: rows }).map((_, rowIndex) => (
-    <tr key={rowIndex}>
+    <tr key={rowIndex} className="noneHover">
       {Array.from({ length: columns }).map((_, columnIndex) => (
         <td key={columnIndex}>
           <Skeleton />

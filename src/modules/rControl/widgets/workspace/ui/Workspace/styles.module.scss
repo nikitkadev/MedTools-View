@@ -1,9 +1,5 @@
 .workspaceRoot {
   display: flex;
   flex-direction: column;
-
-  .invoiceLine {
-    display: flex;
-    gap: var(--space-10);
-  }
+  gap: var(--space-10);
 }

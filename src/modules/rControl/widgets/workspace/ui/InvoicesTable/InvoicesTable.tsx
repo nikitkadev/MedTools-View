@@ -10,8 +10,12 @@ import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 
 export const InvoicesTable = () => {
-  const { pagination, selectedInvoiceUid, setPagination, selectInvoice } =
-    useWorkspaceStore();
+  const {
+    invoicesTablePagination,
+    selectedInvoiceUid,
+    setInvoicesTablePagination,
+    selectInvoice,
+  } = useWorkspaceStore();
   const {
     targetDb,
     selectedMedicalOrganization,
@@ -29,8 +33,8 @@ export const InvoicesTable = () => {
     medicalOrganizationCode: selectedMedicalOrganization,
     year: selectedBillingYear,
     month: selectedBillingMonth,
-    page: pagination.page,
-    pageSize: pagination.pageSize,
+    page: invoicesTablePagination.page,
+    pageSize: invoicesTablePagination.pageSize,
     targetDb: targetDb,
   });
 
@@ -39,7 +43,7 @@ export const InvoicesTable = () => {
     page: number,
   ) => {
     if (page >= 0) {
-      setPagination({ page: page });
+      setInvoicesTablePagination({ page: page });
     }
   };
 
@@ -47,7 +51,7 @@ export const InvoicesTable = () => {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const newPageSize = parseInt(event.target.value, 10);
-    setPagination({
+    setInvoicesTablePagination({
       pageSize: newPageSize,
       page: 0,
     });
@@ -61,16 +65,23 @@ export const InvoicesTable = () => {
         <h1>Счета</h1>
         <SearchInput />
         <AppTablePagination
-          disabled={isFetching || isLoading}
+          disabled={isFetching}
           totalCount={getInvoicesResult?.recordsCount ?? 0}
           onRowsPerPageChange={onRowsPerPageChange}
           onPageChange={onPageChange}
-          pagination={pagination}
+          pagination={invoicesTablePagination}
         />
       </header>
       <Divider />
       <div className="tableContainer">
         <table>
+          <colgroup>
+            <col style={{ width: "1rem" }} />
+            <col style={{ width: "1rem" }} />
+            <col style={{ width: "1rem" }} />
+            <col style={{ width: "1rem" }} />
+            <col style={{ width: "5rem" }} />
+          </colgroup>
           <thead>
             <tr>
               <th>№ счета</th>
@@ -88,7 +99,10 @@ export const InvoicesTable = () => {
                 description="Выберите желанную базу данных и укажите организацию с расчетным периодом"
               />
             ) : isLoading ? (
-              <TableSkeleton columns={5} rows={pagination.pageSize} />
+              <TableSkeleton
+                columns={5}
+                rows={invoicesTablePagination.pageSize}
+              />
             ) : isError ? (
               <TableStateRow
                 colSpan={5}

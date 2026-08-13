@@ -1,54 +1,53 @@
-@use './tokens.scss' as *;
-@use './spacing.scss' as *;
-@use './colors.scss' as *;
-@use './typographics.scss' as *;
-@use './radius.scss' as *;
+@use "./tokens.scss" as *;
+@use "./spacing.scss" as *;
+@use "./colors.scss" as *;
+@use "./typographics.scss" as *;
+@use "./radius.scss" as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --inter: "Inter", sans-serif;
+  --inter: "Inter", sans-serif;
 }
 
 html,
 body,
 main {
-    padding: 0;
-    margin: 0;
-    font-family: var(--inter);
-    background: var(--app-background);
-    color: var(--text-default);
+  padding: 0;
+  margin: 0;
+  font-family: var(--inter);
+  background: var(--app-background);
+  color: var(--text-default);
 }
 
 h6 {
-    font-size: var(--fs-h6);
-    font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6);
+  font-weight: var(--fw-semibold);
 }
 
 h5 {
-    font-size: var(--fs-h5);
-    font-weight: var(--fw-semibold);
+  font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold);
 }
 
 h4 {
-    font-size: var(--fs-h4);
-    font-weight: var(--fw-semibold);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
 }
 
 h3 {
-    font-size: var(--fs-h3);
-    font-weight: var(--fw-semibold);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
 }
 
 h2 {
-    font-size: var(--fs-h2);
-    font-weight: var(--fw-semibold);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-semibold);
 }
 
 h1 {
-    font-size: var(--fs-h1);
-    font-weight: var(--fw-bold);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
 }
 
 p,
@@ -58,66 +57,58 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .tableContainer {
-    padding: var(--space-10);
+  padding: var(--space-10);
 
-    tbody {
-
-        tr:last-child {
-            border: none;
-        }
-
-        tr:hover {
-            cursor: pointer;
-            background-color: var(--row-hover);
-
-            transition: 0.3s ease-in-out;
-        }
-
-        tr.noneHover:hover {
-            cursor: default; 
-            background-color: transparent; 
-            transition: none; 
-        }
-
-        .selectedRow{
-            background-color: var(--row-selected);
-        }
-
+  tbody {
+    table-layout: fixed;
+    tr:last-child {
+      border: none;
     }
 
-    table {
+    tr:hover {
+      cursor: pointer;
+      background-color: var(--row-hover);
 
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-
-        font-size: var(--fs-body2);
-
-        th,
-        td {
-            text-align: left;
-            padding: var(--space-7);
-            font-weight: var(--fw-semibold);
-        }
-
-        tr {
-            border-bottom: 1px solid var(--border-default);
-        }
-
-
-
-        .tdCenter,
-        .thCenter {
-            text-align: center;
-
-        }
-
+      transition: 0.3s ease-in-out;
     }
 
+    tr.noneHover:hover {
+      cursor: default;
+      background-color: transparent;
+      transition: none;
+    }
 
+    .selectedRow {
+      background-color: var(--row-selected);
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    font-size: var(--fs-body2);
+
+    th,
+    td {
+      text-align: left;
+      padding: var(--space-7);
+      font-weight: var(--fw-semibold);
+    }
+
+    tr {
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .tdCenter,
+    .thCenter {
+      text-align: center;
+    }
+  }
 }

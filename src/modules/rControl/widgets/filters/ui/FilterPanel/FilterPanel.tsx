@@ -27,7 +27,7 @@ export const FilterPanel = () => {
   const { data: billingPeriods = [], isPending: isBillingPeriodsFetching } =
     useBillingPeriodsQuery(selectedMedicalOrganization, targetDb);
 
-  const { setPagination, selectInvoice } = useWorkspaceStore();
+  const { setInvoicesTablePagination, selectInvoice } = useWorkspaceStore();
 
   return (
     <section className={styles.filtersPanelRoot}>
@@ -36,7 +36,7 @@ export const FilterPanel = () => {
         onChange={(_event: React.MouseEvent<HTMLElement>, newValue: string) => {
           if (newValue === "SMODB18" || newValue === "INOGOROD18") {
             selectTargetDb(newValue);
-            setPagination({ page: 0 });
+            setInvoicesTablePagination({ page: 0 });
             selectInvoice(null);
           }
         }}
@@ -54,7 +54,7 @@ export const FilterPanel = () => {
           onChange={(value: string) => {
             if (value !== null) {
               selectMedicalOrganization(value);
-              setPagination({ page: 0 });
+              setInvoicesTablePagination({ page: 0 });
               selectInvoice(null);
             }
           }}
@@ -71,7 +71,7 @@ export const FilterPanel = () => {
           onChange={(value: string) => {
             if (value !== null) {
               selectBillingYear(parseInt(value));
-              setPagination({ page: 0 });
+              setInvoicesTablePagination({ page: 0 });
               selectInvoice(null);
             }
           }}
@@ -93,7 +93,7 @@ export const FilterPanel = () => {
           onChange={(value: string) => {
             if (value !== null) {
               selectBillingMonth(parseInt(value));
-              setPagination({ page: 0 });
+              setInvoicesTablePagination({ page: 0 });
               selectInvoice(null);
             }
           }}

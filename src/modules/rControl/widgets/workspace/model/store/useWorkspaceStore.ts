@@ -3,25 +3,48 @@ import type { PaginationState } from "../../../../../../shared/types/PaginationS
 
 interface WorkspaceStore {
   selectedInvoiceUid: number | null;
-  pagination: PaginationState;
+  invoicesTablePagination: PaginationState;
+  completedCasesTablePagination: PaginationState;
   selectInvoice: (invoiceUid: number | null) => void;
-  setPagination: (newState: Partial<WorkspaceStore["pagination"]>) => void;
+  setInvoicesTablePagination: (
+    newState: Partial<WorkspaceStore["invoicesTablePagination"]>,
+  ) => void;
+  setCompletedCasesTablePagination: (
+    newState: Partial<WorkspaceStore["completedCasesTablePagination"]>,
+  ) => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
   selectedInvoiceUid: null,
-  pagination: {
+  invoicesTablePagination: {
     page: 0,
-    pageSize: 10
+    pageSize: 10,
+  },
+  completedCasesTablePagination: {
+    page: 0,
+    pageSize: 10,
   },
   selectInvoice: (invoiceUid) =>
-    set({
-      selectedInvoiceUid: invoiceUid,
-    }),
-  setPagination: (newState) =>
     set((state) => ({
-      pagination: { ...state.pagination, ...newState },
-      selectedInvoiceUid: null
+      selectedInvoiceUid: invoiceUid,
+      completedCasesTablePagination: {
+        ...state.completedCasesTablePagination,
+        page: 0,
+      },
     })),
-    
+  setInvoicesTablePagination: (newState) =>
+    set((state) => ({
+      invoicesTablePagination: {
+        ...state.invoicesTablePagination,
+        ...newState,
+      },
+      selectedInvoiceUid: null,
+    })),
+  setCompletedCasesTablePagination: (newState) =>
+    set((state) => ({
+      completedCasesTablePagination: {
+        ...state.completedCasesTablePagination,
+        ...newState,
+      },
+    })),
 }));
