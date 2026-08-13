@@ -1,26 +1,21 @@
-import apiClient from "../../../../../app/providers/apiClient";
 import type { ResultResponse } from "../../../../../shared/types/ResultResponse";
-import type { TargetDbType } from "../../../../../shared/types/TargetDbType";
 import type { GetInvoiceListItemsResult } from "../model/types/GetInvoiceListItemsResult";
+import type { InvoiceListItemsQueryParams } from "./getInvoiceListItems.params";
+import apiClient from "../../../../../app/providers/apiClient";
 
-export const getInvoices = async (
-  medicalOrganizationCode: string | null,
-  year: number | null,
-  month: number | null,
-  page: number,
-  pageSize: number,
-  targetDb: TargetDbType | null,
+export const getInvoiceListItems = async (
+  params: InvoiceListItemsQueryParams,
 ): Promise<GetInvoiceListItemsResult> => {
   const response = await apiClient.get<
     ResultResponse<GetInvoiceListItemsResult>
   >("/rcontrol/invoices", {
     params: {
-      medicalOrganizationCode: medicalOrganizationCode,
-      year: year,
-      month: month,
-      page: page + 1,
-      pageSize: pageSize,
-      targetDb: targetDb,
+      medicalOrganizationCode: params.medicalOrganizationCode,
+      year: params.year,
+      month: params.month,
+      page: params.page + 1,
+      pageSize: params.pageSize,
+      targetDb: params.targetDb,
     },
   });
 

@@ -5,6 +5,7 @@ import { TargetDbToggle } from "../../../../../../shared/ui/TargetDbToggle/Targe
 import { useMedicalOrganizationsQuery } from "../../model/queries/useMedicalOrganizationsQuery";
 import { AppSelect } from "../../../../../../components/ui/Select/AppSelect";
 import { useBillingPeriodsQuery } from "../../model/queries/useBillingPeriodsQuery";
+import { useWorkspaceStore } from "../../../workspace/model/store/useWorkspaceStore";
 
 export const FilterPanel = () => {
   const {
@@ -26,6 +27,8 @@ export const FilterPanel = () => {
   const { data: billingPeriods = [], isPending: isBillingPeriodsFetching } =
     useBillingPeriodsQuery(selectedMedicalOrganization, targetDb);
 
+  const { setPagination } = useWorkspaceStore();
+
   return (
     <section className={styles.filtersPanelRoot}>
       <TargetDbToggle
@@ -33,6 +36,7 @@ export const FilterPanel = () => {
         onChange={(_event: React.MouseEvent<HTMLElement>, newValue: string) => {
           if (newValue === "SMODB18" || newValue === "INOGOROD18") {
             selectTargetDb(newValue);
+            setPagination({ page: 0 });
           }
         }}
       />
@@ -49,6 +53,7 @@ export const FilterPanel = () => {
           onChange={(value: string) => {
             if (value !== null) {
               selectMedicalOrganization(value);
+              setPagination({ page: 0 });
             }
           }}
         />
@@ -64,6 +69,7 @@ export const FilterPanel = () => {
           onChange={(value: string) => {
             if (value !== null) {
               selectBillingYear(parseInt(value));
+              setPagination({ page: 0 });
             }
           }}
         />
@@ -85,6 +91,7 @@ export const FilterPanel = () => {
           onChange={(value: string) => {
             if (value !== null) {
               selectBillingMonth(parseInt(value));
+              setPagination({ page: 0 });
             }
           }}
         />

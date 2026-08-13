@@ -1,35 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import type { TargetDbType } from "../../../../../../shared/types/TargetDbType";
-import { getInvoices } from "../../api/getInvoices";
+import { getInvoiceListItems } from "../../api/getInvoiceListItems";
+import type { InvoiceListItemsQueryParams } from "../../api/getInvoiceListItems.params";
 
 export const useInvoiceListItemsQuery = (
-  medicalOrganizationCode: string | null,
-  year: number | null,
-  month: number | null,
-  page: number,
-  pageSize: number,
-  targetDb: TargetDbType | null,
+  params: InvoiceListItemsQueryParams,
 ) => {
   return useQuery({
-    queryKey: [
-      "r-control",
-      "invoice-list-items",
-      medicalOrganizationCode,
-      year,
-      month,
-      page,
-      pageSize,
-      targetDb,
-    ],
-    queryFn: () =>
-      getInvoices(
-        medicalOrganizationCode,
-        year,
-        month,
-        page,
-        pageSize,
-        targetDb,
-      ),
-      enabled: month !== null && targetDb !== null
+    queryKey: ["r-control", "invoice-list-items", params],
+    queryFn: () => {
+      if (
+        params.medicalOrganizationCode === null ||
+        params.year === null ||
+        params.month === null ||
+        params.targetDb === null
+      ) {
+        throw new Error("Неккоректные параметры запроса");
+      }
+
+      return getInvoiceListItems(params);
+    },
+    enabled: params.month !== null && params.targetDb !== null,
   });
 };

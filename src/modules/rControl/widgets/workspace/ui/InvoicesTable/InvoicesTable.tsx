@@ -4,6 +4,8 @@ import { SearchInput } from "../../../../../../shared/ui/SearchInput/SearchInput
 import { AppTablePagination } from "../../../../../../shared/ui/AppTablePagination/AppTablePagination";
 import { useInvoiceListItemsQuery } from "../../model/queries/useInvoiceListItemsQuery";
 import { useFiltersStore } from "../../../filters/model/store/useFiltersStore";
+import { Skeleton } from "@mui/material";
+import { TableStateRow } from "../../../../../../shared/ui/TableStateRow/TableStateRow";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 
@@ -16,14 +18,19 @@ export const InvoicesTable = () => {
     selectedBillingMonth,
   } = useFiltersStore();
 
-  const { data: getInvoiceListItemsResult } = useInvoiceListItemsQuery(
-    selectedMedicalOrganization,
-    selectedBillingYear,
-    selectedBillingMonth,
-    pagination.page,
-    pagination.pageSize,
-    targetDb,
-  );
+  const {
+    data: getInvoicesResult,
+    isLoading,
+    isError,
+    isFetching,
+  } = useInvoiceListItemsQuery({
+    medicalOrganizationCode: selectedMedicalOrganization,
+    year: selectedBillingYear,
+    month: selectedBillingMonth,
+    page: pagination.page,
+    pageSize: pagination.pageSize,
+    targetDb: targetDb,
+  });
 
   const onPageChange = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -44,9 +51,11 @@ export const InvoicesTable = () => {
     });
   };
 
-  if (!getInvoiceListItemsResult?.invoices) {
-    return <div>Пу-пу-пу</div>;
+  if (isError) {
+    //TODO: добить error state
   }
+
+  const invoices = getInvoicesResult?.invoices;
 
   return (
     <section className={styles.invoicesTableRoot}>
@@ -54,7 +63,8 @@ export const InvoicesTable = () => {
         <h1>Счета</h1>
         <SearchInput />
         <AppTablePagination
-          totalCount={getInvoiceListItemsResult?.recordsCount ?? 0}
+          disabled={isFetching || isLoading}
+          totalCount={getInvoicesResult?.recordsCount ?? 0}
           onRowsPerPageChange={onRowsPerPageChange}
           onPageChange={onPageChange}
           pagination={pagination}
@@ -73,21 +83,30 @@ export const InvoicesTable = () => {
             </tr>
           </thead>
           <tbody>
-            {getInvoiceListItemsResult?.invoices.length > 0 ? (
-              getInvoiceListItemsResult.invoices.map((invoice) => (
-                <tr>
-                  <td>{invoice.number}</td>
-                  <td>{dayjs(invoice.billingDate).format("DD.MM.YYYY")}</td>
-                  <td>{invoice.amount}</td>
-                  <td>{invoice.medicalCasesCount}</td>
-                  <td>{invoice.status}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={5}>Данных не найдено</td>
-              </tr>
+            {selectedBillingMonth === null && (
+              <TableStateRow
+                rowCount={5}
+                title="Укажите период"
+                descriptions="Выберите желанную базу данных и укажите организацию с расчетным периодом"
+              />
             )}
+            {isLoading
+              ? Array.from({ length: 10 }).map((_, rowIndex) => (
+                  <tr key={rowIndex} className="noneHover">
+                    <td colSpan={5}>
+                      <Skeleton />
+                    </td>
+                  </tr>
+                ))
+              : invoices?.map((invoice) => (
+                  <tr key={invoice.invoiceUid}>
+                    <td>{invoice.number}</td>
+                    <td>{dayjs(invoice.billingDate).format("DD.MM.YYYY")}</td>
+                    <td>{invoice.amount}</td>
+                    <td>{invoice.medicalCasesCount}</td>
+                    <td className="tdCenter">{invoice.status}</td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       </div>
