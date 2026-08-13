@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getInvoiceListItems } from "../../api/getInvoiceListItems";
-import type { InvoiceListItemsQueryParams } from "../../api/getInvoiceListItems.params";
+import type { InvoiceListItemsQueryParams } from "./getInvoiceListItems.query.params";
 
 export const useInvoiceListItemsQuery = (
   params: InvoiceListItemsQueryParams,
@@ -17,7 +17,14 @@ export const useInvoiceListItemsQuery = (
         throw new Error("Неккоректные параметры запроса");
       }
 
-      return getInvoiceListItems(params);
+      return getInvoiceListItems({
+        medicalOrganizationCode: params.medicalOrganizationCode,
+        year: params.year,
+        month: params.month,
+        page: params.page,
+        pageSize: params.pageSize,
+        targetDb: params.targetDb,
+      });
     },
     enabled: params.month !== null && params.targetDb !== null,
   });

@@ -1,10 +1,10 @@
 import type { TargetDbType } from "../../../../../shared/types/TargetDbType";
 
-export interface InvoiceListItemsQueryParams {
-  medicalOrganizationCode: string | null;
-  year: number | null;
-  month: number | null;
+export interface InvoiceListItemsAPIParams {
+  medicalOrganizationCode: string;
+  year: number;
+  month: number;
   page: number;
   pageSize: number;
-  targetDb: TargetDbType | null;
+  targetDb: TargetDbType;
 }

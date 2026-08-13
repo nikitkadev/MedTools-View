@@ -82,7 +82,6 @@ export const FilterPanel = () => {
             const found = billingPeriods.find(
               (period) => period.billingYear === selectedBillingYear,
             );
-            console.log(found);
             return (found?.billingMonths ?? []).map((month) => ({
               label: month.toString(),
               value: month.toString(),

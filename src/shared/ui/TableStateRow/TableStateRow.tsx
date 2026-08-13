@@ -1,22 +1,22 @@
 import styles from "./styles.module.scss";
 
 interface TableStateRowProps {
-  rowCount: number;
+  colSpan: number;
   title: string;
-  descriptions: string;
+  description: string;
 }
 
 export const TableStateRow = ({
-  rowCount,
+  colSpan,
   title,
-  descriptions,
+  description,
 }: TableStateRowProps) => {
   return (
     <tr className="noneHover">
-      <td colSpan={rowCount}>
+      <td colSpan={colSpan}>
         <div className={styles.stateContent}>
-          <h1 className={styles.title}>{title}</h1>
-          <p className={styles.description}>{descriptions}</p>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.description}>{description}</p>
         </div>
       </td>
     </tr>

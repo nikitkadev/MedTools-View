@@ -4,13 +4,14 @@ import { SearchInput } from "../../../../../../shared/ui/SearchInput/SearchInput
 import { AppTablePagination } from "../../../../../../shared/ui/AppTablePagination/AppTablePagination";
 import { useInvoiceListItemsQuery } from "../../model/queries/useInvoiceListItemsQuery";
 import { useFiltersStore } from "../../../filters/model/store/useFiltersStore";
-import { Skeleton } from "@mui/material";
 import { TableStateRow } from "../../../../../../shared/ui/TableStateRow/TableStateRow";
+import { TableSkeleton } from "../../../../../../shared/ui/TableSkeleton/TableSkeleton";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 
 export const InvoicesTable = () => {
-  const { pagination, setPagination } = useWorkspaceStore();
+  const { pagination, selectedInvoiceUid, setPagination, selectInvoice } =
+    useWorkspaceStore();
   const {
     targetDb,
     selectedMedicalOrganization,
@@ -23,6 +24,7 @@ export const InvoicesTable = () => {
     isLoading,
     isError,
     isFetching,
+    error,
   } = useInvoiceListItemsQuery({
     medicalOrganizationCode: selectedMedicalOrganization,
     year: selectedBillingYear,
@@ -50,10 +52,6 @@ export const InvoicesTable = () => {
       page: 0,
     });
   };
-
-  if (isError) {
-    //TODO: добить error state
-  }
 
   const invoices = getInvoicesResult?.invoices;
 
@@ -83,30 +81,39 @@ export const InvoicesTable = () => {
             </tr>
           </thead>
           <tbody>
-            {selectedBillingMonth === null && (
+            {selectedBillingMonth === null ? (
               <TableStateRow
-                rowCount={5}
+                colSpan={5}
                 title="Укажите период"
-                descriptions="Выберите желанную базу данных и укажите организацию с расчетным периодом"
+                description="Выберите желанную базу данных и укажите организацию с расчетным периодом"
               />
+            ) : isLoading ? (
+              <TableSkeleton columns={5} rows={pagination.pageSize} />
+            ) : isError ? (
+              <TableStateRow
+                colSpan={5}
+                title="Упс-с, произошла ошибка"
+                description={error.message}
+              />
+            ) : (
+              invoices?.map((invoice) => (
+                <tr
+                  className={
+                    invoice.invoiceUid === selectedInvoiceUid
+                      ? "selectedRow"
+                      : ""
+                  }
+                  key={invoice.invoiceUid}
+                  onClick={() => selectInvoice(invoice.invoiceUid)}
+                >
+                  <td>{invoice.number}</td>
+                  <td>{dayjs(invoice.billingDate).format("DD.MM.YYYY")}</td>
+                  <td>{invoice.amount}</td>
+                  <td>{invoice.medicalCasesCount}</td>
+                  <td className="tdCenter">{invoice.status}</td>
+                </tr>
+              ))
             )}
-            {isLoading
-              ? Array.from({ length: 10 }).map((_, rowIndex) => (
-                  <tr key={rowIndex} className="noneHover">
-                    <td colSpan={5}>
-                      <Skeleton />
-                    </td>
-                  </tr>
-                ))
-              : invoices?.map((invoice) => (
-                  <tr key={invoice.invoiceUid}>
-                    <td>{invoice.number}</td>
-                    <td>{dayjs(invoice.billingDate).format("DD.MM.YYYY")}</td>
-                    <td>{invoice.amount}</td>
-                    <td>{invoice.medicalCasesCount}</td>
-                    <td className="tdCenter">{invoice.status}</td>
-                  </tr>
-                ))}
           </tbody>
         </table>
       </div>
