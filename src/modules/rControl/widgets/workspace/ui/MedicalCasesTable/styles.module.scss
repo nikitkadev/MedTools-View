@@ -1,12 +1,11 @@
-.CompletedCasesTableRoot {
+.medicalCasesTableRoot {
   display: flex;
   flex-direction: column;
 
   border: 1px solid var(--border-default);
   border-radius: var(--radius-xxl);
   background: var(--card-background);
-
-  .CompletedCasesTableRootHeader {
+  .medicalCasesTableRootHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;

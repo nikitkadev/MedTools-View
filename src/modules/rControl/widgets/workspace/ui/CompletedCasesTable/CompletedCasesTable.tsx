@@ -13,6 +13,8 @@ export const CompletedCasesTable = () => {
     completedCasesTablePagination,
     setCompletedCasesTablePagination,
     selectedInvoiceUid,
+    selectedCompletedCaseUid,
+    selectCompletedCase,
   } = useWorkspaceStore();
 
   const { targetDb } = useFiltersStore();
@@ -56,7 +58,7 @@ export const CompletedCasesTable = () => {
   return (
     <section className={styles.CompletedCasesTableRoot}>
       <header className={styles.CompletedCasesTableRootHeader}>
-        <h1>Законченные случаи</h1>
+        <h2>Законченные случаи</h2>
         <SearchInput />
         <AppTablePagination
           pagination={completedCasesTablePagination}
@@ -117,7 +119,17 @@ export const CompletedCasesTable = () => {
               />
             ) : (
               completedCases?.map((completedCase) => (
-                <tr>
+                <tr
+                  className={
+                    completedCase.completedCaseUid === selectedCompletedCaseUid
+                      ? "selectedRow"
+                      : ""
+                  }
+                  key={completedCase.completedCaseUid}
+                  onClick={() =>
+                    selectCompletedCase(completedCase.completedCaseUid)
+                  }
+                >
                   <td>{completedCase.entryPositionNumber}</td>
                   <td>{completedCase.entryNumber}</td>
                   <td>{completedCase.patientLastName}</td>

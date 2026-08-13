@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCompletedCaseListItems } from "../../api/getCompletedCaseListItems";
-import type { CompletedCaseListItemsQueryParams } from "./getCompletedCaseListItemsQuery";
+import type { CompletedCaseListItemsQueryParams } from "./getCompletedCaseListItems.query.params";
 
 export const useCompletedCaseListItemsQuery = (
   params: CompletedCaseListItemsQueryParams,

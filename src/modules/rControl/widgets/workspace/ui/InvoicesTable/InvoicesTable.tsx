@@ -62,7 +62,7 @@ export const InvoicesTable = () => {
   return (
     <section className={styles.invoicesTableRoot}>
       <header className={styles.invoicesTableRootHeader}>
-        <h1>Счета</h1>
+        <h2>Счета</h2>
         <SearchInput />
         <AppTablePagination
           disabled={isFetching}
@@ -75,13 +75,6 @@ export const InvoicesTable = () => {
       <Divider />
       <div className="tableContainer">
         <table>
-          <colgroup>
-            <col style={{ width: "1rem" }} />
-            <col style={{ width: "1rem" }} />
-            <col style={{ width: "1rem" }} />
-            <col style={{ width: "1rem" }} />
-            <col style={{ width: "5rem" }} />
-          </colgroup>
           <thead>
             <tr>
               <th>№ счета</th>

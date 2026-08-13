@@ -3,9 +3,11 @@ import type { PaginationState } from "../../../../../../shared/types/PaginationS
 
 interface WorkspaceStore {
   selectedInvoiceUid: number | null;
+  selectedCompletedCaseUid: number | null;
   invoicesTablePagination: PaginationState;
   completedCasesTablePagination: PaginationState;
   selectInvoice: (invoiceUid: number | null) => void;
+  selectCompletedCase: (completedCaseUid: number | null) => void;
   setInvoicesTablePagination: (
     newState: Partial<WorkspaceStore["invoicesTablePagination"]>,
   ) => void;
@@ -16,6 +18,7 @@ interface WorkspaceStore {
 
 export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
   selectedInvoiceUid: null,
+  selectedCompletedCaseUid: null,
   invoicesTablePagination: {
     page: 0,
     pageSize: 10,
@@ -27,11 +30,16 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
   selectInvoice: (invoiceUid) =>
     set((state) => ({
       selectedInvoiceUid: invoiceUid,
+      selectedCompletedCaseUid: null,
       completedCasesTablePagination: {
         ...state.completedCasesTablePagination,
         page: 0,
       },
     })),
+  selectCompletedCase: (completedCaseUid) =>
+    set({
+      selectedCompletedCaseUid: completedCaseUid,
+    }),
   setInvoicesTablePagination: (newState) =>
     set((state) => ({
       invoicesTablePagination: {
