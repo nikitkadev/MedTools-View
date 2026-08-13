@@ -21,5 +21,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
   setPagination: (newState) =>
     set((state) => ({
       pagination: { ...state.pagination, ...newState },
+      selectedInvoiceUid: null
     })),
+    
 }));
