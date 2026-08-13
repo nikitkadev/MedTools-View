@@ -8,8 +8,8 @@ interface TableSkeletonProps {
 export const TableSkeleton = ({ rows, columns }: TableSkeletonProps) => {
   return Array.from({ length: rows }).map((_, rowIndex) => (
     <tr key={rowIndex}>
-      {Array.from({ length: columns }).map((_) => (
-        <td>
+      {Array.from({ length: columns }).map((_, columnIndex) => (
+        <td key={columnIndex}>
           <Skeleton />
         </td>
       ))}
