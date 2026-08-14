@@ -5,6 +5,7 @@ interface AppPaginationProps {
   pagination: PaginationState;
   totalCount: number;
   disabled: boolean;
+  isLoading?: boolean;
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement> | null,
     page: number,
@@ -18,6 +19,7 @@ export const AppTablePagination = ({
   pagination,
   totalCount,
   disabled,
+  isLoading,
   onPageChange,
   onRowsPerPageChange,
 }: AppPaginationProps) => {
@@ -32,6 +34,10 @@ export const AppTablePagination = ({
       onPageChange={onPageChange}
       labelRowsPerPage="Показывать по"
       labelDisplayedRows={({ from, to, count }) => {
+        if (isLoading) {
+          return "Ждем-с...";
+        }
+
         return `${from} - ${to} из ${count}`;
       }}
       sx={{

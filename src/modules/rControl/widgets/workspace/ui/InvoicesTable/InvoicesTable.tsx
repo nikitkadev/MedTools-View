@@ -65,6 +65,7 @@ export const InvoicesTable = () => {
         <h2>Счета</h2>
         <SearchInput />
         <AppTablePagination
+          isLoading={isLoading}
           disabled={isFetching}
           totalCount={getInvoicesResult?.recordsCount ?? 0}
           onRowsPerPageChange={onRowsPerPageChange}

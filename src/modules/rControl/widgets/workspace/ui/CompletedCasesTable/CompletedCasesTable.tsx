@@ -61,6 +61,7 @@ export const CompletedCasesTable = () => {
         <h2>Законченные случаи</h2>
         <SearchInput />
         <AppTablePagination
+          isLoading={isLoading}
           pagination={completedCasesTablePagination}
           totalCount={getCompletedCasesResult?.totalCount ?? 0}
           onPageChange={onPageChange}

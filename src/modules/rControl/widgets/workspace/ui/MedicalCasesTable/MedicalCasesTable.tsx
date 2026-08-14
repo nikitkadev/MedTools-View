@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { Divider } from "../../../../../../components/ui/Divider/Divider";
 import { TableSkeleton } from "../../../../../../shared/ui/TableSkeleton/TableSkeleton";
 import { TableStateRow } from "../../../../../../shared/ui/TableStateRow/TableStateRow";
@@ -6,10 +5,15 @@ import { useFiltersStore } from "../../../filters/model/store/useFiltersStore";
 import { useMedicalCasesListItemsQuery } from "../../model/queries/useMedicalCasesListItemsQuery";
 import { useWorkspaceStore } from "../../model/store/useWorkspaceStore";
 import styles from "./styles.module.scss";
+import dayjs from "dayjs";
 
 export const MedicalCasesTable = () => {
   const { targetDb } = useFiltersStore();
-  const { selectedCompletedCaseUid } = useWorkspaceStore();
+  const {
+    selectedCompletedCaseUid,
+    selectedMedicalCaseUid,
+    selectMedicalCase,
+  } = useWorkspaceStore();
   const {
     data: medicalCases,
     isLoading,
@@ -57,7 +61,15 @@ export const MedicalCasesTable = () => {
               />
             ) : (
               medicalCases?.map((medicalCase) => (
-                <tr key={medicalCase.medicalCaseUid}>
+                <tr
+                  className={
+                    medicalCase.medicalCaseUid === selectedMedicalCaseUid
+                      ? "selectedRow"
+                      : ""
+                  }
+                  key={medicalCase.medicalCaseUid}
+                  onClick={() => selectMedicalCase(medicalCase.medicalCaseUid)}
+                >
                   <td>{medicalCase.medicalProfile ?? "-"}</td>
                   <td>{medicalCase.isPediatric ? "Да" : "Нет"}</td>
                   <td>{medicalCase.physicianSpecialty}</td>

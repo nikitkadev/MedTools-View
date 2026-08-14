@@ -69,11 +69,13 @@ h6 {
       border: none;
     }
 
+    tr {
+      transition: background-color 0.1s ease-in;
+    }
+
     tr:hover {
       cursor: pointer;
       background-color: var(--row-hover);
-
-      transition: 0.3s ease-in-out;
     }
 
     tr.noneHover:hover {
