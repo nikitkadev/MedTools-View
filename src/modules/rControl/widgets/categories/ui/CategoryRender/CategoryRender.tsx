@@ -5,13 +5,16 @@ const DefaultCategory = lazy(
 );
 
 const Patient = lazy(() => import("../Patient/Patient"));
-const MedicalCaseDetails = lazy(() => import('../MedicalCaseDetails/MedicalCaseDetails'));
+const MedicalCaseDetails = lazy(
+  () => import("../MedicalCaseDetails/MedicalCaseDetails"),
+);
+const Oncology = lazy(() => import("../Oncology/Oncology"));
 
 const categoryMap = {
   default: DefaultCategory,
   patient: Patient,
   "case-details": MedicalCaseDetails,
-  oncology: DefaultCategory,
+  oncology: Oncology,
   referrals: DefaultCategory,
   "clinical-groups": DefaultCategory,
   "provided-services": DefaultCategory,

@@ -1,0 +1,10 @@
+export interface GetContraindicationsResult {
+  contraindications: ContraindicationDto[];
+}
+
+export interface ContraindicationDto {
+  contraindicationUid: number;
+  contraindicationCode: number;
+  contraindication: string;
+  contraindicationDate: string;
+}
