@@ -8,7 +8,7 @@
   background: var(--card-background);
 
   .cardRootHeader {
-    padding: var(--space-5);
+    padding: var(--space-10);
     h2 {
       font-size: var(--fs-h3);
     }
@@ -21,7 +21,7 @@
     align-items: center;
 
     gap: var(--space-5);
-    padding: var(--space-5);
+    padding: var(--space-10);
 
     .title {
       font-size: var(--fs-body);
