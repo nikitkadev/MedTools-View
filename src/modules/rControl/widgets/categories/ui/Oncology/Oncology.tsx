@@ -8,6 +8,8 @@ import { useCategoriesStore } from "../../model/stores/useCategoriesStore";
 import { ConsultationsTable } from "./Consultations/ConsultationsTable";
 import { ContraindicationsTable } from "./Contraindications/ContraindicationsTable";
 import { DiagnosticsTable } from "./Diagnostics/DiagnosticsTable";
+import { InjectionDatesTable } from "./InjectionDates/InjectionDatesTable";
+import { InjectionsTable } from "./Injections/InjectionsTable";
 import { MedicationsTable } from "./Medications/MedicationsTable";
 import { OncologyCaseCard } from "./OncologyCaseDetails/OncologyCaseCard";
 import { OncologyCaseCardSkeleton } from "./OncologyCaseDetails/OncologyCaseCardSkeleton";
@@ -17,7 +19,8 @@ import styles from "./styles.module.scss";
 const Oncology = () => {
   const { targetDb } = useFiltersStore();
   const { selectedMedicalCaseUid } = useWorkspaceStore();
-  const { selectedOncologyServiceUid } = useCategoriesStore();
+  const { selectedOncologyServiceUid, selectedMedicationUid } =
+    useCategoriesStore();
   const {
     data: oncologyCase,
     isLoading: isOncologyCaseLoading,
@@ -85,6 +88,22 @@ const Oncology = () => {
         />
         <MedicationsTable
           oncologySericeUid={selectedOncologyServiceUid}
+          targetDb={targetDb}
+        />
+      </div>
+      <Divider />
+      <div className={styles.categoryLine}>
+        <CategoryLineHeader
+          number={4}
+          title="Данные по лекарственному препарату"
+          description="Все, что относится к лекарственному препарату в рамках категории"
+        />
+        <InjectionDatesTable
+          medicationUid={selectedMedicationUid}
+          targetDb={targetDb}
+        />
+        <InjectionsTable
+          medicationUid={selectedMedicationUid}
           targetDb={targetDb}
         />
       </div>

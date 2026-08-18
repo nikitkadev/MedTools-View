@@ -3,6 +3,7 @@ import { Divider } from "../../../../../../../components/ui/Divider/Divider";
 import { TableSkeleton } from "../../../../../../../shared/ui/TableSkeleton/TableSkeleton";
 import { TableStateRow } from "../../../../../../../shared/ui/TableStateRow/TableStateRow";
 import { useMedicationsQuery } from "../../../model/queries/Oncology/useMedicationsQuery";
+import { useCategoriesStore } from "../../../model/stores/useCategoriesStore";
 import styles from "./styles.module.scss";
 
 interface MedicationsTable {
@@ -20,6 +21,8 @@ export const MedicationsTable = ({
     isError,
     error,
   } = useMedicationsQuery(oncologySericeUid, targetDb);
+
+  const { selectMedication, selectedMedicationUid } = useCategoriesStore();
 
   return (
     <section className={styles.medicationsTableRoot}>
@@ -58,7 +61,15 @@ export const MedicationsTable = ({
               />
             ) : (
               medications.map((medication) => (
-                <tr key={medication.medicamentUid}>
+                <tr
+                  className={
+                    medication.medicamentUid === selectedMedicationUid
+                      ? "selectedRow"
+                      : ""
+                  }
+                  key={medication.medicamentUid}
+                  onClick={() => selectMedication(medication.medicamentUid)}
+                >
                   <td>{medication.drugIdentifier}</td>
                   <td>{medication.therapyRegimenCode ?? "-"}</td>
                 </tr>
