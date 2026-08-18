@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import type { TargetDbType } from "../../../../../../shared/types/TargetDbType";
+import { useQuery } from "@tanstack/react-query";
 import { getPatient } from "../../api/getPatient";
 
 export const usePatientQuery = (
@@ -13,6 +13,8 @@ export const usePatientQuery = (
       if (medicalCaseUid === null || targetDb === null) {
         throw new Error("Невалидные параметры запроса");
       }
+
+      console.log(medicalCaseUid);
 
       return getPatient(medicalCaseUid, targetDb);
     },

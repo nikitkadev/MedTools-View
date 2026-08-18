@@ -4,16 +4,20 @@ import { CategoryLineHeader } from "../../../../../../shared/ui/CategoryLineHead
 import { useFiltersStore } from "../../../filters/model/store/useFiltersStore";
 import { useWorkspaceStore } from "../../../workspace/model/store/useWorkspaceStore";
 import { useOncologyCaseQuery } from "../../model/queries/Oncology/useOncologyCaseQuery";
+import { useCategoriesStore } from "../../model/stores/useCategoriesStore";
 import { ConsultationsTable } from "./Consultations/ConsultationsTable";
 import { ContraindicationsTable } from "./Contraindications/ContraindicationsTable";
 import { DiagnosticsTable } from "./Diagnostics/DiagnosticsTable";
+import { MedicationsTable } from "./Medications/MedicationsTable";
 import { OncologyCaseCard } from "./OncologyCaseDetails/OncologyCaseCard";
 import { OncologyCaseCardSkeleton } from "./OncologyCaseDetails/OncologyCaseCardSkeleton";
+import { OncologyServicesTable } from "./OncologyServices/OncologyServicesTable";
 import styles from "./styles.module.scss";
 
 const Oncology = () => {
   const { targetDb } = useFiltersStore();
   const { selectedMedicalCaseUid } = useWorkspaceStore();
+  const { selectedOncologyServiceUid } = useCategoriesStore();
   const {
     data: oncologyCase,
     isLoading: isOncologyCaseLoading,
@@ -67,7 +71,22 @@ const Oncology = () => {
           oncologyCaseUid={oncologyCaseUid}
           targetDb={targetDb}
         />
-        
+        <OncologyServicesTable
+          oncologyCaseUid={oncologyCaseUid}
+          targetDb={targetDb}
+        />
+      </div>
+      <Divider />
+      <div className={styles.categoryLine}>
+        <CategoryLineHeader
+          number={3}
+          title="Данные по онкологической услуге"
+          description="Все, что относится к онкологической услуге в рамках категории"
+        />
+        <MedicationsTable
+          oncologySericeUid={selectedOncologyServiceUid}
+          targetDb={targetDb}
+        />
       </div>
     </section>
   );
