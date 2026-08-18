@@ -68,7 +68,9 @@ export const MedicalCasesTable = () => {
                       : ""
                   }
                   key={medicalCase.medicalCaseUid}
-                  onClick={() => selectMedicalCase(medicalCase.medicalCaseUid)}
+                  onClick={() => {
+                    selectMedicalCase(medicalCase.medicalCaseUid);
+                  }}
                 >
                   <td>{medicalCase.medicalProfile ?? "-"}</td>
                   <td>{medicalCase.isPediatric ? "Да" : "Нет"}</td>

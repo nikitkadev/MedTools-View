@@ -17,6 +17,7 @@ export const useCategoriesStore = create<CategoriesStore>((set) => ({
   selectOncologyService: (oncologyServiceUid) =>
     set({
       selectedOncologyServiceUid: oncologyServiceUid,
+      selectedMedicationUid: null,
     }),
   selectMedication: (medicationUid) =>
     set({
