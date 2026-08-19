@@ -1,7 +1,7 @@
 export interface ResultResponse<T> {
+    value?: T | null;
+    isFailure: boolean,
     isSuccess: boolean;
-    isFailure: boolean;
     error: string;
-
-    value: T;
+    clientMessage: string;
 }

@@ -1,5 +1,5 @@
 import type { LoginResponse } from "../types/LoginReponse";
-import apiClient from "../../../shared/api/aliClient";
+import apiClient from "../../../app/providers/apiClient";
 
 export const authService = {
 

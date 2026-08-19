@@ -1,0 +1,16 @@
+.filtersPanelRoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: var(--space-5);
+
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xxl);
+  background: var(--card-background);
+
+  .selections {
+    display: flex;
+    gap: var(--space-5);
+  }
+}

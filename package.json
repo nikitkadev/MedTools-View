@@ -1,7 +1,7 @@
 {
   "name": "medtools-view",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.2.0",
     "@mui/material": "^9.2.0",
+    "@tanstack/react-query": "^5.101.4",
     "axios": "^1.18.1",
     "dayjs": "^1.11.21",
     "react": "^19.2.7",
