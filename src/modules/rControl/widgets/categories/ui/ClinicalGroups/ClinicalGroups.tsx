@@ -1,13 +1,16 @@
-import { CardState } from "../../../../../../shared/ui/CardState/CardState";
-import { CategoryLineHeader } from "../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
-import { useFiltersStore } from "../../../filters/model/store/useFiltersStore";
-import { useWorkspaceStore } from "../../../workspace/model/store/useWorkspaceStore";
-import { useClinicalGroupQuery } from "../../model/queries/ClinicalGroups/useClinicalGroupQuery";
+import { TreatmentComplexityCoefficientsTable } from "./TreatmentComplexityCoefficients/TreatmentComplexityCoefficientsTable";
 import { useHighTechMedicalCareQuery } from "../../model/queries/ClinicalGroups/useHighTechMedicalCareQuery";
-import { ClinicalGroupsCard } from "./ClinicalGroups/ClinicalGroupsCard";
+import { HighTechMedicalCareCardSkeleton } from "./HighTechMedicalCare/HighTechMedicalCareCardSkeleton";
+import { CategoryLineHeader } from "../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
+import { ClassificationCriteriaTable } from "./ClassificationCriteria/ClassificationCriteriaTable";
+import { useClinicalGroupQuery } from "../../model/queries/ClinicalGroups/useClinicalGroupQuery";
 import { ClinicalGroupsCardSkeleton } from "./ClinicalGroups/ClinicalGroupsCardSkeleton";
 import { HighTechMedicalCareCard } from "./HighTechMedicalCare/HighTechMedicalCareCard";
-import { HighTechMedicalCareCardSkeleton } from "./HighTechMedicalCare/HighTechMedicalCareCardSkeleton";
+import { useWorkspaceStore } from "../../../workspace/model/store/useWorkspaceStore";
+import { useFiltersStore } from "../../../filters/model/store/useFiltersStore";
+import { CardState } from "../../../../../../shared/ui/CardState/CardState";
+import { Divider } from "../../../../../../components/ui/Divider/Divider";
+import { ClinicalGroupsCard } from "./ClinicalGroups/ClinicalGroupsCard";
 import styles from "./styles.module.scss";
 
 const ClinicalGroups = () => {
@@ -73,6 +76,22 @@ const ClinicalGroups = () => {
             />
           )}
         </div>
+      </div>
+      <Divider />
+      <div className={styles.categoryLine}>
+        <CategoryLineHeader
+          number={2}
+          title="Данные по клинической группе"
+          description="Все, что относится к клинической группе в рамках категории"
+        />
+        <ClassificationCriteriaTable
+          clinicalGroupUid={clinicalGroup?.clinicalGroupUid ?? null}
+          targetDb={targetDb}
+        />
+        <TreatmentComplexityCoefficientsTable
+          clinicalGroupUid={clinicalGroup?.clinicalGroupUid ?? null}
+          targetDb={targetDb}
+        />
       </div>
     </section>
   );
