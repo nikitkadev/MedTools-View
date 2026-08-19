@@ -8,6 +8,7 @@ interface WorkspaceStore {
   selectedProvidedServiceUid: number | null;
   invoicesTablePagination: PaginationState;
   completedCasesTablePagination: PaginationState;
+  defectsTablePagination: PaginationState;
   selectInvoice: (invoiceUid: number | null) => void;
   selectCompletedCase: (completedCaseUid: number | null) => void;
   selectMedicalCase: (medicalCaseUid: number | null) => void;
@@ -17,6 +18,9 @@ interface WorkspaceStore {
   ) => void;
   setCompletedCasesTablePagination: (
     newState: Partial<WorkspaceStore["completedCasesTablePagination"]>,
+  ) => void;
+  setDefectsTablePagination: (
+    newState: Partial<WorkspaceStore["defectsTablePagination"]>,
   ) => void;
 }
 
@@ -30,6 +34,10 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
     pageSize: 10,
   },
   completedCasesTablePagination: {
+    page: 0,
+    pageSize: 10,
+  },
+  defectsTablePagination: {
     page: 0,
     pageSize: 10,
   },
@@ -80,5 +88,10 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
       },
       selectedCompletedCaseUid: null,
       selectedMedicalCaseUid: null,
+    })),
+
+  setDefectsTablePagination: (newState) =>
+    set((state) => ({
+      defectsTablePagination: { ...state.defectsTablePagination, ...newState },
     })),
 }));

@@ -1,4 +1,4 @@
-.CompletedCasesTableRoot {
+.defectsTableRoot {
   display: flex;
   flex-direction: column;
 
@@ -6,7 +6,7 @@
   border-radius: var(--radius-xxl);
   background: var(--card-background);
 
-  .CompletedCasesTableRootHeader {
+  .defectsTableRootHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;

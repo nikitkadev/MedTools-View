@@ -11,7 +11,10 @@ const MedicalCaseDetails = lazy(
 const Oncology = lazy(() => import("../Oncology/Oncology"));
 const Prescriptions = lazy(() => import("../Prescriptions/Prescriptions"));
 const ClinicalGroups = lazy(() => import("../ClinicalGroups/ClinicalGroups"));
-const ProvidedServices = lazy(() => import("../ProvidedServices/ProvidedServices"));
+const ProvidedServices = lazy(
+  () => import("../ProvidedServices/ProvidedServices"),
+);
+const Defects = lazy(() => import("../Defects/Defects"));
 
 const categoryMap = {
   default: DefaultCategory,
@@ -21,7 +24,7 @@ const categoryMap = {
   referrals: Prescriptions,
   "clinical-groups": ClinicalGroups,
   "provided-services": ProvidedServices,
-  defects: DefaultCategory,
+  defects: Defects,
 } as const;
 
 export type CategoryId = keyof typeof categoryMap;
