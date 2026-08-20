@@ -6,9 +6,11 @@ export const useInjectionDatesQuery = (
   medicationUid: number | null,
   targetDb: TargetDbType | null,
 ) => {
+  const isReady = medicationUid !== null && targetDb !== null;
+
   return useQuery({
     queryKey: ["r-control", "injection-dates", medicationUid, targetDb],
-    enabled: medicationUid !== null && targetDb !== null,
+    enabled: isReady,
     queryFn: () => {
       if (medicationUid === null || targetDb === null) {
         throw new Error("Невалидные параметры запроса");

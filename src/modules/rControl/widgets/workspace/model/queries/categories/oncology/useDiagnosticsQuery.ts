@@ -1,14 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
 import type { TargetDbType } from "../../../../../../../../shared/types/TargetDbType";
+import { useQuery } from "@tanstack/react-query";
 import { getDiagnostics } from "../../../../api/categories/oncology/getDiagnostics";
 
 export const useDiagnosticsQuery = (
   oncologyCaseUid: number | null,
   targetDb: TargetDbType | null,
 ) => {
+  const isReady = oncologyCaseUid !== null && targetDb !== null;
+
   return useQuery({
     queryKey: ["r-control", "diagnostics", oncologyCaseUid, targetDb],
-    enabled: oncologyCaseUid !== null && targetDb !== null,
+    enabled: isReady,
     queryFn: () => {
       if (oncologyCaseUid === null || targetDb === null) {
         throw new Error("Невалидные параметры запроса");

@@ -6,6 +6,8 @@ export const useClassificationCriteriaQuery = (
   clinicalGroupUid: number | null,
   targetDb: TargetDbType | null,
 ) => {
+  const isReady = clinicalGroupUid !== null && targetDb !== null;
+
   return useQuery({
     queryKey: [
       "r-control",
@@ -13,7 +15,7 @@ export const useClassificationCriteriaQuery = (
       clinicalGroupUid,
       targetDb,
     ],
-    enabled: clinicalGroupUid !== null && targetDb !== null,
+    enabled: isReady,
     queryFn: () => {
       if (clinicalGroupUid === null || targetDb === null) {
         throw new Error("Невалидные параметры запроса");

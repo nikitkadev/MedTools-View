@@ -6,6 +6,8 @@ export const useCompletedCaseDetailsQuery = (
   completedCaseUid: number | null,
   targetDb: TargetDbType | null,
 ) => {
+  const isReady = completedCaseUid !== null && targetDb !== null;
+
   return useQuery({
     queryKey: [
       "r-control",
@@ -13,7 +15,7 @@ export const useCompletedCaseDetailsQuery = (
       completedCaseUid,
       targetDb,
     ],
-    enabled: completedCaseUid !== null && targetDb !== null,
+    enabled: isReady,
     queryFn: () => {
       if (completedCaseUid === null || targetDb === null) {
         throw new Error("Невалидные параметры запроса");

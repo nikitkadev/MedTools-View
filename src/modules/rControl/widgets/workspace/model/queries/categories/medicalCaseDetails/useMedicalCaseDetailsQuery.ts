@@ -6,9 +6,11 @@ export const useMedicalCaseDetailsQuery = (
   medicalCaseUid: number | null,
   targetDb: TargetDbType | null,
 ) => {
+  const isReady = medicalCaseUid !== null && targetDb !== null;
+
   return useQuery({
     queryKey: ["r-control", "medical-case-details", medicalCaseUid, targetDb],
-    enabled: medicalCaseUid !== null && targetDb !== null,
+    enabled: isReady,
     queryFn: () => {
       if (medicalCaseUid === null || targetDb === null) {
         throw new Error("Невалидные параметры запроса");

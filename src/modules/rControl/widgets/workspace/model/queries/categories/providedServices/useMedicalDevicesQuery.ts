@@ -6,9 +6,11 @@ export const useMedicalDevicesQuery = (
   providedServiceUid: number | null,
   targetDb: TargetDbType | null,
 ) => {
+  const isReady = providedServiceUid !== null && targetDb !== null;
+
   return useQuery({
     queryKey: ["r-control", "medical-devices", providedServiceUid, targetDb],
-    enabled: providedServiceUid !== null && targetDb !== null,
+    enabled: isReady,
     queryFn: () => {
       if (providedServiceUid === null || targetDb === null) {
         throw new Error("Невалидные параметры запроса");

@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import type { TargetDbType } from "../../../../../../../../shared/types/TargetDbType";
+import { useQuery } from "@tanstack/react-query";
 import { getDefects } from "../../../../api/categories/defects/getDefects";
 
 export const useDefectsQuery = (
@@ -8,6 +8,8 @@ export const useDefectsQuery = (
   page: number,
   pageSize: number,
 ) => {
+  const isReady = medicalCaseUid !== null && targetDb !== null;
+
   return useQuery({
     queryKey: [
       "r-control",
@@ -17,7 +19,7 @@ export const useDefectsQuery = (
       page,
       pageSize,
     ],
-    enabled: medicalCaseUid !== null && targetDb !== null,
+    enabled: isReady,
     queryFn: () => {
       if (medicalCaseUid === null || targetDb === null) {
         throw new Error("Невалидные параметры запроса");
