@@ -1,10 +1,10 @@
 import type { GetCompletedCaseListItemsResult } from "../../model/types/core/results/GetCompletedCaseListItemsResult";
-import type { CompletedCaseListItemsAPIParams } from "../../model/types/core/params/CompletedCaseListItemsRequest";
 import type { ResultResponse } from "../../../../../../shared/types/ResultResponse";
+import type { CompletedCaseListItemsRequest } from "../../model/types/core/params/CompletedCaseListItemsRequest";
 import apiClient from "../../../../../../app/providers/apiClient";
 
 export const getCompletedCaseListItems = async (
-  params: CompletedCaseListItemsAPIParams,
+  params: CompletedCaseListItemsRequest,
 ): Promise<GetCompletedCaseListItemsResult> => {
   const response = await apiClient.get<
     ResultResponse<GetCompletedCaseListItemsResult>

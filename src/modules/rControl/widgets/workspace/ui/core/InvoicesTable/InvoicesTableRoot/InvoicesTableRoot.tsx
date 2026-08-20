@@ -81,7 +81,7 @@ export const InvoicesTableRoot = () => {
         <DataState
           variant="waiting"
           title="Выберите период"
-          description="Ожидается выбор периода"
+          description="Укажите расчётный период для отображения счетов"
         />
       ) : isError ? (
         <DataState
