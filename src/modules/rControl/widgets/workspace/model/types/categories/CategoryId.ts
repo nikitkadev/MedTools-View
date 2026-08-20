@@ -1,4 +1,4 @@
-const CategoryIds = [
+const сategoryIds = [
   "default",
   "patient",
   "case-details",
@@ -9,4 +9,4 @@ const CategoryIds = [
   "defects",
 ] as const;
 
-export type CategoryId = (typeof CategoryIds)[number];
+export type CategoryId = (typeof сategoryIds)[number];
