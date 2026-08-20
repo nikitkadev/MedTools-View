@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import { AppSelect } from "../../../../../../../../components/ui/Select/AppSelect";
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
-import type { CategoryId } from "../../../../model/types/categories/categoryId";
+import type { CategoryId } from "../../../../model/types/categories/CategoryId";
 
 export const CategoryPanel = () => {
   const { setTargetCategory, targetCategory } = useWorkspaceStore();

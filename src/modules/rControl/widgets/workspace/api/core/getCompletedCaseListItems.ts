@@ -1,5 +1,5 @@
-import type { GetCompletedCaseListItemsResult } from "../../model/types/core/GetCompletedCaseListItemsResult";
-import type { CompletedCaseListItemsAPIParams } from "./getCompletedCaseListItems.params";
+import type { GetCompletedCaseListItemsResult } from "../../model/types/core/results/GetCompletedCaseListItemsResult";
+import type { CompletedCaseListItemsAPIParams } from "../../model/types/core/params/CompletedCaseListItemsRequest";
 import type { ResultResponse } from "../../../../../../shared/types/ResultResponse";
 import apiClient from "../../../../../../app/providers/apiClient";
 

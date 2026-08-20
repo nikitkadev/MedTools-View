@@ -1,4 +1,4 @@
-import type { GetMedicalCaseListItemsResult, MedicalCaseDto } from "../../model/types/core/GetMedicalCaseListItemsResult";
+import type { GetMedicalCaseListItemsResult, MedicalCaseDto } from "../../model/types/core/results/GetMedicalCaseListItemsResult";
 import type { ResultResponse } from "../../../../../../shared/types/ResultResponse";
 import type { TargetDbType } from "../../../../../../shared/types/TargetDbType";
 import apiClient from "../../../../../../app/providers/apiClient";

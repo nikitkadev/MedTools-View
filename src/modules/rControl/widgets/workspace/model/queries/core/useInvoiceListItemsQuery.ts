@@ -1,4 +1,4 @@
-import type { InvoiceListItemsQueryParams } from "./getInvoiceListItems.query.params";
+import type { InvoiceListItemsQueryParams } from "../../types/core/params/InvoiceListItemsQueryParams";
 import { useQuery } from "@tanstack/react-query";
 import { getInvoiceListItems } from "../../../api/core/getInvoiceListItems";
 

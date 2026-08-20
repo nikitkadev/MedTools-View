@@ -1,6 +1,6 @@
 import type { ResultResponse } from "../../../../../../shared/types/ResultResponse";
-import type { GetInvoiceListItemsResult } from "../../model/types/core/GetInvoiceListItemsResult";
-import type { InvoiceListItemsAPIParams } from "./getInvoiceListItems.params";
+import type { GetInvoiceListItemsResult } from "../../model/types/core/results/GetInvoiceListItemsResult";
+import type { InvoiceListItemsAPIParams } from "../../model/types/core/params/InvoiceListItemsRequest";
 import apiClient from "../../../../../../app/providers/apiClient";
 
 export const getInvoiceListItems = async (

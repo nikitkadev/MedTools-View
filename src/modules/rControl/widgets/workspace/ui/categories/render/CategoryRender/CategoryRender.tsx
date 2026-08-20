@@ -4,7 +4,7 @@ import {
   type ComponentType,
   type LazyExoticComponent,
 } from "react";
-import type { CategoryId } from "../../../../model/types/categories/categoryId";
+import type { CategoryId } from "../../../../model/types/categories/CategoryId";
 
 const DefaultCategory = lazy(
   () => import("../../components/default/CategoryDefault/CategoryDefault"),
