@@ -1,10 +1,10 @@
 import type { ResultResponse } from "../../../../../../shared/types/ResultResponse";
 import type { GetInvoiceListItemsResult } from "../../model/types/core/results/GetInvoiceListItemsResult";
-import type { InvoiceListItemsAPIParams } from "../../model/types/core/params/InvoiceListItemsRequest";
+import type { InvoiceListItemsRequest } from "../../model/types/core/params/InvoiceListItemsRequest";
 import apiClient from "../../../../../../app/providers/apiClient";
 
 export const getInvoiceListItems = async (
-  params: InvoiceListItemsAPIParams,
+  params: InvoiceListItemsRequest,
 ): Promise<GetInvoiceListItemsResult> => {
   const response = await apiClient.get<
     ResultResponse<GetInvoiceListItemsResult>

@@ -1,0 +1,13 @@
+.invoicesTableHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding: var(--space-5) var(--space-10);
+  gap: var(--space-10);
+
+  h2 {
+    flex-shrink: 0;
+    font-size: var(--fs-h2);
+  }
+}
