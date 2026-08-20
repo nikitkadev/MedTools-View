@@ -1,6 +1,6 @@
 import type { PaginationState } from "../../../../../../shared/types/PaginationState";
-import type { CategoryId } from "../../ui/categories/render/CategoryRender/CategoryRender";
 import { create } from "zustand";
+import type { CategoryId } from "../types/categories/categoryId";
 
 interface WorkspaceStore {
   selectedInvoiceUid: number | null;

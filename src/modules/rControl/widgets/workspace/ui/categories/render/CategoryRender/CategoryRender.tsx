@@ -1,4 +1,10 @@
-import { lazy, Suspense } from "react";
+import {
+  lazy,
+  Suspense,
+  type ComponentType,
+  type LazyExoticComponent,
+} from "react";
+import type { CategoryId } from "../../../../model/types/categories/categoryId";
 
 const DefaultCategory = lazy(
   () => import("../../components/default/CategoryDefault/CategoryDefault"),
@@ -42,9 +48,7 @@ const categoryMap = {
   "clinical-groups": ClinicalGroups,
   "provided-services": ProvidedServices,
   defects: Defects,
-} as const;
-
-export type CategoryId = keyof typeof categoryMap;
+} satisfies Record<CategoryId, LazyExoticComponent<ComponentType>>;
 
 interface CategoryRenderProps {
   targetCategory: CategoryId;
