@@ -1,4 +1,5 @@
 import type { PaginationState } from "../../../../../../shared/types/PaginationState";
+import type { CategoryId } from "../../ui/categories/render/CategoryRender/CategoryRender";
 import { create } from "zustand";
 
 interface WorkspaceStore {
@@ -9,6 +10,12 @@ interface WorkspaceStore {
   invoicesTablePagination: PaginationState;
   completedCasesTablePagination: PaginationState;
   defectsTablePagination: PaginationState;
+  targetCategory: CategoryId;
+  selectedOncologyServiceUid: number | null;
+  selectedMedicationUid: number | null;
+  selectOncologyService: (oncologyServiceUid: number | null) => void;
+  selectMedication: (medicationUid: number | null) => void;
+  setTargetCategory: (targetCategory: CategoryId) => void;
   selectInvoice: (invoiceUid: number | null) => void;
   selectCompletedCase: (completedCaseUid: number | null) => void;
   selectMedicalCase: (medicalCaseUid: number | null) => void;
@@ -29,6 +36,22 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
   selectedCompletedCaseUid: null,
   selectedMedicalCaseUid: null,
   selectedProvidedServiceUid: null,
+  targetCategory: "default",
+  selectedOncologyServiceUid: null,
+  selectedMedicationUid: null,
+  selectOncologyService: (oncologyServiceUid) =>
+    set({
+      selectedOncologyServiceUid: oncologyServiceUid,
+      selectedMedicationUid: null,
+    }),
+  selectMedication: (medicationUid) =>
+    set({
+      selectedMedicationUid: medicationUid,
+    }),
+  setTargetCategory: (targetCategory) =>
+    set({
+      targetCategory: targetCategory,
+    }),
   invoicesTablePagination: {
     page: 0,
     pageSize: 10,

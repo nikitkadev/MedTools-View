@@ -1,13 +1,13 @@
-import { Categories } from "../widgets/categories/ui/Categories/Categories";
+import { CategoriesWorkspace } from '../widgets/workspace/ui/categories/CategoriesWorkspace';
 import { FilterPanel } from "../widgets/filters/ui/FilterPanel/FilterPanel";
-import { Workspace } from "../widgets/workspace/ui/Workspace/Workspace";
+import { Workspace } from "../widgets/workspace/ui/core/Workspace";
 
 export const RControl = () => {
   return (
     <>
       <FilterPanel />
       <Workspace />
-      <Categories />
+      <CategoriesWorkspace />
     </>
   );
 };
