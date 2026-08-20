@@ -3,13 +3,13 @@ import type { ResultResponse } from "../../../../../../../shared/types/ResultRes
 import type { TargetDbType } from "../../../../../../../shared/types/TargetDbType";
 import type {
   GetProvidedServicesResult,
-  ProvidedSerivceDto,
+  ProvidedServiceDto,
 } from "../../../model/types/categories/providedServices/GetProvidedServicesResult";
 
 export const getProvidedServices = async (
   medicalCaseUid: number,
   targetDb: TargetDbType,
-): Promise<ProvidedSerivceDto[]> => {
+): Promise<ProvidedServiceDto[]> => {
   const response = await apiClient.get<
     ResultResponse<GetProvidedServicesResult>
   >(`/rcontrol/medical-cases/${medicalCaseUid}/provided-services`, {

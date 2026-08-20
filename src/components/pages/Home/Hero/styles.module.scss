@@ -1,17 +1,15 @@
 .heroRoot {
+  display: flex;
+  flex-direction: column;
+
+  header {
     display: flex;
     flex-direction: column;
+    gap: var(--space-5);
 
-    header {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-5);
-
-        .primaryText {
-            color: var(--text-secondary);
-            font-size: var(--fs-body1);
-        }
-
+    .primaryText {
+      color: var(--text-secondary);
+      font-size: var(--fs-body1);
     }
-
+  }
 }

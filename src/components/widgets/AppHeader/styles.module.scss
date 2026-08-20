@@ -1,18 +1,18 @@
 .appHeaderRoot {
+  display: flex;
+  justify-content: space-between;
+
+  padding: var(--space-10);
+
+  border-bottom: 1px solid var(--border-default);
+  background: var(--card-background);
+
+  .logo {
     display: flex;
-    justify-content: space-between;
+    gap: 1rem;
 
-    padding: var(--space-10);
-
-    border-bottom: 1px solid var(--border-default);
-    background: var(--card-background);
-
-    .logo {
-        display: flex;
-        gap: 1rem;
-
-        h1 {
-            font-size: var(--fs-h2);
-        }
+    h1 {
+      font-size: var(--fs-h2);
     }
+  }
 }

@@ -1,4 +1,4 @@
 export interface PaginationState {
-    page: number;
-    pageSize: number;
+  page: number;
+  pageSize: number;
 }
