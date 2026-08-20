@@ -1,6 +1,6 @@
 import type { TargetDbType } from "../../../../../../../../shared/types/TargetDbType";
 
-export interface InvoiceListItemsAPIParams {
+export interface InvoiceListItemsRequest {
   medicalOrganizationCode: string;
   year: number;
   month: number;

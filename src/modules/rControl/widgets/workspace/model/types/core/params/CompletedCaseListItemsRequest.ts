@@ -1,6 +1,6 @@
 import type { TargetDbType } from "../../../../../../../../shared/types/TargetDbType";
 
-export interface CompletedCaseListItemsAPIParams {
+export interface CompletedCaseListItemsRequest {
   invoiceUid: number;
   page: number;
   pageSize: number;
