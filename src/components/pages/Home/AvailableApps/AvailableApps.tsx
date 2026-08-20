@@ -10,7 +10,7 @@ export const AvailableApps = () => {
   const navigate = useNavigate();
 
   return (
-    <section className={styles.avaliableAppsRoot}>
+    <section className={styles.availableAppsRoot}>
       <article className={styles.appCard}>
         <header className={styles.appCardHeader}>
           <div className={styles.logo}>RC</div>
