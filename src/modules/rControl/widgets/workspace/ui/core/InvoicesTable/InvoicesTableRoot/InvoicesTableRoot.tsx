@@ -1,9 +1,10 @@
-import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
-import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
-import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { useInvoiceListItemsQuery } from "../../../../model/queries/core/useInvoiceListItemsQuery";
-import { InvoicesTableHeader } from "../InvoicesTableHeader/InvoicesTableHeader";
+import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataStatel";
+import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
+import { InvoicesTableHeader } from "../InvoicesTableHeader/InvoicesTableHeader";
+import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
+import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
 import { InvoicesTableBody } from "../InvoicesTableBody/InvoicesTableBody";
 import styles from "./styles.module.scss";
 
@@ -26,6 +27,7 @@ export const InvoicesTableRoot = () => {
     isPending,
     isLoading,
     isError,
+    isSuccess,
     isFetching,
     error,
   } = useInvoiceListItemsQuery({
@@ -56,18 +58,25 @@ export const InvoicesTableRoot = () => {
     });
   };
 
-  const isReady =
-    selectedMedicalOrganization !== null &&
-    selectedBillingYear !== null &&
-    selectedBillingMonth !== null &&
-    targetDb !== null;
-
   const invoices = getInvoicesResult?.invoices ?? [];
+
+  const dataState = resolveDataState({
+    isEnabled:
+      selectedMedicalOrganization !== null &&
+      selectedBillingYear !== null &&
+      selectedBillingMonth !== null &&
+      targetDb !== null,
+    isError,
+    isLoading,
+    isSuccess,
+    isEmpty: invoices.length === 0,
+  });
 
   return (
     <section className={styles.invoicesTableRoot}>
       <InvoicesTableHeader
         totalCount={getInvoicesResult?.recordsCount ?? 0}
+        state={dataState}
         pagination={invoicesTablePagination}
         onRowsPerPageChange={onRowsPerPageChange}
         onPageChange={onPageChange}
@@ -77,19 +86,19 @@ export const InvoicesTableRoot = () => {
 
       <Divider />
 
-      {!isReady ? (
+      {dataState === "waiting" ? (
         <DataState
           variant="waiting"
           title="Выберите период"
           description="Укажите расчётный период для отображения счетов"
         />
-      ) : isError ? (
+      ) : dataState === "error" ? (
         <DataState
           variant="error"
           title="Невероятная ошибка"
-          description={error.message}
+          description={error?.message ?? ""}
         />
-      ) : invoices.length === 0 && !isPending ? (
+      ) : dataState === "empty" ? (
         <DataState
           variant="empty"
           title="Данных не найдено"
