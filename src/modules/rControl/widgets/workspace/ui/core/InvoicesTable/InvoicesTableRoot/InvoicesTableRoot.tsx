@@ -86,7 +86,7 @@ export const InvoicesTableRoot = () => {
       ) : isError ? (
         <DataState
           variant="error"
-          title="Ошибка загрузки данных"
+          title="Невероятная ошибка"
           description={error.message}
         />
       ) : invoices.length === 0 && !isPending ? (

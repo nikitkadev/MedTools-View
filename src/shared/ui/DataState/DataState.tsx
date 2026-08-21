@@ -1,6 +1,6 @@
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import FolderOffIcon from "@mui/icons-material/FolderOff";
-import GppBadIcon from "@mui/icons-material/GppBad";
+import ClearIcon from '@mui/icons-material/Clear';
 import styles from "./styles.module.scss";
 
 interface DataState {
@@ -16,7 +16,7 @@ export const DataState = ({ title, description, variant }: DataState) => {
         {variant === "waiting" ? (
           <HourglassBottomIcon />
         ) : variant === "error" ? (
-          <GppBadIcon />
+          <ClearIcon />
         ) : (
           <FolderOffIcon />
         )}
