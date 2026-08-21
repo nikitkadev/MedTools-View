@@ -1,9 +1,9 @@
-.invoicesTableHeader {
+.medicalCasesTableHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
-  padding: var(--space-3) var(--space-10);
+
+  padding: var(--space-7) var(--space-10);
   gap: var(--space-10);
 
   h2 {
