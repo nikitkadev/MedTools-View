@@ -1,4 +1,5 @@
 import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
+import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataStatel";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { useCompletedCaseListItemsQuery } from "../../../../model/queries/core/useCompletedCaseListItemsQuery";
@@ -24,6 +25,7 @@ export const CompletedCasesTableRoot = () => {
     isPending,
     isFetching,
     isError,
+    isSuccess,
     error,
   } = useCompletedCaseListItemsQuery({
     invoiceUid: selectedInvoiceUid,
@@ -54,12 +56,20 @@ export const CompletedCasesTableRoot = () => {
   };
 
   const completedCases = getCompletedCasesResult?.completedCases ?? [];
-  const isReady = selectedInvoiceUid !== null && targetDb !== null;
+
+  const dataState = resolveDataState({
+    isEnabled: selectedInvoiceUid !== null && targetDb !== null,
+    isEmpty: completedCases.length === 0,
+    isError: isError,
+    isLoading: isLoading,
+    isSuccess: isSuccess,
+  });
 
   return (
     <section className={styles.CompletedCasesTableRoot}>
       <CompletedCasesTableHeader
         totalCount={getCompletedCasesResult?.totalCount ?? 0}
+        state={dataState}
         pagination={completedCasesTablePagination}
         onRowsPerPageChange={onRowsPerPageChange}
         onPageChange={onPageChange}
@@ -67,19 +77,20 @@ export const CompletedCasesTableRoot = () => {
         disabled={isFetching}
       />
       <Divider />
-      {!isReady ? (
+
+      {dataState === "waiting" ? (
         <DataState
           variant="waiting"
           title="Выберите счет"
           description="Кликните на строку в таблице счетов для отображения законченных случаев"
         />
-      ) : isError ? (
+      ) : dataState === "error" ? (
         <DataState
           variant="error"
           title="Невероятная ошибка"
-          description={error.message}
+          description={error?.message ?? "-"}
         />
-      ) : completedCases.length === 0 && !isPending ? (
+      ) : dataState === "empty" ? (
         <DataState
           variant="empty"
           title="Данных не найдено"

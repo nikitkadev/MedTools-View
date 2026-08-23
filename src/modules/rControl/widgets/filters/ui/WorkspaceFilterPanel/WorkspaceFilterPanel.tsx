@@ -7,7 +7,7 @@ import { AppSelect } from "../../../../../../components/ui/Select/AppSelect";
 import { useBillingPeriodsQuery } from "../../model/queries/useBillingPeriodsQuery";
 import { useWorkspaceStore } from "../../../workspace/model/store/useWorkspaceStore";
 
-export const FilterPanel = () => {
+export const WorkspaceFilterPanel = () => {
   const {
     targetDb,
     selectedMedicalOrganization,

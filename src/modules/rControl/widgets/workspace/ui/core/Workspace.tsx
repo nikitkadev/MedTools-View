@@ -1,6 +1,6 @@
 import { CompletedCasesTableRoot } from "./CompletedCasesTable/CompletedCasesTableRoot/CompletedCasesTableRoot";
-import { MedicalCasesTableRoot } from "./MedicalCasesTable/MedicalCasesTableRoot/MedicalCasesTableRoot";
 import { InvoicesTableRoot } from "./InvoicesTable/InvoicesTableRoot/InvoicesTableRoot";
+import { MedicalCasesSection } from "./MedicalCases/MedicalCasesSection/MedicalCasesSection";
 import styles from "./styles.module.scss";
 
 export const Workspace = () => {
@@ -8,7 +8,7 @@ export const Workspace = () => {
     <section className={styles.workspaceRoot}>
       <InvoicesTableRoot />
       <CompletedCasesTableRoot />
-      <MedicalCasesTableRoot />
+      <MedicalCasesSection />
     </section>
   );
 };
