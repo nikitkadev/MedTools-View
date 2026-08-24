@@ -1,0 +1,67 @@
+.medicalCasesCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--space-5);
+
+  .cardRoot {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xxl);
+    background: var(--card-background);
+
+    transition: 0.2s ease;
+
+    cursor: pointer;
+
+    .cardHeader {
+      display: flex;
+      padding: var(--space-10);
+      h2 {
+        font-size: var(--fs-h3);
+        user-select: none;
+      }
+    }
+
+    .cardContent {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-10);
+      gap: var(--space-5);
+
+      .oneGrid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .twoGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  .selectedCard {
+    border-color: var(--border-focus);
+  }
+
+  .placeholderCardRoot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: var(--radius-xxl);
+    border: 2px dashed var(--border-default);
+
+    .placeholderCardContent {
+      color: var(--text-secondary);
+      font-size: var(--fs-body2);
+    }
+  }
+
+  .cardRoot:hover {
+    border-color: var(--border-hover);
+  }
+}

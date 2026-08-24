@@ -9,7 +9,11 @@ import styles from "./styles.module.scss";
 
 export const MedicalCasesSection = () => {
   const { targetDb } = useFiltersStore();
-  const { selectedCompletedCaseUid } = useWorkspaceStore();
+  const {
+    selectedCompletedCaseUid,
+    selectedMedicalCaseUid,
+    selectMedicalCase,
+  } = useWorkspaceStore();
   const {
     data: medicalCases,
     isLoading,
@@ -49,7 +53,11 @@ export const MedicalCasesSection = () => {
           variant="empty"
         />
       ) : (
-        <MedicalCasesCards medicalCases={medicalCases ?? []} />
+        <MedicalCasesCards
+          medicalCases={medicalCases ?? []}
+          selectedMedicalCaseUid={selectedMedicalCaseUid}
+          selectMedicalCase={selectMedicalCase}
+        />
       )}
     </section>
   );

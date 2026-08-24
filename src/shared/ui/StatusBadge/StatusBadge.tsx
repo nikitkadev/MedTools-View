@@ -28,8 +28,8 @@ export const StatusBadge = ({ state }: StatusBadgeProps) => {
       className: styles.fetching,
     },
     success: {
-      text: "Успешно",
-      className: styles.success,
+      text: "",
+      className: "",
     },
   }[state];
 

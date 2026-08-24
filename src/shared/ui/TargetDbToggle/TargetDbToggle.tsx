@@ -23,7 +23,7 @@ export const TargetDbToggle = ({ value, onChange }: TargetDbToggleProps) => {
           fontFamily: "var(--inter)",
           border: "1px solid var(--border-default)",
           margin: "0",
-          padding: "0 var(--space-10)",
+          padding: "var(--space-3) var(--space-10)",
         },
 
         "& .MuiToggleButtonGroup-firstButton": {
