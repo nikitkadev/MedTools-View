@@ -1,6 +1,8 @@
 import type { MedicalCaseDto } from "../../../../model/types/core/results/GetMedicalCaseListItemsResult";
 import { CardField } from "../../../../../../../../shared/ui/CardField/CardField";
 import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 
@@ -24,6 +26,11 @@ export const MedicalCasesCards = ({
         >
           <header className="cardHeader">
             <h2>Медицинский случай</h2>
+            {selectedMedicalCaseUid === medicalCase.medicalCaseUid ? (
+              <RadioButtonCheckedIcon />
+            ) : (
+              <RadioButtonUncheckedIcon />
+            )}
           </header>
           <div className="cardContent">
             <div className="cardBlock">
