@@ -7,13 +7,13 @@ export const MedicalCasesCardsSkeleton = () => {
   return (
     <section className={styles.medicalCasesCards}>
       {Array.from({ length: 4 }).map((_index) => (
-        <article className={styles.cardRoot}>
-          <header className={styles.cardHeader}>
+        <article className="cardRoot">
+          <header className="cardHeader">
             <h2>Медицинский случай</h2>
           </header>
-          <div className={styles.cardContent}>
-            <div className={styles.cardBlock}>
-              <div className={styles.cardBlockField}>
+          <div className="cardContent">
+            <div className="cardBlock">
+              <div className="cardBlockField">
                 <CardField label="Профиль" inline={true} value={<Skeleton />} />
 
                 <CardField
@@ -24,7 +24,7 @@ export const MedicalCasesCardsSkeleton = () => {
                 <CardField inline={true} label="Диагноз" value={<Skeleton />} />
               </div>
 
-              <div className={styles.cardBlockField}>
+              <div className="cardBlockField">
                 <CardField
                   inline={true}
                   label="Период лечения"
@@ -41,8 +41,8 @@ export const MedicalCasesCardsSkeleton = () => {
 
             <Divider />
 
-            <div className={styles.cardBlock}>
-              <div className={styles.cardBlockField}>
+            <div className="cardBlock">
+              <div className="cardBlockField">
                 <CardField inline={true} label="Тариф" value={<Skeleton />} />
                 <CardField
                   inline={true}
@@ -51,7 +51,7 @@ export const MedicalCasesCardsSkeleton = () => {
                 />
               </div>
 
-              <div className={styles.cardBlockField}>
+              <div className="cardBlockField">
                 <CardField
                   inline={true}
                   spaceBetween={true}

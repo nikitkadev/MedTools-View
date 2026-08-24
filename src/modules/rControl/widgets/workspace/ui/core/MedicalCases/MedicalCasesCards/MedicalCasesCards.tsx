@@ -20,14 +20,14 @@ export const MedicalCasesCards = ({
       {medicalCases.map((medicalCase) => (
         <article
           onClick={() => selectMedicalCase(medicalCase.medicalCaseUid)}
-          className={`${styles.cardRoot} ${selectedMedicalCaseUid === medicalCase.medicalCaseUid ? styles.selectedCard : ""}`}
+          className={`cardRoot selectedCardRoot ${selectedMedicalCaseUid === medicalCase.medicalCaseUid ? "selectedCard" : ""}`}
         >
-          <header className={styles.cardHeader}>
+          <header className="cardHeader">
             <h2>Медицинский случай</h2>
           </header>
-          <div className={styles.cardContent}>
-            <div className={styles.cardBlock}>
-              <div className={styles.cardBlockField}>
+          <div className="cardContent">
+            <div className="cardBlock">
+              <div className="cardBlockField">
                 <CardField
                   label="Профиль"
                   inline={true}
@@ -45,7 +45,7 @@ export const MedicalCasesCards = ({
                 />
               </div>
 
-              <div className={styles.cardBlockField}>
+              <div className="cardBlockField">
                 <CardField
                   inline={true}
                   label="Дата лечения"
@@ -62,8 +62,8 @@ export const MedicalCasesCards = ({
 
             <Divider />
 
-            <div className={styles.cardBlock}>
-              <div className={styles.cardBlockField}>
+            <div className="cardBlock">
+              <div className="cardBlockField">
                 <CardField
                   inline={true}
                   label="Тариф"
@@ -77,7 +77,7 @@ export const MedicalCasesCards = ({
                 />
               </div>
 
-              <div className={styles.cardBlockField}>
+              <div className="cardBlockField">
                 <CardField
                   inline={true}
                   spaceBetween={true}

@@ -1,0 +1,53 @@
+:root {
+  .cardRoot {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xxl);
+    background: var(--card-background);
+
+    transition: 0.2s ease;
+
+    .cardHeader {
+      display: flex;
+      padding: var(--space-10);
+      padding-bottom: var(--space-5);
+
+      h2 {
+        font-size: var(--fs-h3);
+        user-select: none;
+      }
+    }
+
+    .cardContent {
+      display: flex;
+      flex-direction: column;
+
+      .cardBlock {
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-10);
+        gap: var(--space-5);
+
+        .cardBlockField {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-2);
+        }
+      }
+    }
+  }
+
+  .selectedCard {
+    border-color: var(--border-focus);
+  }
+
+  .selectedCardRoot {
+    cursor: pointer;
+  }
+
+  .selectedCardRoot:hover {
+    border-color: var(--border-hover);
+  }
+}

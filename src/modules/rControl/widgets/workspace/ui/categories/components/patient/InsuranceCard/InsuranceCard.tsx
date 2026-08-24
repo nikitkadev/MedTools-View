@@ -1,6 +1,5 @@
 import type { InsuranceDto } from "../../../../../model/types/categories/patient/GetInsuranceResult";
-import { Divider } from "../../../../../../../../../components/ui/Divider/Divider";
-import styles from "./styles.module.scss";
+import { CardField } from "../../../../../../../../../shared/ui/CardField/CardField";
 
 interface InsuranceCardProps {
   insurance: InsuranceDto;
@@ -8,57 +7,57 @@ interface InsuranceCardProps {
 
 export const InsuranceCard = ({ insurance }: InsuranceCardProps) => {
   return (
-    <article className={`${styles.cardRoot} ${styles.insuranceCard}`}>
-      <header className={styles.cardHeader}>
+    <article className="cardRoot">
+      <header className="cardHeader">
         <h2>СМО</h2>
       </header>
-      <Divider />
-
-      <div className={styles.cardContent}>
-        <div className={styles.oneGrid}>
-          <div className={styles.field}>
-            <label>Реестровый номер СМО</label>
-            <p>{insurance.insuranceCompanyCode ?? "-"}</p>
+      <div className="cardContent">
+        <div className="cardBlock">
+          <div className="cardBlockField">
+            <CardField
+              label="Реестровый номер СМО"
+              value={insurance.insuranceCompanyCode ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="Наименование СМО"
+              value={insurance.insuranceCompanyName ?? "-"}
+              inline={true}
+            />
           </div>
-        </div>
-        <div className={styles.oneGrid}>
-          <div className={styles.field}>
-            <label>Наименование СМО</label>
-            <p>{insurance.insuranceCompanyName ?? "-"}</p>
+          <div className="cardBlockField">
+            <CardField
+              label="ОГРН"
+              value={insurance.ogrn ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="ОКАТО"
+              value={insurance.okato ?? "-"}
+              inline={true}
+            />
           </div>
-        </div>
-        <div className={styles.twoGrid}>
-          <div className={styles.field}>
-            <label>ОГРН</label>
-            <p>{insurance.ogrn ?? "-"}</p>
-          </div>
-          <div className={styles.field}>
-            <label>ОКАТО</label>
-            <p>{insurance.okato}</p>
-          </div>
-        </div>
-        <div className={styles.twoGrid}>
-          <div className={styles.field}>
-            <label>Номер полиса (старый)</label>
-            <p>{insurance.insurancePolicyUnifiedNumber ?? "-"}</p>
-          </div>
-          <div className={styles.field}>
-            <label>Номер полиса (новый)</label>
-            <p>{insurance.insurancePolicyNumber}</p>
-          </div>
-        </div>
-        <div className={styles.oneGrid}>
-          <div className={styles.field}>
-            <label>Серия полиса</label>
-            <p>{insurance.insurancePolicySeries ?? "-"}</p>
-          </div>
-        </div>
-        <div className={styles.oneGrid}>
-          <div className={styles.field}>
-            <label>Тип полиса</label>
-            <p>
-              {`${insurance.insurancePolicyTypeCode} : ${insurance.insurancePolicyTypeName}`}
-            </p>
+          <div className="cardBlockField">
+            <CardField
+              label="Номер полиса (старый)"
+              value={insurance.insurancePolicyUnifiedNumber ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="Номер полиса (новый)"
+              value={insurance.insurancePolicyNumber ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="Серия полиса"
+              value={insurance.insurancePolicySeries ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="Тип полиса"
+              value={`${insurance.insurancePolicyTypeCode} : ${insurance.insurancePolicyTypeName}`}
+              inline={true}
+            />
           </div>
         </div>
       </div>

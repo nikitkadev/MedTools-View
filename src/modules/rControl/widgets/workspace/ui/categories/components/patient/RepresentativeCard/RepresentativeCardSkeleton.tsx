@@ -1,49 +1,28 @@
+import { CardField } from "../../../../../../../../../shared/ui/CardField/CardField";
 import { Skeleton } from "@mui/material";
-import { Divider } from "../../../../../../../../../components/ui/Divider/Divider";
-import styles from "./styles.module.scss";
 
 export const RepresentativeCardSkeleton = () => {
   return (
-    <article className={styles.cardRoot}>
-      <header className={styles.cardHeader}>
+    <article className="cardRoot">
+      <header className="cardHeader">
         <h2>Представитель</h2>
       </header>
-      <Divider />
-      <div className={styles.cardContent}>
-        <div className={styles.twoGrid}>
-          <div className={styles.field}>
-            <label>Имя</label>
-            <p>
-              <Skeleton height={40} />
-            </p>
+
+      <div className="cardContent">
+        <div className="cardBlock">
+          <div className="cardBlockField">
+            <CardField label="Фамилия" value={<Skeleton />} inline={true} />
+            <CardField label="Имя" value={<Skeleton />} inline={true} />
+            <CardField label="Отчество" value={<Skeleton />} inline={true} />
           </div>
-          <div className={styles.field}>
-            <label>Отчество</label>
-            <p>
-              <Skeleton height={40} />
-            </p>
-          </div>
-        </div>
-        <div className={styles.oneGrid}>
-          <div className={styles.field}>
-            <label>Фамилия</label>
-            <p>
-              <Skeleton height={40} />
-            </p>
-          </div>
-        </div>
-        <div className={styles.twoGrid}>
-          <div className={styles.field}>
-            <label>Дата рождения</label>
-            <p>
-              <Skeleton height={40} />
-            </p>
-          </div>
-          <div className={styles.field}>
-            <label>Пол</label>
-            <p>
-              <Skeleton height={40} />
-            </p>
+
+          <div className="cardBlockField">
+            <CardField
+              label="Дата рождения"
+              value={<Skeleton />}
+              inline={true}
+            />
+            <CardField label="Пол" value={<Skeleton />} inline={true} />
           </div>
         </div>
       </div>
