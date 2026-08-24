@@ -1,8 +1,8 @@
 import type { MedicalCaseDto } from "../../../../model/types/core/results/GetMedicalCaseListItemsResult";
 import { CardField } from "../../../../../../../../shared/ui/CardField/CardField";
+import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
-import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
 
 interface MedicalCasesCardsProps {
   medicalCases: MedicalCaseDto[];
@@ -33,24 +33,23 @@ export const MedicalCasesCards = ({
                   inline={true}
                   value={medicalCase.medicalProfile ?? "-"}
                 />
-
-                <CardField
-                  inline={true}
-                  label="Специальность"
-                  value={medicalCase.physicianSpecialty}
-                />
                 <CardField
                   inline={true}
                   label="Диагноз"
                   value={medicalCase.primaryDiagnosis}
+                />
+                <CardField
+                  inline={true}
+                  label="Специальность"
+                  value={medicalCase.physicianSpecialty}
                 />
               </div>
 
               <div className={styles.cardBlockField}>
                 <CardField
                   inline={true}
-                  label="Период лечения"
-                  value={`${dayjs(medicalCase.treatmentStartDate).format("DD.MM.YYYY")} - ${dayjs(medicalCase.treatmentEndDate).format("DD.MM.YYYY")}`}
+                  label="Дата лечения"
+                  value={`с ${dayjs(medicalCase.treatmentStartDate).format("DD.MM.YYYY")} по ${dayjs(medicalCase.treatmentEndDate).format("DD.MM.YYYY")}`}
                 />
 
                 <CardField

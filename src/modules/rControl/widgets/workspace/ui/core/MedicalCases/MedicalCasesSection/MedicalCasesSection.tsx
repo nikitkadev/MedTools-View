@@ -6,6 +6,7 @@ import { DataState } from "../../../../../../../../shared/ui/DataState/DataState
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
 import { MedicalCasesCards } from "../MedicalCasesCards/MedicalCasesCards";
 import styles from "./styles.module.scss";
+import { useEffect } from "react";
 
 export const MedicalCasesSection = () => {
   const { targetDb } = useFiltersStore();
@@ -29,6 +30,16 @@ export const MedicalCasesSection = () => {
     isEmpty: medicalCases?.length === 0 && isSuccess,
     isSuccess: isSuccess,
   });
+
+  useEffect(() => {
+    if (
+      medicalCases !== undefined &&
+      medicalCases !== null &&
+      medicalCases.length > 0
+    ) {
+      selectMedicalCase(medicalCases[0].medicalCaseUid);
+    }
+  }, [medicalCases]);
 
   return (
     <section className={styles.medicalCasesSection}>
