@@ -8,9 +8,7 @@ export const CategoriesWorkspaceFilterPanel = () => {
     useWorkspaceStore();
   return (
     <section className={styles.categoryPanelRoot}>
-      <p className={styles.title}>
-        Расширенная информация по медицинскому случаю
-      </p>
+      <p className={styles.title}>Панель пространства категорий</p>
       <AppSelect
         label="Категория"
         value={targetCategory === "default" ? "" : targetCategory}

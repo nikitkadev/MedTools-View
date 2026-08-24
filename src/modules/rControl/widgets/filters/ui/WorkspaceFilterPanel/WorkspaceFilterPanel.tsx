@@ -6,6 +6,7 @@ import { useMedicalOrganizationsQuery } from "../../model/queries/useMedicalOrga
 import { AppSelect } from "../../../../../../components/ui/Select/AppSelect";
 import { useBillingPeriodsQuery } from "../../model/queries/useBillingPeriodsQuery";
 import { useWorkspaceStore } from "../../../workspace/model/store/useWorkspaceStore";
+import { Divider } from "@mui/material";
 
 export const WorkspaceFilterPanel = () => {
   const {
@@ -31,18 +32,29 @@ export const WorkspaceFilterPanel = () => {
 
   return (
     <section className={styles.filtersPanelRoot}>
-      <TargetDbToggle
-        value={targetDb ?? ""}
-        onChange={(_event: React.MouseEvent<HTMLElement>, newValue: string) => {
-          if (newValue === "SMODB18" || newValue === "INOGOROD18") {
-            selectTargetDb(newValue);
-            setInvoicesTablePagination({ page: 0 });
-            selectInvoice(null);
-          }
-        }}
-      />
-
-      <div className={styles.selections}>
+      <p className={styles.title}>Панель основного пространства</p>
+      <div className={styles.actions}>
+        <TargetDbToggle
+          value={targetDb ?? ""}
+          onChange={(
+            _event: React.MouseEvent<HTMLElement>,
+            newValue: string,
+          ) => {
+            if (newValue === "SMODB18" || newValue === "INOGOROD18") {
+              selectTargetDb(newValue);
+              setInvoicesTablePagination({ page: 0 });
+              selectInvoice(null);
+            }
+          }}
+        />
+        <Divider
+          orientation="vertical"
+          sx={{
+            height: "auto",
+            minHeight: "auto",
+            borderColor: "var(--border-default)",
+          }}
+        />
         <AppSelect
           label="Организация"
           value={selectedMedicalOrganization?.toString() ?? ""}
