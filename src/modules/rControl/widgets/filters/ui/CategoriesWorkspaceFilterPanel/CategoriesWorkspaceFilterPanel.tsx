@@ -1,10 +1,11 @@
 import styles from "./styles.module.scss";
-import { AppSelect } from "../../../../../../../../components/ui/Select/AppSelect";
-import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
-import type { CategoryId } from "../../../../model/types/categories/CategoryId";
+import { AppSelect } from "../../../../../../components/ui/Select/AppSelect";
+import { useWorkspaceStore } from "../../../workspace/model/store/useWorkspaceStore";
+import type { CategoryId } from "../../../workspace/model/types/categories/CategoryId";
 
-export const CategoryPanel = () => {
-  const { setTargetCategory, targetCategory } = useWorkspaceStore();
+export const CategoriesWorkspaceFilterPanel = () => {
+  const { setTargetCategory, targetCategory, selectedMedicalCaseUid } =
+    useWorkspaceStore();
   return (
     <section className={styles.categoryPanelRoot}>
       <p className={styles.title}>
@@ -13,7 +14,7 @@ export const CategoryPanel = () => {
       <AppSelect
         label="Категория"
         value={targetCategory === "default" ? "" : targetCategory}
-        disabled={false}
+        disabled={selectedMedicalCaseUid === null}
         onChange={(value: string) => setTargetCategory(value as CategoryId)}
         options={[
           { label: "Пациент", value: "patient" },

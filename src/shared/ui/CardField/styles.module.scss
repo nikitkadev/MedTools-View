@@ -10,8 +10,26 @@
   }
 
   p {
+    flex: 1 auto;
     font-size: var(--fs-body);
     font-weight: var(--fw-semibold);
     color: var(--text-primary);
   }
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: var(--space-5);
+
+  label {
+    font-size: var(--fs-body);
+  }
+}
+
+.spaceBetween {
+  text-align: right;
+  flex-direction: row;
+  justify-content: space-between;
 }

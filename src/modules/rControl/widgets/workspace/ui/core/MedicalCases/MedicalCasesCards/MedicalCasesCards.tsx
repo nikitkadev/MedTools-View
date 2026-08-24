@@ -1,8 +1,8 @@
 import type { MedicalCaseDto } from "../../../../model/types/core/results/GetMedicalCaseListItemsResult";
-import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
 import { CardField } from "../../../../../../../../shared/ui/CardField/CardField";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
+import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
 
 interface MedicalCasesCardsProps {
   medicalCases: MedicalCaseDto[];
@@ -25,72 +25,91 @@ export const MedicalCasesCards = ({
           <header className={styles.cardHeader}>
             <h2>Медицинский случай</h2>
           </header>
-          <Divider />
           <div className={styles.cardContent}>
-            <div className={styles.twoGrid}>
-              <CardField
-                label="Профиль"
-                value={medicalCase.medicalProfile ?? "-"}
-              />
-              <CardField
-                label="Это ребенок"
-                value={medicalCase.isPediatric ? "Да" : "Нет"}
-              />
+            <div className={styles.cardBlock}>
+              <div className={styles.cardBlockField}>
+                <CardField
+                  label="Профиль"
+                  inline={true}
+                  value={medicalCase.medicalProfile ?? "-"}
+                />
+
+                <CardField
+                  inline={true}
+                  label="Специальность"
+                  value={medicalCase.physicianSpecialty}
+                />
+                <CardField
+                  inline={true}
+                  label="Диагноз"
+                  value={medicalCase.primaryDiagnosis}
+                />
+              </div>
+
+              <div className={styles.cardBlockField}>
+                <CardField
+                  inline={true}
+                  label="Период лечения"
+                  value={`${dayjs(medicalCase.treatmentStartDate).format("DD.MM.YYYY")} - ${dayjs(medicalCase.treatmentEndDate).format("DD.MM.YYYY")}`}
+                />
+
+                <CardField
+                  inline={true}
+                  label="Категория"
+                  value={medicalCase.isPediatric ? "Ребенок" : "Взрослый"}
+                />
+              </div>
             </div>
-            <div className={styles.oneGrid}>
-              <CardField
-                label="Специальность врача"
-                value={medicalCase.physicianSpecialty}
-              />
-            </div>
-            <div className={styles.twoGrid}>
-              <CardField
-                label="Лечение с"
-                value={dayjs(medicalCase.treatmentStartDate).format(
-                  "DD.MM.YYYY",
-                )}
-              />
-              <CardField
-                label="Лечение по"
-                value={dayjs(medicalCase.treatmentEndDate).format("DD.MM.YYYY")}
-              />
-            </div>
-            <div className={styles.oneGrid}>
-              <CardField label="Диагноз" value={medicalCase.primaryDiagnosis} />
-            </div>
-            <div className={styles.twoGrid}>
-              <CardField
-                label="Количество"
-                value={medicalCase.paidUnits ?? "-"}
-              />
-              <CardField label="Тариф" value={medicalCase.unitRate ?? "-"} />
-            </div>
-            <div className={styles.oneGrid}>
-              <CardField label="Предъявлено" value={medicalCase.amountBilled} />
-            </div>
-            <div className={styles.twoGrid}>
-              <CardField
-                label="Принято"
-                value={medicalCase.approvedAmount ?? "-"}
-              />
-              <CardField
-                label="Принято СМО"
-                value={medicalCase.insuranceCompanyApprovedAmount ?? "-"}
-              />
+
+            <Divider />
+
+            <div className={styles.cardBlock}>
+              <div className={styles.cardBlockField}>
+                <CardField
+                  inline={true}
+                  label="Тариф"
+                  value={medicalCase.unitRate ?? "-"}
+                />
+
+                <CardField
+                  inline={true}
+                  label="Количество"
+                  value={medicalCase.paidUnits ?? "-"}
+                />
+              </div>
+
+              <div className={styles.cardBlockField}>
+                <CardField
+                  inline={true}
+                  spaceBetween={true}
+                  label="Предъявлено"
+                  value={`${medicalCase.amountBilled} ₽`}
+                />
+                <CardField
+                  inline={true}
+                  spaceBetween={true}
+                  label="Принято"
+                  value={
+                    medicalCase.approvedAmount
+                      ? `${medicalCase.approvedAmount} ₽`
+                      : "-"
+                  }
+                />
+                <CardField
+                  inline={true}
+                  spaceBetween={true}
+                  label="Принято СМО"
+                  value={
+                    medicalCase.insuranceCompanyApprovedAmount
+                      ? `${medicalCase.insuranceCompanyApprovedAmount} ₽`
+                      : "-"
+                  }
+                />
+              </div>
             </div>
           </div>
         </article>
       ))}
-
-      {medicalCases.length < 4 &&
-        Array.from({ length: 4 - medicalCases.length }).map((_index) => (
-          <article className={styles.placeholderCardRoot}>
-            <Divider />
-            <div className={styles.placeholderCardContent}>
-              <p>Пусто</p>
-            </div>
-          </article>
-        ))}
     </section>
   );
 };

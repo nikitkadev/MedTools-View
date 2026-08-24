@@ -11,9 +11,9 @@
 
   .title {
     flex-shrink: 0;
-    font-size: var(--fs-h2);
+    font-size: var(--fs-h3);
     font-weight: var(--fw-semibold);
 
-    padding-left: var(--space-5);
+    padding: var(--space-3) var(--space-5);
   }
 }

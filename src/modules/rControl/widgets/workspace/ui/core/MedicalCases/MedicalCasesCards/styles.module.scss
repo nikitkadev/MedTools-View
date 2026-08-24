@@ -18,6 +18,8 @@
     .cardHeader {
       display: flex;
       padding: var(--space-10);
+      padding-bottom: var(--space-5);
+
       h2 {
         font-size: var(--fs-h3);
         user-select: none;
@@ -27,17 +29,17 @@
     .cardContent {
       display: flex;
       flex-direction: column;
-      padding: var(--space-10);
-      gap: var(--space-5);
 
-      .oneGrid {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-      }
+      .cardBlock {
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-10);
+        gap: var(--space-5);
 
-      .twoGrid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        .cardBlockField {
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
   }

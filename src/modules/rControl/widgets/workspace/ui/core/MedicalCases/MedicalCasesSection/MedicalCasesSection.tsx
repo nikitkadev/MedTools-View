@@ -1,6 +1,6 @@
-import { MedicalCaseCardSkeleton } from "../../../categories/components/medicalCaseDetails/MedicalCaseCard/MedicalCaseCardSkeleton";
 import { useMedicalCasesListItemsQuery } from "../../../../model/queries/core/useMedicalCasesListItemsQuery";
 import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataStatel";
+import { MedicalCasesCardsSkeleton } from "../MedicalCasesCards/MedicalCasesCardsSkeleton";
 import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
@@ -45,7 +45,7 @@ export const MedicalCasesSection = () => {
           variant="error"
         />
       ) : dataState === "loading" ? (
-        <MedicalCaseCardSkeleton />
+        <MedicalCasesCardsSkeleton />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"

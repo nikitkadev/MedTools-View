@@ -1,13 +1,14 @@
+import { DataState } from "../../../../../../../../../shared/ui/DataState/DataState";
 import styles from "./styles.module.scss";
 
 const CategoryDefault = () => {
   return (
     <section className={styles.categoryDefaultRoot}>
-      <div className={styles.gitAction} />
-      <p className={styles.title}>Выберите желаемую категорию</p>
-      <p className={styles.description}>
-        Убедитесь, что вы выбрали запись в таблице медицинских случаев!
-      </p>
+      <DataState
+        variant="waiting"
+        title="Выберите категорию"
+        description="Укажите категорию для просмотра расширенной информации о медицинском случае"
+      />
     </section>
   );
 };
