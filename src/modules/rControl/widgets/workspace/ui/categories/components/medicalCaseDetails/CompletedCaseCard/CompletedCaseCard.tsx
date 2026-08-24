@@ -1,7 +1,5 @@
 import type { CompletedCaseDetailsDto } from "../../../../../model/types/categories/medicalCases/GetCompletedCaseDetailsResult";
-import { Divider } from "../../../../../../../../../components/ui/Divider/Divider";
 import { CardField } from "../../../../../../../../../shared/ui/CardField/CardField";
-import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 
 interface CompletedCaseCardProps {
@@ -12,133 +10,174 @@ export const CompletedCaseCard = ({
   completedCaseDetails,
 }: CompletedCaseCardProps) => {
   return (
-    <article className={styles.cardRoot}>
-      <header className={styles.cardHeader}>
+    <article className="cardRoot">
+      <header className="cardHeader">
         <h2>Детали законченного случая случая</h2>
       </header>
-      <Divider />
-      <div className={styles.cardContent}>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Код ЛПУ"
-            value={completedCaseDetails.medicalOrganizationCode}
-          />
+      <div className="cardContent">
+        <div className="cardLine">
+          <div className="cardLineHeader">
+            <h3>ЛПУ И НАПРАВЛЕНИЕ</h3>
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Код ЛПУ"
+              value={completedCaseDetails.medicalOrganizationCode}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Наименование ЛПУ"
+              value="TODO: Расширить до названия"
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Код направившей МО"
+              value={
+                completedCaseDetails.referringMedicalOrganizationCode ?? "-"
+              }
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Наименование направившей МО"
+              value="TODO: Расширить до названия"
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Дата направления"
+              value={
+                completedCaseDetails.referralDate
+                  ? dayjs(completedCaseDetails.referralDate).format(
+                      "DD.MM.YYYY",
+                    )
+                  : "-"
+              }
+              inline={true}
+            />
+          </div>
         </div>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Наименование ЛПУ"
-            value="TODO: Расширить до названия"
-          />
+
+        <div className="cardLine">
+          <div className="cardLineHeader">
+            <h3>МЕД. ПОМОЩЬ</h3>
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Вид медицинской помощи"
+              value={completedCaseDetails.medicalCareType}
+              inline={true}
+            />
+            <CardField
+              label="Форма медицинской помощи"
+              value={completedCaseDetails.medicalCareForm}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Условия оказания мед. помощи"
+              value={completedCaseDetails.careConditions}
+              inline={true}
+            />
+            <CardField
+              label="Способ оплаты"
+              value={completedCaseDetails.paymentMethodCode}
+              inline={true}
+            />
+          </div>
         </div>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Код направившей МО"
-            value={completedCaseDetails.referringMedicalOrganizationCode ?? "-"}
-          />
+
+        <div className="cardLine">
+          <div className="cardLineHeader">
+            <h3>ЛЕЧЕНИЕ</h3>
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Период лечения"
+              value={`${dayjs(completedCaseDetails.treatmentStartDate).format(
+                "DD.MM.YYYY",
+              )} — ${dayjs(completedCaseDetails.treatmentEndDate).format(
+                "DD.MM.YYYY",
+              )}`}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Койко-дни / пациенто-дни"
+              value={completedCaseDetails.hospitalizationDuration ?? "-"}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Внутрибольничный перевод"
+              value={
+                completedCaseDetails.isIntrahospitalTransfer === null
+                  ? "-"
+                  : completedCaseDetails.isIntrahospitalTransfer
+                    ? "Да"
+                    : "Нет"
+              }
+              inline={true}
+            />
+          </div>
         </div>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Наименование направившей МО"
-            value="TODO: Расширить до названия"
-          />
-        </div>
-        <div className={styles.twoGrid}>
-          <CardField
-            label="Дата направления"
-            value={
-              completedCaseDetails.referralDate
-                ? dayjs(completedCaseDetails.referralDate).format("DD.MM.YYYY")
-                : "-"
-            }
-          />
-          <CardField
-            label="Условия оказания мед. помощи"
-            value={completedCaseDetails.careConditions}
-          />
-        </div>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Вид мед. помощи"
-            value={completedCaseDetails.medicalCareType}
-          />
-        </div>
-        <div className={styles.twoGrid}>
-          <CardField
-            label="Форма медицинской помощи"
-            value={completedCaseDetails.medicalCareForm}
-          />
-          <CardField
-            label="Способ оплаты"
-            value={completedCaseDetails.paymentMethodCode}
-          />
-        </div>
-        <div className={styles.threeGrid}>
-          <CardField
-            label="Лечение с"
-            value={dayjs(completedCaseDetails.treatmentStartDate).format(
-              "DD.MM.YYYY",
-            )}
-          />
-          <CardField
-            label="Лечение по"
-            value={dayjs(completedCaseDetails.treatmentEndDate).format(
-              "DD.MM.YYYY",
-            )}
-          />
-          <CardField
-            label="Койко- / пациенто дни"
-            value={completedCaseDetails.hospitalizationDuration ?? "-"}
-          />
-        </div>
-        <div className={styles.twoGrid}>
-          <CardField
-            label="Это внутрибольничный перевод"
-            value={
-              completedCaseDetails.isIntrahospitalTransfer === null
-                ? "-"
-                : completedCaseDetails.isIntrahospitalTransfer
-                  ? "Да"
-                  : "Нет"
-            }
-          />
-        </div>
-        <div className={styles.twoGrid}>
-          <CardField
-            label="Результат"
-            value={completedCaseDetails.hospitalizationOutcome}
-          />
-          <CardField
-            label="Результат диспансеризации"
-            value={completedCaseDetails.screeningResult ?? "-"}
-          />
-        </div>
-        <div className={styles.twoGrid}>
-          <CardField
-            label="Это отказ от диспансеризации"
-            value={
-              completedCaseDetails.isRefusal === null
-                ? "-"
-                : completedCaseDetails.isRefusal
-                  ? "Да"
-                  : "Нет"
-            }
-          />
-          <CardField
-            label="Это мобильная бригада"
-            value={
-              completedCaseDetails.isMobileTeam === null
-                ? "-"
-                : completedCaseDetails.isMobileTeam
-                  ? "Да"
-                  : "Нет"
-            }
-          />
-        </div>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Исход"
-            value={completedCaseDetails.diseaseOutcome}
-          />
+
+        <div className="cardLine">
+          <div className="cardLineHeader">
+            <h3>РЕЗУЛЬТАТ</h3>
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Результат"
+              value={completedCaseDetails.hospitalizationOutcome}
+              inline={true}
+            />
+            <CardField
+              label="Исход"
+              value={completedCaseDetails.diseaseOutcome}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Результат диспансеризации"
+              value={completedCaseDetails.screeningResult ?? "-"}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Отказ от диспансеризации"
+              value={
+                completedCaseDetails.isRefusal === null
+                  ? "-"
+                  : completedCaseDetails.isRefusal
+                    ? "Да"
+                    : "Нет"
+              }
+              inline={true}
+            />
+            <CardField
+              label="Мобильная бригада"
+              value={
+                completedCaseDetails.isMobileTeam === null
+                  ? "-"
+                  : completedCaseDetails.isMobileTeam
+                    ? "Да"
+                    : "Нет"
+              }
+              inline={true}
+            />
+          </div>
         </div>
       </div>
     </article>

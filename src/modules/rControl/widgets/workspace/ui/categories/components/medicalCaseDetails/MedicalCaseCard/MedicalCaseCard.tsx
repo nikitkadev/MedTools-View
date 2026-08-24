@@ -1,7 +1,5 @@
 import type { MedicalCaseDetailsDto } from "../../../../../model/types/categories/medicalCases/GetMedicalCaseDetailsResult";
-import { Divider } from "../../../../../../../../../components/ui/Divider/Divider";
 import { CardField } from "../../../../../../../../../shared/ui/CardField/CardField";
-import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 
 interface MedicalCaseCardProps {
@@ -12,141 +10,182 @@ export const MedicalCaseCard = ({
   medicalCaseDetails,
 }: MedicalCaseCardProps) => {
   return (
-    <article className={styles.cardRoot}>
-      <header className={styles.cardHeader}>
+    <article className="cardRoot">
+      <header className="cardHeader">
         <h2>Детали медицинского случая</h2>
       </header>
-      <Divider />
-      <div className={styles.cardContent}>
-        <div className={styles.threeGrid}>
-          <CardField
-            label="Профиль"
-            value={medicalCaseDetails.medicalProfile}
-          />
-          <CardField
-            label="Подразделение"
-            value={medicalCaseDetails.department ?? "-"}
-          />
-          <CardField
-            label="Отделение"
-            value={medicalCaseDetails.departmentCode ?? "-"}
-          />
+      <div className="cardContent">
+        <div className="cardLine">
+          <header className="cardLineHeader">
+            <h3>ОСНОВНОЕ</h3>
+          </header>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Профиль"
+              value={medicalCaseDetails.medicalProfile}
+              inline={true}
+            />
+            <CardField
+              label="Специальность"
+              value={medicalCaseDetails.physicianSpecialty}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Номер истории"
+              value={medicalCaseDetails.medicalRecordNumber}
+              inline={true}
+            />
+            <CardField
+              label="Код лечащего врача"
+              value={medicalCaseDetails.physicianCode}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Количество"
+              value={medicalCaseDetails.paidUnits ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="Категория"
+              value={medicalCaseDetails.isPediatric ? "Ребенок" : "Взрослый"}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Цель посещения"
+              value={medicalCaseDetails.visitPurpose ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="Уровень ЛПУ"
+              value={medicalCaseDetails.facilityLevel ?? "-"}
+              inline={true}
+            />
+          </div>
         </div>
-        <div className={styles.twoGrid}>
-          <CardField
-            label="Специальность"
-            value={medicalCaseDetails.physicianSpecialty}
-          />
-          <CardField
-            label="Это ребенок"
-            value={medicalCaseDetails.isPediatric ? "Да" : "Нет"}
-          />
+
+        <div className="cardLine">
+          <header className="cardLineHeader">
+            <h3>ЛЕЧЕНИЕ</h3>
+          </header>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Период лечения"
+              value={`${dayjs(medicalCaseDetails.treatmentStartDate).format(
+                "DD.MM.YYYY",
+              )} — ${dayjs(medicalCaseDetails.treatmentEndDate).format(
+                "DD.MM.YYYY",
+              )}`}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Профиль койки"
+              value={medicalCaseDetails.bedProfile ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="Масса тела (кг)"
+              value={medicalCaseDetails.weight ?? "-"}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Реабилитация"
+              value={
+                medicalCaseDetails.isRehabilitation === null
+                  ? "-"
+                  : medicalCaseDetails.isRehabilitation
+                    ? "Да"
+                    : "Нет"
+              }
+              inline={true}
+            />
+            <CardField
+              label="Подозрение на ЗНО"
+              value={
+                medicalCaseDetails.isOncologySuspicion === null
+                  ? "-"
+                  : medicalCaseDetails.isOncologySuspicion
+                    ? "Да"
+                    : "Нет"
+              }
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Поступление или перевод"
+              value={
+                medicalCaseDetails.isAdmissionTransfer === null
+                  ? "-"
+                  : medicalCaseDetails.isAdmissionTransfer
+                    ? "Да"
+                    : "Нет"
+              }
+              inline={true}
+            />
+          </div>
         </div>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Цель посещения"
-            value={medicalCaseDetails.visitPurpose ?? "-"}
-          />
+
+        <div className="cardLine">
+          <header className="cardLineHeader">
+            <h3>ДИАГНОЗ</h3>
+          </header>
+
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Основной диагноз"
+              value={medicalCaseDetails.primaryDiagnosis}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Первичный диагноз"
+              value={medicalCaseDetails.initialDiagnosis ?? "-"}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Характер основного заболевания"
+              value={medicalCaseDetails.diseaseCharacter ?? "-"}
+              inline={true}
+            />
+          </div>
         </div>
-        <div className={styles.threeGrid}>
-          <CardField
-            label="Профиль койки"
-            value={medicalCaseDetails.bedProfile ?? "-"}
-          />
-          <CardField
-            label="Номер истории"
-            value={medicalCaseDetails.medicalRecordNumber}
-          />
-          <CardField
-            label="Койко- / пациенто дни"
-            value={medicalCaseDetails.hospitalizationDuration ?? "-"}
-          />
-        </div>
-        <div className={styles.threeGrid}>
-          <CardField
-            label="Это поступление / перевод"
-            value={
-              medicalCaseDetails.isAdmissionTransfer === null
-                ? "-"
-                : medicalCaseDetails.isAdmissionTransfer
-                  ? "Да"
-                  : "Нет"
-            }
-          />
-          <CardField
-            label="Это реабилитация"
-            value={
-              medicalCaseDetails.isRehabilitation === null
-                ? "-"
-                : medicalCaseDetails.isRehabilitation
-                  ? "Да"
-                  : "Нет"
-            }
-          />
-          <CardField
-            label="Масса тела (кг)"
-            value={medicalCaseDetails.weight ?? "-"}
-          />
-        </div>
-        <div className={styles.threeGrid}>
-          <CardField
-            label="Уровень ЛПУ"
-            value={medicalCaseDetails.facilityLevel ?? "-"}
-          />
-          <CardField
-            label="Это подозрение на ЗНО"
-            value={
-              medicalCaseDetails.isOncologySuspicion === null
-                ? "-"
-                : medicalCaseDetails.isOncologySuspicion
-                  ? "Да"
-                  : "Нет"
-            }
-          />
-          <CardField
-            label="Код лечащего врача"
-            value={medicalCaseDetails.physicianCode}
-          />
-        </div>
-        <div className={styles.threeGrid}>
-          <CardField
-            label="Лечение с"
-            value={dayjs(medicalCaseDetails.treatmentStartDate).format(
-              "DD.MM.YYYY",
-            )}
-          />
-          <CardField
-            label="Лечение по"
-            value={dayjs(medicalCaseDetails.treatmentEndDate).format(
-              "DD.MM.YYYY",
-            )}
-          />
-          <CardField
-            label="Количество"
-            value={medicalCaseDetails.paidUnits ?? "-"}
-          />
-        </div>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Первичный диагноз"
-            value={medicalCaseDetails.initialDiagnosis ?? "-"}
-          />
-        </div>
-        <div className={styles.oneGrid}>
-          <CardField
-            label="Основной диагноз"
-            value={medicalCaseDetails.primaryDiagnosis}
-          />
-        </div>
-        <div className={styles.twoGrid}>
-          <CardField
-            label="Характер основного заболевания"
-            value={medicalCaseDetails.diseaseCharacter ?? "-"}
-          />
-          <CardField
-            label="Комментарий"
-            value={medicalCaseDetails.internalComment ?? "-"}
-          />
+
+        <div className="cardLine">
+          <header className="cardLineHeader">
+            <h3>ДОПОЛНИТЕЛЬНО</h3>
+          </header>
+          <div className="cardBlockLineTwoGrid">
+            <CardField
+              label="Подразделение"
+              value={medicalCaseDetails.department ?? "-"}
+              inline={true}
+            />
+            <CardField
+              label="Отделение"
+              value={medicalCaseDetails.departmentCode ?? "-"}
+              inline={true}
+            />
+          </div>
+          <div className="cardBlockLineOneGrid">
+            <CardField
+              label="Комментарий"
+              value={medicalCaseDetails.internalComment ?? "-"}
+              inline={true}
+            />
+          </div>
         </div>
       </div>
     </article>

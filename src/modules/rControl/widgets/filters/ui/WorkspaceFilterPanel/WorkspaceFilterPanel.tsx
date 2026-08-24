@@ -32,7 +32,7 @@ export const WorkspaceFilterPanel = () => {
 
   return (
     <section className={styles.filtersPanelRoot}>
-      <p className={styles.title}>Панель основного пространства</p>
+      <p className={styles.title}>Фильтры</p>
       <div className={styles.actions}>
         <TargetDbToggle
           value={targetDb ?? ""}
