@@ -7,17 +7,20 @@ import { useWorkspaceStore } from "../../../../../model/store/useWorkspaceStore"
 import { InjectionDatesTable } from "../InjectionDatesTable/InjectionDatesTable";
 import { InjectionsTable } from "../InjectionsTable/InjectionsTable";
 import { MedicationsTable } from "../MedicationsTable/MedicationsTable";
-import { OncologyServicesTable } from "../OncologyServicesTable/OncologyServicesTable";
 import { OncologyCaseCardRoot } from "../oncologyCase/OncologyCaseCardRoot/OncologyCaseCardRoot";
 import styles from "./styles.module.scss";
 import { DiagnosticsListRoot } from "../diagnostics/DiagnosticsListRoot/DiagnosticsListRoot";
 import { ContraindicationsListRoot } from "../contraindications/ContraindicationsListRoot/ContraindicationsListRoot";
+import { OncologyServicesSection } from "../oncologyServices/OncologyServicesSection/OncologyServicesSection";
 
 const Oncology = () => {
   const { targetDb } = useFiltersStore();
-  const { selectedMedicalCaseUid } = useWorkspaceStore();
-  const { selectedOncologyServiceUid, selectedMedicationUid } =
-    useWorkspaceStore();
+  const {
+    selectedMedicalCaseUid,
+    selectedMedicationUid,
+    selectedOncologyServiceUid,
+    selectOncologyService,
+  } = useWorkspaceStore();
   const { data: oncologyCase } = useOncologyCaseQuery(
     selectedMedicalCaseUid,
     targetDb,
@@ -54,9 +57,12 @@ const Oncology = () => {
           <ContraindicationsListRoot oncologyCaseUid={oncologyCaseUid} />
         </div>
 
-        <OncologyServicesTable
+        <Divider />
+
+        <OncologyServicesSection
           oncologyCaseUid={oncologyCaseUid}
-          targetDb={targetDb}
+          selectOncologyService={selectOncologyService}
+          selectedOncologyServiceUid={selectedOncologyServiceUid}
         />
       </div>
 
