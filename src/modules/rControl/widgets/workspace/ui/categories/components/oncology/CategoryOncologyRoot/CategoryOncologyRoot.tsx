@@ -2,7 +2,6 @@ import { CategoryLineHeader } from "../../../../../../../../../shared/ui/Categor
 import { useOncologyCaseQuery } from "../../../../../model/queries/categories/oncology/useOncologyCaseQuery";
 import { ConsultationsListRoot } from "../сonsultations/ConsultationsListRoot/ConsultationsListRoot";
 import { Divider } from "../../../../../../../../../components/ui/Divider/Divider";
-import { CardState } from "../../../../../../../../../shared/ui/CardState/CardState";
 import { useFiltersStore } from "../../../../../../filters/model/store/useFiltersStore";
 import { useWorkspaceStore } from "../../../../../model/store/useWorkspaceStore";
 import { ContraindicationsTable } from "../ContraindicationsTable/ContraindicationsTable";
@@ -10,22 +9,19 @@ import { DiagnosticsTable } from "../DiagnosticsTable/DiagnosticsTable";
 import { InjectionDatesTable } from "../InjectionDatesTable/InjectionDatesTable";
 import { InjectionsTable } from "../InjectionsTable/InjectionsTable";
 import { MedicationsTable } from "../MedicationsTable/MedicationsTable";
-import { OncologyCaseCard } from "../OncologyCaseCard/OncologyCaseCard";
-import { OncologyCaseCardSkeleton } from "../OncologyCaseCard/OncologyCaseCardSkeleton";
 import { OncologyServicesTable } from "../OncologyServicesTable/OncologyServicesTable";
 import styles from "./styles.module.scss";
+import { OncologyCaseCardRoot } from "../oncologyCase/OncologyCaseCardRoot/OncologyCaseCardRoot";
 
 const Oncology = () => {
   const { targetDb } = useFiltersStore();
   const { selectedMedicalCaseUid } = useWorkspaceStore();
   const { selectedOncologyServiceUid, selectedMedicationUid } =
     useWorkspaceStore();
-  const {
-    data: oncologyCase,
-    isLoading: isOncologyCaseLoading,
-    isError: isOncologyCaseError,
-    error: oncologyCaseError,
-  } = useOncologyCaseQuery(selectedMedicalCaseUid, targetDb);
+  const { data: oncologyCase } = useOncologyCaseQuery(
+    selectedMedicalCaseUid,
+    targetDb,
+  );
 
   const oncologyCaseUid = oncologyCase?.oncologyCaseUid ?? null;
 
@@ -39,23 +35,7 @@ const Oncology = () => {
         />
 
         <div className={styles.medicalCaseOncologyDetailsLine}>
-          {isOncologyCaseLoading ? (
-            <OncologyCaseCardSkeleton />
-          ) : isOncologyCaseError ? (
-            <CardState
-              headline="Детали онкологического случая"
-              title="Ошибка данных"
-              description={oncologyCaseError.message}
-            />
-          ) : !oncologyCase ? (
-            <CardState
-              headline="Детали онкологического случая"
-              title="Данные не найдены"
-              description="Не удалось найти данные о онкологическом случае"
-            />
-          ) : (
-            <OncologyCaseCard oncologyCase={oncologyCase} />
-          )}
+          <OncologyCaseCardRoot />
           <ConsultationsListRoot />
         </div>
       </div>
