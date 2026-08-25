@@ -7,11 +7,11 @@ import { DiagnosticsListHeader } from "../DiagnosticsListHeader/DiagnosticsListH
 import styles from "./styles.module.scss";
 
 interface DiagnosticsListRootProps {
-  oncologyServiceUid: number | null;
+  oncologyCaseUid: number | null;
 }
 
 export const DiagnosticsListRoot = ({
-  oncologyServiceUid,
+  oncologyCaseUid,
 }: DiagnosticsListRootProps) => {
   const { targetDb } = useFiltersStore();
   const {
@@ -21,10 +21,10 @@ export const DiagnosticsListRoot = ({
     isError,
     isSuccess,
     error,
-  } = useDiagnosticsQuery(oncologyServiceUid, targetDb);
+  } = useDiagnosticsQuery(oncologyCaseUid, targetDb);
 
   const dataState = resolveDataState({
-    isEnabled: oncologyServiceUid !== null && targetDb !== null,
+    isEnabled: oncologyCaseUid !== null && targetDb !== null,
     isLoading: isLoading,
     isError: isError,
     isSuccess: isSuccess,
