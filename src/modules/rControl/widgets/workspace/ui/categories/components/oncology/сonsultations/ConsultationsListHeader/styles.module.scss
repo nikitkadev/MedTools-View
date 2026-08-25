@@ -1,13 +1,12 @@
-.medicalCasesTableHeader {
+.consultationsListHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: var(--space-7) var(--space-10);
-  gap: var(--space-10);
+  padding: var(--space-10);
+  padding-bottom: var(--space-5);
 
   h2 {
-    flex-shrink: 0;
     font-size: var(--fs-h3);
+    user-select: none;
   }
 }

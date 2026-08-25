@@ -1,10 +1,10 @@
+import { CategoryLineHeader } from "../../../../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
+import { useOncologyCaseQuery } from "../../../../../model/queries/categories/oncology/useOncologyCaseQuery";
+import { ConsultationsListRoot } from "../сonsultations/ConsultationsListRoot/ConsultationsListRoot";
 import { Divider } from "../../../../../../../../../components/ui/Divider/Divider";
 import { CardState } from "../../../../../../../../../shared/ui/CardState/CardState";
-import { CategoryLineHeader } from "../../../../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
 import { useFiltersStore } from "../../../../../../filters/model/store/useFiltersStore";
 import { useWorkspaceStore } from "../../../../../model/store/useWorkspaceStore";
-import { useOncologyCaseQuery } from "../../../../../model/queries/categories/oncology/useOncologyCaseQuery";
-import { ConsultationsTable } from "../ConsultationsTable/ConsultationsTable";
 import { ContraindicationsTable } from "../ContraindicationsTable/ContraindicationsTable";
 import { DiagnosticsTable } from "../DiagnosticsTable/DiagnosticsTable";
 import { InjectionDatesTable } from "../InjectionDatesTable/InjectionDatesTable";
@@ -37,7 +37,8 @@ const Oncology = () => {
           title="Данные по медицинскому случаю"
           description="Все, что относится к медицинскому случаю в рамках категории"
         />
-        <div className={styles.twoGridLine}>
+
+        <div className={styles.medicalCaseOncologyDetailsLine}>
           {isOncologyCaseLoading ? (
             <OncologyCaseCardSkeleton />
           ) : isOncologyCaseError ? (
@@ -55,10 +56,12 @@ const Oncology = () => {
           ) : (
             <OncologyCaseCard oncologyCase={oncologyCase} />
           )}
-          <ConsultationsTable />
+          <ConsultationsListRoot />
         </div>
       </div>
+
       <Divider />
+
       <div className={styles.categoryLine}>
         <CategoryLineHeader
           number={2}
@@ -78,7 +81,9 @@ const Oncology = () => {
           targetDb={targetDb}
         />
       </div>
+
       <Divider />
+
       <div className={styles.categoryLine}>
         <CategoryLineHeader
           number={3}
@@ -90,7 +95,9 @@ const Oncology = () => {
           targetDb={targetDb}
         />
       </div>
+
       <Divider />
+
       <div className={styles.categoryLine}>
         <CategoryLineHeader
           number={4}

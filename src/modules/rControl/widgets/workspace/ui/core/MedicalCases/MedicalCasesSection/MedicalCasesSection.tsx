@@ -5,7 +5,6 @@ import { useFiltersStore } from "../../../../../filters/model/store/useFiltersSt
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
 import { MedicalCasesCards } from "../MedicalCasesCards/MedicalCasesCards";
-import styles from "./styles.module.scss";
 import { useEffect } from "react";
 
 export const MedicalCasesSection = () => {
@@ -42,7 +41,7 @@ export const MedicalCasesSection = () => {
   }, [medicalCases]);
 
   return (
-    <section className={styles.medicalCasesSection}>
+    <>
       {dataState === "waiting" ? (
         <DataState
           title="Выберите законченный случай"
@@ -70,6 +69,6 @@ export const MedicalCasesSection = () => {
           selectMedicalCase={selectMedicalCase}
         />
       )}
-    </section>
+    </>
   );
 };

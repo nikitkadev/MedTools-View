@@ -69,6 +69,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
       selectedProvidedServiceUid: null,
       selectedOncologyServiceUid: null,
       selectedMedicationUid: null,
+      targetCategory: "default",
       completedCasesTablePagination: {
         ...state.completedCasesTablePagination,
         page: 0,

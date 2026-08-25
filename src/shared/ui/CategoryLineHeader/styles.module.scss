@@ -1,39 +1,39 @@
 .categoryLineHeaderRoot {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-5);
+
+  .number {
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    gap: var(--space-5);
+    width: 2.5rem;
+    height: 2.5rem;
 
-    .number {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-l);
 
-        width: 2.5rem;
-        height: 2.5rem;
+    color: var(--text-secondary);
+    font-weight: var(--fw-bold);
+  }
 
-        border: 1px solid var(--border-default);
-        border-radius: var(--radius-l);
+  .descriptionContainer {
+    display: flex;
+    flex-direction: column;
 
-        color: var(--text-secondary);
-        font-weight: var(--fw-bold);
+    gap: var(--space-1);
+
+    .descriptionContainerTitle {
+      font-size: var(--fs-body);
+      font-weight: var(--fw-bold);
     }
 
-    .descriptionContainer {
-        display: flex;
-        flex-direction: column;
-
-        gap: var(--space-1);
-
-        .descriptionContainerTitle {
-            font-size: var(--fs-body);
-            font-weight: var(--fw-bold);
-        }
-
-        .description {
-            font-size: var(--fs-body2);
-            color: var(--text-secondary);
-            font-weight: var(--fw-default);
-        }
+    .description {
+      font-size: var(--fs-body2);
+      color: var(--text-secondary);
+      font-weight: var(--fw-default);
     }
+  }
 }

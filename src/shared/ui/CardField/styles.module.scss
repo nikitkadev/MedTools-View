@@ -5,6 +5,8 @@
   min-width: 0;
 
   label {
+    flex-shrink: 0;
+    flex-wrap: nowrap;
     font-size: var(--fs-body2);
     font-weight: var(--fw-default);
     color: var(--text-secondary);

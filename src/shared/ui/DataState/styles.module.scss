@@ -36,6 +36,14 @@
     }
   }
 
+  .empty {
+    background-color: var(--gray-200);
+
+    svg {
+      color: var(--gray-900);
+    }
+  }
+
   .content {
     display: flex;
     flex-direction: column;

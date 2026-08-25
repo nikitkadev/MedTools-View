@@ -1,6 +1,6 @@
 import { CompletedCasesTableRoot } from "./CompletedCasesTable/CompletedCasesTableRoot/CompletedCasesTableRoot";
-import { InvoicesTableRoot } from "./InvoicesTable/InvoicesTableRoot/InvoicesTableRoot";
 import { MedicalCasesSection } from "./MedicalCases/MedicalCasesSection/MedicalCasesSection";
+import { InvoicesTableRoot } from "./InvoicesTable/InvoicesTableRoot/InvoicesTableRoot";
 import styles from "./styles.module.scss";
 
 export const Workspace = () => {
