@@ -5,13 +5,13 @@ import { Divider } from "../../../../../../../../../components/ui/Divider/Divide
 import { useFiltersStore } from "../../../../../../filters/model/store/useFiltersStore";
 import { useWorkspaceStore } from "../../../../../model/store/useWorkspaceStore";
 import { ContraindicationsTable } from "../ContraindicationsTable/ContraindicationsTable";
-import { DiagnosticsTable } from "../DiagnosticsTable/DiagnosticsTable";
 import { InjectionDatesTable } from "../InjectionDatesTable/InjectionDatesTable";
 import { InjectionsTable } from "../InjectionsTable/InjectionsTable";
 import { MedicationsTable } from "../MedicationsTable/MedicationsTable";
 import { OncologyServicesTable } from "../OncologyServicesTable/OncologyServicesTable";
-import styles from "./styles.module.scss";
 import { OncologyCaseCardRoot } from "../oncologyCase/OncologyCaseCardRoot/OncologyCaseCardRoot";
+import styles from "./styles.module.scss";
+import { DiagnosticsListRoot } from "../diagnostics/DiagnosticsListRoot/DiagnosticsListRoot";
 
 const Oncology = () => {
   const { targetDb } = useFiltersStore();
@@ -48,14 +48,15 @@ const Oncology = () => {
           title="Данные по онкологическому случаю"
           description="Все, что относится к онкологическому случаю в рамках категории"
         />
-        <DiagnosticsTable
-          targetDb={targetDb}
-          oncologyCaseUid={oncologyCaseUid}
-        />
-        <ContraindicationsTable
-          oncologyCaseUid={oncologyCaseUid}
-          targetDb={targetDb}
-        />
+
+        <div className={styles.diagnosticsGroupLine}>
+          <DiagnosticsListRoot oncologyServiceUid={oncologyCaseUid} />
+          <ContraindicationsTable
+            oncologyCaseUid={oncologyCaseUid}
+            targetDb={targetDb}
+          />
+        </div>
+
         <OncologyServicesTable
           oncologyCaseUid={oncologyCaseUid}
           targetDb={targetDb}
