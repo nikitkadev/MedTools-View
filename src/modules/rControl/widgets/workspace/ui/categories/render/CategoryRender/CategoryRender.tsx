@@ -24,7 +24,7 @@ const Oncology = lazy(
 );
 const Prescriptions = lazy(
   () =>
-    import("../../components/prescriptions/CategoryPrescriptionsRoot/CategoryPrescriptionsRoot"),
+    import("../../components/prescriptions/PrescriptionsRoot"),
 );
 const ClinicalGroups = lazy(
   () =>

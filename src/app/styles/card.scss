@@ -29,6 +29,7 @@
     .cardContent {
       display: flex;
       flex-direction: column;
+      gap: var(--space-5);
 
       .cardBlock {
         display: flex;
@@ -43,27 +44,33 @@
         }
       }
 
-      .cardLine {
+      .cardLineGroup {
         display: flex;
         flex-direction: column;
         padding: var(--space-10);
-        padding-top: 0;
-        gap: var(--space-2);
+        gap: var(--space-10);
 
-        .cardLineHeader {
-          h3 {
-            font-size: var(--fs-h4);
+        .cardLine {
+          display: flex;
+          flex-direction: column;
+
+          .cardLineHeader {
+            margin-bottom: var(--space-2);
+            
+            h3 {
+              font-size: var(--fs-h4);
+            }
           }
-        }
 
-        .cardBlockLineTwoGrid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-        }
+          .cardBlockLineTwoGrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+          }
 
-        .cardBlockLineOneGrid {
-          display: grid;
-          grid-template-columns: repeat(1, 1fr);
+          .cardBlockLineOneGrid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+          }
         }
       }
     }
