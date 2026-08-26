@@ -6,12 +6,12 @@ import { useFiltersStore } from "../../../../../../filters/model/store/useFilter
 import { useWorkspaceStore } from "../../../../../model/store/useWorkspaceStore";
 import { InjectionDatesTable } from "../InjectionDatesTable/InjectionDatesTable";
 import { InjectionsTable } from "../InjectionsTable/InjectionsTable";
-import { MedicationsTable } from "../MedicationsTable/MedicationsTable";
 import { OncologyCaseCardRoot } from "../oncologyCase/OncologyCaseCardRoot/OncologyCaseCardRoot";
 import styles from "./styles.module.scss";
 import { DiagnosticsListRoot } from "../diagnostics/DiagnosticsListRoot/DiagnosticsListRoot";
 import { ContraindicationsListRoot } from "../contraindications/ContraindicationsListRoot/ContraindicationsListRoot";
 import { OncologyServicesSection } from "../oncologyServices/OncologyServicesSection/OncologyServicesSection";
+import { MedicationsSection } from "../medications/MedicationsSection/MedicationsSection";
 
 const Oncology = () => {
   const { targetDb } = useFiltersStore();
@@ -74,10 +74,7 @@ const Oncology = () => {
           title="Данные по онкологической услуге"
           description="Все, что относится к онкологической услуге в рамках категории"
         />
-        <MedicationsTable
-          oncologySericeUid={selectedOncologyServiceUid}
-          targetDb={targetDb}
-        />
+        <MedicationsSection />
       </div>
 
       <Divider />
