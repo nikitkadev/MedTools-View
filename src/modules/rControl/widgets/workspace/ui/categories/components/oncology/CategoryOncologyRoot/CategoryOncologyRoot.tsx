@@ -4,20 +4,19 @@ import { ConsultationsListRoot } from "../сonsultations/ConsultationsListRoot/C
 import { Divider } from "../../../../../../../../../components/ui/Divider/Divider";
 import { useFiltersStore } from "../../../../../../filters/model/store/useFiltersStore";
 import { useWorkspaceStore } from "../../../../../model/store/useWorkspaceStore";
-import { InjectionDatesTable } from "../InjectionDatesTable/InjectionDatesTable";
-import { InjectionsTable } from "../InjectionsTable/InjectionsTable";
 import { OncologyCaseCardRoot } from "../oncologyCase/OncologyCaseCardRoot/OncologyCaseCardRoot";
-import styles from "./styles.module.scss";
 import { DiagnosticsListRoot } from "../diagnostics/DiagnosticsListRoot/DiagnosticsListRoot";
 import { ContraindicationsListRoot } from "../contraindications/ContraindicationsListRoot/ContraindicationsListRoot";
 import { OncologyServicesSection } from "../oncologyServices/OncologyServicesSection/OncologyServicesSection";
 import { MedicationsSection } from "../medications/MedicationsSection/MedicationsSection";
+import { InjectionDatesRoot } from "../injections/injectionDates/InjectionDatesRoot/InjectionDatesRoot";
+import styles from "./styles.module.scss";
+import { InjectionsRoot } from "../injections/injections/InjectionsRoot/InjectionsRoot";
 
 const Oncology = () => {
   const { targetDb } = useFiltersStore();
   const {
     selectedMedicalCaseUid,
-    selectedMedicationUid,
     selectedOncologyServiceUid,
     selectOncologyService,
   } = useWorkspaceStore();
@@ -85,14 +84,10 @@ const Oncology = () => {
           title="Данные по лекарственному препарату"
           description="Все, что относится к лекарственному препарату в рамках категории"
         />
-        <InjectionDatesTable
-          medicationUid={selectedMedicationUid}
-          targetDb={targetDb}
-        />
-        <InjectionsTable
-          medicationUid={selectedMedicationUid}
-          targetDb={targetDb}
-        />
+        <div className={styles.injectionsGroup}>
+          <InjectionDatesRoot />
+          <InjectionsRoot />
+        </div>
       </div>
     </section>
   );
