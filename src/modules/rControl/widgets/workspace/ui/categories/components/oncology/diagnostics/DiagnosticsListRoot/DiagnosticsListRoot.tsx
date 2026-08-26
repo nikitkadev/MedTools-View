@@ -34,13 +34,7 @@ export const DiagnosticsListRoot = ({
   return (
     <section className={styles.diagnosticsListRoot}>
       <DiagnosticsListHeader />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите окнологический случай"
-          description="Выберите нкологический случай для отображения диагностического блока"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
           description={error?.message ?? "-"}

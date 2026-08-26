@@ -29,13 +29,7 @@ export const InjectionsRoot = () => {
   return (
     <section className="cardRoot">
       <InjectionsHeader />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите лекарственный препарат"
-          description="Кликните по карточке лекарственного препарата"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
           description={error?.message ?? "-"}

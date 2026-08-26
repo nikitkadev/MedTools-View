@@ -34,13 +34,7 @@ export const ContraindicationsListRoot = ({
   return (
     <section className={styles.contraindicationsListRoot}>
       <ContraindicationsListHeader />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите онкологический случай"
-          description="Кликните по карточке онкологического случая для отображение информации о консилиумах"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка получения данных"
           description={error?.message ?? "-"}

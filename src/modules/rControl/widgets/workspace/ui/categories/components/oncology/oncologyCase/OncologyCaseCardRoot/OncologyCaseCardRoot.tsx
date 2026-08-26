@@ -29,13 +29,7 @@ export const OncologyCaseCardRoot = () => {
   return (
     <section className="cardRoot">
       <OncologyCaseCardHeader />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите медицинский случай"
-          description="Кликните по карточке медицинского случая для получения данных о онкологическом случае"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка получения данных"
           description={error?.message ?? "-"}

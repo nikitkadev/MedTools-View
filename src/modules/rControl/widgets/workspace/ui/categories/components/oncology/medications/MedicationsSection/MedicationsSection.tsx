@@ -31,13 +31,7 @@ export const MedicationsSection = () => {
 
   return (
     <>
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите онкологическую услугу"
-          description="Кликните по карточке онкологической услуги"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
           description={error?.message ?? "-"}

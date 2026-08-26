@@ -30,13 +30,7 @@ export const ConsultationsListRoot = () => {
   return (
     <section className={styles.consultationsListRoot}>
       <ConsultationsListHeader dataState={dataState} />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите медицинский случай"
-          description="Кликните по карточке медицинского случая для отображение информации о консилиумах"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка получения данных"
           description={error?.message ?? "-"}

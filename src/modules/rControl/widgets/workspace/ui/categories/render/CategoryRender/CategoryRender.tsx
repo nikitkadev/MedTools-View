@@ -20,7 +20,7 @@ const MedicalCaseDetails = lazy(
 );
 const Oncology = lazy(
   () =>
-    import("../../components/oncology/CategoryOncologyRoot/CategoryOncologyRoot"),
+    import("../../components/oncology/OncologyRoot"),
 );
 const Prescriptions = lazy(
   () =>
