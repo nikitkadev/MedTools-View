@@ -18,21 +18,16 @@ const MedicalCaseDetails = lazy(
   () =>
     import("../../components/medicalCaseDetails/CategoryMedicalCaseDetailsRoot/CategoryMedicalCaseDetailsRoot"),
 );
-const Oncology = lazy(
-  () =>
-    import("../../components/oncology/OncologyRoot"),
-);
+const Oncology = lazy(() => import("../../components/oncology/OncologyRoot"));
 const Prescriptions = lazy(
-  () =>
-    import("../../components/prescriptions/PrescriptionsRoot"),
+  () => import("../../components/prescriptions/PrescriptionsRoot"),
 );
 const ClinicalGroups = lazy(
-  () =>
-    import("../../components/clinicalGroups/ClinicalGroupsCategoryRoot"),
+  () => import("../../components/clinicalGroups/ClinicalGroupsCategoryRoot"),
 );
 const ProvidedServices = lazy(
   () =>
-    import("../../components/providedServices/CategoryProvidedServicesRoot/CategoryProvidedServicesRoot"),
+    import("../../components/providedServices/ProvidedServicesCategoryRoot"),
 );
 const Defects = lazy(
   () =>
