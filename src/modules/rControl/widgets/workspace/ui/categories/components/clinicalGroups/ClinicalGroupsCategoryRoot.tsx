@@ -8,6 +8,7 @@ import { HighTechMedicalCareRoot } from "./highTechMedicalCare/HighTechMedicalCa
 import styles from "./styles.module.scss";
 import { ClassificationCriteriaRoot } from "./сlassificationCriteria/ClassificationCriteriaRoot/ClassificationCriteriaRoot";
 import { TreatmentComplexityCoefficientsRoot } from "./treatmentComplexityCoefficients/TreatmentComplexityCoefficientsRoot/TreatmentComplexityCoefficientsRoot";
+import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 
 const ClinicalGroupsCategoryRoot = () => {
   const { targetDb } = useFiltersStore();
@@ -28,8 +29,18 @@ const ClinicalGroupsCategoryRoot = () => {
           description="Все, что относится к медицинскому случаю в рамках категории"
         />
         <div className={styles.twoGridLine}>
-          <ClinicalGroupRoot />
-          <HighTechMedicalCareRoot />
+          {selectedMedicalCaseUid === null ? (
+            <DataState
+              title="Выберите медицинский случай"
+              description="После выбора станет доступна информация о КСГ/КПГ и ВМП"
+              variant="waiting"
+            />
+          ) : (
+            <>
+              <ClinicalGroupRoot />
+              <HighTechMedicalCareRoot />
+            </>
+          )}
         </div>
       </div>
       <Divider />
@@ -39,12 +50,20 @@ const ClinicalGroupsCategoryRoot = () => {
           title="Данные по клинической группе"
           description="Все, что относится к клинической группе в рамках категории"
         />
-        <div className={styles.classificationCriteriaGroup}>
-          <ClassificationCriteriaRoot clinicalGroupUid={clinicalGroupUid} />
-          <TreatmentComplexityCoefficientsRoot
-            clinicalGroupUid={clinicalGroupUid}
+        {clinicalGroupUid === null ? (
+          <DataState
+            title="Доступно при найденных КСГ/КПГ"
+            description="После автоматического выбора станет доступна информация о классификационных критериев и КСЛП"
+            variant="waiting"
           />
-        </div>
+        ) : (
+          <div className={styles.classificationCriteriaGroup}>
+            <ClassificationCriteriaRoot clinicalGroupUid={clinicalGroupUid} />
+            <TreatmentComplexityCoefficientsRoot
+              clinicalGroupUid={clinicalGroupUid}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

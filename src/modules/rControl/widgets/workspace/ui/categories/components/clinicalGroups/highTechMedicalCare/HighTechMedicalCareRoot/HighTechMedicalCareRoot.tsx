@@ -29,13 +29,7 @@ export const HighTechMedicalCareRoot = () => {
   return (
     <article className="cardRoot">
       <HighTechMedicalCareHeader />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите медицинский случай"
-          description="После выбора появится информация по ВМП"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
           description={error?.message ?? "-"}

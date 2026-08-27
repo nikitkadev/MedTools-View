@@ -29,13 +29,7 @@ export const ClinicalGroupRoot = () => {
   return (
     <div className="cardRoot">
       <ClinicalGroupHeader />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите медицинский случай"
-          description="После выбора появится информация по КСГ/КПГ"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
           description={error?.message ?? "-"}

@@ -23,7 +23,8 @@ export const TreatmentComplexityCoefficientsBody = ({
                   <p>{_index + 1}</p>
                 </div>
                 <div className={styles.listRowContent}>
-                  <p className={styles.date}>№
+                  <p className={styles.date}>
+                    №
                     {treatmentComplexityCoefficient.complexityCoefficientNumber ??
                       "—"}
                   </p>

@@ -33,13 +33,7 @@ export const ClassificationCriteriaRoot = ({
   return (
     <div className="cardRoot">
       <ClassificationCriteriaHeader />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Ожидается автоматический выбор КГС/КПГ"
-          description="Если КСГ/КПГ будет найден, то появятся данные о классификационных критериях"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
           description={error?.message ?? "-"}
