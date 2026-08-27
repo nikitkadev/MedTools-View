@@ -3,31 +3,32 @@ import { useHighTechMedicalCareQuery } from "../../../../../model/queries/catego
 import { HighTechMedicalCareCardSkeleton } from "../HighTechMedicalCareCard/HighTechMedicalCareCardSkeleton";
 import { CategoryLineHeader } from "../../../../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
 import { ClassificationCriteriaTable } from "../ClassificationCriteriaTable/ClassificationCriteriaTable";
-import { useClinicalGroupQuery } from "../../../../../model/queries/categories/clinicalGroups/useClinicalGroupQuery";
-import { ClinicalGroupsCardSkeleton } from "../ClinicalGroupsCard/ClinicalGroupsCardSkeleton";
 import { HighTechMedicalCareCard } from "../HighTechMedicalCareCard/HighTechMedicalCareCard";
 import { useWorkspaceStore } from "../../../../../model/store/useWorkspaceStore";
 import { useFiltersStore } from "../../../../../../filters/model/store/useFiltersStore";
 import { CardState } from "../../../../../../../../../shared/ui/CardState/CardState";
 import { Divider } from "../../../../../../../../../components/ui/Divider/Divider";
-import { ClinicalGroupsCard } from "../ClinicalGroupsCard/ClinicalGroupsCard";
+import { ClinicalGroupRoot } from "../clinicalGroup/ClinicalGroupRoot/ClinicalGroupRoot";
 import styles from "./styles.module.scss";
+import { useClinicalGroupQuery } from "../../../../../model/queries/categories/clinicalGroups/useClinicalGroupQuery";
 
 const ClinicalGroups = () => {
   const { targetDb } = useFiltersStore();
   const { selectedMedicalCaseUid } = useWorkspaceStore();
-  const {
-    data: clinicalGroup,
-    isLoading: isClinicalGroupLoading,
-    isError: isClinicalGroupError,
-    error: clinicalGroupError,
-  } = useClinicalGroupQuery(selectedMedicalCaseUid, targetDb);
+
   const {
     data: highTechMedicalCare,
     isLoading: isHighTechMedicalCareLoading,
     isError: isHighTechMedicalCareError,
     error: highTechMedicalCareError,
   } = useHighTechMedicalCareQuery(selectedMedicalCaseUid, targetDb);
+
+  const { data: clinicalGroup } = useClinicalGroupQuery(
+    selectedMedicalCaseUid,
+    targetDb,
+  );
+
+  const clinicalGroupUid = clinicalGroup?.clinicalGroupUid ?? null;
 
   return (
     <section className={styles.clinicalGroupsRoot}>
@@ -38,23 +39,7 @@ const ClinicalGroups = () => {
           description="Все, что относится к медицинскому случаю в рамках категории"
         />
         <div className={styles.twoGridLine}>
-          {isClinicalGroupLoading ? (
-            <ClinicalGroupsCardSkeleton />
-          ) : isClinicalGroupError ? (
-            <CardState
-              headline="Клиническая группа"
-              title="Ошибка загрузки данных"
-              description={clinicalGroupError.message}
-            />
-          ) : !clinicalGroup ? (
-            <CardState
-              headline="Клиническая группа"
-              title="Данные не найдены"
-              description="Не удалось найти данных о КСГ/КПГ"
-            />
-          ) : (
-            <ClinicalGroupsCard clinicalGroup={clinicalGroup} />
-          )}
+          <ClinicalGroupRoot />
 
           {isHighTechMedicalCareLoading ? (
             <HighTechMedicalCareCardSkeleton />
@@ -85,11 +70,11 @@ const ClinicalGroups = () => {
           description="Все, что относится к клинической группе в рамках категории"
         />
         <ClassificationCriteriaTable
-          clinicalGroupUid={clinicalGroup?.clinicalGroupUid ?? null}
+          clinicalGroupUid={clinicalGroupUid}
           targetDb={targetDb}
         />
         <TreatmentComplexityCoefficientsTable
-          clinicalGroupUid={clinicalGroup?.clinicalGroupUid ?? null}
+          clinicalGroupUid={clinicalGroupUid}
           targetDb={targetDb}
         />
       </div>
