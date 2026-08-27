@@ -17,35 +17,21 @@ export const ClinicalGroupBody = ({
         <div className="cardLineGroup">
           <div className="cardLine">
             <div className="cardBlockLineTwoGrid">
-              <CardField
-                label="КСГ"
-                value={clinicalGroup.clinicalStatisticalGroupNumber}
-                inline={true}
-              />
-              <CardField
-                label="КСГ"
-                value={
-                  clinicalGroup.calculatedClinicalStatisticalGroupNumber ?? "—"
-                }
-                inline={true}
-              />
+              <CardField label="КСГ" value={<Skeleton />} inline={true} />
+              <CardField label="КСГ" value={<Skeleton />} inline={true} />
             </div>
             <div className="cardBlockLineOneGrid">
-              <CardField
-                label="КПГ"
-                value={clinicalGroup.clinicalProfileGroupNumber ?? "—"}
-                inline={true}
-              />
+              <CardField label="КПГ" value={<Skeleton />} inline={true} />
             </div>
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Модель определения КСГ"
-                value={clinicalGroup.clinicalStatisticalGroupModelVersion}
+                value={<Skeleton />}
                 inline={true}
               />
               <CardField
                 label="Использование подгруппы КСГ"
-                value={clinicalGroup.isCsgSubgroupUsed ? "Да" : "Нет"}
+                value={<Skeleton />}
                 inline={true}
               />
             </div>

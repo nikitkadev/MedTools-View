@@ -28,7 +28,7 @@ const Prescriptions = lazy(
 );
 const ClinicalGroups = lazy(
   () =>
-    import("../../components/clinicalGroups/CategoryClinicalGroupsRoot/CategoryClinicalGroupsRoot"),
+    import("../../components/clinicalGroups/ClinicalGroupsCategoryRoot"),
 );
 const ProvidedServices = lazy(
   () =>
