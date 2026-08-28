@@ -33,11 +33,12 @@ export const AppSelect = ({
 
   return (
     <Box sx={{ minWidth: 175 }}>
-      <FormControl fullWidth>
+      <FormControl fullWidth size="small">
         <InputLabel
           sx={{
-            fontSize: "var(--fs-body)",
+            fontSize: "var(--fs-body2)",
             fontFamily: "var(--inter)",
+            fontWeight: "var(--fw-semibold)",
             "&.Mui-focused": {
               color: "var(--text-primary)",
             },
@@ -52,7 +53,6 @@ export const AppSelect = ({
               maxHeight: 500,
             },
           }}
-          size="medium"
           value={value}
           label={label}
           onChange={handleChange}
@@ -61,7 +61,7 @@ export const AppSelect = ({
             display: "flex",
             alignItems: "center",
             "& .MuiOutlinedInput-notchedOutline": {
-              borderRadius: "var(--radius-xl)",
+              borderRadius: "var(--radius-l)",
               borderColor: "var(--border-default)",
             },
             "&.MuiSelect-root:hover .MuiOutlinedInput-notchedOutline": {

@@ -1,22 +1,25 @@
-@use './colors.scss' as *;
+@use "./colors.scss" as *;
 
 :root {
-    --app-background: var(--gray-100);
+  --app-background: var(--gray-100);
 
-    --selected-background: var(--gray-100);
-    --selected-hover-background: var(--gray-400);
+  --selected-background: var(--gray-100);
+  --selected-hover-background: var(--gray-400);
 
-    --card-background: var(--white);
+  --card-background: var(--white);
+  --card-empty-background: var(--gray-300);
+  --badge-error-background: var(--red-opacity);
 
-    --text-default: var(--gray-1500);
-    --text-secondary: var(--gray-600);
+  --text-default: var(--gray-1500);
+  --text-secondary: var(--gray-600);
+  --text-error: var(--red);
 
-    --border-default: var(--gray-300);
-    --border-hover: var(--gray-400);
-    --border-focus: var(--gray-700);
+  --border-default: var(--gray-300);
+  --border-hover: var(--gray-400);
+  --border-focus: var(--gray-1000);
 
-    --badge-background-default: var(--gray-300);
+  --badge-background-default: var(--gray-300);
 
-    --row-hover: var(--gray-100);
-    --row-selected: var(--gray-200);
+  --row-hover: var(--gray-100);
+  --row-selected: var(--gray-200);
 }

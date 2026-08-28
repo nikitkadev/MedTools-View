@@ -1,0 +1,17 @@
+.badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: var(--fs-body2);
+  font-weight: var(--fw-semibold);
+
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-l);
+}
+
+.empty,
+.waiting {
+  background-color: var(--gray-200);
+  color: var(--gray-900);
+}

@@ -1,0 +1,90 @@
+:root {
+  .cardRoot {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xxl);
+    background: var(--card-background);
+
+    transition: 0.2s ease;
+
+    .cardHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-10);
+      padding-bottom: var(--space-5);
+
+      h2 {
+        font-size: var(--fs-h3);
+        user-select: none;
+      }
+
+      svg {
+        font-size: var(--fs-h3);
+      }
+    }
+
+    .cardContent {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+
+      .cardBlock {
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-10);
+        gap: var(--space-5);
+
+        .cardBlockField {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-2);
+        }
+      }
+
+      .cardLineGroup {
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-10);
+        gap: var(--space-10);
+
+        .cardLine {
+          display: flex;
+          flex-direction: column;
+
+          .cardLineHeader {
+            margin-bottom: var(--space-2);
+            
+            h3 {
+              font-size: var(--fs-h4);
+            }
+          }
+
+          .cardBlockLineTwoGrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .cardBlockLineOneGrid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+          }
+        }
+      }
+    }
+  }
+
+  .selectedCard {
+    border-color: var(--border-focus);
+  }
+
+  .selectedCardRoot {
+    cursor: pointer;
+  }
+
+  .selectedCardRoot:hover {
+    border-color: var(--border-hover);
+  }
+}

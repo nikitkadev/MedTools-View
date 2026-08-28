@@ -1,0 +1,84 @@
+import { TableSkeleton } from "../../../../../../../../shared/ui/TableSkeleton/TableSkeleton";
+import type { CompletedCaseListItemDto } from "../../../../model/types/core/results/GetCompletedCaseListItemsResult";
+
+interface CompletedCasesTableBodyProps {
+  completedCases: CompletedCaseListItemDto[];
+  selectedCompletedCaseUid: number | null;
+  isPending: boolean;
+  pageSize: number;
+  selectCompletedCase: (completedCaseUid: number | null) => void;
+}
+
+export const CompletedCasesTableBody = ({
+  completedCases,
+  selectedCompletedCaseUid,
+  isPending,
+  pageSize,
+  selectCompletedCase,
+}: CompletedCasesTableBodyProps) => {
+  return (
+    <div className="tableContainer">
+      <table>
+        <colgroup>
+          <col style={{ width: "1.5rem" }} />
+          <col style={{ width: "1.5rem" }} />
+          <col style={{ width: "3rem" }} />
+          <col style={{ width: "3rem" }} />
+          <col style={{ width: "3rem" }} />
+          <col style={{ width: "1.5rem" }} />
+          <col style={{ width: "3rem" }} />
+          <col style={{ width: "3rem" }} />
+          <col style={{ width: "2rem" }} />
+          <col style={{ width: "2rem" }} />
+          <col style={{ width: "2rem" }} />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>№ поз.</th>
+            <th>№ зап.</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Усл. ок.</th>
+            <th>С. полиса</th>
+            <th>Н. полиса</th>
+            <th>Предъявлено</th>
+            <th>Принято</th>
+            <th>Принято СМО</th>
+          </tr>
+        </thead>
+        <tbody>
+          {isPending ? (
+            <TableSkeleton columns={11} rows={pageSize} />
+          ) : (
+            completedCases.map((completedCase) => (
+              <tr
+                className={
+                  completedCase.completedCaseUid === selectedCompletedCaseUid
+                    ? "selectedRow"
+                    : ""
+                }
+                key={completedCase.completedCaseUid}
+                onClick={() =>
+                  selectCompletedCase(completedCase.completedCaseUid)
+                }
+              >
+                <td>{completedCase.entryPositionNumber}</td>
+                <td>{completedCase.entryNumber}</td>
+                <td>{completedCase.patientLastName}</td>
+                <td>{completedCase.patientFirstName}</td>
+                <td>{completedCase.patientMiddleName}</td>
+                <td>{completedCase.medicalCareConditions}</td>
+                <td>{completedCase.insurancePolicySeries ?? "-"}</td>
+                <td>{completedCase.insurancePolicyNumber}</td>
+                <td>{completedCase.amountBilled}</td>
+                <td>{completedCase.approvedAmount ?? "-"}</td>
+                <td>{completedCase.insuranceCompanyApprovedAmount ?? "-"}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+};

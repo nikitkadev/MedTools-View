@@ -1,0 +1,10 @@
+.workspaceRoot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+
+  .invoicesSection {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+}

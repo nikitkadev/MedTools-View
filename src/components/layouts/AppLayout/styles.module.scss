@@ -4,19 +4,19 @@
   box-sizing: border-box;
   justify-content: space-between;
 
-  height: 100dvh;
+  min-height: 100dvh;
 
   .contentRoot {
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+
+    width: 100%;
 
     margin: 0 auto;
+    flex: 1 0 auto;
+
     padding: var(--space-10);
-
-    box-sizing: border-box;
-    width: 100%;
-    flex: 1;
-
     gap: var(--space-10);
 
     @media screen and (min-width: 1921px) {

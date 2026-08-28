@@ -1,0 +1,119 @@
+import type { OncologyServiceDto } from "../../../../../../model/types/categories/oncology/GetOncologyServicesResult";
+import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
+import { Skeleton } from "@mui/material";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import styles from "./styles.module.scss";
+
+interface OncologyServicesCardsProps {
+  oncologyServices: OncologyServiceDto[];
+  isPending: boolean;
+  selectedOncologyServiceUid: number | null;
+  selectOncologyService: (oncologyServiceUid: number | null) => void;
+}
+
+export const OncologyServicesCards = ({
+  oncologyServices,
+  isPending,
+  selectedOncologyServiceUid,
+  selectOncologyService,
+}: OncologyServicesCardsProps) => {
+  return (
+    <section className={styles.oncologyServicesCards}>
+      {isPending
+        ? Array.from({ length: 3 }).map((_index) => (
+            <article>
+              <header className="cardHeader">
+                <h2>Онкологическая услуга</h2>
+              </header>
+              <div className="cardContent">
+                <div className="cardBlock">
+                  <div className="cardBlockField">
+                    <CardField
+                      label="Тип услуги"
+                      inline={true}
+                      value={<Skeleton />}
+                    />
+                    <CardField
+                      inline={true}
+                      label="Тип хирургического лечения"
+                      value={<Skeleton />}
+                    />
+                    <CardField
+                      inline={true}
+                      label="Линия лекарственной терапии"
+                      value={<Skeleton />}
+                    />
+                    <CardField
+                      inline={true}
+                      label="Проведение профилактики тошноты"
+                      value={<Skeleton />}
+                    />
+                    <CardField
+                      inline={true}
+                      label="Тип лучевой терапии"
+                      value={<Skeleton />}
+                    />
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))
+        : oncologyServices.map((oncologyService) => (
+            <article
+              onClick={() =>
+                selectOncologyService(oncologyService.oncologyServiceUid)
+              }
+              className={`cardRoot selectedCardRoot ${selectedOncologyServiceUid === oncologyService.oncologyServiceUid ? "selectedCard" : ""}`}
+            >
+              <header className="cardHeader">
+                <h2>Онкологическая услуга</h2>
+                {selectedOncologyServiceUid ===
+                oncologyService.oncologyServiceUid ? (
+                  <RadioButtonCheckedIcon />
+                ) : (
+                  <RadioButtonUncheckedIcon />
+                )}
+              </header>
+              <div className="cardContent">
+                <div className="cardBlock">
+                  <div className="cardBlockField">
+                    <CardField
+                      label="Тип услуги"
+                      inline={true}
+                      value={oncologyService.serviceType ?? "—"}
+                    />
+                    <CardField
+                      inline={true}
+                      label="Тип хирургического лечения"
+                      value={oncologyService.surgicalTreatmentType ?? "—"}
+                    />
+                    <CardField
+                      inline={true}
+                      label="Линия лекарственной терапии"
+                      value={oncologyService.drugTherapyLine ?? "—"}
+                    />
+                    <CardField
+                      inline={true}
+                      label="Проведение профилактики тошноты"
+                      value={
+                        oncologyService.isAntiemeticProphylaxis === null
+                          ? "—"
+                          : oncologyService.isAntiemeticProphylaxis
+                            ? "Да"
+                            : "Нет"
+                      }
+                    />
+                    <CardField
+                      inline={true}
+                      label="Тип лучевой терапии"
+                      value={oncologyService.drugTherapyCycle ?? "—"}
+                    />
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+    </section>
+  );
+};

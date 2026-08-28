@@ -1,46 +1,46 @@
 .appButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    gap: var(--space-4);
-    border: none;
-    background: none;
+  gap: var(--space-4);
+  border: none;
+  background: none;
 
-    border-radius: var(--radius-l);
+  border-radius: var(--radius-l);
 
-    font-size: var(--fs-body1);
-    font-weight: var(--fw-semibold);
+  font-size: var(--fs-body1);
+  font-weight: var(--fw-semibold);
 }
 
 .primary {
-    color: var(--white);
-    background: var(--black);
+  color: var(--white);
+  background: var(--black);
 }
 
 .secondary {
-    border: 1px solid var(--border-default);
+  border: 1px solid var(--border-default);
 }
 
 .secondary:hover {
-    background: var(--gray-100);
-    border-color: var(--gray-500);
-    cursor: pointer;
+  background: var(--gray-100);
+  border-color: var(--gray-500);
+  cursor: pointer;
 
-    transition: 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .primary:hover {
-    background: var(--gray-1400);
-    cursor: pointer;
+  background: var(--gray-1400);
+  cursor: pointer;
 
-    transition: 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .md {
-    padding: var(--space-4) var(--space-5);
+  padding: var(--space-4) var(--space-5);
 }
 
 .expands {
-    width: 100%;
+  width: 100%;
 }

@@ -1,16 +1,16 @@
 .emptyDataTableRowRoot {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: var(--space-5);
-    gap: var(--space-2);
+  padding: var(--space-5);
+  gap: var(--space-2);
 
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 
-    .messsage {
-        font-size: var(--fs-body2);
-        color: var(--text-secondary);
-        font-weight: var(--fw-default);
-    }
+  .messsage {
+    font-size: var(--fs-body2);
+    color: var(--text-secondary);
+    font-weight: var(--fw-default);
+  }
 }
