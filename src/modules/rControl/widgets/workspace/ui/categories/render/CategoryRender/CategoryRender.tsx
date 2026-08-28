@@ -16,7 +16,7 @@ const Patient = lazy(
 );
 const MedicalCaseDetails = lazy(
   () =>
-    import("../../components/medicalCaseDetails/CategoryMedicalCaseDetailsRoot/CategoryMedicalCaseDetailsRoot"),
+    import("../../components/medicalCaseDetails/MedicalCaseDetailsCategoryRoot"),
 );
 const Oncology = lazy(() => import("../../components/oncology/OncologyRoot"));
 const Prescriptions = lazy(

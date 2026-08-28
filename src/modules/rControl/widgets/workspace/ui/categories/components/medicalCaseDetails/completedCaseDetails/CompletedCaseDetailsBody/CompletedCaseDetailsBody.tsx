@@ -1,20 +1,145 @@
-import type { CompletedCaseDetailsDto } from "../../../../../model/types/categories/medicalCases/GetCompletedCaseDetailsResult";
-import { CardField } from "../../../../../../../../../shared/ui/CardField/CardField";
+import type { CompletedCaseDetailsDto } from "../../../../../../model/types/categories/medicalCases/GetCompletedCaseDetailsResult";
+import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
+import { Skeleton } from "@mui/material";
 import dayjs from "dayjs";
 
-interface CompletedCaseCardProps {
+interface CompletedCaseDetailsBodyProps {
   completedCaseDetails: CompletedCaseDetailsDto;
+  isPending: boolean;
 }
 
-export const CompletedCaseCard = ({
+export const CompletedCaseDetailsBody = ({
   completedCaseDetails,
-}: CompletedCaseCardProps) => {
+  isPending,
+}: CompletedCaseDetailsBodyProps) => {
   return (
-    <article className="cardRoot">
-      <header className="cardHeader">
-        <h2>Детали законченного случая случая</h2>
-      </header>
-      <div className="cardContent">
+    <div className="cardContent">
+      {isPending ? (
+        <div className="cardLineGroup">
+          <div className="cardLine">
+            <div className="cardLineHeader">
+              <h3>ЛПУ И НАПРАВЛЕНИЕ</h3>
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField label="Код ЛПУ" value={<Skeleton />} inline={true} />
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField
+                label="Наименование ЛПУ"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField
+                label="Код направившей МО"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField
+                label="Наименование направившей МО"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField
+                label="Дата направления"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+          </div>
+
+          <div className="cardLine">
+            <div className="cardLineHeader">
+              <h3>МЕД. ПОМОЩЬ</h3>
+            </div>
+            <div className="cardBlockLineTwoGrid">
+              <CardField
+                label="Вид медицинской помощи"
+                value={<Skeleton />}
+                inline={true}
+              />
+              <CardField
+                label="Форма медицинской помощи"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+            <div className="cardBlockLineTwoGrid">
+              <CardField
+                label="Условия оказания мед. помощи"
+                value={<Skeleton />}
+                inline={true}
+              />
+              <CardField
+                label="Способ оплаты"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+          </div>
+
+          <div className="cardLine">
+            <div className="cardLineHeader">
+              <h3>ЛЕЧЕНИЕ</h3>
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField
+                label="Период лечения"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField
+                label="Койко-дни / пациенто-дни"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField
+                label="Внутрибольничный перевод"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+          </div>
+
+          <div className="cardLine">
+            <div className="cardLineHeader">
+              <h3>РЕЗУЛЬТАТ</h3>
+            </div>
+            <div className="cardBlockLineTwoGrid">
+              <CardField label="Результат" value={<Skeleton />} inline={true} />
+              <CardField label="Исход" value={<Skeleton />} inline={true} />
+            </div>
+            <div className="cardBlockLineOneGrid">
+              <CardField
+                label="Результат диспансеризации"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+            <div className="cardBlockLineTwoGrid">
+              <CardField
+                label="Отказ от диспансеризации"
+                value={<Skeleton />}
+                inline={true}
+              />
+              <CardField
+                label="Мобильная бригада"
+                value={<Skeleton />}
+                inline={true}
+              />
+            </div>
+          </div>
+        </div>
+      ) : (
         <div className="cardLineGroup">
           <div className="cardLine">
             <div className="cardLineHeader">
@@ -38,7 +163,7 @@ export const CompletedCaseCard = ({
               <CardField
                 label="Код направившей МО"
                 value={
-                  completedCaseDetails.referringMedicalOrganizationCode ?? "-"
+                  completedCaseDetails.referringMedicalOrganizationCode ?? "—"
                 }
                 inline={true}
               />
@@ -58,7 +183,7 @@ export const CompletedCaseCard = ({
                     ? dayjs(completedCaseDetails.referralDate).format(
                         "DD.MM.YYYY",
                       )
-                    : "-"
+                    : "—"
                 }
                 inline={true}
               />
@@ -113,7 +238,7 @@ export const CompletedCaseCard = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Койко-дни / пациенто-дни"
-                value={completedCaseDetails.hospitalizationDuration ?? "-"}
+                value={completedCaseDetails.hospitalizationDuration ?? "—"}
                 inline={true}
               />
             </div>
@@ -122,7 +247,7 @@ export const CompletedCaseCard = ({
                 label="Внутрибольничный перевод"
                 value={
                   completedCaseDetails.isIntrahospitalTransfer === null
-                    ? "-"
+                    ? "—"
                     : completedCaseDetails.isIntrahospitalTransfer
                       ? "Да"
                       : "Нет"
@@ -151,7 +276,7 @@ export const CompletedCaseCard = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Результат диспансеризации"
-                value={completedCaseDetails.screeningResult ?? "-"}
+                value={completedCaseDetails.screeningResult ?? "—"}
                 inline={true}
               />
             </div>
@@ -160,7 +285,7 @@ export const CompletedCaseCard = ({
                 label="Отказ от диспансеризации"
                 value={
                   completedCaseDetails.isRefusal === null
-                    ? "-"
+                    ? "—"
                     : completedCaseDetails.isRefusal
                       ? "Да"
                       : "Нет"
@@ -171,7 +296,7 @@ export const CompletedCaseCard = ({
                 label="Мобильная бригада"
                 value={
                   completedCaseDetails.isMobileTeam === null
-                    ? "-"
+                    ? "—"
                     : completedCaseDetails.isMobileTeam
                       ? "Да"
                       : "Нет"
@@ -181,7 +306,7 @@ export const CompletedCaseCard = ({
             </div>
           </div>
         </div>
-      </div>
-    </article>
+      )}
+    </div>
   );
 };

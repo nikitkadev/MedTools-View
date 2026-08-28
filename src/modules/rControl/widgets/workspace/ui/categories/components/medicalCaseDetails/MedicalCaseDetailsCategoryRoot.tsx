@@ -1,0 +1,36 @@
+import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
+import { CategoryLineHeader } from "../../../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
+import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
+import { MedicalCaseDetailsRoot } from "./medicalCaseDetails/MedicalCaseDetailsRoot/MedicalCaseDetailsRoot";
+import { CompletedCaseDetailsRoot } from "./completedCaseDetails/CompletedCaseDetailsRoot/CompletedCaseDetailsRoot";
+import styles from "./styles.module.scss";
+
+const MedicalCaseDetailsCategoryRoot = () => {
+  const { selectedMedicalCaseUid } = useWorkspaceStore();
+
+  return (
+    <section className={styles.medicalCaseDetailsRoot}>
+      <div className={styles.categoryLine}>
+        <CategoryLineHeader
+          number={1}
+          title="Данные по медицинскому случаю"
+          description="Все, что относится к медицинскому случаю в рамках категории"
+        />
+        {selectedMedicalCaseUid === null ? (
+          <DataState
+            title="Выберите медицинский случай"
+            description="После выбора станет доступна подробная информация о случаях"
+            variant="waiting"
+          />
+        ) : (
+          <div className={styles.medicalCaseDetailsGroup}>
+            <MedicalCaseDetailsRoot />
+            <CompletedCaseDetailsRoot />
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default MedicalCaseDetailsCategoryRoot;
