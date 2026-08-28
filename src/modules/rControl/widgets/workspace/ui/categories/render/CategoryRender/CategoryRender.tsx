@@ -12,7 +12,7 @@ const DefaultCategory = lazy(
 
 const Patient = lazy(
   () =>
-    import("../../components/patient/CategoryPatientRoot/CategoryPatientRoot"),
+    import("../../components/patient/PatientCategoryRoot"),
 );
 const MedicalCaseDetails = lazy(
   () =>
