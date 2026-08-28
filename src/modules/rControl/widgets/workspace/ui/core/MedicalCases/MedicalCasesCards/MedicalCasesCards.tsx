@@ -21,6 +21,7 @@ export const MedicalCasesCards = ({
     <section className={styles.medicalCasesCards}>
       {medicalCases.map((medicalCase) => (
         <article
+          key={medicalCase.medicalCaseUid}
           onClick={() => selectMedicalCase(medicalCase.medicalCaseUid)}
           className={`cardRoot selectedCardRoot ${selectedMedicalCaseUid === medicalCase.medicalCaseUid ? "selectedCard" : ""}`}
         >

@@ -21,8 +21,8 @@ export const MedicationsCards = ({
   return (
     <section className={styles.medicationsCards}>
       {isPending
-        ? Array.from({ length: 4 }).map((_index) => (
-            <article className={"cardRoot"}>
+        ? Array.from({ length: 4 }).map((_, index) => (
+            <article className={"cardRoot"} key={index}>
               <header className="cardHeader">
                 <h2>Препарат</h2>
               </header>
@@ -42,6 +42,7 @@ export const MedicationsCards = ({
           ))
         : medications.map((medication) => (
             <article
+              key={medication.medicamentUid}
               onClick={() => selectMedication(medication.medicamentUid)}
               className={`cardRoot selectedCardRoot ${selectedMedicationUid === medication.medicamentUid ? "selectedCard" : ""}`}
             >

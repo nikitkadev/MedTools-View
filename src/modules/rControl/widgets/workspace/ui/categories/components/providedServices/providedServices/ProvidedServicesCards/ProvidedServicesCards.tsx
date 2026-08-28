@@ -130,6 +130,7 @@ export const ProvidedServicesCards = ({
               selectProvidedService(providedService.providedServiceUid)
             }
             className={`cardRoot selectedCardRoot ${selectedProvidedServiceUid === providedService.providedServiceUid ? "selectedCard" : ""}`}
+            key={providedService.providedServiceUid}
           >
             <header className="cardHeader">
               <h2>Оказанная услуга — {providedService.serviceCode}</h2>

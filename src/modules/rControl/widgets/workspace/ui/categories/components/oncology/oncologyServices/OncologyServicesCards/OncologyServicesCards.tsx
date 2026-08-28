@@ -21,8 +21,8 @@ export const OncologyServicesCards = ({
   return (
     <section className={styles.oncologyServicesCards}>
       {isPending
-        ? Array.from({ length: 2 }).map((_index) => (
-            <article>
+        ? Array.from({ length: 2 }).map((_, index) => (
+            <article className="cardRoot" key={index}>
               <header className="cardHeader">
                 <h2>Онкологическая услуга</h2>
               </header>
@@ -61,6 +61,7 @@ export const OncologyServicesCards = ({
           ))
         : oncologyServices.map((oncologyService) => (
             <article
+              key={oncologyService.oncologyServiceUid}
               onClick={() =>
                 selectOncologyService(oncologyService.oncologyServiceUid)
               }

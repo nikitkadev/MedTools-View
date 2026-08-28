@@ -17,10 +17,11 @@ export const InjectionDatesBody = ({
       <div className="cardBlock">
         {isPending ? (
           <div className={styles.injectionDateChips}>
-            {Array.from({ length: 10 }).map((_index) => (
+            {Array.from({ length: 10 }).map((_, index) => (
               <Chip
+                key={index}
                 variant="filled"
-                label={<Skeleton width={100}/>}
+                label={<Skeleton width={100} />}
                 size="small"
                 color="default"
                 sx={{
@@ -33,6 +34,7 @@ export const InjectionDatesBody = ({
           <div className={styles.injectionDateChips}>
             {injectionDates.map((injectionDate) => (
               <Chip
+                key={injectionDate.injectionDateUid}
                 variant="filled"
                 label={dayjs(injectionDate.administrationDate).format(
                   "DD.MM.YYYY",

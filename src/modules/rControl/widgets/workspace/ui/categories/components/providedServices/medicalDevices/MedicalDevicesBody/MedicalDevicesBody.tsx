@@ -17,8 +17,8 @@ export const MedicalDevicesBody = ({
     <div className="cardContent">
       <div className={styles.listContainer}>
         {isPending
-          ? Array.from({ length: 5 }).map((_index) => (
-              <div className={styles.listRow}>
+          ? Array.from({ length: 5 }).map((_, index) => (
+              <div className={styles.listRow} key={index}>
                 <Skeleton variant="rounded" width={40} height={40} />
                 <div className={styles.listRowContent}>
                   <p className={styles.date}>
@@ -31,7 +31,10 @@ export const MedicalDevicesBody = ({
               </div>
             ))
           : medicalDevices.map((medicalDevice, _index) => (
-              <div className={styles.listRow}>
+              <div
+                className={styles.listRow}
+                key={medicalDevice.medicalDeviceUid}
+              >
                 <div className={styles.number}>
                   <p>{_index + 1}</p>
                 </div>

@@ -15,8 +15,8 @@ export const ConsultationsListBody = ({
   return (
     <section className={styles.consultationsListBodyRoot}>
       {isPending
-        ? Array.from({ length: 3 }).map((_index) => (
-            <div className={styles.listRow}>
+        ? Array.from({ length: 3 }).map((_, index) => (
+            <div className={styles.listRow} key={index}>
               <Skeleton variant="rounded" width={40} height={40} />
               <div className={styles.listRowContent}>
                 <p className={styles.date}>
@@ -29,7 +29,7 @@ export const ConsultationsListBody = ({
             </div>
           ))
         : consultations.map((consultation, _index) => (
-            <div className={styles.listRow}>
+            <div className={styles.listRow} key={consultation.consultationUid}>
               <div className={styles.number}>
                 <p>{_index + 1}</p>
               </div>

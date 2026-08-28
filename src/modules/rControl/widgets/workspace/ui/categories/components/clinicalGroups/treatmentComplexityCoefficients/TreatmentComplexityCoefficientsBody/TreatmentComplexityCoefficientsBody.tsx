@@ -15,8 +15,8 @@ export const TreatmentComplexityCoefficientsBody = ({
     <div className="cardContent">
       <div className="cardBlock">
         {isPending
-          ? Array.from({ length: 2 }).map((_index) => (
-              <div className={styles.listRow}>
+          ? Array.from({ length: 2 }).map((_, index) => (
+              <div className={styles.listRow} key={index}>
                 <Skeleton variant="rounded" width={40} height={40} />
                 <div className={styles.listRowContent}>
                   <p className={styles.date}>
@@ -30,7 +30,12 @@ export const TreatmentComplexityCoefficientsBody = ({
             ))
           : treatmentComplexityCoefficients.map(
               (treatmentComplexityCoefficient, _index) => (
-                <div className={styles.listRow}>
+                <div
+                  className={styles.listRow}
+                  key={
+                    treatmentComplexityCoefficient.treatmentComplexityCoefficientUid
+                  }
+                >
                   <div className={styles.number}>
                     <p>{_index + 1}</p>
                   </div>

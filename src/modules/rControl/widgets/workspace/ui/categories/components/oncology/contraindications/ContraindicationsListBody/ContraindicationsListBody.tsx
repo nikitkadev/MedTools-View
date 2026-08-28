@@ -15,8 +15,8 @@ export const ContraindicationsListBody = ({
   return (
     <section className={styles.contraindicationsListBody}>
       {isPending
-        ? Array.from({ length: 3 }).map((_index) => (
-            <div className={styles.listRow}>
+        ? Array.from({ length: 3 }).map((_, index) => (
+            <div className={styles.listRow} key={index}>
               <Skeleton variant="rounded" width={40} height={40} />
               <div className={styles.listRowContent}>
                 <p className={styles.date}>
@@ -29,7 +29,10 @@ export const ContraindicationsListBody = ({
             </div>
           ))
         : contraindications.map((contraindication, _index) => (
-            <div className={styles.listRow}>
+            <div
+              className={styles.listRow}
+              key={contraindication.contraindicationUid}
+            >
               <div className={styles.number}>
                 <p>{_index + 1}</p>
               </div>

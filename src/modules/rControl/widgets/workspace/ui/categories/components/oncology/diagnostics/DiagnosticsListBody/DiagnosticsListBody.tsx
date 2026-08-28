@@ -1,8 +1,8 @@
 import type { DiagnosticListItemDto } from "../../../../../../model/types/categories/oncology/GetDiagnosticsResult";
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
+import { Skeleton } from "@mui/material";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
-import { Skeleton } from "@mui/material";
 
 interface DiagnosticsListBodyProps {
   diagnosticRecords: DiagnosticListItemDto[];
@@ -16,8 +16,8 @@ export const DiagnosticsListBody = ({
   return (
     <section className={styles.diagnosticsListBodyRoot}>
       {isPending
-        ? Array.from({ length: 5 }).map((_index) => (
-            <div className={styles.listRow}>
+        ? Array.from({ length: 5 }).map((_, index) => (
+            <div className={styles.listRow} key={index}>
               <div className={styles.listRowContent}>
                 <div className={styles.lineOneGrid}>
                   <p className={styles.lineTitle}>
@@ -52,7 +52,10 @@ export const DiagnosticsListBody = ({
             </div>
           ))
         : diagnosticRecords.map((diagnosticRecord, _index) => (
-            <div className={styles.listRow}>
+            <div
+              className={styles.listRow}
+              key={diagnosticRecord.diagnosticsUid}
+            >
               <div className={styles.listRowContent}>
                 <div className={styles.lineOneGrid}>
                   <p className={styles.lineTitle}>

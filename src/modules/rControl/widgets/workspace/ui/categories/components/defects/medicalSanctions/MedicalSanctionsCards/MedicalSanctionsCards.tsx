@@ -16,8 +16,8 @@ export const MedicalSanctionsCards = ({
   return (
     <section className={styles.medicalSanctionsCards}>
       {isPending
-        ? Array.from({ length: 2 }).map((_index) => (
-            <div className="cardRoot">
+        ? Array.from({ length: 2 }).map((_, index) => (
+            <div className="cardRoot" key={index}>
               <header className="cardHeader">
                 <h2>Санкции</h2>
               </header>
@@ -126,7 +126,7 @@ export const MedicalSanctionsCards = ({
             </div>
           ))
         : medicalSanctions.map((medicalSanction) => (
-            <div className="cardRoot">
+            <div className="cardRoot" key={medicalSanction.medicalSanctionUid}>
               <header className="cardHeader">
                 <h2>Санкции</h2>
               </header>
