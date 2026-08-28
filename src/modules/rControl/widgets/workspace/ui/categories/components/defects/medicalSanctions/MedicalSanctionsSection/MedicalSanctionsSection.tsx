@@ -22,7 +22,7 @@ export const MedicalSanctionsSection = () => {
     isLoading: isLoading,
     isError: isError,
     isSuccess: isSuccess,
-    isEmpty: medicalSanctions?.length === null && isSuccess,
+    isEmpty: medicalSanctions?.length === 0 && isSuccess,
   });
 
   return (
