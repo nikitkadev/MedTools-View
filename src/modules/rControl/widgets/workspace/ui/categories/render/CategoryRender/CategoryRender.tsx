@@ -31,7 +31,7 @@ const ProvidedServices = lazy(
 );
 const Defects = lazy(
   () =>
-    import("../../components/defects/CategoryDefectsRoot/CategoryDefectsRoot"),
+    import("../../components/defects/DefectsCategoryRoot"),
 );
 
 const categoryMap = {
