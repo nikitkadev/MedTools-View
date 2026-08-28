@@ -4,7 +4,7 @@ import { ConsultationsListRoot } from "./сonsultations/ConsultationsListRoot/Co
 import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
 import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
-import { OncologyCaseCardRoot } from "./oncologyCase/OncologyCaseCardRoot/OncologyCaseCardRoot";
+import { OncologyCaseRoot } from "./oncologyCase/OncologyCaseRoot/OncologyCaseRoot";
 import { DiagnosticsListRoot } from "./diagnostics/DiagnosticsListRoot/DiagnosticsListRoot";
 import { ContraindicationsListRoot } from "./contraindications/ContraindicationsListRoot/ContraindicationsListRoot";
 import { OncologyServicesSection } from "./oncologyServices/OncologyServicesSection/OncologyServicesSection";
@@ -45,7 +45,7 @@ const OncologyRoot = () => {
           />
         ) : (
           <div className={styles.medicalCaseOncologyDetailsLine}>
-            <OncologyCaseCardRoot />
+            <OncologyCaseRoot />
             <ConsultationsListRoot />
           </div>
         )}

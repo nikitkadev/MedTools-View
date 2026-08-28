@@ -1,4 +1,4 @@
-export const OncologyCaseCardHeader = () => {
+export const OncologyCaseHeader = () => {
   return (
     <header className="cardHeader">
       <h2>Онкологический случай</h2>

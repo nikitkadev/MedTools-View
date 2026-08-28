@@ -1,6 +1,7 @@
 import type { ConsultationDto } from "../../../../../../model/types/categories/oncology/GetConsultationsResult";
 import dayjs from "dayjs";
 import styles from "./styles.module.scss";
+import { Skeleton } from "@mui/material";
 
 interface ConsultationsListBodyProps {
   consultations: ConsultationDto[];
@@ -13,27 +14,37 @@ export const ConsultationsListBody = ({
 }: ConsultationsListBodyProps) => {
   return (
     <section className={styles.consultationsListBodyRoot}>
-      {isPending ? (
-        <div className=""></div>
-      ) : (
-        consultations.map((consultation, _index) => (
-          <div className={styles.listRow}>
-            <div className={styles.number}>
-              <p>{_index + 1}</p>
+      {isPending
+        ? Array.from({ length: 3 }).map((_index) => (
+            <div className={styles.listRow}>
+              <Skeleton variant="rounded" width={40} height={40} />
+              <div className={styles.listRowContent}>
+                <p className={styles.date}>
+                  <Skeleton />
+                </p>
+                <p className={styles.description}>
+                  <Skeleton animation="wave" height={25} />
+                </p>
+              </div>
             </div>
-            <div className={styles.listRowContent}>
-              <p className={styles.date}>
-                {consultation.consultationDate
-                  ? dayjs(consultation.consultationDate).format("DD.MM.YYYY")
-                  : "Дата неизвестна"}
-              </p>
-              <p className={styles.description}>
-                {consultation.consultationPurpose}
-              </p>
+          ))
+        : consultations.map((consultation, _index) => (
+            <div className={styles.listRow}>
+              <div className={styles.number}>
+                <p>{_index + 1}</p>
+              </div>
+              <div className={styles.listRowContent}>
+                <p className={styles.date}>
+                  {consultation.consultationDate
+                    ? dayjs(consultation.consultationDate).format("DD.MM.YYYY")
+                    : "Дата неизвестна"}
+                </p>
+                <p className={styles.description}>
+                  {consultation.consultationPurpose}
+                </p>
+              </div>
             </div>
-          </div>
-        ))
-      )}
+          ))}
     </section>
   );
 };

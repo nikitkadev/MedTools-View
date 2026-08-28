@@ -3,10 +3,10 @@ import { DataState } from "../../../../../../../../../../shared/ui/DataState/Dat
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useOncologyCaseQuery } from "../../../../../../model/queries/categories/oncology/useOncologyCaseQuery";
 import { useWorkspaceStore } from "../../../../../../model/store/useWorkspaceStore";
-import { OncologyCaseCardBody } from "../OncologyCaseCardBody/OncologyCaseCardBody";
-import { OncologyCaseCardHeader } from "../OncologyCaseCardHeader/OncologyCaseCardHeader";
+import { OncologyCaseBody } from "../OncologyCaseBody/OncologyCaseBody";
+import { OncologyCaseHeader } from "../OncologyCaseHeader/OncologyCaseHeader";
 
-export const OncologyCaseCardRoot = () => {
+export const OncologyCaseRoot = () => {
   const { targetDb } = useFiltersStore();
   const { selectedMedicalCaseUid } = useWorkspaceStore();
   const {
@@ -28,7 +28,7 @@ export const OncologyCaseCardRoot = () => {
 
   return (
     <section className="cardRoot">
-      <OncologyCaseCardHeader />
+      <OncologyCaseHeader />
       {dataState === "error" ? (
         <DataState
           title="Ошибка получения данных"
@@ -42,10 +42,7 @@ export const OncologyCaseCardRoot = () => {
           variant="empty"
         />
       ) : (
-        <OncologyCaseCardBody
-          oncologyCase={oncologyCase!}
-          isPending={isPending}
-        />
+        <OncologyCaseBody oncologyCase={oncologyCase!} isPending={isPending} />
       )}
     </section>
   );

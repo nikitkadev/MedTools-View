@@ -21,7 +21,7 @@ export const OncologyServicesCards = ({
   return (
     <section className={styles.oncologyServicesCards}>
       {isPending
-        ? Array.from({ length: 3 }).map((_index) => (
+        ? Array.from({ length: 2 }).map((_index) => (
             <article>
               <header className="cardHeader">
                 <h2>Онкологическая услуга</h2>
