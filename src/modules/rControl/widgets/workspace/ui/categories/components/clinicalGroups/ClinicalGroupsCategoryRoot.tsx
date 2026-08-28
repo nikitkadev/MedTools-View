@@ -5,10 +5,10 @@ import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
 import { ClinicalGroupRoot } from "./clinicalGroup/ClinicalGroupRoot/ClinicalGroupRoot";
 import { useClinicalGroupQuery } from "../../../../model/queries/categories/clinicalGroups/useClinicalGroupQuery";
 import { HighTechMedicalCareRoot } from "./highTechMedicalCare/HighTechMedicalCareRoot/HighTechMedicalCareRoot";
-import styles from "./styles.module.scss";
 import { ClassificationCriteriaRoot } from "./сlassificationCriteria/ClassificationCriteriaRoot/ClassificationCriteriaRoot";
 import { TreatmentComplexityCoefficientsRoot } from "./treatmentComplexityCoefficients/TreatmentComplexityCoefficientsRoot/TreatmentComplexityCoefficientsRoot";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
+import styles from "./styles.module.scss";
 
 const ClinicalGroupsCategoryRoot = () => {
   const { targetDb } = useFiltersStore();
@@ -28,20 +28,18 @@ const ClinicalGroupsCategoryRoot = () => {
           title="Данные по медицинскому случаю"
           description="Все, что относится к медицинскому случаю в рамках категории"
         />
-        <div className={styles.twoGridLine}>
-          {selectedMedicalCaseUid === null ? (
-            <DataState
-              title="Выберите медицинский случай"
-              description="После выбора станет доступна информация о КСГ/КПГ и ВМП"
-              variant="waiting"
-            />
-          ) : (
-            <>
-              <ClinicalGroupRoot />
-              <HighTechMedicalCareRoot />
-            </>
-          )}
-        </div>
+        {selectedMedicalCaseUid === null ? (
+          <DataState
+            title="Выберите медицинский случай"
+            description="После выбора станет доступна информация о КСГ/КПГ и ВМП"
+            variant="waiting"
+          />
+        ) : (
+          <div className={styles.twoGridLine}>
+            <ClinicalGroupRoot />
+            <HighTechMedicalCareRoot />
+          </div>
+        )}
       </div>
       <Divider />
       <div className={styles.categoryLine}>
