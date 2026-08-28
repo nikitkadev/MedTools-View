@@ -1,56 +1,49 @@
 import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
-import { useMedicalSanctionsQuery } from "../../../../../../model/queries/categories/defects/useMedicalSanctionsQuery";
+import { useInsuranceQuery } from "../../../../../../model/queries/categories/patient/useInsuranceQuery";
 import { useWorkspaceStore } from "../../../../../../model/store/useWorkspaceStore";
-import { MedicalSanctionsCards } from "../MedicalSanctionsCards/MedicalSanctionsCards";
+import { InsuranceBody } from "../InsuranceBody/InsuranceBody";
+import { InsuranceHeader } from "../InsuranceHeader/InsuranceHeader";
 
-export const MedicalSanctionsSection = () => {
+export const InsuranceRoot = () => {
   const { targetDb } = useFiltersStore();
   const { selectedMedicalCaseUid } = useWorkspaceStore();
   const {
-    data: medicalSanctions,
+    data: insurance,
     isLoading,
     isPending,
     isError,
     isSuccess,
     error,
-  } = useMedicalSanctionsQuery(selectedMedicalCaseUid, targetDb);
+  } = useInsuranceQuery(selectedMedicalCaseUid, targetDb);
 
   const dataState = resolveDataState({
     isEnabled: selectedMedicalCaseUid !== null && targetDb !== null,
     isLoading: isLoading,
     isError: isError,
     isSuccess: isSuccess,
-    isEmpty: medicalSanctions?.length === 0 && isSuccess,
+    isEmpty: insurance === null && isSuccess,
   });
 
   return (
-    <>
-      {dataState === "waiting" ? (
+    <article className="cardRoot">
+      <InsuranceHeader />
+      {dataState === "error" ? (
         <DataState
-          title="Выберите медицинский случай"
-          description="После выбора отобразятся санкции"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
-        <DataState
-          title="Ошибка данных"
+          title="Ошибка получения данных"
           description={error?.message ?? "-"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Медицинский случай не содержит санкции"
+          description="Медицинский случай не содержит информации о СМО"
           variant="empty"
         />
       ) : (
-        <MedicalSanctionsCards
-          isPending={isPending}
-          medicalSanctions={medicalSanctions ?? []}
-        />
+        <InsuranceBody insurance={insurance!} isPending={isPending} />
       )}
-    </>
+    </article>
   );
 };

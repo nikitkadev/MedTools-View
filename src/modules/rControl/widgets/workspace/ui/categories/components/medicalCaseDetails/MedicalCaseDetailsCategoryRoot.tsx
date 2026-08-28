@@ -1,15 +1,15 @@
+import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
 import { CategoryLineHeader } from "../../../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
-import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
-import { DefectsRoot } from "./defects/DefectsRoot/DefectsRoot";
-import { MedicalSanctionsSection } from "./medicalSanctions/MedicalSanctionsSection/MedicalSanctionsSection";
+import { MedicalCaseDetailsRoot } from "./medicalCaseDetails/MedicalCaseDetailsRoot/MedicalCaseDetailsRoot";
+import { CompletedCaseDetailsRoot } from "./completedCaseDetails/CompletedCaseDetailsRoot/CompletedCaseDetailsRoot";
 import styles from "./styles.module.scss";
 
-const DefectsCategoryRoot = () => {
+const MedicalCaseDetailsCategoryRoot = () => {
   const { selectedMedicalCaseUid } = useWorkspaceStore();
 
   return (
-    <section className={styles.defectsRoot}>
+    <section className={styles.medicalCaseDetailsRoot}>
       <div className={styles.categoryLine}>
         <CategoryLineHeader
           number={1}
@@ -19,13 +19,13 @@ const DefectsCategoryRoot = () => {
         {selectedMedicalCaseUid === null ? (
           <DataState
             title="Выберите медицинский случай"
-            description="После выбора станут доступны данные о пациенте и СМО"
+            description="После выбора станет доступна подробная информация о случаях"
             variant="waiting"
           />
         ) : (
-          <div className={styles.defectsGroup}>
-            <DefectsRoot />
-            <MedicalSanctionsSection />
+          <div className={styles.medicalCaseDetailsGroup}>
+            <MedicalCaseDetailsRoot />
+            <CompletedCaseDetailsRoot />
           </div>
         )}
       </div>
@@ -33,4 +33,4 @@ const DefectsCategoryRoot = () => {
   );
 };
 
-export default DefectsCategoryRoot;
+export default MedicalCaseDetailsCategoryRoot;

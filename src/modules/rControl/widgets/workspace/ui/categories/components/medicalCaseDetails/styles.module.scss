@@ -1,4 +1,4 @@
-.prescriptionsRoot {
+.medicalCaseDetailsRoot {
   display: flex;
   flex-direction: column;
   gap: var(--space-10);
@@ -8,10 +8,10 @@
     flex-direction: column;
     gap: var(--space-5);
 
-    .prescriptionsGroup {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-5);
+    .medicalCaseDetailsGroup {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-5);
     }
   }
 }

@@ -12,15 +12,15 @@ const DefaultCategory = lazy(
 
 const Patient = lazy(
   () =>
-    import("../../components/patient/CategoryPatientRoot/CategoryPatientRoot"),
+    import("../../components/patient/PatientCategoryRoot"),
 );
 const MedicalCaseDetails = lazy(
   () =>
-    import("../../components/medicalCaseDetails/CategoryMedicalCaseDetailsRoot/CategoryMedicalCaseDetailsRoot"),
+    import("../../components/medicalCaseDetails/MedicalCaseDetailsCategoryRoot"),
 );
 const Oncology = lazy(() => import("../../components/oncology/OncologyRoot"));
 const Prescriptions = lazy(
-  () => import("../../components/prescriptions/PrescriptionsRoot"),
+  () => import("../../components/prescriptions/PrescriptionsCategoryRoot"),
 );
 const ClinicalGroups = lazy(
   () => import("../../components/clinicalGroups/ClinicalGroupsCategoryRoot"),

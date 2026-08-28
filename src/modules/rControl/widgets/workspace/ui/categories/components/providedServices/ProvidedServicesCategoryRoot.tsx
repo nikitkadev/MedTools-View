@@ -4,6 +4,7 @@ import { MedicalDevicesRoot } from "./medicalDevices/MedicalDevicesRoot/MedicalD
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
 import styles from "./styles.module.scss";
+import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
 
 const ProvidedServices = () => {
   const { selectedProvidedServiceUid, selectedMedicalCaseUid } =
@@ -27,6 +28,7 @@ const ProvidedServices = () => {
           <ProvidedServicesSection />
         )}
       </div>
+      <Divider />
       <div className={styles.categoryLine}>
         <CategoryLineHeader
           number={2}

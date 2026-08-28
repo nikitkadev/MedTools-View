@@ -4,15 +4,14 @@ import { useWorkspaceStore } from "../../../workspace/model/store/useWorkspaceSt
 import type { CategoryId } from "../../../workspace/model/types/categories/CategoryId";
 
 export const CategoriesWorkspaceFilterPanel = () => {
-  const { setTargetCategory, targetCategory, selectedMedicalCaseUid } =
-    useWorkspaceStore();
+  const { setTargetCategory, targetCategory } = useWorkspaceStore();
   return (
     <section className={styles.categoryPanelRoot}>
       <p className={styles.title}>Категории данных</p>
       <AppSelect
         label="Категория"
         value={targetCategory === "default" ? "" : targetCategory}
-        disabled={selectedMedicalCaseUid === null}
+        disabled={false}
         onChange={(value: string) => setTargetCategory(value as CategoryId)}
         options={[
           { label: "Пациент", value: "patient" },

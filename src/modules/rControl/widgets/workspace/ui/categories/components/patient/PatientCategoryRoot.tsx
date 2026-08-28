@@ -1,15 +1,15 @@
 import { CategoryLineHeader } from "../../../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
-import { DefectsRoot } from "./defects/DefectsRoot/DefectsRoot";
-import { MedicalSanctionsSection } from "./medicalSanctions/MedicalSanctionsSection/MedicalSanctionsSection";
+import { InsuranceRoot } from "./insurance/InsuranceRoot/InsuranceRoot";
+import { PatientRoot } from "./patient/PatientRoot/PatientRoot";
 import styles from "./styles.module.scss";
 
-const DefectsCategoryRoot = () => {
+const Patient = () => {
   const { selectedMedicalCaseUid } = useWorkspaceStore();
 
   return (
-    <section className={styles.defectsRoot}>
+    <section className={styles.patientCategoryRoot}>
       <div className={styles.categoryLine}>
         <CategoryLineHeader
           number={1}
@@ -23,9 +23,9 @@ const DefectsCategoryRoot = () => {
             variant="waiting"
           />
         ) : (
-          <div className={styles.defectsGroup}>
-            <DefectsRoot />
-            <MedicalSanctionsSection />
+          <div className={styles.patientInsuranceGroup}>
+            <PatientRoot />
+            <InsuranceRoot />
           </div>
         )}
       </div>
@@ -33,4 +33,4 @@ const DefectsCategoryRoot = () => {
   );
 };
 
-export default DefectsCategoryRoot;
+export default Patient;

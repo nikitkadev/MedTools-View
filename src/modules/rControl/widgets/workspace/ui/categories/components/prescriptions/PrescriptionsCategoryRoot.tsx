@@ -1,15 +1,15 @@
 import { CategoryLineHeader } from "../../../../../../../../shared/ui/CategoryLineHeader/CategoryLineHeader";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
-import { DefectsRoot } from "./defects/DefectsRoot/DefectsRoot";
-import { MedicalSanctionsSection } from "./medicalSanctions/MedicalSanctionsSection/MedicalSanctionsSection";
+import { PrescriptionsSection } from "./prescriptions/PrescriptionsSection/PrescriptionsSection";
+import { ReferralsRoot } from "./referrals/ReferralsRoot/ReferralsRoot";
 import styles from "./styles.module.scss";
 
-const DefectsCategoryRoot = () => {
+const PrescriptionsCategoryRoot = () => {
   const { selectedMedicalCaseUid } = useWorkspaceStore();
 
   return (
-    <section className={styles.defectsRoot}>
+    <section className={styles.prescriptionsRoot}>
       <div className={styles.categoryLine}>
         <CategoryLineHeader
           number={1}
@@ -19,13 +19,13 @@ const DefectsCategoryRoot = () => {
         {selectedMedicalCaseUid === null ? (
           <DataState
             title="Выберите медицинский случай"
-            description="После выбора станут доступны данные о пациенте и СМО"
+            description="После выбора станут доступны данные о назначениях и направлениях"
             variant="waiting"
           />
         ) : (
-          <div className={styles.defectsGroup}>
-            <DefectsRoot />
-            <MedicalSanctionsSection />
+          <div className={styles.prescriptionsGroup}>
+            <PrescriptionsSection />
+            <ReferralsRoot />
           </div>
         )}
       </div>
@@ -33,4 +33,4 @@ const DefectsCategoryRoot = () => {
   );
 };
 
-export default DefectsCategoryRoot;
+export default PrescriptionsCategoryRoot;
