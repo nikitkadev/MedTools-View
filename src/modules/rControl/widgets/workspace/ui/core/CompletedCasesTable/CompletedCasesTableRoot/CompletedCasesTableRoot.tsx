@@ -94,7 +94,7 @@ export const CompletedCasesTableRoot = () => {
         <DataState
           variant="empty"
           title="Данных не найдено"
-          description="Не найдены законченные случаи по выбранному счету"
+          description="Законченные случаи не найдены по выбранному счету"
         />
       ) : (
         <CompletedCasesTableBody

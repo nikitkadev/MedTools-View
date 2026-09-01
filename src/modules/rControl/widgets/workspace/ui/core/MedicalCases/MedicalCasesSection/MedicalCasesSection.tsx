@@ -59,7 +59,7 @@ export const MedicalCasesSection = () => {
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Не найдены медицинские случаи по выбранному законченному случаю"
+          description="Медицинские случаи не найдены по выбранному законченному случаю"
           variant="empty"
         />
       ) : (
