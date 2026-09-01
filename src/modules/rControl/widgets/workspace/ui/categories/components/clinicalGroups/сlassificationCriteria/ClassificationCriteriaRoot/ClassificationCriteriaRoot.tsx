@@ -36,13 +36,13 @@ export const ClassificationCriteriaRoot = ({
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="КСГ/КПГ не содержит информации о критериях"
+          description="Клиническая группа не содержит информации о классификационных критериях"
           variant="empty"
         />
       ) : (

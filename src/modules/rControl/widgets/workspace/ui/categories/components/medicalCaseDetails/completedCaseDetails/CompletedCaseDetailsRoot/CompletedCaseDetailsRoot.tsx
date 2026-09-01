@@ -31,14 +31,14 @@ export const CompletedCaseDetailsRoot = () => {
       <CompletedCaseDetailsHeader />
       {dataState === "error" ? (
         <DataState
-          title="Ошибка получения данных"
-          description={error?.message ?? "-"}
+          title="Ошибка данных"
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Медицинский случай не содержит информации о пациенте"
+          description="Медицинский случай не содержит информации о деталях законченного случая"
           variant="empty"
         />
       ) : (

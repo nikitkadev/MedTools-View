@@ -21,7 +21,7 @@ const ProvidedServices = () => {
         {selectedMedicalCaseUid === null ? (
           <DataState
             title="Выберите медицинский случай"
-            description="После выбора станет доступна информация об оказанных услугах"
+            description="Нажмите на карточку медицинского случая для отображения данных об оказанных услугах"
             variant="waiting"
           />
         ) : (
@@ -38,7 +38,7 @@ const ProvidedServices = () => {
         {selectedProvidedServiceUid === null ? (
           <DataState
             title="Выберите оказанную услугу"
-            description="После выбора станет доступна информация о медицинских изделиях"
+            description="Нажмите на карточку оказанной услуги для отображения данных о медицинских изделиях"
             variant="waiting"
           />
         ) : (

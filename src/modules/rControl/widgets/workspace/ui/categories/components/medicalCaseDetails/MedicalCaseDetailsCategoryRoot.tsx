@@ -19,7 +19,7 @@ const MedicalCaseDetailsCategoryRoot = () => {
         {selectedMedicalCaseUid === null ? (
           <DataState
             title="Выберите медицинский случай"
-            description="После выбора станет доступна подробная информация о случаях"
+            description="Нажмите на карточку медицинского случая для отображения данных о деталях законченного и медицинского случаев"
             variant="waiting"
           />
         ) : (

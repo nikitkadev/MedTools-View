@@ -33,7 +33,7 @@ export const ProvidedServicesSection = () => {
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизсвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (

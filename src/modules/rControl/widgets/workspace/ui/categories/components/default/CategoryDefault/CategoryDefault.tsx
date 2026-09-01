@@ -6,8 +6,8 @@ const CategoryDefault = () => {
     <section className={styles.categoryDefaultRoot}>
       <DataState
         variant="waiting"
-        title="Выберите категорию"
-        description="Укажите категорию для просмотра расширенной информации о медицинском случае"
+        title="Укажите категорию"
+        description="Выберите интересующую категорию из представленного списка для отображения более подробной информации по медицинскому случаю"
       />
     </section>
   );

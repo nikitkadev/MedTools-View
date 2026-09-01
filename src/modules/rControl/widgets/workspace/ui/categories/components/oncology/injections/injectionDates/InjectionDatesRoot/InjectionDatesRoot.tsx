@@ -32,13 +32,13 @@ export const InjectionDatesRoot = () => {
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Лекарственный препарат не содержит сведений о дат инъекций"
+          description="Лекарственный препарат не содержит сведений о датах введения"
           variant="empty"
         />
       ) : (

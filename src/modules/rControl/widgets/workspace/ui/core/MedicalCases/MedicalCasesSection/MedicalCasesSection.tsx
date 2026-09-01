@@ -45,13 +45,13 @@ export const MedicalCasesSection = () => {
       {dataState === "waiting" ? (
         <DataState
           title="Выберите законченный случай"
-          description="Кликните на строку в таблице законченный случаев для отображения медицинских случаев"
+          description="Нажмите на строку в таблице законченных случаев для просмотра медицинских случаев"
           variant="waiting"
         />
       ) : dataState === "error" ? (
         <DataState
-          title="Ошибка получения данных"
-          description={error?.message ?? "-"}
+          title="Ошибка данных"
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "loading" ? (
@@ -59,7 +59,7 @@ export const MedicalCasesSection = () => {
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Медицинских случаев внутри законченного случая не найдено"
+          description="Не найдены медицинские случаи по выбранному законченному случаю"
           variant="empty"
         />
       ) : (

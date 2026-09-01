@@ -82,19 +82,19 @@ export const CompletedCasesTableRoot = () => {
         <DataState
           variant="waiting"
           title="Выберите счет"
-          description="Кликните на строку в таблице счетов для отображения законченных случаев"
+          description="Нажмите на строку в таблице счетов для просмотра законченных случаев"
         />
       ) : dataState === "error" ? (
         <DataState
           variant="error"
-          title="Невероятная ошибка"
-          description={error?.message ?? "-"}
+          title="Ошибка данных"
+          description={error?.message ?? "Неизвестная ошибка"}
         />
       ) : dataState === "empty" ? (
         <DataState
           variant="empty"
           title="Данных не найдено"
-          description="Не найдены законченные случая по выбранному счету"
+          description="Не найдены законченные случаи по выбранному счету"
         />
       ) : (
         <CompletedCasesTableBody

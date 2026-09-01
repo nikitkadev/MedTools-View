@@ -36,14 +36,14 @@ export const ContraindicationsListRoot = ({
       <ContraindicationsListHeader />
       {dataState === "error" ? (
         <DataState
-          title="Ошибка получения данных"
-          description={error?.message ?? "-"}
+          title="Ошибка данных"
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Данный онкологический случай не содержит информации о противопоказаниях"
+          description="Онкологический случай не содержит информации о противопоказаниях"
           variant="empty"
         />
       ) : (
