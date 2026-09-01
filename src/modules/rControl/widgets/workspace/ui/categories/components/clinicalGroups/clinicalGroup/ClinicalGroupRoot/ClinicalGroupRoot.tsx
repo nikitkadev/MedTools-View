@@ -1,7 +1,7 @@
 import { useClinicalGroupQuery } from "../../../../../../model/queries/categories/clinicalGroups/useClinicalGroupQuery";
 import { useWorkspaceStore } from "../../../../../../model/store/useWorkspaceStore";
 import { ClinicalGroupBody } from "../ClinicalGroupBody/ClinicalGroupBody";
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { ClinicalGroupHeader } from "../ClinicalGroupHeader/ClinicalGroupHeader";

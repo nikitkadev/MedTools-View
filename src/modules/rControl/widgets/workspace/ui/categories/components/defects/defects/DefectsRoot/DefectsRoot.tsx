@@ -1,5 +1,5 @@
 import { Divider } from "../../../../../../../../../../components/ui/Divider/Divider";
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useDefectsQuery } from "../../../../../../model/queries/categories/defects/useDefectsQuery";

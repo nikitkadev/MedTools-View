@@ -3,7 +3,7 @@ import { ConsultationsListHeader } from "../ConsultationsListHeader/Consultation
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { ConsultationsListBody } from "../ConsultationsListBody/ConsultationsListBody";
 import { useWorkspaceStore } from "../../../../../../model/store/useWorkspaceStore";
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import styles from "./styles.module.scss";
 

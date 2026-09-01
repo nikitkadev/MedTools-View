@@ -1,5 +1,5 @@
 import { useMedicalCasesListItemsQuery } from "../../../../model/queries/core/useMedicalCasesListItemsQuery";
-import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataState";
 import { MedicalCasesCardsSkeleton } from "../MedicalCasesCards/MedicalCasesCardsSkeleton";
 import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";

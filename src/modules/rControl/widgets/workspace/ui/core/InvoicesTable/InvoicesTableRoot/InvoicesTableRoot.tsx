@@ -1,5 +1,5 @@
 import { useInvoiceListItemsQuery } from "../../../../model/queries/core/useInvoiceListItemsQuery";
-import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataState";
 import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 import { InvoicesTableHeader } from "../InvoicesTableHeader/InvoicesTableHeader";
