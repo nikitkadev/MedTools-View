@@ -6,7 +6,7 @@ const apiClient = axios.create({
         ? 'http://localhost:5256/api'
         : 'http://localhost:5256/api', //Заглушка до релиза
 
-    timeout: 10000,
+    timeout: 30000,
     headers: {
         'Content-Type': 'application/json'
     }

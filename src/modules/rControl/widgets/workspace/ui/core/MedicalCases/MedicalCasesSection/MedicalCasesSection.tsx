@@ -38,7 +38,7 @@ export const MedicalCasesSection = () => {
     ) {
       selectMedicalCase(medicalCases[0].medicalCaseUid);
     }
-  }, [medicalCases]);
+  }, [medicalCases, selectMedicalCase]);
 
   return (
     <>
