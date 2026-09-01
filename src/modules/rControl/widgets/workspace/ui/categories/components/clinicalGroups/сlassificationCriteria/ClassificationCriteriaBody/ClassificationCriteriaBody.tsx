@@ -16,8 +16,9 @@ export const ClassificationCriteriaBody = ({
       <div className="cardBlock">
         {isPending ? (
           <div className={styles.classificationCriteriaChips}>
-            {Array.from({ length: 5 }).map((_index) => (
+            {Array.from({ length: 5 }).map((_, index) => (
               <Chip
+                key={index}
                 size="medium"
                 variant="outlined"
                 color="default"
@@ -29,6 +30,7 @@ export const ClassificationCriteriaBody = ({
           <div className={styles.classificationCriteriaChips}>
             {classificationCriteria.map((classificationCriterion) => (
               <Chip
+                key={classificationCriterion.classificationCriterionUid}
                 size="medium"
                 variant="filled"
                 color="default"

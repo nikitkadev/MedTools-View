@@ -1,5 +1,5 @@
 import { useInvoiceListItemsQuery } from "../../../../model/queries/core/useInvoiceListItemsQuery";
-import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../shared/helpers/resolveDataState";
 import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { DataState } from "../../../../../../../../shared/ui/DataState/DataState";
 import { InvoicesTableHeader } from "../InvoicesTableHeader/InvoicesTableHeader";
@@ -89,20 +89,20 @@ export const InvoicesTableRoot = () => {
       {dataState === "waiting" ? (
         <DataState
           variant="waiting"
-          title="Выберите период"
-          description="Укажите расчётный период для отображения счетов"
+          title="Выберите базу и период"
+          description="После выбора станет доступна таблица счетов"
         />
       ) : dataState === "error" ? (
         <DataState
           variant="error"
-          title="Невероятная ошибка"
-          description={error?.message ?? ""}
+          title="Ошибка данных"
+          description={error?.message ?? "Неизвестная ошибка"}
         />
       ) : dataState === "empty" ? (
         <DataState
           variant="empty"
           title="Данных не найдено"
-          description="Не найдены счета за текущий период"
+          description="Нет найденных счетов за выбранный период"
         />
       ) : (
         <InvoicesTableBody

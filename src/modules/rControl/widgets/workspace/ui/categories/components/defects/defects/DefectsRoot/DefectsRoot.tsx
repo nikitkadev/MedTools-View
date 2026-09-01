@@ -1,5 +1,5 @@
 import { Divider } from "../../../../../../../../../../components/ui/Divider/Divider";
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useDefectsQuery } from "../../../../../../model/queries/categories/defects/useDefectsQuery";
@@ -70,16 +70,10 @@ export const DefectsRoot = () => {
         onRowsPerPageChange={onRowsPerPageChange}
       />
       <Divider />
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите медицинский случай"
-          description="После выбора станет доступы дефекты"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (

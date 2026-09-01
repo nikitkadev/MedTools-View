@@ -69,20 +69,27 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
       selectedProvidedServiceUid: null,
       selectedOncologyServiceUid: null,
       selectedMedicationUid: null,
-      targetCategory: "default",
       completedCasesTablePagination: {
         ...state.completedCasesTablePagination,
         page: 0,
       },
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
     })),
   selectCompletedCase: (completedCaseUid) =>
-    set({
+    set((state) => ({
       selectedCompletedCaseUid: completedCaseUid,
       selectedMedicalCaseUid: null,
       selectedProvidedServiceUid: null,
       selectedOncologyServiceUid: null,
       selectedMedicationUid: null,
-    }),
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
+    })),
   selectMedicalCase: (medicalCaseUid) =>
     set({
       selectedMedicalCaseUid: medicalCaseUid,

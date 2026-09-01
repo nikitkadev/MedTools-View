@@ -1,4 +1,4 @@
-import { resolveDataState } from "../../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../../filters/model/store/useFiltersStore";
 import { useInjectionsQuery } from "../../../../../../../model/queries/categories/oncology/useInjectionsQuery";
@@ -32,7 +32,7 @@ export const InjectionsRoot = () => {
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (

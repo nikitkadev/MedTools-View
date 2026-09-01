@@ -124,7 +124,7 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Отчество"
-                value={patient.patientRepresentativeMiddleName}
+                value={patient.patientMiddleName}
                 inline={true}
               />
               <CardField

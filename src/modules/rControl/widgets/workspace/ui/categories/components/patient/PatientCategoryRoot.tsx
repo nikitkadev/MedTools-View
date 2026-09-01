@@ -19,7 +19,7 @@ const Patient = () => {
         {selectedMedicalCaseUid === null ? (
           <DataState
             title="Выберите медицинский случай"
-            description="После выбора станут доступны данные о пациенте и СМО"
+            description="Нажмите на карточку медицинского случая для отображения данных о пациенте и СМО"
             variant="waiting"
           />
         ) : (

@@ -1,4 +1,4 @@
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useClassificationCriteriaQuery } from "../../../../../../model/queries/categories/clinicalGroups/useClassificationCriteriaQuery";
@@ -36,13 +36,13 @@ export const ClassificationCriteriaRoot = ({
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="КСГ/КПГ не содержит информации о критериях"
+          description="Клиническая группа не содержит информации о классификационных критериях"
           variant="empty"
         />
       ) : (

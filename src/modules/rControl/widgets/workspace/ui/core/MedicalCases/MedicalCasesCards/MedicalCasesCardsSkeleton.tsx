@@ -6,8 +6,8 @@ import styles from "./styles.module.scss";
 export const MedicalCasesCardsSkeleton = () => {
   return (
     <section className={styles.medicalCasesCards}>
-      {Array.from({ length: 4 }).map((_index) => (
-        <article className="cardRoot">
+      {Array.from({ length: 4 }).map((_, index) => (
+        <article className="cardRoot" key={index}>
           <header className="cardHeader">
             <h2>Медицинский случай</h2>
           </header>

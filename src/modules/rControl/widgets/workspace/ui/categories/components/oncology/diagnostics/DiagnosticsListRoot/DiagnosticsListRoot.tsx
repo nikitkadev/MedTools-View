@@ -1,4 +1,4 @@
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useDiagnosticsQuery } from "../../../../../../model/queries/categories/oncology/useDiagnosticsQuery";
@@ -37,7 +37,7 @@ export const DiagnosticsListRoot = ({
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (

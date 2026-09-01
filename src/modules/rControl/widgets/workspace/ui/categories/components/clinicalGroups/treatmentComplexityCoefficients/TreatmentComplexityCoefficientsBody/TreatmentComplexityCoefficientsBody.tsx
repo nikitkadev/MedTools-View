@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import type { TreatmentComplexityCoefficientDto } from "../../../../../../model/types/categories/clinicalGroup/GetTreatmentComplexityCoefficientsResult";
 import styles from "./styles.module.scss";
 
@@ -13,29 +14,46 @@ export const TreatmentComplexityCoefficientsBody = ({
   return (
     <div className="cardContent">
       <div className="cardBlock">
-        {isPending ? (
-          <div></div>
-        ) : (
-          treatmentComplexityCoefficients.map(
-            (treatmentComplexityCoefficient, _index) => (
-              <div className={styles.listRow}>
-                <div className={styles.number}>
-                  <p>{_index + 1}</p>
-                </div>
+        {isPending
+          ? Array.from({ length: 2 }).map((_, index) => (
+              <div className={styles.listRow} key={index}>
+                <Skeleton variant="rounded" width={40} height={40} />
                 <div className={styles.listRowContent}>
                   <p className={styles.date}>
-                    №
-                    {treatmentComplexityCoefficient.complexityCoefficientNumber ??
-                      "—"}
+                    <Skeleton />
                   </p>
                   <p className={styles.description}>
-                    {treatmentComplexityCoefficient.complexityCoefficientValue}
+                    <Skeleton animation="wave" height={25} />
                   </p>
                 </div>
               </div>
-            ),
-          )
-        )}
+            ))
+          : treatmentComplexityCoefficients.map(
+              (treatmentComplexityCoefficient, _index) => (
+                <div
+                  className={styles.listRow}
+                  key={
+                    treatmentComplexityCoefficient.treatmentComplexityCoefficientUid
+                  }
+                >
+                  <div className={styles.number}>
+                    <p>{_index + 1}</p>
+                  </div>
+                  <div className={styles.listRowContent}>
+                    <p className={styles.date}>
+                      №
+                      {treatmentComplexityCoefficient.complexityCoefficientNumber ??
+                        "—"}
+                    </p>
+                    <p className={styles.description}>
+                      {
+                        treatmentComplexityCoefficient.complexityCoefficientValue
+                      }
+                    </p>
+                  </div>
+                </div>
+              ),
+            )}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useMedicalCaseDetailsQuery } from "../../../../../../model/queries/categories/medicalCaseDetails/useMedicalCaseDetailsQuery";
@@ -30,14 +30,14 @@ export const MedicalCaseDetailsRoot = () => {
       <MedicalCaseDetailsHeader />
       {dataState === "error" ? (
         <DataState
-          title="Ошибка получения данных"
-          description={error?.message ?? "-"}
+          title="Ошибка данных"
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Медицинский случай не содержит информации о пациенте"
+          description="Медицинский случай не содержит информации о деталях медицинского случая"
           variant="empty"
         />
       ) : (

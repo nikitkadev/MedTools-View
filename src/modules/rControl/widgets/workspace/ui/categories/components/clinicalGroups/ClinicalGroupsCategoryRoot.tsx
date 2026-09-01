@@ -31,7 +31,7 @@ const ClinicalGroupsCategoryRoot = () => {
         {selectedMedicalCaseUid === null ? (
           <DataState
             title="Выберите медицинский случай"
-            description="После выбора станет доступна информация о КСГ/КПГ и ВМП"
+            description="Нажмите на карточку медицинского случая для отображения данных о КСГ/КПГ и ВМП"
             variant="waiting"
           />
         ) : (
@@ -50,8 +50,8 @@ const ClinicalGroupsCategoryRoot = () => {
         />
         {clinicalGroupUid === null ? (
           <DataState
-            title="Доступно при найденных КСГ/КПГ"
-            description="После автоматического выбора станет доступна информация о классификационных критериев и КСЛП"
+            title="Получение клинической группы"
+            description="После получения данных станут доступны классификационные критерии и КСЛП"
             variant="waiting"
           />
         ) : (

@@ -1,4 +1,4 @@
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { usePrescriptionsQuery } from "../../../../../../model/queries/categories/prescriptions/usePrescriptionsQuery";
@@ -27,16 +27,10 @@ export const PrescriptionsSection = () => {
 
   return (
     <>
-      {dataState === "waiting" ? (
-        <DataState
-          title="Выберите медицинский случай"
-          description="После выбора отобразяться данные по назначениям"
-          variant="waiting"
-        />
-      ) : dataState === "error" ? (
+      {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (

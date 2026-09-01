@@ -4,7 +4,7 @@ import { ConsultationsListRoot } from "./сonsultations/ConsultationsListRoot/Co
 import { Divider } from "../../../../../../../../components/ui/Divider/Divider";
 import { useFiltersStore } from "../../../../../filters/model/store/useFiltersStore";
 import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
-import { OncologyCaseCardRoot } from "./oncologyCase/OncologyCaseCardRoot/OncologyCaseCardRoot";
+import { OncologyCaseRoot } from "./oncologyCase/OncologyCaseRoot/OncologyCaseRoot";
 import { DiagnosticsListRoot } from "./diagnostics/DiagnosticsListRoot/DiagnosticsListRoot";
 import { ContraindicationsListRoot } from "./contraindications/ContraindicationsListRoot/ContraindicationsListRoot";
 import { OncologyServicesSection } from "./oncologyServices/OncologyServicesSection/OncologyServicesSection";
@@ -40,12 +40,12 @@ const OncologyRoot = () => {
         {selectedMedicalCaseUid === null ? (
           <DataState
             title="Выберите медицинский случай"
-            description="После выбора станут доступны данные об онкологическом случае и консилиумах"
+            description="Нажмите на карточку медицинского случая для отображения данных об онкологическом случае и проведенных консилиумах"
             variant="waiting"
           />
         ) : (
           <div className={styles.medicalCaseOncologyDetailsLine}>
-            <OncologyCaseCardRoot />
+            <OncologyCaseRoot />
             <ConsultationsListRoot />
           </div>
         )}
@@ -62,8 +62,8 @@ const OncologyRoot = () => {
 
         {oncologyCaseUid === null ? (
           <DataState
-            title="Выберите онкологический случай"
-            description="После выбора станут доступны детальные данные об онкологическом случае"
+            title="Получение онкологического случая"
+            description="После получения данных станут доступны диагностика, противопоказания и онкологические услуги"
             variant="waiting"
           />
         ) : (
@@ -95,7 +95,7 @@ const OncologyRoot = () => {
         {selectedOncologyServiceUid === null ? (
           <DataState
             title="Выберите онкологическую услугу"
-            description="После выбора станут доступны данные о лекарственном препарате"
+            description="Нажмите на карточку онкологической услуги для отображения данных по лекарственным препаратам"
             variant="waiting"
           />
         ) : (
@@ -115,7 +115,7 @@ const OncologyRoot = () => {
         {selectedMedicationUid === null ? (
           <DataState
             title="Выберите лекарственный препарат"
-            description="После выбора станут доступны данные о введение препарата"
+            description="Нажмите на карточку лекарственного препарата для отображения данных о датах введения препарата и инъекциях"
             variant="waiting"
           />
         ) : (

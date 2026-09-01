@@ -1,4 +1,4 @@
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useMedicationsQuery } from "../../../../../../model/queries/categories/oncology/useMedicationsQuery";
@@ -34,13 +34,13 @@ export const MedicationsSection = () => {
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Онкологический случай не содержит информации он препаратах"
+          description="Онкологический случай не содержит информации о лекарственных препаратах"
           variant="empty"
         />
       ) : (

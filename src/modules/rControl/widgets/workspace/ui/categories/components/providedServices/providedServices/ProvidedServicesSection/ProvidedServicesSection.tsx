@@ -1,7 +1,7 @@
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useWorkspaceStore } from "../../../../../../model/store/useWorkspaceStore";
 import { useProvidedServicesQuery } from "../../../../../../model/queries/categories/providedServices/useProvidedServicesQuery";
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { ProvidedServicesCards } from "../ProvidedServicesCards/ProvidedServicesCards";
 
@@ -33,7 +33,7 @@ export const ProvidedServicesSection = () => {
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
-          description={error?.message ?? "-"}
+          description={error?.message ?? "Неизсвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (

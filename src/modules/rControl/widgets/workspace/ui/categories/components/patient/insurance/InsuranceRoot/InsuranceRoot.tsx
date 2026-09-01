@@ -1,4 +1,4 @@
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useInsuranceQuery } from "../../../../../../model/queries/categories/patient/useInsuranceQuery";
@@ -31,8 +31,8 @@ export const InsuranceRoot = () => {
       <InsuranceHeader />
       {dataState === "error" ? (
         <DataState
-          title="Ошибка получения данных"
-          description={error?.message ?? "-"}
+          title="Ошибка данных"
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (

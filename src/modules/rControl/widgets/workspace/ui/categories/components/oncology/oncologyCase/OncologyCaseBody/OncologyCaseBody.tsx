@@ -7,7 +7,7 @@ interface OncologyCaseCardBodyProps {
   isPending: boolean;
 }
 
-export const OncologyCaseCardBody = ({
+export const OncologyCaseBody = ({
   oncologyCase,
   isPending,
 }: OncologyCaseCardBodyProps) => {

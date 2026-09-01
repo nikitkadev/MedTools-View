@@ -91,7 +91,7 @@ export const PrescriptionsCards = ({
         </article>
       ) : (
         prescriptions.map((prescription) => (
-          <article className="cardRoot">
+          <article className="cardRoot" key={prescription.perscriptionUid}>
             <header className="cardHeader">
               <h2>Назначение №{prescription.sequenceNumber}</h2>
             </header>

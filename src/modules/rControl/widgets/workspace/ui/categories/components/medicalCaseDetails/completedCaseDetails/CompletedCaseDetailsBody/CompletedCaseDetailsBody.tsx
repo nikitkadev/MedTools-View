@@ -155,7 +155,7 @@ export const CompletedCaseDetailsBody = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Наименование ЛПУ"
-                value="TODO: Расширить до названия"
+                value={completedCaseDetails.medicalOrganizationName}
                 inline={true}
               />
             </div>
@@ -171,7 +171,9 @@ export const CompletedCaseDetailsBody = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Наименование направившей МО"
-                value="TODO: Расширить до названия"
+                value={
+                  completedCaseDetails.referringMedicalOrganizationName ?? "—"
+                }
                 inline={true}
               />
             </div>

@@ -1,4 +1,4 @@
-import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataStatel";
+import { resolveDataState } from "../../../../../../../../../../shared/helpers/resolveDataState";
 import { DataState } from "../../../../../../../../../../shared/ui/DataState/DataState";
 import { useFiltersStore } from "../../../../../../../filters/model/store/useFiltersStore";
 import { useContraindicationsQuery } from "../../../../../../model/queries/categories/oncology/useContraindicationsQuery";
@@ -36,14 +36,14 @@ export const ContraindicationsListRoot = ({
       <ContraindicationsListHeader />
       {dataState === "error" ? (
         <DataState
-          title="Ошибка получения данных"
-          description={error?.message ?? "-"}
+          title="Ошибка данных"
+          description={error?.message ?? "Неизвестная ошибка"}
           variant="error"
         />
       ) : dataState === "empty" ? (
         <DataState
           title="Данных не найдено"
-          description="Данный онкологический случай не содержит информации о противопоказаниях"
+          description="Онкологический случай не содержит информации о противопоказаниях"
           variant="empty"
         />
       ) : (
