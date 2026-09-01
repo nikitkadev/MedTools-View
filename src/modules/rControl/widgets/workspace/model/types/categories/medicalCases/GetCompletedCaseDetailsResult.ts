@@ -4,7 +4,9 @@ export interface GetCompletedCaseDetailsResult {
 
 export interface CompletedCaseDetailsDto {
   medicalOrganizationCode: string;
-  referringMedicalOrganizationCode?: string;
+  medicalOrganizationName: string;
+  referringMedicalOrganizationCode?: string | null;
+  referringMedicalOrganizationName?: string | null;
   referralDate?: string | null;
   careConditions: number;
   medicalCareType: number;
