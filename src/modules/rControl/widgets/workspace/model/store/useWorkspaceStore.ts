@@ -91,12 +91,16 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
       },
     })),
   selectMedicalCase: (medicalCaseUid) =>
-    set({
+    set((state) => ({
       selectedMedicalCaseUid: medicalCaseUid,
       selectedProvidedServiceUid: null,
       selectedOncologyServiceUid: null,
       selectedMedicationUid: null,
-    }),
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
+    })),
   selectProvidedService: (providedServiceUid) =>
     set({
       selectedProvidedServiceUid: providedServiceUid,
