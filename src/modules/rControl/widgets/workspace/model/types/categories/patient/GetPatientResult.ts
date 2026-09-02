@@ -12,8 +12,8 @@ export interface PatientDto {
   documentTypeCode: string | null;
   documentSeries: string | null;
   documentNumber: string | null;
-  documentIssueDate?: string | null;
-  issuedBy?: string | null;
+  documentIssueDate: string | null;
+  issuedBy: string | null;
   patientRepresentativeLastName: string | null;
   patientRepresentativeFirstName: string | null;
   patientRepresentativeMiddleName: string | null;
