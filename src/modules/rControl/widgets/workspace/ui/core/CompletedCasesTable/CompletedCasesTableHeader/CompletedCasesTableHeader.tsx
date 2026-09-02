@@ -32,14 +32,14 @@ export const CompletedCasesTableHeader = ({
   disabled,
 }: CompletedCasesTableHeaderProps) => {
   const [searchValue, setSearchValue] = useState("");
-  const { setCompleteCasesSearch } = useWorkspaceStore();
+  const { setCompletedCasesSearch } = useWorkspaceStore();
 
   const onChangeSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
   const onSearch = () => {
-    setCompleteCasesSearch(searchValue);
+    setCompletedCasesSearch(searchValue);
   };
 
   return (
