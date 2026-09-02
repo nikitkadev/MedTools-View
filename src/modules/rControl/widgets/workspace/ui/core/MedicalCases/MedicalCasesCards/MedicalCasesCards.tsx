@@ -57,7 +57,7 @@ export const MedicalCasesCards = ({
                 <CardField
                   inline={true}
                   label="Дата лечения"
-                  value={`с ${dayjs(medicalCase.treatmentStartDate).format("DD.MM.YYYY")} по ${dayjs(medicalCase.treatmentEndDate).format("DD.MM.YYYY")}`}
+                  value={`${dayjs(medicalCase.treatmentStartDate).format("DD.MM.YYYY")} — ${dayjs(medicalCase.treatmentEndDate).format("DD.MM.YYYY")}`}
                 />
 
                 <CardField

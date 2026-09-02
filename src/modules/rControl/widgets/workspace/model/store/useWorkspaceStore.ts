@@ -120,9 +120,16 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
         ...state.completedCasesTablePagination,
         page: 0,
       },
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
       selectedInvoiceUid: null,
       selectedCompletedCaseUid: null,
       selectedMedicalCaseUid: null,
+      selectedOncologyServiceUid: null,
+      selectedMedicationUid: null,
+      selectedProvidedServiceUid: null,
     })),
   setCompletedCasesTablePagination: (newState) =>
     set((state) => ({
@@ -130,8 +137,15 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
         ...state.completedCasesTablePagination,
         ...newState,
       },
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
       selectedCompletedCaseUid: null,
       selectedMedicalCaseUid: null,
+      selectedOncologyServiceUid: null,
+      selectedMedicationUid: null,
+      selectedProvidedServiceUid: null,
     })),
 
   setDefectsTablePagination: (newState) =>
