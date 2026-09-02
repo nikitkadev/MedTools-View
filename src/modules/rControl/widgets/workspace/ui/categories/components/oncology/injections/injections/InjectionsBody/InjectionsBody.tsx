@@ -2,6 +2,7 @@ import type { InjectionDto } from "../../../../../../../model/types/categories/o
 import { TableSkeleton } from "../../../../../../../../../../../shared/ui/TableSkeleton/TableSkeleton";
 import { formatNullableValue } from "../../../../../../../../../../../shared/helpers/formatNullableValue";
 import { formatCurrency } from "../../../../../../../../../../../shared/helpers/formatCurrency";
+import { formatDate } from "../../../../../../../../../../../shared/helpers/formatDate";
 
 interface InjectionsBodyProps {
   injections: InjectionDto[];
@@ -32,9 +33,7 @@ export const InjectionsBody = ({
           ) : (
             injections.map((injection) => (
               <tr key={injection.injectionUid} className="noneHover">
-                <td>
-                  {formatNullableValue(injection.administrationDate, true)}
-                </td>
+                <td>{formatDate(injection.administrationDate)}</td>
                 <td>{formatNullableValue(injection.administeredQuantity)}</td>
                 <td>{formatNullableValue(injection.consumedQuantity)}</td>
                 <td>{formatCurrency(injection.unitCost)}</td>

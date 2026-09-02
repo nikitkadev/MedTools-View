@@ -1,6 +1,6 @@
 import type { InjectionDateDto } from "../../../../../../../model/types/categories/oncology/GetInjectionDatesResult";
 import { Chip, Skeleton } from "@mui/material";
-import { formatNullableValue } from "../../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatDate } from "../../../../../../../../../../../shared/helpers/formatDate";
 import styles from "./styles.module.scss";
 
 interface InjectionDatesBodyProps {
@@ -36,10 +36,7 @@ export const InjectionDatesBody = ({
               <Chip
                 key={injectionDate.injectionDateUid}
                 variant="filled"
-                label={formatNullableValue(
-                  injectionDate.administrationDate,
-                  true,
-                )}
+                label={formatDate(injectionDate.administrationDate)}
                 size="small"
                 color="default"
                 sx={{

@@ -2,6 +2,7 @@ import type { PatientDto } from "../../../../../../model/types/categories/patien
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
 import { Skeleton } from "@mui/material";
 import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatDate } from "../../../../../../../../../../shared/helpers/formatDate";
 
 interface PatientBodyProps {
   patient: PatientDto;
@@ -141,15 +142,12 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Дата рождения"
-                value={formatNullableValue(patient.patientBirthDate, true)}
+                value={formatDate(patient.patientBirthDate)}
                 inline={true}
               />
               <CardField
                 label="Дата рождения представителя"
-                value={formatNullableValue(
-                  patient.patientRepresentativeBirthday,
-                  true,
-                )}
+                value={formatDate(patient.patientRepresentativeBirthday)}
                 inline={true}
               />
             </div>
@@ -192,7 +190,7 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Дата выдачи"
-                value={formatNullableValue(patient.documentIssueDate, true)}
+                value={formatDate(patient.documentIssueDate)}
                 inline={true}
               />
             </div>

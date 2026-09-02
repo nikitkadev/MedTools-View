@@ -3,6 +3,7 @@ import { CardField } from "../../../../../../../../../../shared/ui/CardField/Car
 import { Skeleton } from "@mui/material";
 import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 import styles from "./styles.module.scss";
+import { formatDate } from "../../../../../../../../../../shared/helpers/formatDate";
 
 interface DiagnosticsListBodyProps {
   diagnosticRecords: DiagnosticListItemDto[];
@@ -59,10 +60,7 @@ export const DiagnosticsListBody = ({
               <div className={styles.listRowContent}>
                 <div className={styles.lineOneGrid}>
                   <p className={styles.lineTitle}>
-                    {formatNullableValue(
-                      diagnosticRecord.specimenCollectionDate,
-                      true,
-                    )}
+                    {formatDate(diagnosticRecord.specimenCollectionDate)}
                   </p>
                 </div>
                 <div className={styles.lineTwoGrid}>

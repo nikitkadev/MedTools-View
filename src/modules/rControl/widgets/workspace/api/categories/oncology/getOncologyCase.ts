@@ -9,7 +9,7 @@ import apiClient from "../../../../../../../app/providers/apiClient";
 export const getOncologyCase = async (
   medicalCaseUid: number,
   targetDb: TargetDbType,
-): Promise<OncologyCaseDto> => {
+): Promise<OncologyCaseDto | null> => {
   const response = await apiClient.get<ResultResponse<GetOncologyCaseResult>>(
     `/rcontrol/medical-cases/${medicalCaseUid}/oncology-case`,
     {

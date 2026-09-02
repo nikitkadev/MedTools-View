@@ -3,6 +3,7 @@ import { CardField } from "../../../../../../../../../../shared/ui/CardField/Car
 import { Skeleton } from "@mui/material";
 import dayjs from "dayjs";
 import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatDate } from "../../../../../../../../../../shared/helpers/formatDate";
 
 interface CompletedCaseDetailsBodyProps {
   completedCaseDetails: CompletedCaseDetailsDto;
@@ -181,10 +182,7 @@ export const CompletedCaseDetailsBody = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Дата направления"
-                value={formatNullableValue(
-                  completedCaseDetails.referralDate,
-                  true,
-                )}
+                value={formatDate(completedCaseDetails.referralDate)}
                 inline={true}
               />
             </div>

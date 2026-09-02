@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 import { formatCurrency } from "../../../../../../../../../../shared/helpers/formatCurrency";
 import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatDate } from "../../../../../../../../../../shared/helpers/formatDate";
 
 interface MedicalSanctionsBodyProps {
   medicalSanctions: MedicalSanctionDto[];
@@ -203,10 +204,7 @@ export const MedicalSanctionsCards = ({
                     <div className="cardBlockLineOneGrid">
                       <CardField
                         label="Дата загрузки"
-                        value={formatNullableValue(
-                          medicalSanction.uploadDate,
-                          true,
-                        )}
+                        value={formatDate(medicalSanction.uploadDate)}
                         inline={true}
                       />
                     </div>

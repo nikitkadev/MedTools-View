@@ -9,7 +9,7 @@ import type {
 export const getClinicalGroup = async (
   medicalCaseUid: number,
   targetDb: TargetDbType,
-): Promise<ClinicalGroupDto> => {
+): Promise<ClinicalGroupDto | null> => {
   const response = await apiClient.get<ResultResponse<GetClinicalGroupResult>>(
     `/rcontrol/medical-cases/${medicalCaseUid}/clinical-group`,
     {
