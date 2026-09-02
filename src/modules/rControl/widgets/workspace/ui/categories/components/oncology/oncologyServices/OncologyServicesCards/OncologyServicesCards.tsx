@@ -4,6 +4,7 @@ import { Skeleton } from "@mui/material";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import styles from "./styles.module.scss";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 
 interface OncologyServicesCardsProps {
   oncologyServices: OncologyServiceDto[];
@@ -82,17 +83,21 @@ export const OncologyServicesCards = ({
                     <CardField
                       label="Тип услуги"
                       inline={true}
-                      value={oncologyService.serviceType ?? "—"}
+                      value={formatNullableValue(oncologyService.serviceType)}
                     />
                     <CardField
                       inline={true}
                       label="Тип хирургического лечения"
-                      value={oncologyService.surgicalTreatmentType ?? "—"}
+                      value={formatNullableValue(
+                        oncologyService.surgicalTreatmentType,
+                      )}
                     />
                     <CardField
                       inline={true}
                       label="Линия лекарственной терапии"
-                      value={oncologyService.drugTherapyLine ?? "—"}
+                      value={formatNullableValue(
+                        oncologyService.drugTherapyLine,
+                      )}
                     />
                     <CardField
                       inline={true}
@@ -108,7 +113,9 @@ export const OncologyServicesCards = ({
                     <CardField
                       inline={true}
                       label="Тип лучевой терапии"
-                      value={oncologyService.radiotherapyType ?? "—"}
+                      value={formatNullableValue(
+                        oncologyService.radiotherapyType,
+                      )}
                     />
                   </div>
                 </div>

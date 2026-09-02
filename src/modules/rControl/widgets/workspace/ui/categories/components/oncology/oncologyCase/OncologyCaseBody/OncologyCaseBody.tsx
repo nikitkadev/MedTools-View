@@ -1,6 +1,7 @@
 import type { OncologyCaseDto } from "../../../../../../model/types/categories/oncology/GetOncologyCaseResult";
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
 import { Skeleton } from "@mui/material";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 
 interface OncologyCaseCardBodyProps {
   oncologyCase: OncologyCaseDto;
@@ -62,29 +63,29 @@ export const OncologyCaseBody = ({
           <div className="cardBlockField">
             <CardField
               label="Повод обращения"
-              value={oncologyCase.referralReason ?? "—"}
+              value={formatNullableValue(oncologyCase.referralReason)}
               inline={true}
             />
             <CardField
               label="Стадия заболевания"
-              value={oncologyCase.stage ?? "—"}
+              value={formatNullableValue(oncologyCase.stage)}
               inline={true}
             />
           </div>
           <div className="cardBlockField">
             <CardField
               label="Значение Tumor"
-              value={oncologyCase.tumorValue ?? "—"}
+              value={formatNullableValue(oncologyCase.tumorValue)}
               inline={true}
             />
             <CardField
               label="Значение Nodus"
-              value={oncologyCase.nodusValue ?? "—"}
+              value={formatNullableValue(oncologyCase.nodusValue)}
               inline={true}
             />
             <CardField
               label="Значение Metastatsis"
-              value={oncologyCase.metastasisValue ?? "—"}
+              value={formatNullableValue(oncologyCase.metastasisValue)}
               inline={true}
             />
           </div>
@@ -102,7 +103,7 @@ export const OncologyCaseBody = ({
             />
             <CardField
               label="Суммарная очаговая доза"
-              value={oncologyCase.totalFocusDose ?? "—"}
+              value={formatNullableValue(oncologyCase.totalFocusDose)}
               inline={true}
             />
           </div>

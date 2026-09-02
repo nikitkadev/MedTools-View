@@ -1,5 +1,6 @@
 import type { ReferralDto } from "../../../../../../model/types/categories/prescriptions/GetReferralsResult";
 import { TableSkeleton } from "../../../../../../../../../../shared/ui/TableSkeleton/TableSkeleton";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 import dayjs from "dayjs";
 
 interface ReferralsBodyProps {
@@ -26,11 +27,11 @@ export const ReferralsBody = ({ referrals, isPending }: ReferralsBodyProps) => {
           ) : (
             referrals.map((referral) => (
               <tr key={referral.referralUid} className="noneHover">
-                <td>{referral.referredToMoCode ?? "-"}</td>
+                <td>{formatNullableValue(referral.referredToMoCode)}</td>
                 <td>{dayjs(referral.referralDate).format("DD.MM.YYYY")}</td>
                 <td>{referral.referralType}</td>
-                <td>{referral.diagnosticMethod ?? "-"}</td>
-                <td>{referral.referredService ?? "-"}</td>
+                <td>{formatNullableValue(referral.diagnosticMethod)}</td>
+                <td>{formatNullableValue(referral.referredService)}</td>
               </tr>
             ))
           )}

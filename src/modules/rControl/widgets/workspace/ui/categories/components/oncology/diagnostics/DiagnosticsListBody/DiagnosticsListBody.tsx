@@ -1,8 +1,8 @@
 import type { DiagnosticListItemDto } from "../../../../../../model/types/categories/oncology/GetDiagnosticsResult";
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
 import { Skeleton } from "@mui/material";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 import styles from "./styles.module.scss";
-import dayjs from "dayjs";
 
 interface DiagnosticsListBodyProps {
   diagnosticRecords: DiagnosticListItemDto[];
@@ -59,29 +59,30 @@ export const DiagnosticsListBody = ({
               <div className={styles.listRowContent}>
                 <div className={styles.lineOneGrid}>
                   <p className={styles.lineTitle}>
-                    {diagnosticRecord.specimenCollectionDate
-                      ? dayjs(diagnosticRecord.specimenCollectionDate).format(
-                          "DD.MM.YYYY",
-                        )
-                      : "—"}
+                    {formatNullableValue(
+                      diagnosticRecord.specimenCollectionDate,
+                      true,
+                    )}
                   </p>
                 </div>
                 <div className={styles.lineTwoGrid}>
                   <CardField
                     label="Тип д.п."
-                    value={diagnosticRecord.diagnosticType ?? "—"}
+                    value={formatNullableValue(diagnosticRecord.diagnosticType)}
                     inline={true}
                   />
                   <CardField
                     label="Код д.п."
-                    value={diagnosticRecord.diagnosticCode ?? "—"}
+                    value={formatNullableValue(diagnosticRecord.diagnosticCode)}
                     inline={true}
                   />
                 </div>
                 <div className={styles.lineTwoGrid}>
                   <CardField
                     label="Код результата диагностики"
-                    value={diagnosticRecord.diagnosticResultCode ?? "—"}
+                    value={formatNullableValue(
+                      diagnosticRecord.diagnosticResultCode,
+                    )}
                     inline={true}
                   />
                   <CardField

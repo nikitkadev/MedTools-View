@@ -1,3 +1,4 @@
+import { formatCurrency } from "../../../../../../../../shared/helpers/formatCurrency";
 import { TableSkeleton } from "../../../../../../../../shared/ui/TableSkeleton/TableSkeleton";
 import type { InvoiceListItemDto } from "../../../../model/types/core/results/GetInvoiceListItemsResult";
 import dayjs from "dayjs";
@@ -24,7 +25,7 @@ export const InvoicesTableBody = ({
           <tr>
             <th>№ счета</th>
             <th>Дата счета</th>
-            <th>Сумма, ₽</th>
+            <th>Сумма счета</th>
             <th>Случаев</th>
             <th className="thCenter">Статус</th>
           </tr>
@@ -43,7 +44,7 @@ export const InvoicesTableBody = ({
               >
                 <td>{invoice.number}</td>
                 <td>{dayjs(invoice.billingDate).format("DD.MM.YYYY")}</td>
-                <td>{invoice.amount}</td>
+                <td>{formatCurrency(invoice.amount)}</td>
                 <td>{invoice.medicalCasesCount}</td>
                 <td className="tdCenter">{invoice.status}</td>
               </tr>

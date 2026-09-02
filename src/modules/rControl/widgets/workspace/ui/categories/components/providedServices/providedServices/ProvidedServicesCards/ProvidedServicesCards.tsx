@@ -6,6 +6,8 @@ import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatCurrency } from "../../../../../../../../../../shared/helpers/formatCurrency";
 
 interface ProvidedServicesCardsProps {
   providedSevices: ProvidedServiceDto[];
@@ -147,7 +149,7 @@ export const ProvidedServicesCards = ({
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Наименование услуги"
-                      value={providedService.service ?? "—"}
+                      value={formatNullableValue(providedService.service)}
                       inline={true}
                     />
                   </div>
@@ -156,7 +158,9 @@ export const ProvidedServicesCards = ({
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Вид медицинского вмешательства"
-                      value={providedService.medicalInterventionType ?? "—"}
+                      value={formatNullableValue(
+                        providedService.medicalInterventionType,
+                      )}
                       inline={true}
                     />
                   </div>
@@ -217,11 +221,7 @@ export const ProvidedServicesCards = ({
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Тариф"
-                      value={
-                        providedService.unitRate === null
-                          ? "—"
-                          : `${providedService.unitRate} ₽`
-                      }
+                      value={formatCurrency(providedService.unitRate)}
                       inline={true}
                       spaceBetween={true}
                     />
@@ -229,7 +229,7 @@ export const ProvidedServicesCards = ({
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Сумма"
-                      value={`${providedService.amountBilled} ₽`}
+                      value={formatCurrency(providedService.amountBilled)}
                       inline={true}
                       spaceBetween={true}
                     />
@@ -237,7 +237,9 @@ export const ProvidedServicesCards = ({
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Комментарий"
-                      value={providedService.internalComment ?? "—"}
+                      value={formatNullableValue(
+                        providedService.internalComment,
+                      )}
                       inline={true}
                     />
                   </div>

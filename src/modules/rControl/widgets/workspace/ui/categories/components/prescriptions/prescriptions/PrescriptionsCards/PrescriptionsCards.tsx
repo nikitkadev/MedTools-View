@@ -1,8 +1,8 @@
 import type { PrescriptionDto } from "../../../../../../model/types/categories/prescriptions/GetPrescriptionsResult";
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
 import { Skeleton } from "@mui/material";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 import styles from "./styles.module.scss";
-import dayjs from "dayjs";
 
 interface PrescriptionsCardsProps {
   prescriptions: PrescriptionDto[];
@@ -111,14 +111,14 @@ export const PrescriptionsCards = ({
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Метод диагностического лечения"
-                      value={prescription.diagnosticMethod ?? "—"}
+                      value={formatNullableValue(prescription.diagnosticMethod)}
                       inline={true}
                     />
                   </div>
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Медицинская услуга в направление"
-                      value={prescription.serviceCode ?? "—"}
+                      value={formatNullableValue(prescription.serviceCode)}
                       inline={true}
                     />
                   </div>
@@ -130,20 +130,14 @@ export const PrescriptionsCards = ({
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Дата направления"
-                      value={
-                        prescription.referralDate
-                          ? dayjs(prescription.referralDate).format(
-                              "DD.MM.YYYY",
-                            )
-                          : "—"
-                      }
+                      value={formatNullableValue(prescription.referralDate)}
                       inline={true}
                     />
                   </div>
                   <div className="cardBlockLineOneGrid">
                     <CardField
                       label="Медицинская организация назначения"
-                      value={prescription.referredToMoCode ?? "—"}
+                      value={formatNullableValue(prescription.referredToMoCode)}
                       inline={true}
                     />
                   </div>
@@ -156,12 +150,14 @@ export const PrescriptionsCards = ({
                   <div className="cardBlockLineTwoGrid">
                     <CardField
                       label="Профиль МП"
-                      value={prescription.medicalCareProfile ?? "—"}
+                      value={formatNullableValue(
+                        prescription.medicalCareProfile,
+                      )}
                       inline={true}
                     />
                     <CardField
                       label="Профиль койки"
-                      value={prescription.bedProfile ?? "—"}
+                      value={formatNullableValue(prescription.bedProfile)}
                       inline={true}
                     />
                   </div>

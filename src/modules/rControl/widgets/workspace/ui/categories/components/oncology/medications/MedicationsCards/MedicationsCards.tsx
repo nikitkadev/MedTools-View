@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 
 interface MedicationsCardsProps {
   medications: MedicationDto[];
@@ -64,7 +65,7 @@ export const MedicationsCards = ({
                     />
                     <CardField
                       label="Схема терапии"
-                      value={medication.therapyRegimenCode ?? "—"}
+                      value={formatNullableValue(medication.therapyRegimenCode)}
                       inline={true}
                     />
                   </div>
