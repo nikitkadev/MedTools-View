@@ -3,6 +3,8 @@ import type { PaginationState } from "../../../../../../../../shared/types/Pagin
 import { AppTablePagination } from "../../../../../../../../shared/ui/AppTablePagination/AppTablePagination";
 import { SearchInput } from "../../../../../../../../shared/ui/SearchInput/SearchInput";
 import { StatusBadge } from "../../../../../../../../shared/ui/StatusBadge/StatusBadge";
+import { useWorkspaceStore } from "../../../../model/store/useWorkspaceStore";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 
 interface InvoicesTableHeaderProps {
@@ -29,13 +31,28 @@ export const InvoicesTableHeader = ({
   isLoading,
   disabled,
 }: InvoicesTableHeaderProps) => {
+  const [searchValue, setSearchValue] = useState("");
+  const { setInvoicesSearch } = useWorkspaceStore();
+
+  const onChangeSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  const onSearch = () => {
+    setInvoicesSearch(searchValue);
+  };
+
   return (
     <header className={styles.invoicesTableHeader}>
       <div className={styles.titleGroup}>
         <h2>Счета</h2>
         <StatusBadge state={state} />
       </div>
-      <SearchInput />
+      <SearchInput
+        searchValue={searchValue}
+        onChange={onChangeSearchValue}
+        onSearch={onSearch}
+      />
       <AppTablePagination
         pagination={pagination}
         totalCount={totalCount}
