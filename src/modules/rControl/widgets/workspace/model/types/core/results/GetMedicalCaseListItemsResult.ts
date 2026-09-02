@@ -4,15 +4,15 @@ export interface GetMedicalCaseListItemsResult {
 
 export interface MedicalCaseDto {
   medicalCaseUid: number;
-  medicalProfile?: number | null;
+  medicalProfile: number | null;
   isPediatric: boolean;
   physicianSpecialty: number;
   treatmentStartDate: string;
   treatmentEndDate: string;
   primaryDiagnosis: string;
-  paidUnits?: number | null;
-  unitRate?: number | null;
+  paidUnits: number | null;
+  unitRate: number | null;
   amountBilled: number;
-  approvedAmount?: number | null;
-  insuranceCompanyApprovedAmount?: number | null;
+  approvedAmount: number | null;
+  insuranceCompanyApprovedAmount: number | null;
 }

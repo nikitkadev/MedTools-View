@@ -5,6 +5,6 @@ export interface GetDefectsResult {
 
 export interface DefectDto {
   defectUid: number;
-  code?: number | null;
+  code: number | null;
   comment: string;
 }

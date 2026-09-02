@@ -5,6 +5,6 @@ export interface GetMedicationsResult {
 export interface MedicationDto {
   medicamentUid: number;
   drugIdentifier: string;
-  drugExtendedIdentifier?: string | null;
-  therapyRegimenCode?: string | null;
+  drugExtendedIdentifier: string | null;
+  therapyRegimenCode: string | null;
 }

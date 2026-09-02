@@ -7,13 +7,13 @@ export interface CompletedCaseListItemDto {
   completedCaseUid: number;
   entryNumber: number;
   amountBilled: number;
-  approvedAmount?: number | null;
-  insuranceCompanyApprovedAmount?: number | null;
+  approvedAmount: number | null;
+  insuranceCompanyApprovedAmount: number | null;
   medicalCareConditions: number;
   patientLastName: string;
   patientFirstName: string;
   patientMiddleName: string;
-  insurancePolicySeries?: string | null;
+  insurancePolicySeries: string | null;
   insurancePolicyNumber: string;
   entryPositionNumber: number;
 }

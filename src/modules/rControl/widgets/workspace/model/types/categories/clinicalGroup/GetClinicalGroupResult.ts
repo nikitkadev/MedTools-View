@@ -1,11 +1,11 @@
 export interface GetClinicalGroupResult {
-  clinicalGroup: ClinicalGroupDto;
+  clinicalGroup: ClinicalGroupDto | null;
 }
 
 export interface ClinicalGroupDto {
   clinicalGroupUid: number;
   clinicalStatisticalGroupNumber: string;
-  calculatedClinicalStatisticalGroupNumber?: string | null;
+  calculatedClinicalStatisticalGroupNumber: string | null;
   clinicalStatisticalGroupModelVersion: number;
   isCsgSubgroupUsed: boolean;
   clinicalProfileGroupNumber?: string | null;
@@ -14,7 +14,7 @@ export interface ClinicalGroupDto {
   baseRate: number;
   differentiationCoefficient: number;
   levelCoefficient: number;
-  wageTargetCoefficient?: number | null;
+  wageTargetCoefficient: number | null;
   isClspUsed: boolean;
-  complexityCoefficient?: number | null;
+  complexityCoefficient: number | null;
 }
