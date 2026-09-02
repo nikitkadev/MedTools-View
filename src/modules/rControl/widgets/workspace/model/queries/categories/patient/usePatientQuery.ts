@@ -16,8 +16,6 @@ export const usePatientQuery = (
         throw new Error("Невалидные параметры запроса");
       }
 
-      console.log(medicalCaseUid);
-
       return getPatient(medicalCaseUid, targetDb);
     },
   });

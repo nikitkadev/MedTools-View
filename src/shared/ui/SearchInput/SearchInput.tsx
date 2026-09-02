@@ -18,7 +18,6 @@ export const SearchInput = ({
 }: SearchInputProps) => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      console.log("Базар");
       onSearch();
     }
   };

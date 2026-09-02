@@ -35,7 +35,7 @@ interface WorkspaceStore {
   ) => void;
   setTargetCategory: (targetCategory: CategoryId) => void;
   setInvoicesSearch: (value: string) => void;
-  setCompleteCasesSearch: (value: string) => void;
+  setCompletedCasesSearch: (value: string) => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
@@ -186,7 +186,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
       invoiceTableSearchString: value,
     })),
 
-    setCompleteCasesSearch: (value: string) =>
+    setCompletedCasesSearch: (value: string) =>
     set((state) => ({
       selectedCompletedCaseUid: null,
       selectedMedicalCaseUid: null,
