@@ -31,6 +31,7 @@ export const useInvoiceListItemsQuery = (
         page: params.page,
         pageSize: params.pageSize,
         targetDb: params.targetDb,
+        searchString: params.searchString,
       });
     },
   });

@@ -4,6 +4,6 @@ export interface GetTreatmentComplexityCoefficientsResult {
 
 export interface TreatmentComplexityCoefficientDto {
   treatmentComplexityCoefficientUid: number;
-  complexityCoefficientNumber?: string | null;
+  complexityCoefficientNumber: string | null;
   complexityCoefficientValue: number;
 }

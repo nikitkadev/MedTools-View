@@ -12,6 +12,7 @@ export const getCompletedCaseListItems = async (
     params: {
       page: params.page + 1,
       pageSize: params.pageSize,
+      searchString: params.searchString,
       targetDb: params.targetDb,
     },
   });

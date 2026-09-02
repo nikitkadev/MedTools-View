@@ -10,6 +10,7 @@ import styles from "./styles.module.scss";
 
 export const InvoicesTableRoot = () => {
   const {
+    invoiceTableSearchString,
     invoicesTablePagination,
     selectedInvoiceUid,
     setInvoicesTablePagination,
@@ -37,6 +38,7 @@ export const InvoicesTableRoot = () => {
     page: invoicesTablePagination.page,
     pageSize: invoicesTablePagination.pageSize,
     targetDb: targetDb,
+    searchString: invoiceTableSearchString,
   });
 
   const onPageChange = (

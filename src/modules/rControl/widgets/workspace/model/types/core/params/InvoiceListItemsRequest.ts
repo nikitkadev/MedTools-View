@@ -7,4 +7,5 @@ export interface InvoiceListItemsRequest {
   page: number;
   pageSize: number;
   targetDb: TargetDbType;
+  searchString: string;
 }

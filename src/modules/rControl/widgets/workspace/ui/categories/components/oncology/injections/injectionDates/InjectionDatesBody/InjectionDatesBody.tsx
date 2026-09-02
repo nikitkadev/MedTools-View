@@ -1,7 +1,7 @@
-import { Chip, Skeleton } from "@mui/material";
 import type { InjectionDateDto } from "../../../../../../../model/types/categories/oncology/GetInjectionDatesResult";
+import { Chip, Skeleton } from "@mui/material";
+import { formatDate } from "../../../../../../../../../../../shared/helpers/formatDate";
 import styles from "./styles.module.scss";
-import dayjs from "dayjs";
 
 interface InjectionDatesBodyProps {
   injectionDates: InjectionDateDto[];
@@ -36,9 +36,7 @@ export const InjectionDatesBody = ({
               <Chip
                 key={injectionDate.injectionDateUid}
                 variant="filled"
-                label={dayjs(injectionDate.administrationDate).format(
-                  "DD.MM.YYYY",
-                )}
+                label={formatDate(injectionDate.administrationDate)}
                 size="small"
                 color="default"
                 sx={{

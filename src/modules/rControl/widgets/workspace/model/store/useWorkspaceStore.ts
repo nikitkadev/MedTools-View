@@ -9,6 +9,8 @@ interface WorkspaceStore {
   selectedProvidedServiceUid: number | null;
   selectedOncologyServiceUid: number | null;
   selectedMedicationUid: number | null;
+  invoiceTableSearchString: string;
+  completedCasesTableSearchString: string;
 
   invoicesTablePagination: PaginationState;
   completedCasesTablePagination: PaginationState;
@@ -32,6 +34,8 @@ interface WorkspaceStore {
     newState: Partial<WorkspaceStore["defectsTablePagination"]>,
   ) => void;
   setTargetCategory: (targetCategory: CategoryId) => void;
+  setInvoicesSearch: (value: string) => void;
+  setCompletedCasesSearch: (value: string) => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
@@ -41,6 +45,8 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
   selectedProvidedServiceUid: null,
   selectedOncologyServiceUid: null,
   selectedMedicationUid: null,
+  invoiceTableSearchString: "",
+  completedCasesTableSearchString: "",
 
   invoicesTablePagination: {
     page: 0,
@@ -91,12 +97,16 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
       },
     })),
   selectMedicalCase: (medicalCaseUid) =>
-    set({
+    set((state) => ({
       selectedMedicalCaseUid: medicalCaseUid,
       selectedProvidedServiceUid: null,
       selectedOncologyServiceUid: null,
       selectedMedicationUid: null,
-    }),
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
+    })),
   selectProvidedService: (providedServiceUid) =>
     set({
       selectedProvidedServiceUid: providedServiceUid,
@@ -120,9 +130,16 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
         ...state.completedCasesTablePagination,
         page: 0,
       },
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
       selectedInvoiceUid: null,
       selectedCompletedCaseUid: null,
       selectedMedicalCaseUid: null,
+      selectedOncologyServiceUid: null,
+      selectedMedicationUid: null,
+      selectedProvidedServiceUid: null,
     })),
   setCompletedCasesTablePagination: (newState) =>
     set((state) => ({
@@ -130,12 +147,60 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
         ...state.completedCasesTablePagination,
         ...newState,
       },
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
       selectedCompletedCaseUid: null,
       selectedMedicalCaseUid: null,
+      selectedOncologyServiceUid: null,
+      selectedMedicationUid: null,
+      selectedProvidedServiceUid: null,
     })),
 
   setDefectsTablePagination: (newState) =>
     set((state) => ({
       defectsTablePagination: { ...state.defectsTablePagination, ...newState },
+    })),
+
+  setInvoicesSearch: (value: string) =>
+    set((state) => ({
+      selectedInvoiceUid: null,
+      selectedCompletedCaseUid: null,
+      selectedMedicalCaseUid: null,
+      selectedProvidedServiceUid: null,
+      selectedOncologyServiceUid: null,
+      selectedMedicationUid: null,
+      invoicesTablePagination: {
+        ...state.invoicesTablePagination,
+        page: 0,
+      },
+      completedCasesTablePagination: {
+        ...state.completedCasesTablePagination,
+        page: 0,
+      },
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
+      invoiceTableSearchString: value,
+    })),
+
+    setCompletedCasesSearch: (value: string) =>
+    set((state) => ({
+      selectedCompletedCaseUid: null,
+      selectedMedicalCaseUid: null,
+      selectedProvidedServiceUid: null,
+      selectedOncologyServiceUid: null,
+      selectedMedicationUid: null,
+      completedCasesTablePagination: {
+        ...state.completedCasesTablePagination,
+        page: 0,
+      },
+      defectsTablePagination: {
+        ...state.defectsTablePagination,
+        page: 0,
+      },
+      completedCasesTableSearchString: value,
     })),
 }));

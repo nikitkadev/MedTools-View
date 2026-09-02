@@ -31,14 +31,18 @@ export const MedicalCasesSection = () => {
   });
 
   useEffect(() => {
-    if (
-      medicalCases !== undefined &&
-      medicalCases !== null &&
-      medicalCases.length > 0
-    ) {
+    if (!medicalCases?.length) {
+      return;
+    }
+
+    const hasSelectedMedicalCase = medicalCases.some(
+      (medicalCase) => medicalCase.medicalCaseUid === selectedMedicalCaseUid,
+    );
+
+    if (!hasSelectedMedicalCase) {
       selectMedicalCase(medicalCases[0].medicalCaseUid);
     }
-  }, [medicalCases]);
+  }, [medicalCases, selectedMedicalCaseUid, selectMedicalCase]);
 
   return (
     <>

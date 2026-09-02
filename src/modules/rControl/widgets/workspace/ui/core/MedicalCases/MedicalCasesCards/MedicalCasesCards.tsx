@@ -5,6 +5,8 @@ import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
+import { formatNullableValue } from "../../../../../../../../shared/helpers/formatNullableValue";
+import { formatCurrency } from "../../../../../../../../shared/helpers/formatCurrency";
 
 interface MedicalCasesCardsProps {
   medicalCases: MedicalCaseDto[];
@@ -39,7 +41,7 @@ export const MedicalCasesCards = ({
                 <CardField
                   label="Профиль"
                   inline={true}
-                  value={medicalCase.medicalProfile ?? "-"}
+                  value={formatNullableValue(medicalCase.medicalProfile)}
                 />
                 <CardField
                   inline={true}
@@ -57,7 +59,7 @@ export const MedicalCasesCards = ({
                 <CardField
                   inline={true}
                   label="Дата лечения"
-                  value={`с ${dayjs(medicalCase.treatmentStartDate).format("DD.MM.YYYY")} по ${dayjs(medicalCase.treatmentEndDate).format("DD.MM.YYYY")}`}
+                  value={`${dayjs(medicalCase.treatmentStartDate).format("DD.MM.YYYY")} — ${dayjs(medicalCase.treatmentEndDate).format("DD.MM.YYYY")}`}
                 />
 
                 <CardField
@@ -75,13 +77,13 @@ export const MedicalCasesCards = ({
                 <CardField
                   inline={true}
                   label="Тариф"
-                  value={medicalCase.unitRate ?? "-"}
+                  value={formatCurrency(medicalCase.unitRate)}
                 />
 
                 <CardField
                   inline={true}
                   label="Количество"
-                  value={medicalCase.paidUnits ?? "-"}
+                  value={formatNullableValue(medicalCase.paidUnits)}
                 />
               </div>
 
@@ -90,27 +92,21 @@ export const MedicalCasesCards = ({
                   inline={true}
                   spaceBetween={true}
                   label="Предъявлено"
-                  value={`${medicalCase.amountBilled} ₽`}
+                  value={formatCurrency(medicalCase.amountBilled)}
                 />
                 <CardField
                   inline={true}
                   spaceBetween={true}
                   label="Принято"
-                  value={
-                    medicalCase.approvedAmount
-                      ? `${medicalCase.approvedAmount} ₽`
-                      : "-"
-                  }
+                  value={formatCurrency(medicalCase.approvedAmount)}
                 />
                 <CardField
                   inline={true}
                   spaceBetween={true}
                   label="Принято СМО"
-                  value={
-                    medicalCase.insuranceCompanyApprovedAmount
-                      ? `${medicalCase.insuranceCompanyApprovedAmount} ₽`
-                      : "-"
-                  }
+                  value={formatCurrency(
+                    medicalCase.insuranceCompanyApprovedAmount,
+                  )}
                 />
               </div>
             </div>

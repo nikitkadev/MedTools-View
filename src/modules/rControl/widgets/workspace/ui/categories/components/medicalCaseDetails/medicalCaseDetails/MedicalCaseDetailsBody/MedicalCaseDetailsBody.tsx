@@ -2,6 +2,7 @@ import { Skeleton } from "@mui/material";
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
 import type { MedicalCaseDetailsDto } from "../../../../../../model/types/categories/medicalCases/GetMedicalCaseDetailsResult";
 import dayjs from "dayjs";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 
 interface MedicalCaseDetailsBodyProps {
   medicalCaseDetails: MedicalCaseDetailsDto;
@@ -188,7 +189,7 @@ export const MedicalCaseDetailsBody = ({
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Количество"
-                value={medicalCaseDetails.paidUnits ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.paidUnits)}
                 inline={true}
               />
               <CardField
@@ -200,12 +201,12 @@ export const MedicalCaseDetailsBody = ({
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Цель посещения"
-                value={medicalCaseDetails.visitPurpose ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.visitPurpose)}
                 inline={true}
               />
               <CardField
                 label="Уровень ЛПУ"
-                value={medicalCaseDetails.facilityLevel ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.facilityLevel)}
                 inline={true}
               />
             </div>
@@ -229,12 +230,12 @@ export const MedicalCaseDetailsBody = ({
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Профиль койки"
-                value={medicalCaseDetails.bedProfile ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.bedProfile)}
                 inline={true}
               />
               <CardField
                 label="Масса тела (кг)"
-                value={medicalCaseDetails.weight ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.weight)}
                 inline={true}
               />
             </div>
@@ -292,14 +293,14 @@ export const MedicalCaseDetailsBody = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Первичный диагноз"
-                value={medicalCaseDetails.initialDiagnosis ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.initialDiagnosis)}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Характер основного заболевания"
-                value={medicalCaseDetails.diseaseCharacter ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.diseaseCharacter)}
                 inline={true}
               />
             </div>
@@ -312,19 +313,19 @@ export const MedicalCaseDetailsBody = ({
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Подразделение"
-                value={medicalCaseDetails.department ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.department)}
                 inline={true}
               />
               <CardField
                 label="Отделение"
-                value={medicalCaseDetails.departmentCode ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.departmentCode)}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Комментарий"
-                value={medicalCaseDetails.internalComment ?? "—"}
+                value={formatNullableValue(medicalCaseDetails.internalComment)}
                 inline={true}
               />
             </div>

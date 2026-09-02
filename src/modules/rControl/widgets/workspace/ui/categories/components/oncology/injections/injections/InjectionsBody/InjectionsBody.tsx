@@ -1,6 +1,8 @@
 import type { InjectionDto } from "../../../../../../../model/types/categories/oncology/GetInjectionsResult";
 import { TableSkeleton } from "../../../../../../../../../../../shared/ui/TableSkeleton/TableSkeleton";
-import dayjs from "dayjs";
+import { formatNullableValue } from "../../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatCurrency } from "../../../../../../../../../../../shared/helpers/formatCurrency";
+import { formatDate } from "../../../../../../../../../../../shared/helpers/formatDate";
 
 interface InjectionsBodyProps {
   injections: InjectionDto[];
@@ -31,14 +33,12 @@ export const InjectionsBody = ({
           ) : (
             injections.map((injection) => (
               <tr key={injection.injectionUid} className="noneHover">
-                <td>
-                  {dayjs(injection.administrationDate).format("DD.MM.YYYY")}
-                </td>
-                <td>{injection.administeredQuantity ?? "-"}</td>
-                <td>{injection.consumedQuantity ?? "-"}</td>
-                <td>{injection.unitCost ?? "-"}</td>
-                <td>{injection.administeredCost ?? "-"}</td>
-                <td>{injection.consumedCost ?? "-"}</td>
+                <td>{formatDate(injection.administrationDate)}</td>
+                <td>{formatNullableValue(injection.administeredQuantity)}</td>
+                <td>{formatNullableValue(injection.consumedQuantity)}</td>
+                <td>{formatCurrency(injection.unitCost)}</td>
+                <td>{formatCurrency(injection.administeredCost)}</td>
+                <td>{formatCurrency(injection.consumedCost)}</td>
                 <td>
                   {injection.isReductionApplied === null
                     ? "-"

@@ -15,6 +15,7 @@ export const getInvoiceListItems = async (
       month: params.month,
       page: params.page + 1,
       pageSize: params.pageSize,
+      searchString: params.searchString,
       targetDb: params.targetDb,
     },
   });

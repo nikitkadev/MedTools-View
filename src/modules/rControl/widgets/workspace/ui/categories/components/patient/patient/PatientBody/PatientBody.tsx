@@ -1,7 +1,8 @@
 import type { PatientDto } from "../../../../../../model/types/categories/patient/GetPatientResult";
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
 import { Skeleton } from "@mui/material";
-import dayjs from "dayjs";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatDate } from "../../../../../../../../../../shared/helpers/formatDate";
 
 interface PatientBodyProps {
   patient: PatientDto;
@@ -94,9 +95,6 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
       ) : (
         <div className="cardLineGroup">
           <div className="cardLine">
-            <div className="cardLineHeader">
-              <h3>ОСНОВНОЕ</h3>
-            </div>
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Фамилия"
@@ -105,7 +103,9 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
               />
               <CardField
                 label="Фамилия представителя"
-                value={patient.patientRepresentativeLastName ?? "—"}
+                value={formatNullableValue(
+                  patient.patientRepresentativeLastName,
+                )}
                 inline={true}
               />
             </div>
@@ -117,7 +117,9 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
               />
               <CardField
                 label="Имя представителя"
-                value={patient.patientRepresentativeFirstName ?? "—"}
+                value={formatNullableValue(
+                  patient.patientRepresentativeFirstName,
+                )}
                 inline={true}
               />
             </div>
@@ -129,7 +131,9 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
               />
               <CardField
                 label="Отчество представителя"
-                value={patient.patientRepresentativeMiddleName ?? "—"}
+                value={formatNullableValue(
+                  patient.patientRepresentativeMiddleName,
+                )}
                 inline={true}
               />
             </div>
@@ -138,18 +142,12 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
             <div className="cardBlockLineTwoGrid">
               <CardField
                 label="Дата рождения"
-                value={dayjs(patient.patientBirthDate).format("DD.MM.YYYY")}
+                value={formatDate(patient.patientBirthDate)}
                 inline={true}
               />
               <CardField
                 label="Дата рождения представителя"
-                value={
-                  patient.patientRepresentativeBirthday
-                    ? dayjs(patient.patientRepresentativeBirthday).format(
-                        "DD.MM.YYYY",
-                      )
-                    : "—"
-                }
+                value={formatDate(patient.patientRepresentativeBirthday)}
                 inline={true}
               />
             </div>
@@ -157,7 +155,7 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
               <CardField label="Пол" value={patient.patientSex} inline={true} />
               <CardField
                 label="Пол представителя"
-                value={patient.patientRepresentativeSex ?? "—"}
+                value={formatNullableValue(patient.patientRepresentativeSex)}
                 inline={true}
               />
             </div>
@@ -169,21 +167,21 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Тип"
-                value={`${patient.documentTypeCode ? patient.documentTypeCode + ": " : "—"}${patient.documentTypeName}`}
+                value={`${formatNullableValue(patient.documentTypeCode)} ${patient.documentTypeName}`}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Серия"
-                value={patient.documentSeries ?? "—"}
+                value={formatNullableValue(patient.documentSeries)}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Номер"
-                value={patient.documentNumber ?? "-"}
+                value={formatNullableValue(patient.documentNumber)}
                 inline={true}
               />
             </div>
@@ -192,18 +190,14 @@ export const PatientBody = ({ patient, isPending }: PatientBodyProps) => {
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Дата выдачи"
-                value={
-                  patient.documentIssueDate
-                    ? dayjs(patient.documentIssueDate).format("DD.MM.YYYY")
-                    : "—"
-                }
+                value={formatDate(patient.documentIssueDate)}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Кем выдан"
-                value={patient.issuedBy ?? "—"}
+                value={formatNullableValue(patient.issuedBy)}
                 inline={true}
               />
             </div>

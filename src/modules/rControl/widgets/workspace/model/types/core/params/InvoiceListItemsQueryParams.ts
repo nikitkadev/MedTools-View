@@ -7,4 +7,5 @@ export interface InvoiceListItemsQueryParams {
   page: number;
   pageSize: number;
   targetDb: TargetDbType | null;
+  searchString: string;
 }

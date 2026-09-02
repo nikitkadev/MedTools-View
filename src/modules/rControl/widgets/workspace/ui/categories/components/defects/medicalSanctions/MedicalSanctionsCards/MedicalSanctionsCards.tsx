@@ -3,6 +3,9 @@ import { CardField } from "../../../../../../../../../../shared/ui/CardField/Car
 import { Skeleton } from "@mui/material";
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
+import { formatCurrency } from "../../../../../../../../../../shared/helpers/formatCurrency";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatDate } from "../../../../../../../../../../shared/helpers/formatDate";
 
 interface MedicalSanctionsBodyProps {
   medicalSanctions: MedicalSanctionDto[];
@@ -145,7 +148,7 @@ export const MedicalSanctionsCards = ({
                       <div className="cardBlockLineTwoGrid">
                         <CardField
                           label="Сумма"
-                          value={`${medicalSanction.sanctionAmount} ₽`}
+                          value={formatCurrency(medicalSanction.sanctionAmount)}
                           inline={true}
                         />
                         <CardField
@@ -189,25 +192,19 @@ export const MedicalSanctionsCards = ({
                     <div className="cardBlockLineTwoGrid">
                       <CardField
                         label="Месяц"
-                        value={medicalSanction.month ?? "—"}
+                        value={formatNullableValue(medicalSanction.month)}
                         inline={true}
                       />
                       <CardField
                         label="Год"
-                        value={medicalSanction.year ?? "—"}
+                        value={formatNullableValue(medicalSanction.year)}
                         inline={true}
                       />
                     </div>
                     <div className="cardBlockLineOneGrid">
                       <CardField
                         label="Дата загрузки"
-                        value={
-                          medicalSanction.uploadDate
-                            ? dayjs(medicalSanction.uploadDate).format(
-                                "DD.MM.YYYY",
-                              )
-                            : "—"
-                        }
+                        value={formatDate(medicalSanction.uploadDate)}
                         inline={true}
                       />
                     </div>
@@ -226,14 +223,14 @@ export const MedicalSanctionsCards = ({
                     <div className="cardBlockLineOneGrid">
                       <CardField
                         label="Код врача"
-                        value={medicalSanction.expertCode ?? "—"}
+                        value={formatNullableValue(medicalSanction.expertCode)}
                         inline={true}
                       />
                     </div>
                     <div className="cardBlockLineOneGrid">
                       <CardField
                         label="Комментарий"
-                        value={medicalSanction.comment ?? "—"}
+                        value={formatNullableValue(medicalSanction.comment)}
                         inline={true}
                       />
                     </div>

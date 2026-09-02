@@ -2,6 +2,8 @@ import type { CompletedCaseDetailsDto } from "../../../../../../model/types/cate
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
 import { Skeleton } from "@mui/material";
 import dayjs from "dayjs";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
+import { formatDate } from "../../../../../../../../../../shared/helpers/formatDate";
 
 interface CompletedCaseDetailsBodyProps {
   completedCaseDetails: CompletedCaseDetailsDto;
@@ -162,31 +164,25 @@ export const CompletedCaseDetailsBody = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Код направившей МО"
-                value={
-                  completedCaseDetails.referringMedicalOrganizationCode ?? "—"
-                }
+                value={formatNullableValue(
+                  completedCaseDetails.referringMedicalOrganizationCode,
+                )}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Наименование направившей МО"
-                value={
-                  completedCaseDetails.referringMedicalOrganizationName ?? "—"
-                }
+                value={formatNullableValue(
+                  completedCaseDetails.referringMedicalOrganizationName,
+                )}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Дата направления"
-                value={
-                  completedCaseDetails.referralDate
-                    ? dayjs(completedCaseDetails.referralDate).format(
-                        "DD.MM.YYYY",
-                      )
-                    : "—"
-                }
+                value={formatDate(completedCaseDetails.referralDate)}
                 inline={true}
               />
             </div>
@@ -240,7 +236,9 @@ export const CompletedCaseDetailsBody = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Койко-дни / пациенто-дни"
-                value={completedCaseDetails.hospitalizationDuration ?? "—"}
+                value={formatNullableValue(
+                  completedCaseDetails.hospitalizationDuration,
+                )}
                 inline={true}
               />
             </div>
@@ -278,7 +276,9 @@ export const CompletedCaseDetailsBody = ({
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Результат диспансеризации"
-                value={completedCaseDetails.screeningResult ?? "—"}
+                value={formatNullableValue(
+                  completedCaseDetails.screeningResult,
+                )}
                 inline={true}
               />
             </div>

@@ -1,3 +1,4 @@
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 import { TableSkeleton } from "../../../../../../../../../../shared/ui/TableSkeleton/TableSkeleton";
 import type { DefectDto } from "../../../../../../model/types/categories/defects/GetDefectsResult";
 
@@ -31,7 +32,7 @@ export const DefectsBody = ({
             ) : (
               defects.map((defect) => (
                 <tr key={defect.defectUid} className="noneHover">
-                  <td>{defect.code ?? "-"}</td>
+                  <td>{formatNullableValue(defect.code)}</td>
                   <td>{defect.comment}</td>
                 </tr>
               ))

@@ -20,6 +20,7 @@ export const useCompletedCaseListItemsQuery = (
         page: params.page,
         pageSize: params.pageSize,
         targetDb: params.targetDb,
+        searchString: params.searchString,
       });
     },
   });

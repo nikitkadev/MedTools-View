@@ -1,6 +1,7 @@
 import { Skeleton } from "@mui/material";
 import { CardField } from "../../../../../../../../../../shared/ui/CardField/CardField";
 import type { InsuranceDto } from "../../../../../../model/types/categories/patient/GetInsuranceResult";
+import { formatNullableValue } from "../../../../../../../../../../shared/helpers/formatNullableValue";
 
 interface InsuranceBodyProps {
   insurance: InsuranceDto;
@@ -73,14 +74,14 @@ export const InsuranceBody = ({ insurance, isPending }: InsuranceBodyProps) => {
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Реестровый номер СМО"
-                value={insurance.insuranceCompanyCode ?? "—"}
+                value={formatNullableValue(insurance.insuranceCompanyCode)}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Наименование СМО"
-                value={insurance.insuranceCompanyName ?? "—"}
+                value={formatNullableValue(insurance.insuranceCompanyName)}
                 inline={true}
               />
             </div>
@@ -89,14 +90,14 @@ export const InsuranceBody = ({ insurance, isPending }: InsuranceBodyProps) => {
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="ОГРН"
-                value={insurance.ogrn ?? "—"}
+                value={formatNullableValue(insurance.ogrn)}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="ОКАТО"
-                value={insurance.okato ?? "—"}
+                value={formatNullableValue(insurance.okato)}
                 inline={true}
               />
             </div>
@@ -105,21 +106,23 @@ export const InsuranceBody = ({ insurance, isPending }: InsuranceBodyProps) => {
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Номер полиса (старый)"
-                value={insurance.insurancePolicyUnifiedNumber ?? "—"}
+                value={formatNullableValue(
+                  insurance.insurancePolicyUnifiedNumber,
+                )}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Номер полиса (новый)"
-                value={insurance.insurancePolicyNumber ?? "—"}
+                value={formatNullableValue(insurance.insurancePolicyNumber)}
                 inline={true}
               />
             </div>
             <div className="cardBlockLineOneGrid">
               <CardField
                 label="Серия полиса"
-                value={insurance.insurancePolicySeries ?? "—"}
+                value={formatNullableValue(insurance.insurancePolicySeries)}
                 inline={true}
               />
             </div>

@@ -1,3 +1,5 @@
+import { formatCurrency } from "../../../../../../../../shared/helpers/formatCurrency";
+import { formatNullableValue } from "../../../../../../../../shared/helpers/formatNullableValue";
 import { TableSkeleton } from "../../../../../../../../shared/ui/TableSkeleton/TableSkeleton";
 import type { CompletedCaseListItemDto } from "../../../../model/types/core/results/GetCompletedCaseListItemsResult";
 
@@ -69,11 +71,15 @@ export const CompletedCasesTableBody = ({
                 <td>{completedCase.patientFirstName}</td>
                 <td>{completedCase.patientMiddleName}</td>
                 <td>{completedCase.medicalCareConditions}</td>
-                <td>{completedCase.insurancePolicySeries ?? "-"}</td>
+                <td>
+                  {formatNullableValue(completedCase.insurancePolicySeries)}
+                </td>
                 <td>{completedCase.insurancePolicyNumber}</td>
-                <td>{completedCase.amountBilled}</td>
-                <td>{completedCase.approvedAmount ?? "-"}</td>
-                <td>{completedCase.insuranceCompanyApprovedAmount ?? "-"}</td>
+                <td>{formatCurrency(completedCase.amountBilled)}</td>
+                <td>{formatCurrency(completedCase.approvedAmount)}</td>
+                <td>
+                  {formatCurrency(completedCase.insuranceCompanyApprovedAmount)}
+                </td>
               </tr>
             ))
           )}

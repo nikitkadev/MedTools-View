@@ -10,11 +10,12 @@ import styles from "./styles.module.scss";
 
 export const CompletedCasesTableRoot = () => {
   const {
-    completedCasesTablePagination,
-    setCompletedCasesTablePagination,
     selectedInvoiceUid,
     selectedCompletedCaseUid,
+    completedCasesTablePagination,
+    completedCasesTableSearchString,
     selectCompletedCase,
+    setCompletedCasesTablePagination,
   } = useWorkspaceStore();
 
   const { targetDb } = useFiltersStore();
@@ -32,6 +33,7 @@ export const CompletedCasesTableRoot = () => {
     page: completedCasesTablePagination.page,
     pageSize: completedCasesTablePagination.pageSize,
     targetDb: targetDb,
+    searchString: completedCasesTableSearchString,
   });
 
   const onPageChange = (
