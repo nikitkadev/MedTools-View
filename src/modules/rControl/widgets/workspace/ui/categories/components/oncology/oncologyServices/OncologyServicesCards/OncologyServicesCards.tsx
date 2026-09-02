@@ -108,7 +108,7 @@ export const OncologyServicesCards = ({
                     <CardField
                       inline={true}
                       label="Тип лучевой терапии"
-                      value={oncologyService.drugTherapyCycle ?? "—"}
+                      value={oncologyService.radiotherapyType ?? "—"}
                     />
                   </div>
                 </div>
