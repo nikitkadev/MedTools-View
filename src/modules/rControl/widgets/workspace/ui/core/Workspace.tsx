@@ -2,11 +2,15 @@ import { CompletedCasesTableRoot } from "./CompletedCasesTable/CompletedCasesTab
 import { MedicalCasesSection } from "./MedicalCases/MedicalCasesSection/MedicalCasesSection";
 import { InvoicesTableRoot } from "./InvoicesTable/InvoicesTableRoot/InvoicesTableRoot";
 import styles from "./styles.module.scss";
+import { InvoiceSummaryRoot } from "./InvoiceSummary/InvoiceSummaryRoot";
 
 export const Workspace = () => {
   return (
     <section className={styles.workspaceRoot}>
-      <InvoicesTableRoot />
+      <div className={styles.invoicesGroup}>
+        <InvoicesTableRoot />
+        <InvoiceSummaryRoot />
+      </div>
       <CompletedCasesTableRoot />
       <MedicalCasesSection />
     </section>
