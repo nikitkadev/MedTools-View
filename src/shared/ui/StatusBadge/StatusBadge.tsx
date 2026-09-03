@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import type { DataState } from "../../types/DataState";
 import styles from "./styles.module.scss";
 
@@ -35,7 +36,21 @@ export const StatusBadge = ({ state }: StatusBadgeProps) => {
 
   return (
     <div className={`${styles.badge} ${config.className}`}>
-      <p className={styles.text}>{config.text ?? "None"}</p>
+      {state === "loading" && (
+        <CircularProgress
+          aria-label="Загрузка ..."
+          size={13}
+          sx={{ color: "var(--blue)" }}
+        />
+      )}
+      {state === 'fetching' && (
+        <CircularProgress
+          aria-label="Загрузка ..."
+          size={13}
+          sx={{ color: "var(--violet)" }}
+        />
+      )}
+      <p className={styles.text}>{config.text ?? "Неизвестно"}</p>
     </div>
   );
 };

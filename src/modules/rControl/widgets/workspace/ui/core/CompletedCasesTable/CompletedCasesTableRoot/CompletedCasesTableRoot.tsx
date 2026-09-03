@@ -65,6 +65,7 @@ export const CompletedCasesTableRoot = () => {
     isError: isError,
     isLoading: isLoading,
     isSuccess: isSuccess,
+    isFetching: isFetching,
   });
 
   return (

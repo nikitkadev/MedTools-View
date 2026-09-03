@@ -5,14 +5,14 @@ import {
   type LazyExoticComponent,
 } from "react";
 import type { CategoryId } from "../../../../model/types/categories/CategoryId";
+import CategoryFallback from "../../components/default/CategoryFallback/CategoryFallback";
 
 const DefaultCategory = lazy(
   () => import("../../components/default/CategoryDefault/CategoryDefault"),
 );
 
 const Patient = lazy(
-  () =>
-    import("../../components/patient/PatientCategoryRoot"),
+  () => import("../../components/patient/PatientCategoryRoot"),
 );
 const MedicalCaseDetails = lazy(
   () =>
@@ -30,8 +30,7 @@ const ProvidedServices = lazy(
     import("../../components/providedServices/ProvidedServicesCategoryRoot"),
 );
 const Defects = lazy(
-  () =>
-    import("../../components/defects/DefectsCategoryRoot"),
+  () => import("../../components/defects/DefectsCategoryRoot"),
 );
 
 const categoryMap = {
@@ -52,7 +51,7 @@ interface CategoryRenderProps {
 export const CategoryRender = ({ targetCategory }: CategoryRenderProps) => {
   const CategoryComponent = categoryMap[targetCategory];
   return (
-    <Suspense fallback={<div>Пока пук</div>}>
+    <Suspense fallback={<CategoryFallback />}>
       <CategoryComponent />
     </Suspense>
   );

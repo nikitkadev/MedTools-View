@@ -68,9 +68,10 @@ export const InvoicesTableRoot = () => {
       selectedBillingYear !== null &&
       selectedBillingMonth !== null &&
       targetDb !== null,
-    isError,
-    isLoading,
-    isSuccess,
+    isLoading: isLoading,
+    isFetching: isFetching,
+    isError: isError,
+    isSuccess: isSuccess,
     isEmpty: invoices.length === 0,
   });
 
