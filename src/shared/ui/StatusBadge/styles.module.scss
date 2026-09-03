@@ -7,6 +7,7 @@
   font-weight: var(--fw-semibold);
 
   padding: var(--space-2) var(--space-4);
+  gap: var(--space-3);
   border-radius: var(--radius-l);
 }
 
@@ -14,4 +15,14 @@
 .waiting {
   background-color: var(--gray-200);
   color: var(--gray-900);
+}
+
+.loading {
+  background-color: var(--blue-opacity);
+  color: var(--blue);
+}
+
+.fetching {
+  background-color: var(--violet-opacity);
+  color: var(--violet);
 }

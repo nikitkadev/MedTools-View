@@ -29,7 +29,7 @@ export const ConsultationsListRoot = () => {
 
   return (
     <section className={styles.consultationsListRoot}>
-      <ConsultationsListHeader dataState={dataState} />
+      <ConsultationsListHeader />
       {dataState === "error" ? (
         <DataState
           title="Ошибка данных"
