@@ -1,0 +1,79 @@
+.filtersPanelRoot {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xxl);
+  background: var(--card-background);
+
+  .filtersPanelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-10);
+
+    h2 {
+      font-size: var(--fs-h3);
+    }
+  }
+
+  .filtersList {
+    padding: var(--space-5);
+    padding-top: 0;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+
+      padding: var(--space-3) var(--space-5);
+      border-radius: var(--radius-l);
+      border: 4px solid transparent;
+
+      transition: 0.1s ease;
+
+      .namingGroup {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+
+        p {
+          font-size: var(--fs-body);
+          font-weight: var(--fw-semibold);
+        }
+      }
+
+      .counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: var(--fs-body2);
+        font-weight: var(--fw-semibold);
+
+        padding: var(--space-3) var(--space-4);
+        background-color: var(--gray-200);
+        border-radius: var(--radius-l);
+      }
+    }
+
+    li:hover {
+      background-color: var(--list-background-hover);
+
+      cursor: pointer;
+    }
+  }
+
+  .actionsField {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: var(--space-5);
+  }
+}

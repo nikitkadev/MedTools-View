@@ -1,0 +1,5 @@
+import { FiltersRoot } from "../widgets/ui/filters/components/FiltersRoot/FiltersRoot";
+
+export const MedView = () => {
+  return <FiltersRoot />;
+};
