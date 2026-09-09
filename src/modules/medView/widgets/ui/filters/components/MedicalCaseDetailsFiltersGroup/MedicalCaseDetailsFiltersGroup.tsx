@@ -1,4 +1,4 @@
-import { MedViewFilterStandartInput } from "../../../../../../../shared/ui/inputs/MedViewFilterStandartInput/MedViewFilterStandartInput";
+import { MedViewFilterStandartInput } from "../../../../../../../shared/ui/medView/inputs/MedViewFilterStandartInput/MedViewFilterStandartInput";
 import styles from "./styles.module.scss";
 
 const MedicalCaseDetailsFiltersGroup = () => {
