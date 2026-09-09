@@ -1,12 +1,15 @@
+import { useMedViewStore } from "../../../../model/stores/useMedViewStore";
 import { FiltersGroupRender } from "../../render/FilterRender/FiltersGroupRender";
 import { FiltersPanel } from "../FiltersPanel/FiltersPanel";
 import styles from "./styles.module.scss";
 
 export const FiltersRoot = () => {
+  const { selectedfilterGroupId } = useMedViewStore();
+
   return (
     <section className={styles.filtersRoot}>
       <FiltersPanel />
-      <FiltersGroupRender filterGroupId="none" />
+      <FiltersGroupRender filterGroupId={selectedfilterGroupId} />
     </section>
   );
 };

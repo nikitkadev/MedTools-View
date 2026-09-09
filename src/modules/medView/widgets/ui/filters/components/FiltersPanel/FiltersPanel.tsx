@@ -1,59 +1,54 @@
-import { Divider } from "../../../../../../../components/ui/Divider/Divider";
 import { AppButton } from "../../../../../../../components/ui/AppButton/AppButton";
+import { Divider } from "../../../../../../../components/ui/Divider/Divider";
+import { useMedViewStore } from "../../../../model/stores/useMedViewStore";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.scss";
 
 export const FiltersPanel = () => {
+  const { selectedfilterGroupId, selectFilterGroup } = useMedViewStore();
+
   return (
     <section className={styles.filtersPanelRoot}>
-      <header className={styles.filtersPanelHeader}>
-        <h2>Фильтры</h2>
-      </header>
       <div className={styles.filtersList}>
+        <header className={styles.filtersListHeader}>
+          <h2>Фильтры</h2>
+        </header>
         <ul>
-          <li>
+          <li
+            className={
+              selectedfilterGroupId === "persons"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("persons")}
+          >
             <div className={styles.namingGroup}>
               <AddIcon />
-              <p>Основное</p>
+              <p>Персональные данные</p>
             </div>
           </li>
-          <li>
+          <li
+            className={
+              selectedfilterGroupId === "case-details"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("case-details")}
+          >
             <div className={styles.namingGroup}>
               <AddIcon />
-              <p>Онкология</p>
-            </div>
-          </li>
-          <li>
-            <div className={styles.namingGroup}>
-              <AddIcon />
-              <p>Персональная данные</p>
-            </div>
-          </li>
-          <li>
-            <div className={styles.namingGroup}>
-              <AddIcon />
-              <p>МКБ</p>
-            </div>
-          </li>
-          <li>
-            <div className={styles.namingGroup}>
-              <AddIcon />
-              <p>Диспансеризация</p>
-            </div>
-          </li>
-          <li>
-            <div className={styles.namingGroup}>
-              <AddIcon />
-              <p>Дополнительно</p>
+              <p>Детали медицинского случая</p>
             </div>
           </li>
         </ul>
       </div>
-      <Divider />
-      <div className={styles.actionsField}>
-        <AppButton size="md" variant="secondary">
-          Сбросить фильтры
-        </AppButton>
+      <div className={styles.footer}>
+        <Divider />
+        <div className={styles.actionsField}>
+          <AppButton size="md" variant="secondary">
+            Сбросить фильтры
+          </AppButton>
+        </div>
       </div>
     </section>
   );
