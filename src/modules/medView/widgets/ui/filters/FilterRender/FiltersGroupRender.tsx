@@ -1,40 +1,34 @@
-import {
-  lazy,
-  Suspense,
-  type ComponentType,
-  type LazyExoticComponent,
-} from "react";
+import type { SetStateAction } from "react";
 import type { FilterGroupId } from "../../../model/types/FilterId";
-
-const None = lazy(() => import("../groups/NoneFiltersGroup/NoneFiltersGroup"));
-
-const PersonGroup = lazy(
-  () => import("../groups/PersonFiltersGroup/PersonFiltersGroupRoot"),
-);
-
-const MedicalCaseDetails = lazy(
-  () =>
-    import("../groups/MedicalCaseDetailsFiltersGroup/MedicalCaseDetailsFiltersGroup"),
-);
-
-const filterGroupMap = {
-  none: None,
-  persons: PersonGroup,
-  "case-details": MedicalCaseDetails,
-} satisfies Record<FilterGroupId, LazyExoticComponent<ComponentType>>;
+import type { FiltersDraft } from "../../../model/types/FiltersDraft";
+import NoneFiltersGroup from "../groups/NoneFiltersGroup/NoneFiltersGroup";
+import PersonFiltersGroupRoot from "../groups/PersonFiltersGroup/PersonFiltersGroup";
 
 interface FiltersGroupRenderProps {
   filterGroupId: FilterGroupId;
+  filtersDraft: FiltersDraft;
+  setFiltersDraft: React.Dispatch<SetStateAction<FiltersDraft>>;
 }
 
 export const FiltersGroupRender = ({
   filterGroupId,
+  filtersDraft,
+  setFiltersDraft,
 }: FiltersGroupRenderProps) => {
-  const FilterGroupComponent = filterGroupMap[filterGroupId];
-
-  return (
-    <Suspense fallback={<div>Пока пук вернулся</div>}>
-      <FilterGroupComponent />
-    </Suspense>
-  );
+  switch (filterGroupId) {
+    case "none":
+      return <NoneFiltersGroup />;
+    case "persons":
+      return (
+        <PersonFiltersGroupRoot
+          personFiltersGroupDraft={filtersDraft.person}
+          setPersonFiltersGroupDraft={(person) =>
+            setFiltersDraft((prev) => ({
+              ...prev,
+              person,
+            }))
+          }
+        />
+      );
+  }
 };

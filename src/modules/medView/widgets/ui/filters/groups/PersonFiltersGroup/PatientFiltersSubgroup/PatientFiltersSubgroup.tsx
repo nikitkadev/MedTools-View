@@ -1,18 +1,22 @@
 import type { Dayjs } from "dayjs";
 import type { Sex } from "../../../../../model/types/Sex";
+import type { PatientFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewDefaultInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
 import { MedViewSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewSelectInput/MedViewSelectInput";
-import { useState } from "react";
 import styles from "../styles.module.scss";
 
-export const PatientFiltersSubgroup = () => {
-  const [patientLastName, setPatientLastName] = useState<string>("");
-  const [patientFirstName, setPatientFirstName] = useState<string>("");
-  const [patientMiddleName, setPatientMiddleName] = useState<string>("");
-  const [patientBirthDate, setPatientBirthDate] = useState<Dayjs | null>(null);
-  const [patientSex, setPatientSex] = useState<Sex | null>(null);
+interface PatientFiltersSubgroupProps {
+  patientFiltersSubgroupDraft: PatientFiltersSubgroupDraft;
+  setPatientFiltersSubgroupDraft: (
+    patientFilters: PatientFiltersSubgroupDraft,
+  ) => void;
+}
 
+export const PatientFiltersSubgroup = ({
+  patientFiltersSubgroupDraft,
+  setPatientFiltersSubgroupDraft,
+}: PatientFiltersSubgroupProps) => {
   return (
     <div className={styles.patientSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -24,24 +28,41 @@ export const PatientFiltersSubgroup = () => {
           <MedViewDefaultInput
             label="Фамилия"
             placeholder="Иванов"
-            handleInputChange={setPatientLastName}
-            value={patientLastName}
+            value={patientFiltersSubgroupDraft.lastName}
+            handleInputChange={(newValue: string) =>
+              setPatientFiltersSubgroupDraft({
+                ...patientFiltersSubgroupDraft,
+                lastName: newValue,
+              })
+            }
           />
         </div>
+
         <div className={styles.span4}>
           <MedViewDefaultInput
             label="Имя"
             placeholder="Иван"
-            handleInputChange={setPatientFirstName}
-            value={patientFirstName}
+            value={patientFiltersSubgroupDraft.firstName}
+            handleInputChange={(newValue: string) =>
+              setPatientFiltersSubgroupDraft({
+                ...patientFiltersSubgroupDraft,
+                firstName: newValue,
+              })
+            }
           />
         </div>
+
         <div className={styles.span4}>
           <MedViewDefaultInput
             label="Отчество"
             placeholder="Иванович"
-            handleInputChange={setPatientMiddleName}
-            value={patientMiddleName}
+            value={patientFiltersSubgroupDraft.middleName}
+            handleInputChange={(newValue: string) =>
+              setPatientFiltersSubgroupDraft({
+                ...patientFiltersSubgroupDraft,
+                middleName: newValue,
+              })
+            }
           />
         </div>
       </div>
@@ -50,20 +71,30 @@ export const PatientFiltersSubgroup = () => {
         <div className={styles.span2}>
           <MedViewDateInput
             label="Дата рождения"
-            value={patientBirthDate}
-            handleDateInputChange={setPatientBirthDate}
+            value={patientFiltersSubgroupDraft.birthDate}
+            handleDateInputChange={(newValue: Dayjs | null) =>
+              setPatientFiltersSubgroupDraft({
+                ...patientFiltersSubgroupDraft,
+                birthDate: newValue,
+              })
+            }
           />
         </div>
 
         <div className={styles.span2}>
           <MedViewSelectInput
             label="Пол"
-            onChange={setPatientSex}
+            value={patientFiltersSubgroupDraft.sex ?? ""}
+            onChange={(newValue: Sex | null) =>
+              setPatientFiltersSubgroupDraft({
+                ...patientFiltersSubgroupDraft,
+                sex: newValue,
+              })
+            }
             options={[
               { label: "Мужской", value: "male" },
               { label: "Женский", value: "female" },
             ]}
-            value={patientSex ?? ""}
           />
         </div>
       </div>

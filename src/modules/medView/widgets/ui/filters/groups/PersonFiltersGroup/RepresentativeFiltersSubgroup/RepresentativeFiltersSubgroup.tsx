@@ -3,20 +3,20 @@ import type { Sex } from "../../../../../model/types/Sex";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewDefaultInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
 import { MedViewSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewSelectInput/MedViewSelectInput";
-import { useState } from "react";
 import styles from "../styles.module.scss";
+import type { RepresentativeFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
 
-export const RepresentativeFiltersSubgroup = () => {
-  const [representativeLastName, setRepresentativeLastName] =
-    useState<string>("");
-  const [representativeFirstName, setRepresentativeFirstName] =
-    useState<string>("");
-  const [representativeMiddleName, setRepresentativeMiddleName] =
-    useState<string>("");
-  const [representativeBirthDate, setRepresentativeBirthDate] =
-    useState<Dayjs | null>(null);
-  const [representativeSex, setRepresentativeSex] = useState<Sex | null>(null);
+interface RepresentativeFiltersSubgroupProps {
+  representativeFiltersSubgroupDraft: RepresentativeFiltersSubgroupDraft;
+  setRepresentativeFiltersSubgroupDraft: (
+    representativeFilters: RepresentativeFiltersSubgroupDraft,
+  ) => void;
+}
 
+export const RepresentativeFiltersSubgroup = ({
+  representativeFiltersSubgroupDraft,
+  setRepresentativeFiltersSubgroupDraft,
+}: RepresentativeFiltersSubgroupProps) => {
   return (
     <div className={styles.representativeSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -28,24 +28,39 @@ export const RepresentativeFiltersSubgroup = () => {
           <MedViewDefaultInput
             label="Фамилия"
             placeholder="Иванов"
-            value={representativeLastName}
-            handleInputChange={setRepresentativeLastName}
+            value={representativeFiltersSubgroupDraft.lastName}
+            handleInputChange={(newValue: string) =>
+              setRepresentativeFiltersSubgroupDraft({
+                ...representativeFiltersSubgroupDraft,
+                lastName: newValue,
+              })
+            }
           />
         </div>
         <div className={styles.span4}>
           <MedViewDefaultInput
             label="Имя"
             placeholder="Иван"
-            value={representativeFirstName}
-            handleInputChange={setRepresentativeFirstName}
+            value={representativeFiltersSubgroupDraft.firstName}
+            handleInputChange={(newValue: string) =>
+              setRepresentativeFiltersSubgroupDraft({
+                ...representativeFiltersSubgroupDraft,
+                firstName: newValue,
+              })
+            }
           />
         </div>
         <div className={styles.span4}>
           <MedViewDefaultInput
             label="Отчество"
             placeholder="Иванович"
-            value={representativeMiddleName}
-            handleInputChange={setRepresentativeMiddleName}
+            value={representativeFiltersSubgroupDraft.middleName}
+            handleInputChange={(newValue: string) =>
+              setRepresentativeFiltersSubgroupDraft({
+                ...representativeFiltersSubgroupDraft,
+                middleName: newValue,
+              })
+            }
           />
         </div>
       </div>
@@ -54,20 +69,30 @@ export const RepresentativeFiltersSubgroup = () => {
         <div className={styles.span2}>
           <MedViewDateInput
             label="Дата рождения"
-            value={representativeBirthDate}
-            handleDateInputChange={setRepresentativeBirthDate}
+            value={representativeFiltersSubgroupDraft.birthDate}
+            handleDateInputChange={(newValue: Dayjs | null) =>
+              setRepresentativeFiltersSubgroupDraft({
+                ...representativeFiltersSubgroupDraft,
+                birthDate: newValue,
+              })
+            }
           />
         </div>
 
         <div className={styles.span2}>
           <MedViewSelectInput
             label="Пол"
-            onChange={setRepresentativeSex}
+            value={representativeFiltersSubgroupDraft.sex ?? ""}
+            onChange={(newValue: Sex | null) =>
+              setRepresentativeFiltersSubgroupDraft({
+                ...representativeFiltersSubgroupDraft,
+                sex: newValue,
+              })
+            }
             options={[
               { label: "Мужской", value: "male" },
               { label: "Женский", value: "female" },
             ]}
-            value={representativeSex ?? ""}
           />
         </div>
       </div>
