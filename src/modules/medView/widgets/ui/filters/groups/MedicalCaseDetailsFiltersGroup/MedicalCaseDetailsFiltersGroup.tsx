@@ -1,7 +1,19 @@
+import type { MedicalCaseDetailsFiltersGroupDraft } from "../../../../model/types/FiltersDraft";
 import { MedViewFilterStandartInput } from "../../../../../../../shared/ui/medView/inputs/MedViewFilterStandartInput/MedViewFilterStandartInput";
 import styles from "./styles.module.scss";
+import { MedicalCaseDetailsFiltersSubgroup } from "./MedicalCaseDetailsFiltersSubgroup/MedicalCaseDetailsFiltersSubgroup";
 
-const MedicalCaseDetailsFiltersGroup = () => {
+interface MedicalCaseDetailsFiltersGroupProps {
+  medicalCaseDetailsFiltersGroupDraft: MedicalCaseDetailsFiltersGroupDraft;
+  setMedicalCaseDetailsFiltersGroupDraft: (
+    medicalCaseDetailsFiltersGroupDraft: MedicalCaseDetailsFiltersGroupDraft,
+  ) => void;
+}
+
+const MedicalCaseDetailsFiltersGroup = ({
+  medicalCaseDetailsFiltersGroupDraft,
+  setMedicalCaseDetailsFiltersGroupDraft,
+}: MedicalCaseDetailsFiltersGroupProps) => {
   return (
     <section className={styles.medicalCaseDetailsFiltersGroup}>
       <header className={styles.medicalCaseDetailsFiltersGroupHeader}>
@@ -13,87 +25,19 @@ const MedicalCaseDetailsFiltersGroup = () => {
           </p>
         </div>
       </header>
-      <div className={styles.medicalCaseDetailsSubgroup}>
-        <header className={styles.subgroupHeader}>
-          <h3>Детали медицинского случая</h3>
-        </header>
-        <div className={styles.groupLineGrid}>
-          <div className={styles.span6}>
-            <MedViewFilterStandartInput label="Профиль" placeholder="00" />
-          </div>
-          <div className={styles.span3}>
-            <MedViewFilterStandartInput
-              label="Профиль медицинской помощи"
-              placeholder="00"
-            />
-          </div>
-          <div className={styles.span3}>
-            <MedViewFilterStandartInput
-              label="Профиль койки"
-              placeholder="00"
-            />
-          </div>
-        </div>
 
-        <div className={styles.groupLineGrid}>
-          <div className={styles.span6}>
-            <MedViewFilterStandartInput
-              label="Структурное подразделение"
-              placeholder="190001"
-            />
-          </div>
-          <div className={styles.span6}>
-            <MedViewFilterStandartInput
-              label="Место обращения"
-              placeholder="00"
-            />
-          </div>
-        </div>
+      <MedicalCaseDetailsFiltersSubgroup
+        medicalCaseDetailsFiltersSubgroupDraft={
+          medicalCaseDetailsFiltersGroupDraft.medicalCaseDetails
+        }
+        setMedicalCaseDetailsFiltersSubgroupDraft={(medicalCaseDetails) =>
+          setMedicalCaseDetailsFiltersGroupDraft({
+            ...medicalCaseDetailsFiltersGroupDraft,
+            medicalCaseDetails: medicalCaseDetails,
+          })
+        }
+      />
 
-        <div className={styles.groupLineGrid}>
-          <div className={styles.span6}>
-            <MedViewFilterStandartInput
-              label="Цель посещения"
-              placeholder="00"
-            />
-          </div>
-          <div className={styles.span6}>
-            <MedViewFilterStandartInput
-              label="Место проведения профилактического мероприятия"
-              placeholder="Место проведения профилактического мероприятия"
-            />
-          </div>
-        </div>
-
-        <div className={styles.groupLineGrid}>
-          <div className={styles.span3}>
-            <MedViewFilterStandartInput
-              label="Период лечения"
-              placeholder="01.01.2001 — 01.02.2001"
-            />
-          </div>
-          <div className={styles.span3}>
-            <MedViewFilterStandartInput
-              label="Номер истории"
-              placeholder="Номер истории"
-            />
-          </div>
-
-          <div className={styles.span3}>
-            <MedViewFilterStandartInput
-              label="Характер основного заболевания"
-              placeholder="Характер основного заболевания"
-            />
-          </div>
-
-          <div className={styles.span3}>
-            <MedViewFilterStandartInput
-              label="Специальность лечащего врача"
-              placeholder="Специальность лечащего врача"
-            />
-          </div>
-        </div>
-      </div>
       <div className={styles.medicalCaseDetailsSubgroup}>
         <header className={styles.subgroupHeader}>
           <h3>Детали законченного случая</h3>

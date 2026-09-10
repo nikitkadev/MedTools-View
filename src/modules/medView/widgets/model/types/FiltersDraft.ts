@@ -3,6 +3,39 @@ import type { Sex } from "./Sex";
 
 export interface FiltersDraft {
   person: PersonFiltersGroupDraft;
+  medicalCaseDetails: MedicalCaseDetailsFiltersGroupDraft;
+}
+
+export interface MedicalCaseDetailsFiltersGroupDraft {
+  medicalCaseDetails: MedicalCaseDetailsFiltersSubgroupDraft;
+  completedCaseDetails: CompletedCaseDetailsSubgroupDraft;
+}
+
+export interface MedicalCaseDetailsFiltersSubgroupDraft {
+  medicalProfiles: string[];
+  bedProfiles: string[];
+  divisions: string[];
+  encounterMedicalOrganizations: string[];
+  visitPurposes: string[];
+  preventiveCarePlace: string;
+  treatmentStartDate: Dayjs | null;
+  treatmentEndDate: Dayjs | null;
+  diseaseCharacters: string[];
+  physicianSpecialties: string[];
+  medicalRecordNumber: string;
+}
+
+export interface CompletedCaseDetailsSubgroupDraft {
+  careConditions: string[];
+  medicalCareTypes: string[];
+  careForms: string[];
+  medicalOrganizations: string[];
+  treatmentStartDate: Dayjs | null;
+  treatmentEndDate: Dayjs | null;
+  screeningResults: string[];
+  hospitalizationOutcomes: string[];
+  diseaseOutcomes: string[];
+  paymentMethods: string[];
 }
 
 export interface PersonFiltersGroupDraft {
@@ -57,6 +90,33 @@ export const initialFiltersDraft: FiltersDraft = {
       insurancePolicySeries: "",
       insurancePolicyNumber: "",
       unifiedPolicyNumber: "",
+    },
+  },
+  medicalCaseDetails: {
+    medicalCaseDetails: {
+      medicalProfiles: [],
+      bedProfiles: [],
+      divisions: [],
+      encounterMedicalOrganizations: [],
+      visitPurposes: [],
+      preventiveCarePlace: "",
+      treatmentStartDate: null,
+      treatmentEndDate: null,
+      diseaseCharacters: [],
+      physicianSpecialties: [],
+      medicalRecordNumber: "",
+    },
+    completedCaseDetails: {
+      careConditions: [],
+      medicalCareTypes: [],
+      careForms: [],
+      medicalOrganizations: [],
+      treatmentStartDate: null,
+      treatmentEndDate: null,
+      screeningResults: [],
+      hospitalizationOutcomes: [],
+      diseaseOutcomes: [],
+      paymentMethods: [],
     },
   },
 };

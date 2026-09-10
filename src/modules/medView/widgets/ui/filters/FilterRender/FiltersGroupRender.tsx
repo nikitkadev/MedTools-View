@@ -3,6 +3,7 @@ import type { FilterGroupId } from "../../../model/types/FilterId";
 import type { FiltersDraft } from "../../../model/types/FiltersDraft";
 import NoneFiltersGroup from "../groups/NoneFiltersGroup/NoneFiltersGroup";
 import PersonFiltersGroupRoot from "../groups/PersonFiltersGroup/PersonFiltersGroup";
+import MedicalCaseDetailsFiltersGroup from "../groups/MedicalCaseDetailsFiltersGroup/MedicalCaseDetailsFiltersGroup";
 
 interface FiltersGroupRenderProps {
   filterGroupId: FilterGroupId;
@@ -26,6 +27,19 @@ export const FiltersGroupRender = ({
             setFiltersDraft((prev) => ({
               ...prev,
               person,
+            }))
+          }
+        />
+      );
+
+    case "case-details":
+      return (
+        <MedicalCaseDetailsFiltersGroup
+          medicalCaseDetailsFiltersGroupDraft={filtersDraft.medicalCaseDetails}
+          setMedicalCaseDetailsFiltersGroupDraft={(medicalCaseDetails) =>
+            setFiltersDraft((prev) => ({
+              ...prev,
+              medicalCaseDetails,
             }))
           }
         />
