@@ -1,8 +1,8 @@
-import { AppButton } from "../../../../../../../components/ui/AppButton/AppButton";
-import { Divider } from "../../../../../../../components/ui/Divider/Divider";
-import { useMedViewStore } from "../../../../model/stores/useMedViewStore";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.scss";
+import { useMedViewStore } from "../../../model/stores/useMedViewStore";
+import { Divider } from "@mui/material";
+import { AppButton } from "../../../../../../components/ui/AppButton/AppButton";
 
 export const FiltersPanel = () => {
   const { selectedfilterGroupId, selectFilterGroup } = useMedViewStore();

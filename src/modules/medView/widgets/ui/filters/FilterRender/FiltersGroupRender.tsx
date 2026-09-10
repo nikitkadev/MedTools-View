@@ -4,24 +4,22 @@ import {
   type ComponentType,
   type LazyExoticComponent,
 } from "react";
-import type { FilterGroupId } from "../../../../model/types/FilterId";
+import type { FilterGroupId } from "../../../model/types/FilterId";
 
-const None = lazy(
-  () => import("../../components/NoneFiltersGroup/NoneFiltersGroup"),
-);
+const None = lazy(() => import("../groups/NoneFiltersGroup/NoneFiltersGroup"));
 
-const Persons = lazy(
-  () => import("../../components/PersonFiltersGroup/PersonFiltersGroup"),
+const PersonGroup = lazy(
+  () => import("../groups/PersonFiltersGroup/PersonFiltersGroupRoot"),
 );
 
 const MedicalCaseDetails = lazy(
   () =>
-    import("../../components/MedicalCaseDetailsFiltersGroup/MedicalCaseDetailsFiltersGroup"),
+    import("../groups/MedicalCaseDetailsFiltersGroup/MedicalCaseDetailsFiltersGroup"),
 );
 
 const filterGroupMap = {
   none: None,
-  persons: Persons,
+  persons: PersonGroup,
   "case-details": MedicalCaseDetails,
 } satisfies Record<FilterGroupId, LazyExoticComponent<ComponentType>>;
 

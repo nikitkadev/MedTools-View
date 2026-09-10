@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { medViewFiltersSx } from "../../../../sxConfigs/medViewFiltersSx";
+import { medViewDefaultInputSx } from "../../../../sxConfigs/medViewDefaultInputSx";
 
 interface MedViewDefaultInputProps {
   label: string;
@@ -7,6 +7,8 @@ interface MedViewDefaultInputProps {
   fullWidth?: boolean;
   size?: "small" | "medium";
   variant?: "outlined" | "standard";
+  handleInputChange: (value: string) => void;
+  value: string;
 }
 
 export const MedViewDefaultInput = ({
@@ -15,6 +17,8 @@ export const MedViewDefaultInput = ({
   fullWidth = true,
   size = "small",
   variant = "outlined",
+  handleInputChange,
+  value,
 }: MedViewDefaultInputProps) => {
   return (
     <TextField
@@ -28,7 +32,9 @@ export const MedViewDefaultInput = ({
           shrink: true,
         },
       }}
-      sx={medViewFiltersSx}
+      sx={medViewDefaultInputSx}
+      onChange={(event) => handleInputChange(event.target.value)}
+      value={value}
     />
   );
 };

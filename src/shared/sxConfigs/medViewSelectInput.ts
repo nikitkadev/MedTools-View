@@ -1,8 +1,7 @@
-export const medViewFiltersSx = {
+export const medViewSelectInputSx = {
   "& .MuiOutlinedInput-root": {
     borderRadius: "var(--radius-l)",
     fontSize: "var(--fs-body)",
-
     "& fieldset": {
       borderColor: "var(--border-default)",
     },
@@ -16,30 +15,11 @@ export const medViewFiltersSx = {
       borderWidth: "1px",
     },
   },
-
   "& .MuiInputLabel-root": {
     color: "var(--text-secondary)",
     fontSize: "var(--fs-body)",
     fontFamily: "var(--inter)",
     fontWeight: "var(--fw-default)",
   },
-
-  "& .MuiInputLabel-root.Mui-focused": {
-    color: "var(--text-primary)",
-  },
-
-  "& .MuiOutlinedInput-input": {
-    fontFamily: "var(--inter)",
-    fontSize: "var(--fs-body)",
-    fontWeight: "var(--fw-default)",
-    color: "var(--text-primary)",
-
-    "&::placeholder": {
-      fontFamily: "var(--inter)",
-      fontSize: "var(--fs-body)",
-      fontWeight: "var(--fw-default)",
-      color: "var(--text-secondary)",
-      opacity: 1,
-    },
-  },
+  "& .MuiInputLabel-root.Mui-focused": { color: "var(--text-primary)" },
 };

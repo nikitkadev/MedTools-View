@@ -1,5 +1,5 @@
-import { useMedViewStore } from "../../../../model/stores/useMedViewStore";
-import { FiltersGroupRender } from "../../render/FilterRender/FiltersGroupRender";
+import { useMedViewStore } from "../../../model/stores/useMedViewStore";
+import { FiltersGroupRender } from "../FilterRender/FiltersGroupRender";
 import { FiltersPanel } from "../FiltersPanel/FiltersPanel";
 import styles from "./styles.module.scss";
 
