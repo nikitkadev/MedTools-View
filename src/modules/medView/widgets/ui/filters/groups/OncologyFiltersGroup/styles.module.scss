@@ -1,4 +1,4 @@
-.generalFiltersGroup {
+.oncologyFiltersGroup {
   display: flex;
   flex-direction: column;
 
@@ -6,7 +6,7 @@
   border-radius: var(--radius-xxl);
   background: var(--card-background);
 
-  .generalFiltersGroupHeader {
+  .oncologyFiltersGroupHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,9 +28,9 @@
     }
   }
 
-  .insuranceSubgroup,
-  .representativeSubgroup,
-  .patientSubgroup {
+  .medicationSubgroup,
+  .oncologyServiceSubgroup,
+  .oncologyCaseSubgroup {
     display: flex;
     flex-direction: column;
     padding: var(--space-10);
@@ -69,8 +69,8 @@
       grid-column: span 4;
     }
 
-    .span8 {
-      grid-column: span 8;
+    .span6 {
+      grid-column: span 6;
     }
 
     .span12 {

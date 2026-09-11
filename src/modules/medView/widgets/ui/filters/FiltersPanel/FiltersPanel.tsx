@@ -1,8 +1,8 @@
+import { useMedViewStore } from "../../../model/stores/useMedViewStore";
+import { AppButton } from "../../../../../../components/ui/AppButton/AppButton";
+import { Divider } from "../../../../../../components/ui/Divider/Divider";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.scss";
-import { useMedViewStore } from "../../../model/stores/useMedViewStore";
-import { Divider } from "@mui/material";
-import { AppButton } from "../../../../../../components/ui/AppButton/AppButton";
 
 export const FiltersPanel = () => {
   const { selectedfilterGroupId, selectFilterGroup } = useMedViewStore();
@@ -27,6 +27,7 @@ export const FiltersPanel = () => {
               <p>Персональные данные</p>
             </div>
           </li>
+
           <li
             className={
               selectedfilterGroupId === "case-details"
@@ -38,6 +39,33 @@ export const FiltersPanel = () => {
             <div className={styles.namingGroup}>
               <AddIcon />
               <p>Детали медицинского случая</p>
+            </div>
+          </li>
+
+          <li
+            className={
+              selectedfilterGroupId === "oncology"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("oncology")}
+          >
+            <div className={styles.namingGroup}>
+              <AddIcon />
+              <p>Онкология</p>
+            </div>
+          </li>
+          <li
+            className={
+              selectedfilterGroupId === "prescriptions"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("prescriptions")}
+          >
+            <div className={styles.namingGroup}>
+              <AddIcon />
+              <p>Назначения / Направления</p>
             </div>
           </li>
         </ul>

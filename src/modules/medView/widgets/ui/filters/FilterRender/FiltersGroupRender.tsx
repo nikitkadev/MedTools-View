@@ -4,6 +4,8 @@ import type { FiltersDraft } from "../../../model/types/FiltersDraft";
 import NoneFiltersGroup from "../groups/NoneFiltersGroup/NoneFiltersGroup";
 import PersonFiltersGroupRoot from "../groups/PersonFiltersGroup/PersonFiltersGroup";
 import MedicalCaseDetailsFiltersGroup from "../groups/MedicalCaseDetailsFiltersGroup/MedicalCaseDetailsFiltersGroup";
+import OncologyFiltersGroup from "../groups/OncologyFiltersGroup/OncologyFiltersGroup";
+import PrescriptionFiltersGroup from "../groups/PrescriptionFiltersGroup/PrescriptionFiltersGroup";
 
 interface FiltersGroupRenderProps {
   filterGroupId: FilterGroupId;
@@ -40,6 +42,32 @@ export const FiltersGroupRender = ({
             setFiltersDraft((prev) => ({
               ...prev,
               medicalCaseDetails,
+            }))
+          }
+        />
+      );
+
+    case "oncology":
+      return (
+        <OncologyFiltersGroup
+          oncologyFiltersGroupDraft={filtersDraft.oncology}
+          setOncologyFiltersGroupDraft={(oncology) =>
+            setFiltersDraft((prev) => ({
+              ...prev,
+              oncology: oncology,
+            }))
+          }
+        />
+      );
+
+    case "prescriptions":
+      return (
+        <PrescriptionFiltersGroup
+          prescriptionFiltersGroupDraft={filtersDraft.prescription}
+          setPrescriptionFiltersGroupDraft={(prescription) =>
+            setFiltersDraft((prev) => ({
+              ...prev,
+              prescription: prescription,
             }))
           }
         />

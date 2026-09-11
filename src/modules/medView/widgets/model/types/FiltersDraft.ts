@@ -4,11 +4,51 @@ import type { Sex } from "./Sex";
 export interface FiltersDraft {
   person: PersonFiltersGroupDraft;
   medicalCaseDetails: MedicalCaseDetailsFiltersGroupDraft;
+  oncology: OncologyFiltersGroupDraft;
+  prescription: PrescriptionFiltersGroupDraft;
+}
+
+export interface PrescriptionFiltersGroupDraft {
+  prescription: PrescriptionFiltersSubgroupDraft;
+  referral: ReferralFiltersSubgroupDraft;
+}
+
+export interface PrescriptionFiltersSubgroupDraft {
+  
+}
+
+export interface ReferralFiltersSubgroupDraft {}
+
+export interface OncologyFiltersGroupDraft {
+  oncologyCase: OncologyCaseFiltersSubgroupDraft;
+  oncologyService: OncologyServiceFiltersSubgroupDraft;
+  medication: MedicationFiltersSubgroupDraft;
+}
+
+export interface MedicationFiltersSubgroupDraft {
+  drugIdentifiers: string[];
+  therapyRegimens: string[];
+}
+
+export interface OncologyServiceFiltersSubgroupDraft {
+  serviceTypes: string[];
+  surgicalTreatmentTypes: string[];
+  drugTherapyLines: string[];
+  drugTherapyCycles: string[];
+  radioTherapyTypes: string[];
+}
+
+export interface OncologyCaseFiltersSubgroupDraft {
+  referralReasons: string[];
+  stages: string[];
+  tumors: string[];
+  noduses: string[];
+  metastasises: string[];
 }
 
 export interface MedicalCaseDetailsFiltersGroupDraft {
   medicalCaseDetails: MedicalCaseDetailsFiltersSubgroupDraft;
-  completedCaseDetails: CompletedCaseDetailsSubgroupDraft;
+  completedCaseDetails: CompletedCaseDetailsFiltersSubgroupDraft;
 }
 
 export interface MedicalCaseDetailsFiltersSubgroupDraft {
@@ -25,11 +65,12 @@ export interface MedicalCaseDetailsFiltersSubgroupDraft {
   medicalRecordNumber: string;
 }
 
-export interface CompletedCaseDetailsSubgroupDraft {
+export interface CompletedCaseDetailsFiltersSubgroupDraft {
   careConditions: string[];
   medicalCareTypes: string[];
   careForms: string[];
   medicalOrganizations: string[];
+  referringMedicalOrganizations: string[];
   treatmentStartDate: Dayjs | null;
   treatmentEndDate: Dayjs | null;
   screeningResults: string[];
@@ -111,6 +152,7 @@ export const initialFiltersDraft: FiltersDraft = {
       medicalCareTypes: [],
       careForms: [],
       medicalOrganizations: [],
+      referringMedicalOrganizations: [],
       treatmentStartDate: null,
       treatmentEndDate: null,
       screeningResults: [],
@@ -118,5 +160,29 @@ export const initialFiltersDraft: FiltersDraft = {
       diseaseOutcomes: [],
       paymentMethods: [],
     },
+  },
+  oncology: {
+    oncologyCase: {
+      referralReasons: [],
+      stages: [],
+      tumors: [],
+      noduses: [],
+      metastasises: [],
+    },
+    oncologyService: {
+      drugTherapyCycles: [],
+      drugTherapyLines: [],
+      radioTherapyTypes: [],
+      serviceTypes: [],
+      surgicalTreatmentTypes: [],
+    },
+    medication: {
+      drugIdentifiers: [],
+      therapyRegimens: [],
+    },
+  },
+  prescription: {
+    prescription: {},
+    referral: {},
   },
 };

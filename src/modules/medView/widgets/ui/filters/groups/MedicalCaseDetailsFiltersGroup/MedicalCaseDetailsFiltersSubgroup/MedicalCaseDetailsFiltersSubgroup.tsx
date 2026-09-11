@@ -131,11 +131,11 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
         <div className={styles.span3}>
           <MedViewDateInput
             label="Окончание лечения"
-            value={medicalCaseDetailsFiltersSubgroupDraft.treatmentStartDate}
+            value={medicalCaseDetailsFiltersSubgroupDraft.treatmentEndDate}
             handleDateInputChange={(newValue: Dayjs | null) =>
               setMedicalCaseDetailsFiltersSubgroupDraft({
                 ...medicalCaseDetailsFiltersSubgroupDraft,
-                treatmentStartDate: newValue,
+                treatmentEndDate: newValue,
               })
             }
           />
