@@ -14,10 +14,22 @@ export interface PrescriptionFiltersGroupDraft {
 }
 
 export interface PrescriptionFiltersSubgroupDraft {
-  
+  prescriptionTypes: string[];
+  diagnosticMethods: string[];
+  services: string[];
+  referralDate: Dayjs | null;
+  referredToMedicalOrganizations: string[];
+  medicalCareProfiles: string[];
+  bedProfiles: string[];
 }
 
-export interface ReferralFiltersSubgroupDraft {}
+export interface ReferralFiltersSubgroupDraft {
+  referralDate: Dayjs | null;
+  referredToMedicalOrganizations: string[];
+  refferalTypes: string[];
+  diagnosticMethods: string[];
+  referredServices: string[];
+}
 
 export interface OncologyFiltersGroupDraft {
   oncologyCase: OncologyCaseFiltersSubgroupDraft;
@@ -182,7 +194,21 @@ export const initialFiltersDraft: FiltersDraft = {
     },
   },
   prescription: {
-    prescription: {},
-    referral: {},
+    prescription: {
+      referralDate: null,
+      referredToMedicalOrganizations: [],
+      medicalCareProfiles: [],
+      bedProfiles: [],
+      services: [],
+      diagnosticMethods: [],
+      prescriptionTypes: [],
+    },
+    referral: {
+      referralDate: null,
+      referredToMedicalOrganizations: [],
+      referredServices: [],
+      diagnosticMethods: [],
+      refferalTypes: [],
+    },
   },
 };

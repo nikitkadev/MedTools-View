@@ -30,6 +30,7 @@ const PersonFiltersGroup = ({
           setPersonFiltersGroupDraft({ ...personFiltersGroupDraft, patient })
         }
       />
+      
       <RepresentativeFiltersSubgroup
         representativeFiltersSubgroupDraft={
           personFiltersGroupDraft.representative

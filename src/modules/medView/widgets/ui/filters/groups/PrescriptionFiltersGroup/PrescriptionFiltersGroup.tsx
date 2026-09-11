@@ -1,5 +1,6 @@
 import type { PrescriptionFiltersGroupDraft } from "../../../../model/types/FiltersDraft";
 import { PrescriptionFiltersSubgroup } from "./PrescriptionFiltersSubgroup/PrescriptionFiltersSubgroup";
+import { ReferralFiltersSubgroup } from "./ReferralFiltersSubgroup/ReferralFiltersSubgroup";
 import styles from "./styles.module.scss";
 
 interface PrescriptionFiltersGroupProps {
@@ -29,6 +30,15 @@ const PrescriptionFiltersGroup = ({
           setPrescriptionFiltersGroupDraft({
             ...prescriptionFiltersGroupDraft,
             prescription: prescription,
+          })
+        }
+      />
+      <ReferralFiltersSubgroup
+        referralsFiltersSubgroupDraft={prescriptionFiltersGroupDraft.referral}
+        setReferralsFiltersSubgroupDraft={(referral) =>
+          setPrescriptionFiltersGroupDraft({
+            ...prescriptionFiltersGroupDraft,
+            referral: referral,
           })
         }
       />
