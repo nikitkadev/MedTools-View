@@ -6,6 +6,7 @@ import PersonFiltersGroupRoot from "../groups/PersonFiltersGroup/PersonFiltersGr
 import MedicalCaseDetailsFiltersGroup from "../groups/MedicalCaseDetailsFiltersGroup/MedicalCaseDetailsFiltersGroup";
 import OncologyFiltersGroup from "../groups/OncologyFiltersGroup/OncologyFiltersGroup";
 import PrescriptionFiltersGroup from "../groups/PrescriptionFiltersGroup/PrescriptionFiltersGroup";
+import ClinicalGroupFiltersGroup from "../groups/ClinicalGroupFiltersGroup/ClinicalGroupFiltersGroup";
 
 interface FiltersGroupRenderProps {
   filterGroupId: FilterGroupId;
@@ -68,6 +69,19 @@ export const FiltersGroupRender = ({
             setFiltersDraft((prev) => ({
               ...prev,
               prescription: prescription,
+            }))
+          }
+        />
+      );
+
+    case "clinical-groups":
+      return (
+        <ClinicalGroupFiltersGroup
+          clinicalGroupFiltersGroup={filtersDraft.clinicalGroups}
+          setClinicalGroupFiltersGroup={(clinicalGroups) =>
+            setFiltersDraft((prev) => ({
+              ...prev,
+              clinicalGroups: clinicalGroups,
             }))
           }
         />

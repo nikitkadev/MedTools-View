@@ -6,6 +6,26 @@ export interface FiltersDraft {
   medicalCaseDetails: MedicalCaseDetailsFiltersGroupDraft;
   oncology: OncologyFiltersGroupDraft;
   prescription: PrescriptionFiltersGroupDraft;
+  clinicalGroups: ClinicalGroupsFiltersGroupDraft;
+}
+
+export interface ClinicalGroupsFiltersGroupDraft {
+  clinicalGroups: ClinicalGroupsFiltersSubgroupDraft;
+  highTechMedicalCare: HighTechMedicalCareSubgroupDraft;
+}
+
+export interface ClinicalGroupsFiltersSubgroupDraft {
+  clinicalStatisticGroupNumbers: string[];
+  interruptedCasePaymentReasons: string[];
+  complexityCoefficientNumbers: string[];
+}
+
+export interface HighTechMedicalCareSubgroupDraft {
+  highTechCareTypes: string[];
+  highTechCareMethods: string[];
+  voucherIssueDate: Dayjs | null;
+  voucherNumber: string;
+  plannedAdmissionDates: Dayjs | null;
 }
 
 export interface PrescriptionFiltersGroupDraft {
@@ -209,6 +229,20 @@ export const initialFiltersDraft: FiltersDraft = {
       referredServices: [],
       diagnosticMethods: [],
       refferalTypes: [],
+    },
+  },
+  clinicalGroups: {
+    clinicalGroups: {
+      clinicalStatisticGroupNumbers: [],
+      complexityCoefficientNumbers: [],
+      interruptedCasePaymentReasons: [],
+    },
+    highTechMedicalCare: {
+      highTechCareMethods: [],
+      highTechCareTypes: [],
+      plannedAdmissionDates: null,
+      voucherIssueDate: null,
+      voucherNumber: "",
     },
   },
 };

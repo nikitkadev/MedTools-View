@@ -65,7 +65,20 @@ export const FiltersPanel = () => {
           >
             <div className={styles.namingGroup}>
               <AddIcon />
-              <p>Назначения / Направления</p>
+              <p>Назначения и направления</p>
+            </div>
+          </li>
+          <li
+            className={
+              selectedfilterGroupId === "clinical-groups"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("clinical-groups")}
+          >
+            <div className={styles.namingGroup}>
+              <AddIcon />
+              <p>Клинические группы и ВМП</p>
             </div>
           </li>
         </ul>
