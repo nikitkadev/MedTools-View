@@ -7,6 +7,26 @@ export interface FiltersDraft {
   oncology: OncologyFiltersGroupDraft;
   prescription: PrescriptionFiltersGroupDraft;
   clinicalGroups: ClinicalGroupsFiltersGroupDraft;
+  providedServices: ProvidedServicesFiltersGroupDraft;
+  sanction: SanctionFiltersGroupDraft;
+  inrernalService: InternalServiceGroupDraft;
+}
+
+export interface InternalServiceGroupDraft {
+  patientUid: string;
+  medicalCaseUid: string;
+  completedCaseUid: string;
+}
+
+export interface SanctionFiltersGroupDraft {
+  controlTypeCodes: string[];
+  refusalReasons: string[];
+  expertiseActNumber: string;
+  expertiseActDate: Dayjs | null;
+}
+
+export interface ProvidedServicesFiltersGroupDraft {
+  serviceCodes: string[];
 }
 
 export interface ClinicalGroupsFiltersGroupDraft {
@@ -238,11 +258,25 @@ export const initialFiltersDraft: FiltersDraft = {
       interruptedCasePaymentReasons: [],
     },
     highTechMedicalCare: {
-      highTechCareMethods: [],
       highTechCareTypes: [],
+      highTechCareMethods: [],
       plannedAdmissionDates: null,
       voucherIssueDate: null,
       voucherNumber: "",
     },
+  },
+  providedServices: {
+    serviceCodes: [],
+  },
+  sanction: {
+    controlTypeCodes: [],
+    expertiseActDate: null,
+    expertiseActNumber: "",
+    refusalReasons: [],
+  },
+  inrernalService: {
+    completedCaseUid: "",
+    medicalCaseUid: "",
+    patientUid: "",
   },
 };

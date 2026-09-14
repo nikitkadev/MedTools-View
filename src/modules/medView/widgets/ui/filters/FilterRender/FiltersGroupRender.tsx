@@ -7,6 +7,8 @@ import MedicalCaseDetailsFiltersGroup from "../groups/MedicalCaseDetailsFiltersG
 import OncologyFiltersGroup from "../groups/OncologyFiltersGroup/OncologyFiltersGroup";
 import PrescriptionFiltersGroup from "../groups/PrescriptionFiltersGroup/PrescriptionFiltersGroup";
 import ClinicalGroupFiltersGroup from "../groups/ClinicalGroupFiltersGroup/ClinicalGroupFiltersGroup";
+import ProvidedServiceFiltersGroup from "../groups/ProvidedServiceFiltersGroup/ProvidedServiceFiltersGroup";
+import SanctionFiltersGroup from "../groups/SanctionFiltersGroup/SanctionFiltersGroup";
 
 interface FiltersGroupRenderProps {
   filterGroupId: FilterGroupId;
@@ -86,5 +88,33 @@ export const FiltersGroupRender = ({
           }
         />
       );
+
+    case "provided-services": {
+      return (
+        <ProvidedServiceFiltersGroup
+          providedServiceDraft={filtersDraft.providedServices}
+          setProvidedServiceDraft={(providedSevices) =>
+            setFiltersDraft((prev) => ({
+              ...prev,
+              providedServices: providedSevices,
+            }))
+          }
+        />
+      );
+    }
+
+    case "sanctions": {
+      return (
+        <SanctionFiltersGroup
+          sanctionFiltersGroupDraft={filtersDraft.sanction}
+          setSanctionFiltersGroupDraft={(sanction) =>
+            setFiltersDraft((prev) => ({
+              ...prev,
+              sanction: sanction,
+            }))
+          }
+        />
+      );
+    }
   }
 };

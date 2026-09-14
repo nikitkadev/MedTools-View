@@ -81,6 +81,32 @@ export const FiltersPanel = () => {
               <p>Клинические группы и ВМП</p>
             </div>
           </li>
+          <li
+            className={
+              selectedfilterGroupId === "provided-services"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("provided-services")}
+          >
+            <div className={styles.namingGroup}>
+              <AddIcon />
+              <p>Оказанные услуги</p>
+            </div>
+          </li>
+          <li
+            className={
+              selectedfilterGroupId === "sanctions"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("sanctions")}
+          >
+            <div className={styles.namingGroup}>
+              <AddIcon />
+              <p>Санкции</p>
+            </div>
+          </li>
         </ul>
       </div>
       <div className={styles.footer}>

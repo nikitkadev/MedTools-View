@@ -20,7 +20,7 @@ const ClinicalGroupFiltersGroup = ({
         <div className={styles.titleGroup}>
           <h2>Клинические группы</h2>
           <p className={styles.description}>
-            Все поля, которые относятся к данным по медицинскому и законченному
+            Все поля, которые относятся к КСГ и ВМП
             случаям
           </p>
         </div>
