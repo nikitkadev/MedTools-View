@@ -9,6 +9,7 @@ import PrescriptionFiltersGroup from "../groups/PrescriptionFiltersGroup/Prescri
 import ClinicalGroupFiltersGroup from "../groups/ClinicalGroupFiltersGroup/ClinicalGroupFiltersGroup";
 import ProvidedServiceFiltersGroup from "../groups/ProvidedServiceFiltersGroup/ProvidedServiceFiltersGroup";
 import SanctionFiltersGroup from "../groups/SanctionFiltersGroup/SanctionFiltersGroup";
+import InternalServiceFiltersGroup from "../groups/InternalServiceFiltersGroup/InternalServiceFiltersGroup";
 
 interface FiltersGroupRenderProps {
   filterGroupId: FilterGroupId;
@@ -111,6 +112,20 @@ export const FiltersGroupRender = ({
             setFiltersDraft((prev) => ({
               ...prev,
               sanction: sanction,
+            }))
+          }
+        />
+      );
+    }
+
+    case "internal-service": {
+      return (
+        <InternalServiceFiltersGroup
+          internalServiceFiltersGroupDraft={filtersDraft.inrernalService}
+          setInternalServiceFiltersGroupDraft={(internalService) =>
+            setFiltersDraft((prev) => ({
+              ...prev,
+              inrernalService: internalService,
             }))
           }
         />

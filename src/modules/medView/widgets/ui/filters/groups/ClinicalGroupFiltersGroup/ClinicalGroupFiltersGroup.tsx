@@ -18,7 +18,7 @@ const ClinicalGroupFiltersGroup = ({
     <section className={styles.clinicalGroupFiltersGroup}>
       <header className={styles.clinicalGroupFiltersGroupHeader}>
         <div className={styles.titleGroup}>
-          <h2>Клинические группы</h2>
+          <h2>Фильтрация по клиническим группам</h2>
           <p className={styles.description}>
             Все поля, которые относятся к КСГ и ВМП
             случаям

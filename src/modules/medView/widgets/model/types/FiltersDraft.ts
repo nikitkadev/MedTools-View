@@ -9,10 +9,10 @@ export interface FiltersDraft {
   clinicalGroups: ClinicalGroupsFiltersGroupDraft;
   providedServices: ProvidedServicesFiltersGroupDraft;
   sanction: SanctionFiltersGroupDraft;
-  inrernalService: InternalServiceGroupDraft;
+  inrernalService: InternalServiceFiltersGroupDraft;
 }
 
-export interface InternalServiceGroupDraft {
+export interface InternalServiceFiltersGroupDraft {
   patientUid: string;
   medicalCaseUid: string;
   completedCaseUid: string;

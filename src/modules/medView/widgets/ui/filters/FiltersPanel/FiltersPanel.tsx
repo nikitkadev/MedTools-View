@@ -107,6 +107,32 @@ export const FiltersPanel = () => {
               <p>Санкции</p>
             </div>
           </li>
+          <li
+            className={
+              selectedfilterGroupId === "ICD"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("ICD")}
+          >
+            <div className={styles.namingGroup}>
+              <AddIcon />
+              <p>МКБ</p>
+            </div>
+          </li>
+          <li
+            className={
+              selectedfilterGroupId === "internal-service"
+                ? styles.selectedRow
+                : styles.noneSelected
+            }
+            onClick={() => selectFilterGroup("internal-service")}
+          >
+            <div className={styles.namingGroup}>
+              <AddIcon />
+              <p>Служебная информация</p>
+            </div>
+          </li>
         </ul>
       </div>
       <div className={styles.footer}>
