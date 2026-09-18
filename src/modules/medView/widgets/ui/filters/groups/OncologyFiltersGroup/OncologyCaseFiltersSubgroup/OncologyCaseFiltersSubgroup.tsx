@@ -48,47 +48,6 @@ export const OncologyCaseFiltersSubgroup = ({
           </div>
         </div>
       </div>
-      <div className={styles.groupLineGrid}>
-        <div className={styles.span4}>
-          <MedViewMultipleSelectInput
-            label="Значение TUMOR"
-            values={oncologyCaseFiltersSubgroupDraft.tumors}
-            onChange={(newValue: string[]) =>
-              setOncologyCaseFiltersSubgroupDraft({
-                ...oncologyCaseFiltersSubgroupDraft,
-                tumors: newValue,
-              })
-            }
-            options={[{ label: "N003_NAME", value: "N003_VALUES" }]}
-          />
-        </div>
-        <div className={styles.span4}>
-          <MedViewMultipleSelectInput
-            label="Значение NODUS"
-            values={oncologyCaseFiltersSubgroupDraft.noduses}
-            onChange={(newValue: string[]) =>
-              setOncologyCaseFiltersSubgroupDraft({
-                ...oncologyCaseFiltersSubgroupDraft,
-                noduses: newValue,
-              })
-            }
-            options={[{ label: "N004_NAME", value: "N004_VALUES" }]}
-          />
-        </div>
-        <div className={styles.span4}>
-          <MedViewMultipleSelectInput
-            label="Значение METASTASIS"
-            values={oncologyCaseFiltersSubgroupDraft.metastasises}
-            onChange={(newValue: string[]) =>
-              setOncologyCaseFiltersSubgroupDraft({
-                ...oncologyCaseFiltersSubgroupDraft,
-                metastasises: newValue,
-              })
-            }
-            options={[{ label: "N003_NAME", value: "N003_VALUES" }]}
-          />
-        </div>
-      </div>
     </div>
   );
 };

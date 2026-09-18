@@ -138,7 +138,7 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
       </div>
 
       <div className={styles.groupLineGrid}>
-        <div className={styles.span3}>
+        <div className={styles.span4}>
           <MedViewMultipleSelectInput
             label="Результат диспансеризации"
             values={completedCaseDetailsFiltersSubgroupDraft.screeningResults}
@@ -151,7 +151,7 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             options={[{ label: "V017_NAME", value: "V017_VALUES" }]}
           />
         </div>
-        <div className={styles.span3}>
+        <div className={styles.span4}>
           <MedViewMultipleSelectInput
             label="Результат обращения / госпитализации"
             values={
@@ -166,7 +166,7 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             options={[{ label: "V009_NAME", value: "V009_VALUES" }]}
           />
         </div>
-        <div className={styles.span6}>
+        <div className={styles.span4}>
           <MedViewMultipleSelectInput
             label="Код способа оплаты"
             values={completedCaseDetailsFiltersSubgroupDraft.paymentMethods}
