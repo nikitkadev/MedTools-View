@@ -2,11 +2,9 @@ import apiClient from "../../../../../../app/providers/apiClient";
 import type { ResultResponse } from "../../../../../../shared/types/ResultResponse";
 import type { FilterOption, Options } from "../../../model/types/FilterOptions";
 
-export const getInsurancePolicyTypeFilterOptions = async (): Promise<
-  FilterOption[]
-> => {
+export const getVisitPlaceFilterOptions = async (): Promise<FilterOption[]> => {
   const response = await apiClient.get<ResultResponse<Options>>(
-    "/med-view/filter-options/policy-types",
+    "/med-view/filter-options/visit-places",
   );
 
   if (response.data.isFailure) {

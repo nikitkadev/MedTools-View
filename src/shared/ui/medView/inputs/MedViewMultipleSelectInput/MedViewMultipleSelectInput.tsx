@@ -45,7 +45,22 @@ export const MedViewMultipleSelectInput = ({
         >
           {label}
         </InputLabel>
-        <Select multiple value={values} onChange={handleChange} label={label}>
+        <Select
+          multiple
+          value={values}
+          onChange={handleChange}
+          label={label}
+          MenuProps={{
+            slotProps: {
+              paper: {
+                style: {
+                  maxHeight: 500,
+                  width: 250,
+                },
+              },
+            },
+          }}
+        >
           {options.length > 0 ? (
             options.map((option) => (
               <MenuItem key={option.value} value={option.value}>

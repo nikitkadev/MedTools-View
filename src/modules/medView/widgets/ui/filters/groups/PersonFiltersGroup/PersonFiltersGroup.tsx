@@ -3,8 +3,8 @@ import { useInsuranceFilterOptions } from "../../../../model/queries/filterOptio
 import { InsuranceFiltersSubgroup } from "./InsuranceFiltersSubgroup/InsuranceFiltersSubgroup";
 import { PatientFiltersSubgroup } from "./PatientFiltersSubgroup/PatientFiltersSubgroup";
 import { RepresentativeFiltersSubgroup } from "./RepresentativeFiltersSubgroup/RepresentativeFiltersSubgroup";
-import styles from "./styles.module.scss";
 import { useInsurancePolicyTypeFilterOptions } from "../../../../model/queries/filterOptions/personalGroup/useInsurancePolicyTypeFilterOptions";
+import styles from "./styles.module.scss";
 
 interface PersonFiltersGroupRootProps {
   personFiltersGroupDraft: PersonFiltersGroupDraft;

@@ -7,5 +7,7 @@ export const useInsuranceFilterOptions = () => {
     queryFn: () => {
       return getInsuranceFilterOptions();
     },
+    staleTime: Infinity,
+    gcTime: Infinity,
   });
 };

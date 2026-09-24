@@ -2,7 +2,7 @@ import type { InsuranceFiltersSubgroupDraft } from "../../../../../model/types/F
 import { MedViewDefaultInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import styles from "../styles.module.scss";
-import type { FilterOption } from "../../../../../model/types/filterOptions";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
 
 interface InsuranceFiltersSubgroupProps {
   insuranceFiltersSubgroupDraft: InsuranceFiltersSubgroupDraft;

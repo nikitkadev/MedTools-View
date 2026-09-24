@@ -106,7 +106,7 @@ export interface MedicalCaseDetailsFiltersGroupDraft {
 export interface MedicalCaseDetailsFiltersSubgroupDraft {
   medicalProfiles: string[];
   bedProfiles: string[];
-  divisions: string[];
+  division: string;
   encounterMedicalOrganizations: string[];
   visitPurposes: string[];
   preventiveCarePlace: string;
@@ -189,7 +189,7 @@ export const initialFiltersDraft: FiltersDraft = {
     medicalCaseDetails: {
       medicalProfiles: [],
       bedProfiles: [],
-      divisions: [],
+      division: "",
       encounterMedicalOrganizations: [],
       visitPurposes: [],
       preventiveCarePlace: "",

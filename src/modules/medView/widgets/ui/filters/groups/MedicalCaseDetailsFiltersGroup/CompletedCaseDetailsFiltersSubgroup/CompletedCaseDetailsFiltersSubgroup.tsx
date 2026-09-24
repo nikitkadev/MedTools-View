@@ -1,5 +1,6 @@
 import type { Dayjs } from "dayjs";
 import type { CompletedCaseDetailsFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import styles from "../styles.module.scss";
@@ -9,11 +10,31 @@ interface CompletedCaseDetailsFiltersSubgroupProps {
   setCompletedCaseDetailsFiltersSubgroupDraft: (
     completedCaseDetailsFiltersSubgroupDraft: CompletedCaseDetailsFiltersSubgroupDraft,
   ) => void;
+
+  careConditionFilterOptions: FilterOption[];
+  medicalCareTypeFilterOptions: FilterOption[];
+  medicalCareFormFilterOptions: FilterOption[];
+  medicalOrgsInCompletedCaseFilterOptions: FilterOption[];
+  referringMedicalOrgsInCompletedCaseFilterOptions: FilterOption[];
+  diseaseOutcomeFilterOptions: FilterOption[];
+  screeningResultFilterOptions: FilterOption[];
+  hospitalizationOutcomeFilterOptions: FilterOption[];
+  paymentMethodFilterOptions: FilterOption[];
 }
 
 export const CompletedCaseDetailsFiltersSubgroup = ({
   completedCaseDetailsFiltersSubgroupDraft,
   setCompletedCaseDetailsFiltersSubgroupDraft,
+
+  careConditionFilterOptions,
+  medicalCareTypeFilterOptions,
+  medicalCareFormFilterOptions,
+  medicalOrgsInCompletedCaseFilterOptions,
+  referringMedicalOrgsInCompletedCaseFilterOptions,
+  diseaseOutcomeFilterOptions,
+  screeningResultFilterOptions,
+  hospitalizationOutcomeFilterOptions,
+  paymentMethodFilterOptions,
 }: CompletedCaseDetailsFiltersSubgroupProps) => {
   return (
     <div className={styles.medicalCaseDetailsSubgroup}>
@@ -21,7 +42,7 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
         <h3>Детали законченного случая</h3>
       </header>
       <div className={styles.groupLineGrid}>
-        <div className={styles.span4}>
+        <div className={styles.span6}>
           <MedViewMultipleSelectInput
             label="Условия оказания медицинской помощи"
             values={completedCaseDetailsFiltersSubgroupDraft.careConditions}
@@ -31,23 +52,14 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 careConditions: newValue,
               })
             }
-            options={[{ label: "V006_NAME", value: "V006_VALUES" }]}
+            options={careConditionFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
-        <div className={styles.span4}>
-          <MedViewMultipleSelectInput
-            label="Вид медицинской помощи"
-            values={completedCaseDetailsFiltersSubgroupDraft.medicalCareTypes}
-            onChange={(newValue: string[]) =>
-              setCompletedCaseDetailsFiltersSubgroupDraft({
-                ...completedCaseDetailsFiltersSubgroupDraft,
-                medicalCareTypes: newValue,
-              })
-            }
-            options={[{ label: "V008_NAME", value: "V008_VALUES" }]}
-          />
-        </div>
-        <div className={styles.span4}>
+
+        <div className={styles.span6}>
           <MedViewMultipleSelectInput
             label="Форма оказания медицинской помощи"
             values={completedCaseDetailsFiltersSubgroupDraft.careForms}
@@ -57,7 +69,29 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 careForms: newValue,
               })
             }
-            options={[{ label: "V014_NAME", value: "V014_VALUES" }]}
+            options={medicalCareFormFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
+          />
+        </div>
+      </div>
+
+      <div className={styles.groupLineGrid}>
+        <div className={styles.span12}>
+          <MedViewMultipleSelectInput
+            label="Вид медицинской помощи"
+            values={completedCaseDetailsFiltersSubgroupDraft.medicalCareTypes}
+            onChange={(newValue: string[]) =>
+              setCompletedCaseDetailsFiltersSubgroupDraft({
+                ...completedCaseDetailsFiltersSubgroupDraft,
+                medicalCareTypes: newValue,
+              })
+            }
+            options={medicalCareTypeFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
       </div>
@@ -75,7 +109,10 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 medicalOrganizations: newValue,
               })
             }
-            options={[{ label: "F003_NAME", value: "F003_VALUES" }]}
+            options={medicalOrgsInCompletedCaseFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
 
@@ -91,7 +128,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 referringMedicalOrganizations: newValue,
               })
             }
-            options={[{ label: "F003_NAME", value: "F003_VALUES" }]}
+            options={referringMedicalOrgsInCompletedCaseFilterOptions.map(
+              (option) => ({
+                label: option.value,
+                value: option.key,
+              }),
+            )}
           />
         </div>
       </div>
@@ -132,7 +174,10 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 diseaseOutcomes: newValue,
               })
             }
-            options={[{ label: "V012_NAME", value: "V012_VALUES" }]}
+            options={diseaseOutcomeFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
       </div>
@@ -148,7 +193,10 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 screeningResults: newValue,
               })
             }
-            options={[{ label: "V017_NAME", value: "V017_VALUES" }]}
+            options={screeningResultFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
         <div className={styles.span4}>
@@ -163,7 +211,10 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 hospitalizationOutcomes: newValue,
               })
             }
-            options={[{ label: "V009_NAME", value: "V009_VALUES" }]}
+            options={hospitalizationOutcomeFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
         <div className={styles.span4}>
@@ -176,7 +227,10 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 paymentMethods: newValue,
               })
             }
-            options={[{ label: "V010_NAME", value: "V010_VALUES" }]}
+            options={paymentMethodFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
       </div>

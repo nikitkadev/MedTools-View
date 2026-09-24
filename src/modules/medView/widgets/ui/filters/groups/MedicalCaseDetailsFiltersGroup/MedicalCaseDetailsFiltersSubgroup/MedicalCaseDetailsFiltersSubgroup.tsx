@@ -1,4 +1,5 @@
 import type { MedicalCaseDetailsFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
 import type { Dayjs } from "dayjs";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import { MedViewDefaultInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
@@ -10,11 +11,23 @@ interface MedicalCaseDetailsFiltersSubgroupProps {
   setMedicalCaseDetailsFiltersSubgroupDraft: (
     medicalCaseDetailsFiltersSubgroupDraft: MedicalCaseDetailsFiltersSubgroupDraft,
   ) => void;
+  medicalCareFilterOptions: FilterOption[];
+  bedProfileFilterOptions: FilterOption[];
+  visitPlaceFilterOptions: FilterOption[];
+  visitPurposeFilterOptions: FilterOption[];
+  diseaseCharacterFilterOptions: FilterOption[];
+  physicianSpecialitiesFilterOptions: FilterOption[];
 }
 
 export const MedicalCaseDetailsFiltersSubgroup = ({
   medicalCaseDetailsFiltersSubgroupDraft,
   setMedicalCaseDetailsFiltersSubgroupDraft,
+  medicalCareFilterOptions,
+  bedProfileFilterOptions,
+  visitPlaceFilterOptions,
+  visitPurposeFilterOptions,
+  diseaseCharacterFilterOptions,
+  physicianSpecialitiesFilterOptions,
 }: MedicalCaseDetailsFiltersSubgroupProps) => {
   return (
     <div className={styles.medicalCaseDetailsSubgroup}>
@@ -33,7 +46,10 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 medicalProfiles: newValue,
               })
             }
-            options={[{ label: "V002_NAME", value: "V002_VALUES" }]}
+            options={medicalCareFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
 
@@ -47,23 +63,26 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 bedProfiles: newValue,
               })
             }
-            options={[{ label: "V020_NAME", value: "V020_VALUES" }]}
+            options={bedProfileFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
       </div>
 
       <div className={styles.groupLineGrid}>
         <div className={styles.span6}>
-          <MedViewMultipleSelectInput
+          <MedViewDefaultInput
             label="Структурное подразделение"
-            values={medicalCaseDetailsFiltersSubgroupDraft.divisions}
-            onChange={(newValue: string[]) =>
+            placeholder="01202600100001005"
+            handleInputChange={(newValue: string) =>
               setMedicalCaseDetailsFiltersSubgroupDraft({
                 ...medicalCaseDetailsFiltersSubgroupDraft,
-                divisions: newValue,
+                division: newValue,
               })
             }
-            options={[{ label: "F033_NAME", value: "F033_VALUES" }]}
+            value={medicalCaseDetailsFiltersSubgroupDraft.division}
           />
         </div>
         <div className={styles.span6}>
@@ -78,7 +97,10 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 encounterMedicalOrganizations: newValue,
               })
             }
-            options={[{ label: "V040_NAME", value: "V040_VALUES" }]}
+            options={visitPlaceFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
       </div>
@@ -94,7 +116,10 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 visitPurposes: newValue,
               })
             }
-            options={[{ label: "V025_NAME", value: "V025_VALUES" }]}
+            options={visitPurposeFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
       </div>
@@ -165,7 +190,10 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 diseaseCharacters: newValue,
               })
             }
-            options={[{ label: "V027_NAME", value: "V027_VALUES" }]}
+            options={diseaseCharacterFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
 
@@ -179,7 +207,10 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 physicianSpecialties: newValue,
               })
             }
-            options={[{ label: "V021_NAME", value: "V021_VALUES" }]}
+            options={physicianSpecialitiesFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
       </div>

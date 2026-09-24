@@ -1,6 +1,6 @@
 import apiClient from "../../../../../../app/providers/apiClient";
 import type { ResultResponse } from "../../../../../../shared/types/ResultResponse";
-import type { FilterOption, Options } from "../../../model/types/filterOptions";
+import type { FilterOption, Options } from "../../../model/types/FilterOptions";
 
 export const getInsuranceFilterOptions = async (): Promise<FilterOption[]> => {
   const response = await apiClient.get<ResultResponse<Options>>(
