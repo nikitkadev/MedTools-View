@@ -2,17 +2,22 @@ import type { InsuranceFiltersSubgroupDraft } from "../../../../../model/types/F
 import { MedViewDefaultInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import styles from "../styles.module.scss";
+import type { FilterOption } from "../../../../../model/types/filterOptions";
 
 interface InsuranceFiltersSubgroupProps {
   insuranceFiltersSubgroupDraft: InsuranceFiltersSubgroupDraft;
   setInsuranceFiltersSubgroupDraft: (
     insuranceFilters: InsuranceFiltersSubgroupDraft,
   ) => void;
+  insuranceFilterOptions: FilterOption[];
+  insurancePolicyTypeFilterOptions: FilterOption[];
 }
 
 export const InsuranceFiltersSubgroup = ({
   insuranceFiltersSubgroupDraft,
   setInsuranceFiltersSubgroupDraft,
+  insuranceFilterOptions,
+  insurancePolicyTypeFilterOptions,
 }: InsuranceFiltersSubgroupProps) => {
   return (
     <div className={styles.insuranceSubgroup}>
@@ -30,7 +35,10 @@ export const InsuranceFiltersSubgroup = ({
                 insurances: newValue,
               })
             }
-            options={[{ label: "F002_NAME", value: "F002_VALUE" }]}
+            options={insuranceFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
       </div>
@@ -45,7 +53,10 @@ export const InsuranceFiltersSubgroup = ({
                 insurancePolicyTypes: newValue,
               })
             }
-            options={[{ label: "F008_NAME", value: "F008_VALUE" }]}
+            options={insurancePolicyTypeFilterOptions.map((option) => ({
+              label: option.value,
+              value: option.key,
+            }))}
           />
         </div>
         <div className={styles.span2}>

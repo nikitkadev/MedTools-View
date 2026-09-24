@@ -43,7 +43,7 @@ export const OncologyCaseFiltersSubgroup = ({
                   stages: newValue,
                 })
               }
-              options={[{ label: "N018_NAME", value: "N018_VALUES" }]}
+              options={[{ label: "N002_NAME", value: "N002_VALUES" }]}
             />
           </div>
         </div>

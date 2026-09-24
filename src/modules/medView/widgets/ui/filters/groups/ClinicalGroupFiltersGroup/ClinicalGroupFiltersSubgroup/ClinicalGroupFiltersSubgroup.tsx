@@ -47,7 +47,7 @@ export const ClinicalGroupFiltersSubgroup = ({
                 complexityCoefficientNumbers: newValue,
               })
             }
-            options={[{ label: "V042_NAME", value: "V042_VALUES" }]}
+            options={[{ label: "Spr_KSLP_NAME", value: "Spr_KSLP_VALUES" }]}
           />
         </div>
       </div>

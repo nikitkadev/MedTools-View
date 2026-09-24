@@ -42,7 +42,7 @@ export const MedicationFiltersSubgroup = ({
                 therapyRegimens: newValue,
               })
             }
-            options={[{ label: "N014_NAME", value: "N014_VALUES" }]}
+            options={[{ label: "V024_NAME", value: "V024_VALUES" }]}
           />
         </div>
       </div>

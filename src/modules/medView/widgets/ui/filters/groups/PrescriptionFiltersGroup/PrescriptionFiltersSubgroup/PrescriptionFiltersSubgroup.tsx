@@ -126,7 +126,7 @@ export const PrescriptionFiltersSubgroup = ({
                 services: newValue,
               })
             }
-            options={[{ label: "V020_NAME", value: "V020_VALUES" }]}
+            options={[{ label: "V001_NAME", value: "V001_VALUES" }]}
           />
         </div>
       </div>
