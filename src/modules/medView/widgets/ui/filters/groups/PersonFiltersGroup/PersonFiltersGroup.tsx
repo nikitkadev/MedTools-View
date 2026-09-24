@@ -1,9 +1,9 @@
 import type { PersonFiltersGroupDraft } from "../../../../model/types/FiltersDraft";
-import { useInsuranceFilterOptions } from "../../../../model/queries/filterOptions/personalGroup/useInsuranceFilterOptions";
 import { InsuranceFiltersSubgroup } from "./InsuranceFiltersSubgroup/InsuranceFiltersSubgroup";
 import { PatientFiltersSubgroup } from "./PatientFiltersSubgroup/PatientFiltersSubgroup";
 import { RepresentativeFiltersSubgroup } from "./RepresentativeFiltersSubgroup/RepresentativeFiltersSubgroup";
-import { useInsurancePolicyTypeFilterOptions } from "../../../../model/queries/filterOptions/personalGroup/useInsurancePolicyTypeFilterOptions";
+import { useMedicalOrganizationFilterOptionsQuery } from "../../../../model/queries/useMedicalOrganizationFilterOptions";
+import { useFilterOptionsQuery } from "../../../../model/queries/useFilterOptionsQuery";
 import styles from "./styles.module.scss";
 
 interface PersonFiltersGroupRootProps {
@@ -15,9 +15,18 @@ const PersonFiltersGroup = ({
   personFiltersGroupDraft,
   setPersonFiltersGroupDraft,
 }: PersonFiltersGroupRootProps) => {
-  const { data: insuranceFilterOptions } = useInsuranceFilterOptions();
-  const { data: insurancePolicyTypeFilterOptions } =
-    useInsurancePolicyTypeFilterOptions();
+  const { data: insuranceFilterOptions } =
+    useMedicalOrganizationFilterOptionsQuery(
+      "/med-view/filter-options/available-insurance",
+      "insurance",
+      "SMODB18",
+      "Insurances",
+    );
+
+  const { data: insurancePolicyTypeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/policy-types",
+    "insurance-policy-type",
+  );
 
   return (
     <section className={styles.generalFiltersGroup}>
