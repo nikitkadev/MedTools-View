@@ -1,8 +1,9 @@
 import type { Dayjs } from "dayjs";
 import type { CompletedCaseDetailsFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
-import type { FilterOption } from "../../../../../model/types/FilterOptions";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
+import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
+import { useMedicalOrganizationFilterOptionsQuery } from "../../../../../model/queries/useMedicalOrganizationFilterOptions";
 import styles from "../styles.module.scss";
 
 interface CompletedCaseDetailsFiltersSubgroupProps {
@@ -10,32 +11,63 @@ interface CompletedCaseDetailsFiltersSubgroupProps {
   setCompletedCaseDetailsFiltersSubgroupDraft: (
     completedCaseDetailsFiltersSubgroupDraft: CompletedCaseDetailsFiltersSubgroupDraft,
   ) => void;
-
-  careConditionFilterOptions: FilterOption[];
-  medicalCareTypeFilterOptions: FilterOption[];
-  medicalCareFormFilterOptions: FilterOption[];
-  medicalOrgsInCompletedCaseFilterOptions: FilterOption[];
-  referringMedicalOrgsInCompletedCaseFilterOptions: FilterOption[];
-  diseaseOutcomeFilterOptions: FilterOption[];
-  screeningResultFilterOptions: FilterOption[];
-  hospitalizationOutcomeFilterOptions: FilterOption[];
-  paymentMethodFilterOptions: FilterOption[];
 }
 
 export const CompletedCaseDetailsFiltersSubgroup = ({
   completedCaseDetailsFiltersSubgroupDraft,
   setCompletedCaseDetailsFiltersSubgroupDraft,
-
-  careConditionFilterOptions,
-  medicalCareTypeFilterOptions,
-  medicalCareFormFilterOptions,
-  medicalOrgsInCompletedCaseFilterOptions,
-  referringMedicalOrgsInCompletedCaseFilterOptions,
-  diseaseOutcomeFilterOptions,
-  screeningResultFilterOptions,
-  hospitalizationOutcomeFilterOptions,
-  paymentMethodFilterOptions,
 }: CompletedCaseDetailsFiltersSubgroupProps) => {
+  const { data: careConditionFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/care-conditions",
+    "care-condition",
+  );
+
+  const { data: medicalCareTypeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/medical-care-types",
+    "medical-care-type",
+  );
+
+  const { data: medicalCareFormFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/medical-care-forms",
+    "medical-care-form",
+  );
+
+  const { data: medicalOrgsInCompletedCaseFilterOptions } =
+    useMedicalOrganizationFilterOptionsQuery(
+      "/med-view/filter-options/medical-organizations",
+      "medical-organization",
+      "SMODB18",
+      "CompletedCaseMedicalOrgs",
+    );
+
+  const { data: referringMedicalOrgsInCompletedCaseFilterOptions } =
+    useMedicalOrganizationFilterOptionsQuery(
+      "/med-view/filter-options/medical-organizations",
+      "medical-organization",
+      "SMODB18",
+      "ReferralMedicalOrgs",
+    );
+
+  const { data: diseaseOutcomeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/disease-outcomes",
+    "disease-outcome",
+  );
+
+  const { data: screeningResultFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/screening-results",
+    "screening-result",
+  );
+
+  const { data: hospitalizationOutcomeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/hospitalization-outcomes",
+    "hospitalization-outcome",
+  );
+
+  const { data: paymentMethodFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/payment-methods",
+    "payment-method",
+  );
+
   return (
     <div className={styles.medicalCaseDetailsSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -52,10 +84,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 careConditions: newValue,
               })
             }
-            options={careConditionFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              careConditionFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
 
@@ -69,10 +103,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 careForms: newValue,
               })
             }
-            options={medicalCareFormFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              medicalCareFormFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -88,10 +124,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 medicalCareTypes: newValue,
               })
             }
-            options={medicalCareTypeFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              medicalCareTypeFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -109,10 +147,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 medicalOrganizations: newValue,
               })
             }
-            options={medicalOrgsInCompletedCaseFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              medicalOrgsInCompletedCaseFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
 
@@ -128,12 +168,14 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 referringMedicalOrganizations: newValue,
               })
             }
-            options={referringMedicalOrgsInCompletedCaseFilterOptions.map(
-              (option) => ({
-                label: option.value,
-                value: option.key,
-              }),
-            )}
+            options={
+              referringMedicalOrgsInCompletedCaseFilterOptions?.map(
+                (option) => ({
+                  label: option.value,
+                  value: option.key,
+                }),
+              ) ?? []
+            }
           />
         </div>
       </div>
@@ -174,10 +216,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 diseaseOutcomes: newValue,
               })
             }
-            options={diseaseOutcomeFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              diseaseOutcomeFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -193,10 +237,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 screeningResults: newValue,
               })
             }
-            options={screeningResultFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              screeningResultFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
         <div className={styles.span4}>
@@ -211,10 +257,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 hospitalizationOutcomes: newValue,
               })
             }
-            options={hospitalizationOutcomeFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              hospitalizationOutcomeFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
         <div className={styles.span4}>
@@ -227,10 +275,12 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
                 paymentMethods: newValue,
               })
             }
-            options={paymentMethodFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              paymentMethodFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>

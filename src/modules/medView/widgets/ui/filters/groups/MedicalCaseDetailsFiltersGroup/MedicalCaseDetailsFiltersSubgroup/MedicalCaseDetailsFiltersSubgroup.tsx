@@ -1,9 +1,9 @@
 import type { MedicalCaseDetailsFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
-import type { FilterOption } from "../../../../../model/types/FilterOptions";
 import type { Dayjs } from "dayjs";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import { MedViewDefaultInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
+import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import styles from "../styles.module.scss";
 
 interface MedicalCaseDetailsFiltersSubgroupProps {
@@ -11,24 +11,42 @@ interface MedicalCaseDetailsFiltersSubgroupProps {
   setMedicalCaseDetailsFiltersSubgroupDraft: (
     medicalCaseDetailsFiltersSubgroupDraft: MedicalCaseDetailsFiltersSubgroupDraft,
   ) => void;
-  medicalCareFilterOptions: FilterOption[];
-  bedProfileFilterOptions: FilterOption[];
-  visitPlaceFilterOptions: FilterOption[];
-  visitPurposeFilterOptions: FilterOption[];
-  diseaseCharacterFilterOptions: FilterOption[];
-  physicianSpecialitiesFilterOptions: FilterOption[];
 }
 
 export const MedicalCaseDetailsFiltersSubgroup = ({
   medicalCaseDetailsFiltersSubgroupDraft,
   setMedicalCaseDetailsFiltersSubgroupDraft,
-  medicalCareFilterOptions,
-  bedProfileFilterOptions,
-  visitPlaceFilterOptions,
-  visitPurposeFilterOptions,
-  diseaseCharacterFilterOptions,
-  physicianSpecialitiesFilterOptions,
 }: MedicalCaseDetailsFiltersSubgroupProps) => {
+  const { data: medicalCareFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/medical-care-profiles",
+    "medical-care-profile",
+  );
+
+  const { data: bedProfileFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/bed-profiles",
+    "bed-profile",
+  );
+
+  const { data: visitPlaceFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/visit-places",
+    "visit-place",
+  );
+
+  const { data: visitPurposeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/visit-purposes",
+    "visit-purpose",
+  );
+
+  const { data: diseaseCharacterFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/disease-characters",
+    "disease-character",
+  );
+
+  const { data: physicianSpecialitiesFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/physician-specialities",
+    "physician-speciality",
+  );
+
   return (
     <div className={styles.medicalCaseDetailsSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -46,10 +64,12 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 medicalProfiles: newValue,
               })
             }
-            options={medicalCareFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              medicalCareFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
 
@@ -63,10 +83,12 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 bedProfiles: newValue,
               })
             }
-            options={bedProfileFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              bedProfileFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -97,10 +119,12 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 encounterMedicalOrganizations: newValue,
               })
             }
-            options={visitPlaceFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              visitPlaceFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -116,10 +140,12 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 visitPurposes: newValue,
               })
             }
-            options={visitPurposeFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              visitPurposeFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -190,10 +216,12 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 diseaseCharacters: newValue,
               })
             }
-            options={diseaseCharacterFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              diseaseCharacterFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
 
@@ -207,10 +235,12 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
                 physicianSpecialties: newValue,
               })
             }
-            options={physicianSpecialitiesFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
-            }))}
+            options={
+              physicianSpecialitiesFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
