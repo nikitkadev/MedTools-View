@@ -1,5 +1,6 @@
 import type { OncologyServiceFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
+import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import styles from "../styles.module.scss";
 
 interface OncologyServiceFiltersSubgroupProps {
@@ -13,6 +14,31 @@ export const OncologyServiceFiltersSubgroup = ({
   oncologyServiceFiltersSubgroupDraft,
   setOncologyServiceFiltersSubgroupDraft,
 }: OncologyServiceFiltersSubgroupProps) => {
+  const { data: oncologyServiceTypeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/oncology-service-types",
+    "oncology-service-type",
+  );
+
+  const { data: surgicalTreatmentTypeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/surgical-treatment-types",
+    "surgical-treatment-type",
+  );
+
+  const { data: radioTherapyTypeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/radio-therapy-types",
+    "radio-therapy-type",
+  );
+
+  const { data: drugTherapyLineFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/drug-therapy-lines",
+    "drug-therapy-line",
+  );
+
+  const { data: drugTherapyCycleFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/drug-therapy-cycles",
+    "drug-therapy-cycle",
+  );
+
   return (
     <div className={styles.oncologyServiceSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -29,7 +55,12 @@ export const OncologyServiceFiltersSubgroup = ({
                 serviceTypes: newValue,
               })
             }
-            options={[{ label: "N013_NAME", value: "N013_VALUES" }]}
+            options={
+              oncologyServiceTypeFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
         <div className={styles.span4}>
@@ -42,7 +73,12 @@ export const OncologyServiceFiltersSubgroup = ({
                 surgicalTreatmentTypes: newValue,
               })
             }
-            options={[{ label: "N014_NAME", value: "N014_VALUES" }]}
+            options={
+              surgicalTreatmentTypeFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
         <div className={styles.span4}>
@@ -55,7 +91,12 @@ export const OncologyServiceFiltersSubgroup = ({
                 radioTherapyTypes: newValue,
               })
             }
-            options={[{ label: "N017_NAME", value: "N017_VALUES" }]}
+            options={
+              radioTherapyTypeFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -70,20 +111,30 @@ export const OncologyServiceFiltersSubgroup = ({
                 drugTherapyLines: newValue,
               })
             }
-            options={[{ label: "N015_NAME", value: "N015_VALUES" }]}
+            options={
+              drugTherapyLineFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
         <div className={styles.span6}>
           <MedViewMultipleSelectInput
             label="Цикл лекарственной терапии"
-            values={oncologyServiceFiltersSubgroupDraft.drugTherapyLines}
+            values={oncologyServiceFiltersSubgroupDraft.drugTherapyCycles}
             onChange={(newValue: string[]) =>
               setOncologyServiceFiltersSubgroupDraft({
                 ...oncologyServiceFiltersSubgroupDraft,
-                drugTherapyLines: newValue,
+                drugTherapyCycles: newValue,
               })
             }
-            options={[{ label: "N016_NAME", value: "N016_VALUES" }]}
+            options={
+              drugTherapyCycleFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>

@@ -1,5 +1,6 @@
 import type { OncologyCaseFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
+import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import styles from "../styles.module.scss";
 
 interface OncologyCaseFiltersSubgroupProps {
@@ -13,6 +14,11 @@ export const OncologyCaseFiltersSubgroup = ({
   oncologyCaseFiltersSubgroupDraft,
   setOncologyCaseFiltersSubgroupDraft,
 }: OncologyCaseFiltersSubgroupProps) => {
+  const { data: referralReasonFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/referral-reasons",
+    "referral-reason",
+  );
+
   return (
     <div className={styles.oncologyCaseSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -29,7 +35,12 @@ export const OncologyCaseFiltersSubgroup = ({
                 referralReasons: newValue,
               })
             }
-            options={[{ label: "N018_NAME", value: "N018_VALUES" }]}
+            options={
+              referralReasonFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
         <div className={styles.span6}>
