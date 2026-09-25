@@ -1,10 +1,14 @@
 import type { Dayjs } from "dayjs";
 import type { PrescriptionFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
+import { useState } from "react";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
-import styles from "../styles.module.scss";
 import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import { useMedicalOrganizationFilterOptionsQuery } from "../../../../../model/queries/useMedicalOrganizationFilterOptions";
+import { useAutocompleteFilterOptionsQuery } from "../../../../../model/queries/useAutocompleteFilterOptionsQuery";
+import { MedViewAutocompleteInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
+import styles from "../styles.module.scss";
 
 interface PrescriptionFiltersSubgroupProps {
   prescriptionFiltersSubgroup: PrescriptionFiltersSubgroupDraft;
@@ -17,6 +21,8 @@ export const PrescriptionFiltersSubgroup = ({
   prescriptionFiltersSubgroup,
   setPrescriptionFiltersSubgroup,
 }: PrescriptionFiltersSubgroupProps) => {
+  const [inputServiceValue, setInputServiceValue] = useState("");
+
   const { data: diagnosticMethodFilterOptions } = useFilterOptionsQuery(
     "/med-view/filter-options/diagnostic-methods",
     "diagnostic-method",
@@ -39,6 +45,12 @@ export const PrescriptionFiltersSubgroup = ({
     "/med-view/filter-options/bed-profiles",
     "bed-profile",
   );
+
+  const { data: medicalServiceFilterOptions, isPending } =
+    useAutocompleteFilterOptionsQuery(
+      "/med-view/filter-options/medical-services",
+      inputServiceValue,
+    );
 
   return (
     <div className={styles.prescriptionSubgroup}>
@@ -162,16 +174,19 @@ export const PrescriptionFiltersSubgroup = ({
       </div>
       <div className={styles.groupLineGrid}>
         <div className={styles.span12}>
-          <MedViewMultipleSelectInput
+          <MedViewAutocompleteInput
             label="Услуги, указанные в направлении"
             values={prescriptionFiltersSubgroup.services}
-            onChange={(newValue: string[]) =>
+            options={medicalServiceFilterOptions ?? []}
+            inputValue={inputServiceValue}
+            onInputChange={setInputServiceValue}
+            onChange={(newValue: FilterOption[]) =>
               setPrescriptionFiltersSubgroup({
                 ...prescriptionFiltersSubgroup,
                 services: newValue,
               })
             }
-            options={[{ label: "V001_NAME", value: "V001_VALUES" }]}
+            loading={isPending}
           />
         </div>
       </div>

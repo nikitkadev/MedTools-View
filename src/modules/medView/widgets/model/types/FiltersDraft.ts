@@ -1,5 +1,6 @@
 import type { Dayjs } from "dayjs";
 import type { Sex } from "./Sex";
+import type { FilterOption } from "./FilterOptions";
 
 export interface FiltersDraft {
   person: PersonFiltersGroupDraft;
@@ -20,13 +21,13 @@ export interface InternalServiceFiltersGroupDraft {
 
 export interface SanctionFiltersGroupDraft {
   controlTypeCodes: string[];
-  refusalReasons: string[];
+  refusalReasons: FilterOption[];
   expertiseActNumber: string;
   expertiseActDate: Dayjs | null;
 }
 
 export interface ProvidedServicesFiltersGroupDraft {
-  serviceCodes: string[];
+  serviceCodes: FilterOption[];
 }
 
 export interface ClinicalGroupsFiltersGroupDraft {
@@ -35,14 +36,14 @@ export interface ClinicalGroupsFiltersGroupDraft {
 }
 
 export interface ClinicalGroupsFiltersSubgroupDraft {
-  clinicalStatisticGroupNumbers: string[];
+  clinicalStatisticGroupNumbers: FilterOption[];
   interruptedCasePaymentReasons: string[];
   complexityCoefficientNumbers: string[];
 }
 
 export interface HighTechMedicalCareSubgroupDraft {
-  highTechCareTypes: string[];
-  highTechCareMethods: string[];
+  highTechCareTypes: FilterOption[];
+  highTechCareMethods: FilterOption[];
   voucherIssueDate: Dayjs | null;
   voucherNumber: string;
   plannedAdmissionDates: Dayjs | null;
@@ -56,7 +57,7 @@ export interface PrescriptionFiltersGroupDraft {
 export interface PrescriptionFiltersSubgroupDraft {
   prescriptionTypes: string[];
   diagnosticMethods: string[];
-  services: string[];
+  services: FilterOption[];
   referralDate: Dayjs | null;
   referredToMedicalOrganizations: string[];
   medicalCareProfiles: string[];
@@ -68,7 +69,7 @@ export interface ReferralFiltersSubgroupDraft {
   referredToMedicalOrganizations: string[];
   refferalTypes: string[];
   diagnosticMethods: string[];
-  referredServices: string[];
+  referredServices: FilterOption[];
 }
 
 export interface OncologyFiltersGroupDraft {
@@ -78,8 +79,8 @@ export interface OncologyFiltersGroupDraft {
 }
 
 export interface MedicationFiltersSubgroupDraft {
-  drugIdentifiers: string[];
-  therapyRegimens: string[];
+  drugIdentifiers: FilterOption[];
+  therapyRegimens: FilterOption[];
 }
 
 export interface OncologyServiceFiltersSubgroupDraft {
@@ -92,10 +93,7 @@ export interface OncologyServiceFiltersSubgroupDraft {
 
 export interface OncologyCaseFiltersSubgroupDraft {
   referralReasons: string[];
-  stages: string[];
-  tumors: string[];
-  noduses: string[];
-  metastasises: string[];
+  stages: FilterOption[];
 }
 
 export interface MedicalCaseDetailsFiltersGroupDraft {
@@ -217,9 +215,6 @@ export const initialFiltersDraft: FiltersDraft = {
     oncologyCase: {
       referralReasons: [],
       stages: [],
-      tumors: [],
-      noduses: [],
-      metastasises: [],
     },
     oncologyService: {
       drugTherapyCycles: [],

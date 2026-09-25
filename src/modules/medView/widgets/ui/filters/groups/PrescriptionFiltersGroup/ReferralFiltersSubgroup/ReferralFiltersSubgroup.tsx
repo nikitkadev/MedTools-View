@@ -1,9 +1,13 @@
 import type { ReferralFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
 import type { Dayjs } from "dayjs";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import { useMedicalOrganizationFilterOptionsQuery } from "../../../../../model/queries/useMedicalOrganizationFilterOptions";
+import { MedViewAutocompleteInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
+import { useAutocompleteFilterOptionsQuery } from "../../../../../model/queries/useAutocompleteFilterOptionsQuery";
+import { useState } from "react";
 import styles from "../styles.module.scss";
 
 interface ReferralFiltersSubgroupProps {
@@ -17,6 +21,8 @@ export const ReferralFiltersSubgroup = ({
   referralsFiltersSubgroupDraft,
   setReferralsFiltersSubgroupDraft,
 }: ReferralFiltersSubgroupProps) => {
+  const [inputServiceValue, setInputServiceValue] = useState("");
+
   const { data: referralTypeFilterOptions } = useFilterOptionsQuery(
     "/med-view/filter-options/referral-types",
     "referral-type",
@@ -33,6 +39,12 @@ export const ReferralFiltersSubgroup = ({
       "medical-organization",
       "SMODB18",
       "ReferralMedicalOrgs",
+    );
+
+  const { data: medicalServiceFilterOptions, isPending } =
+    useAutocompleteFilterOptionsQuery(
+      "/med-view/filter-options/medical-services",
+      inputServiceValue,
     );
 
   return (
@@ -113,18 +125,22 @@ export const ReferralFiltersSubgroup = ({
           />
         </div>
       </div>
+
       <div className={styles.groupLineGrid}>
         <div className={styles.span12}>
-          <MedViewMultipleSelectInput
-            label="Услуги, указанная в направлении"
+          <MedViewAutocompleteInput
+            label="Услуги, указанные в направлении"
             values={referralsFiltersSubgroupDraft.referredServices}
-            onChange={(newValue: string[]) =>
+            options={medicalServiceFilterOptions ?? []}
+            inputValue={inputServiceValue}
+            onInputChange={setInputServiceValue}
+            onChange={(newValue: FilterOption[]) =>
               setReferralsFiltersSubgroupDraft({
                 ...referralsFiltersSubgroupDraft,
                 referredServices: newValue,
               })
             }
-            options={[{ label: "V001_NAME", value: "V001_VALUES" }]}
+            loading={isPending}
           />
         </div>
       </div>

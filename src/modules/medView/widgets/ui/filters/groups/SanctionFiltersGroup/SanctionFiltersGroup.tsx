@@ -4,7 +4,11 @@ import { MedViewDateInput } from "../../../../../../../shared/ui/medView/inputs/
 import { MedViewDefaultInput } from "../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import { useFilterOptionsQuery } from "../../../../model/queries/useFilterOptionsQuery";
+import { useState } from "react";
+import { useAutocompleteFilterOptionsQuery } from "../../../../model/queries/useAutocompleteFilterOptionsQuery";
 import styles from "./styles.module.scss";
+import { MedViewAutocompleteInput } from "../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
+import type { FilterOption } from "../../../../model/types/FilterOptions";
 
 interface SanctionFiltersGroupProps {
   sanctionFiltersGroupDraft: SanctionFiltersGroupDraft;
@@ -21,6 +25,17 @@ const SanctionFiltersGroup = ({
     "/med-view/filter-options/control-type-codes",
     "control-type-code",
   );
+
+  const [
+    inputRefusalReasonCodeFilterOptions,
+    setInputRefusalReasonCodeFilterOptions,
+  ] = useState("");
+
+  const { data: refusalReasonCodeFilterOptions, isPending } =
+    useAutocompleteFilterOptionsQuery(
+      "/med-view/filter-options/refusal-reason-codes",
+      inputRefusalReasonCodeFilterOptions,
+    );
 
   return (
     <section className={styles.sanctionFiltersGroup}>
@@ -56,16 +71,19 @@ const SanctionFiltersGroup = ({
             />
           </div>
           <div className={styles.span6}>
-            <MedViewMultipleSelectInput
+            <MedViewAutocompleteInput
               label="Код причины отказа"
               values={sanctionFiltersGroupDraft.refusalReasons}
-              onChange={(newValue: string[]) =>
+              options={refusalReasonCodeFilterOptions ?? []}
+              inputValue={inputRefusalReasonCodeFilterOptions}
+              onInputChange={setInputRefusalReasonCodeFilterOptions}
+              onChange={(newValue: FilterOption[]) =>
                 setSanctionFiltersGroupDraft({
                   ...sanctionFiltersGroupDraft,
                   refusalReasons: newValue,
                 })
               }
-              options={[{ label: "F014_NAME", value: "F014_VALUES" }]}
+              loading={isPending}
             />
           </div>
         </div>

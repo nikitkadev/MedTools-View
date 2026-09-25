@@ -1,8 +1,11 @@
 import type { HighTechMedicalCareSubgroupDraft } from "../../../../../model/types/FiltersDraft";
 import type { Dayjs } from "dayjs";
-import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewDefaultInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
+import { useState } from "react";
+import { MedViewAutocompleteInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
+import { useAutocompleteFilterOptionsQuery } from "../../../../../model/queries/useAutocompleteFilterOptionsQuery";
 import styles from "../styles.module.scss";
 
 interface HighTechMedicalCareFiltersSubgroupProps {
@@ -16,37 +19,66 @@ export const HighTechMedicalCareFiltersSubgroup = ({
   highTechMedicalCareFiltersSubgroupDraft,
   setHighTechMedicalCareFiltersSubgroupDraft,
 }: HighTechMedicalCareFiltersSubgroupProps) => {
+  const [inputHighTechCareTypeValue, setInputHighTechCareTypeValue] =
+    useState("");
+  const [inputHighTechCareMethodValue, setInputHighTechCareMethodValue] =
+    useState("");
+
+  const {
+    data: highTechCareTypeFilterOptions,
+    isPending: highTechCareTypePending,
+  } = useAutocompleteFilterOptionsQuery(
+    "/med-view/filter-options/high-tech-care-types",
+    inputHighTechCareTypeValue,
+  );
+
+  const {
+    data: highTechCareMethodFilterOptions,
+    isPending: highTechCareMethodPending,
+  } = useAutocompleteFilterOptionsQuery(
+    "/med-view/filter-options/high-tech-care-methods",
+    inputHighTechCareMethodValue,
+  );
+
   return (
     <div className={styles.highTechMedicalCareFiltersSubgroup}>
       <header className={styles.subgroupHeader}>
         <h3>ВМП</h3>
       </header>
       <div className={styles.groupLineGrid}>
-        <div className={styles.span6}>
-          <MedViewMultipleSelectInput
+        <div className={styles.span12}>
+          <MedViewAutocompleteInput
             label="Вид ВМП"
             values={highTechMedicalCareFiltersSubgroupDraft.highTechCareTypes}
-            onChange={(newValue: string[]) =>
+            options={highTechCareTypeFilterOptions ?? []}
+            inputValue={inputHighTechCareTypeValue}
+            onInputChange={setInputHighTechCareTypeValue}
+            onChange={(newValue: FilterOption[]) =>
               setHighTechMedicalCareFiltersSubgroupDraft({
                 ...highTechMedicalCareFiltersSubgroupDraft,
                 highTechCareTypes: newValue,
               })
             }
-            options={[{ label: "V018_NAME", value: "V018_VALUES" }]}
+            loading={highTechCareTypePending}
           />
         </div>
+      </div>
 
-        <div className={styles.span6}>
-          <MedViewMultipleSelectInput
+      <div className={styles.groupLineGrid}>
+        <div className={styles.span12}>
+          <MedViewAutocompleteInput
             label="Метод ВМП"
             values={highTechMedicalCareFiltersSubgroupDraft.highTechCareMethods}
-            onChange={(newValue: string[]) =>
+            options={highTechCareMethodFilterOptions ?? []}
+            inputValue={inputHighTechCareMethodValue}
+            onInputChange={setInputHighTechCareMethodValue}
+            onChange={(newValue: FilterOption[]) =>
               setHighTechMedicalCareFiltersSubgroupDraft({
                 ...highTechMedicalCareFiltersSubgroupDraft,
                 highTechCareMethods: newValue,
               })
             }
-            options={[{ label: "V019_NAME", value: "V019_VALUES" }]}
+            loading={highTechCareMethodPending}
           />
         </div>
       </div>

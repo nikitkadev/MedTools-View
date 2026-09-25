@@ -1,8 +1,10 @@
 import type { OncologyCaseFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import { MedViewAutocompleteInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
 import { useState } from "react";
+import { useAutocompleteFilterOptionsQuery } from "../../../../../model/queries/useAutocompleteFilterOptionsQuery";
 import styles from "../styles.module.scss";
 
 interface OncologyCaseFiltersSubgroupProps {
@@ -16,13 +18,18 @@ export const OncologyCaseFiltersSubgroup = ({
   oncologyCaseFiltersSubgroupDraft,
   setOncologyCaseFiltersSubgroupDraft,
 }: OncologyCaseFiltersSubgroupProps) => {
-
   const [inputStageValue, setInputStageValue] = useState("");
 
   const { data: referralReasonFilterOptions } = useFilterOptionsQuery(
     "/med-view/filter-options/referral-reasons",
     "referral-reason",
   );
+
+  const { data: diseaseStageFilterOptions, isPending } =
+    useAutocompleteFilterOptionsQuery(
+      "/med-view/filter-options/disease-stages",
+      inputStageValue,
+    );
 
   return (
     <div className={styles.oncologyCaseSubgroup}>
@@ -50,16 +57,19 @@ export const OncologyCaseFiltersSubgroup = ({
         </div>
 
         <div className={styles.span6}>
-          <MedViewMultipleSelectInput
-            label="Стадия заболевания"
+          <MedViewAutocompleteInput
+            label="Стадии заболевания"
             values={oncologyCaseFiltersSubgroupDraft.stages}
-            onChange={(newValue: string[]) =>
+            options={diseaseStageFilterOptions ?? []}
+            inputValue={inputStageValue}
+            onInputChange={setInputStageValue}
+            onChange={(newValue: FilterOption[]) =>
               setOncologyCaseFiltersSubgroupDraft({
                 ...oncologyCaseFiltersSubgroupDraft,
                 stages: newValue,
               })
             }
-            options={[{ label: "N002_NAME", value: "N002_VALUES" }]}
+            loading={isPending}
           />
         </div>
       </div>

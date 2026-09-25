@@ -1,5 +1,8 @@
-import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import type { MedicationFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
+import { useState } from "react";
+import { useAutocompleteFilterOptionsQuery } from "../../../../../model/queries/useAutocompleteFilterOptionsQuery";
+import { MedViewAutocompleteInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
 import styles from "../styles.module.scss";
 
 interface MedicationFiltersSubgroupProps {
@@ -13,6 +16,21 @@ export const MedicationFiltersSubgroup = ({
   medicationFiltersSubgroupDraft,
   setMedicationFiltersSubgroupDraft,
 }: MedicationFiltersSubgroupProps) => {
+  const [inputIdenitifierValue, setInputIdenitifierValue] = useState("");
+  const [inputRegimenValue, setInputRegimenValue] = useState("");
+
+  const { data: drugIdentifierFilterOptions, isPending } =
+    useAutocompleteFilterOptionsQuery(
+      "/med-view/filter-options/drug-identifiers",
+      inputIdenitifierValue,
+    );
+
+  const { data: therapyRegimenFilterOptions } =
+    useAutocompleteFilterOptionsQuery(
+      "/med-view/filter-options/therapy-regimens",
+      inputRegimenValue,
+    );
+
   return (
     <div className={styles.medicationSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -20,29 +38,36 @@ export const MedicationFiltersSubgroup = ({
       </header>
       <div className={styles.groupLineGrid}>
         <div className={styles.span6}>
-          <MedViewMultipleSelectInput
+          <MedViewAutocompleteInput
             label="Идентификатор лекарственного препарата"
             values={medicationFiltersSubgroupDraft.drugIdentifiers}
-            onChange={(newValue: string[]) =>
+            options={drugIdentifierFilterOptions ?? []}
+            inputValue={inputIdenitifierValue}
+            onInputChange={setInputIdenitifierValue}
+            onChange={(newValue: FilterOption[]) =>
               setMedicationFiltersSubgroupDraft({
                 ...medicationFiltersSubgroupDraft,
                 drugIdentifiers: newValue,
               })
             }
-            options={[{ label: "N020_NAME", value: "N020_VALUES" }]}
+            loading={isPending}
           />
         </div>
+
         <div className={styles.span6}>
-          <MedViewMultipleSelectInput
+          <MedViewAutocompleteInput
             label="Cхема лекарственной терапии"
             values={medicationFiltersSubgroupDraft.therapyRegimens}
-            onChange={(newValue: string[]) =>
+            options={therapyRegimenFilterOptions ?? []}
+            inputValue={inputRegimenValue}
+            onInputChange={setInputRegimenValue}
+            onChange={(newValue: FilterOption[]) =>
               setMedicationFiltersSubgroupDraft({
                 ...medicationFiltersSubgroupDraft,
                 therapyRegimens: newValue,
               })
             }
-            options={[{ label: "V024_NAME", value: "V024_VALUES" }]}
+            loading={isPending}
           />
         </div>
       </div>

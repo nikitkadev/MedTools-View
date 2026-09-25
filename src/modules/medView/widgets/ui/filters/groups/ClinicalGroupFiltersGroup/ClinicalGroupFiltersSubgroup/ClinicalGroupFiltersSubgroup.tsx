@@ -2,6 +2,10 @@ import type { ClinicalGroupsFiltersSubgroupDraft } from "../../../../../model/ty
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import styles from "../styles.module.scss";
+import { useState } from "react";
+import { useAutocompleteFilterOptionsQuery } from "../../../../../model/queries/useAutocompleteFilterOptionsQuery";
+import { MedViewAutocompleteInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
+import type { FilterOption } from "../../../../../model/types/FilterOptions";
 
 interface ClinicalGroupFiltersSubgroupProps {
   clinicalGroupFiltersSubgroupDraft: ClinicalGroupsFiltersSubgroupDraft;
@@ -14,6 +18,11 @@ export const ClinicalGroupFiltersSubgroup = ({
   clinicalGroupFiltersSubgroupDraft,
   setClinicalGroupFiltersSubgroupDraft,
 }: ClinicalGroupFiltersSubgroupProps) => {
+  const [
+    inputCLinicalStatisticGroupValue,
+    setInputCLinicalStatisticGroupValue,
+  ] = useState("");
+
   const { data: complexityCoefficientFilterOptions } = useFilterOptionsQuery(
     "/med-view/filter-options/complexity-coefficients",
     "complexity-coefficient",
@@ -24,29 +33,39 @@ export const ClinicalGroupFiltersSubgroup = ({
     "interrupted-case-payment-reason",
   );
 
+  const { data: clinicalStatisticGroupFilterOptions, isPending } =
+    useAutocompleteFilterOptionsQuery(
+      "/med-view/filter-options/clinical-groups",
+      inputCLinicalStatisticGroupValue,
+    );
+
   return (
     <div className={styles.clinicalGroupFiltersSubgroup}>
       <header className={styles.subgroupHeader}>
         <h3>КСГ</h3>
       </header>
       <div className={styles.groupLineGrid}>
-        <div className={styles.span6}>
-          <MedViewMultipleSelectInput
+        <div className={styles.span12}>
+          <MedViewAutocompleteInput
             label="Номер КСГ"
             values={
               clinicalGroupFiltersSubgroupDraft.clinicalStatisticGroupNumbers
             }
-            onChange={(newValue: string[]) =>
+            options={clinicalStatisticGroupFilterOptions ?? []}
+            inputValue={inputCLinicalStatisticGroupValue}
+            onInputChange={setInputCLinicalStatisticGroupValue}
+            onChange={(newValue: FilterOption[]) =>
               setClinicalGroupFiltersSubgroupDraft({
                 ...clinicalGroupFiltersSubgroupDraft,
                 clinicalStatisticGroupNumbers: newValue,
               })
             }
-            options={[{ label: "V023_NAME", value: "V023_VALUES" }]}
+            loading={isPending}
           />
         </div>
-
-        <div className={styles.span6}>
+      </div>
+      <div className={styles.groupLineGrid}>
+        <div className={styles.span12}>
           <MedViewMultipleSelectInput
             label="Номер КСЛП"
             values={

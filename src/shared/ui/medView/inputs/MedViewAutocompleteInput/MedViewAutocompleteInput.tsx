@@ -24,6 +24,7 @@ export const MedViewAutocompleteInput = ({
 }: MedViewAutocompleteInputProps) => {
   return (
     <Autocomplete
+      size="small"
       multiple
       options={options}
       value={values}

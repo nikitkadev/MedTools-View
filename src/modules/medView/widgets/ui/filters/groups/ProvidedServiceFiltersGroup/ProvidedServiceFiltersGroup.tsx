@@ -1,5 +1,8 @@
 import type { ProvidedServicesFiltersGroupDraft } from "../../../../model/types/FiltersDraft";
-import { MedViewMultipleSelectInput } from "../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
+import type { FilterOption } from "../../../../model/types/FilterOptions";
+import { useState } from "react";
+import { useAutocompleteFilterOptionsQuery } from "../../../../model/queries/useAutocompleteFilterOptionsQuery";
+import { MedViewAutocompleteInput } from "../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
 import styles from "./styles.module.scss";
 
 interface ProvidedServiceFiltersGroupProps {
@@ -13,6 +16,15 @@ const ProvidedServiceFiltersGroup = ({
   providedServiceDraft,
   setProvidedServiceDraft,
 }: ProvidedServiceFiltersGroupProps) => {
+  const [inputProvidedServiceValue, setInputProvidedServiceValue] =
+    useState("");
+
+  const { data: providedServiceFilterOptions, isPending } =
+    useAutocompleteFilterOptionsQuery(
+      "/med-view/filter-options/provided-services",
+      inputProvidedServiceValue,
+    );
+
   return (
     <section className={styles.providedServiceFiltersGroup}>
       <header className={styles.providedServiceFiltersGroupHeader}>
@@ -29,16 +41,19 @@ const ProvidedServiceFiltersGroup = ({
         </header>
         <div className={styles.groupLineGrid}>
           <div className={styles.span12}>
-            <MedViewMultipleSelectInput
+            <MedViewAutocompleteInput
               label="Название услуги"
               values={providedServiceDraft.serviceCodes}
-              onChange={(newValue: string[]) =>
+              options={providedServiceFilterOptions ?? []}
+              inputValue={inputProvidedServiceValue}
+              onInputChange={setInputProvidedServiceValue}
+              onChange={(newValue: FilterOption[]) =>
                 setProvidedServiceDraft({
                   ...providedServiceDraft,
                   serviceCodes: newValue,
                 })
               }
-              options={[{ label: "T003_NAME", value: "T003_VALUES" }]}
+              loading={isPending}
             />
           </div>
         </div>
