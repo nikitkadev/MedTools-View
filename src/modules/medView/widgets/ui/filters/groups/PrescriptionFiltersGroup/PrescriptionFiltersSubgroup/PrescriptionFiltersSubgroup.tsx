@@ -3,6 +3,8 @@ import type { PrescriptionFiltersSubgroupDraft } from "../../../../../model/type
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import styles from "../styles.module.scss";
+import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
+import { useMedicalOrganizationFilterOptionsQuery } from "../../../../../model/queries/useMedicalOrganizationFilterOptions";
 
 interface PrescriptionFiltersSubgroupProps {
   prescriptionFiltersSubgroup: PrescriptionFiltersSubgroupDraft;
@@ -15,6 +17,29 @@ export const PrescriptionFiltersSubgroup = ({
   prescriptionFiltersSubgroup,
   setPrescriptionFiltersSubgroup,
 }: PrescriptionFiltersSubgroupProps) => {
+  const { data: diagnosticMethodFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/diagnostic-methods",
+    "diagnostic-method",
+  );
+
+  const { data: referredToMedicalOrganizationFilterOptions } =
+    useMedicalOrganizationFilterOptionsQuery(
+      "/med-view/filter-options/medical-organizations",
+      "medical-organization",
+      "SMODB18",
+      "PrescriptionReferredToMedicalOrgs",
+    );
+
+  const { data: medicalCareFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/medical-care-profiles",
+    "medical-care-profile",
+  );
+
+  const { data: bedProfileFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/bed-profiles",
+    "bed-profile",
+  );
+
   return (
     <div className={styles.prescriptionSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -55,7 +80,12 @@ export const PrescriptionFiltersSubgroup = ({
                 diagnosticMethods: newValue,
               })
             }
-            options={[{ label: "V029_NAME", value: "V029_VALUES" }]}
+            options={
+              diagnosticMethodFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -83,7 +113,12 @@ export const PrescriptionFiltersSubgroup = ({
                 referredToMedicalOrganizations: newValue,
               })
             }
-            options={[{ label: "F003_NAME", value: "F003_VALUES" }]}
+            options={
+              referredToMedicalOrganizationFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -98,7 +133,12 @@ export const PrescriptionFiltersSubgroup = ({
                 medicalCareProfiles: newValue,
               })
             }
-            options={[{ label: "V002_NAME", value: "V002_VALUES" }]}
+            options={
+              medicalCareFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
         <div className={styles.span6}>
@@ -111,7 +151,12 @@ export const PrescriptionFiltersSubgroup = ({
                 bedProfiles: newValue,
               })
             }
-            options={[{ label: "V020_NAME", value: "V020_VALUES" }]}
+            options={
+              bedProfileFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>

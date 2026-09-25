@@ -3,6 +3,7 @@ import type { SanctionFiltersGroupDraft } from "../../../../model/types/FiltersD
 import { MedViewDateInput } from "../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewDefaultInput } from "../../../../../../../shared/ui/medView/inputs/MedViewDefaultInput/MedViewDefaultInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
+import { useFilterOptionsQuery } from "../../../../model/queries/useFilterOptionsQuery";
 import styles from "./styles.module.scss";
 
 interface SanctionFiltersGroupProps {
@@ -16,6 +17,11 @@ const SanctionFiltersGroup = ({
   sanctionFiltersGroupDraft,
   setSanctionFiltersGroupDraft,
 }: SanctionFiltersGroupProps) => {
+  const { data: controlTypeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/control-type-codes",
+    "control-type-code",
+  );
+
   return (
     <section className={styles.sanctionFiltersGroup}>
       <header className={styles.sanctionFiltersGroupeader}>
@@ -41,7 +47,12 @@ const SanctionFiltersGroup = ({
                   controlTypeCodes: newValue,
                 })
               }
-              options={[{ label: "F006_NAME", value: "F006_VALUES" }]}
+              options={
+                controlTypeFilterOptions?.map((option) => ({
+                  label: option.value,
+                  value: option.key,
+                })) ?? []
+              }
             />
           </div>
           <div className={styles.span6}>

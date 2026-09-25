@@ -3,6 +3,8 @@ import type { Dayjs } from "dayjs";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import styles from "../styles.module.scss";
+import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
+import { useMedicalOrganizationFilterOptionsQuery } from "../../../../../model/queries/useMedicalOrganizationFilterOptions";
 
 interface ReferralFiltersSubgroupProps {
   referralsFiltersSubgroupDraft: ReferralFiltersSubgroupDraft;
@@ -15,6 +17,24 @@ export const ReferralFiltersSubgroup = ({
   referralsFiltersSubgroupDraft,
   setReferralsFiltersSubgroupDraft,
 }: ReferralFiltersSubgroupProps) => {
+  const { data: referralTypeFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/referral-types",
+    "referral-type",
+  );
+
+  const { data: diagnosticMethodFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/diagnostic-methods",
+    "diagnostic-method",
+  );
+
+  const { data: referralMedicalOrganizationFilterOptions } =
+    useMedicalOrganizationFilterOptionsQuery(
+      "/med-view/filter-options/medical-organizations",
+      "medical-organization",
+      "SMODB18",
+      "ReferralMedicalOrgs",
+    );
+
   return (
     <div className={styles.referralSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -31,7 +51,12 @@ export const ReferralFiltersSubgroup = ({
                 refferalTypes: newValue,
               })
             }
-            options={[{ label: "V028_NAME", value: "V028_VALUES" }]}
+            options={
+              referralTypeFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
         <div className={styles.span6}>
@@ -44,7 +69,12 @@ export const ReferralFiltersSubgroup = ({
                 diagnosticMethods: newValue,
               })
             }
-            options={[{ label: "V029_NAME", value: "V029_VALUES" }]}
+            options={
+              diagnosticMethodFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -74,7 +104,12 @@ export const ReferralFiltersSubgroup = ({
                 referredToMedicalOrganizations: newValue,
               })
             }
-            options={[{ label: "F003_NAME", value: "F003_VALUES" }]}
+            options={
+              referralMedicalOrganizationFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>

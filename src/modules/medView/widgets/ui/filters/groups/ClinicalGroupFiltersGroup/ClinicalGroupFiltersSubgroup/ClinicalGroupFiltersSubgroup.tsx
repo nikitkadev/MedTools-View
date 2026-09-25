@@ -1,5 +1,6 @@
 import type { ClinicalGroupsFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
+import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import styles from "../styles.module.scss";
 
 interface ClinicalGroupFiltersSubgroupProps {
@@ -13,6 +14,16 @@ export const ClinicalGroupFiltersSubgroup = ({
   clinicalGroupFiltersSubgroupDraft,
   setClinicalGroupFiltersSubgroupDraft,
 }: ClinicalGroupFiltersSubgroupProps) => {
+  const { data: complexityCoefficientFilterOptions } = useFilterOptionsQuery(
+    "/med-view/filter-options/complexity-coefficients",
+    "complexity-coefficient",
+  );
+
+  const { data: interruptedCasePaymentReason } = useFilterOptionsQuery(
+    "/med-view/filter-options/interrupted-case-payment-reasons",
+    "interrupted-case-payment-reason",
+  );
+
   return (
     <div className={styles.clinicalGroupFiltersSubgroup}>
       <header className={styles.subgroupHeader}>
@@ -47,7 +58,12 @@ export const ClinicalGroupFiltersSubgroup = ({
                 complexityCoefficientNumbers: newValue,
               })
             }
-            options={[{ label: "Spr_KSLP_NAME", value: "Spr_KSLP_VALUES" }]}
+            options={
+              complexityCoefficientFilterOptions?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
@@ -64,7 +80,12 @@ export const ClinicalGroupFiltersSubgroup = ({
                 interruptedCasePaymentReasons: newValue,
               })
             }
-            options={[{ label: "V042_NAME", value: "V042_VALUES" }]}
+            options={
+              interruptedCasePaymentReason?.map((option) => ({
+                label: option.value,
+                value: option.key,
+              })) ?? []
+            }
           />
         </div>
       </div>
