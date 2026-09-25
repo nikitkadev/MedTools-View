@@ -82,8 +82,8 @@ export const PrescriptionFiltersSubgroup = ({
             }
             options={
               diagnosticMethodFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -115,8 +115,8 @@ export const PrescriptionFiltersSubgroup = ({
             }
             options={
               referredToMedicalOrganizationFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -135,8 +135,8 @@ export const PrescriptionFiltersSubgroup = ({
             }
             options={
               medicalCareFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -153,8 +153,8 @@ export const PrescriptionFiltersSubgroup = ({
             }
             options={
               bedProfileFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />

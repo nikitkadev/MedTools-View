@@ -60,8 +60,8 @@ export const ClinicalGroupFiltersSubgroup = ({
             }
             options={
               complexityCoefficientFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -82,8 +82,8 @@ export const ClinicalGroupFiltersSubgroup = ({
             }
             options={
               interruptedCasePaymentReason?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />

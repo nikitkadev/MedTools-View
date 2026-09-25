@@ -1,8 +1,8 @@
-export interface Options {
-  options: FilterOption[];
+export interface FilterOptionsResponse {
+  filterOptions: FilterOption[];
 }
 
 export interface FilterOption {
-  key: string;
   value: string;
+  label: string;
 }

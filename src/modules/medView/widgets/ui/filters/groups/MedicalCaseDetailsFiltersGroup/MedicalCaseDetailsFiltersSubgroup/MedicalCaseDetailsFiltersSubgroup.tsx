@@ -66,8 +66,8 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
             }
             options={
               medicalCareFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -85,8 +85,8 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
             }
             options={
               bedProfileFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -121,8 +121,8 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
             }
             options={
               visitPlaceFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -142,8 +142,8 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
             }
             options={
               visitPurposeFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -218,8 +218,8 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
             }
             options={
               diseaseCharacterFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -237,8 +237,8 @@ export const MedicalCaseDetailsFiltersSubgroup = ({
             }
             options={
               physicianSpecialitiesFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />

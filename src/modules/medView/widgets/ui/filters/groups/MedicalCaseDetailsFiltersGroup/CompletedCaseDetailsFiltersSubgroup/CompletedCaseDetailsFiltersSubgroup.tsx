@@ -86,8 +86,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             }
             options={
               careConditionFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -105,8 +105,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             }
             options={
               medicalCareFormFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -126,8 +126,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             }
             options={
               medicalCareTypeFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -149,8 +149,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             }
             options={
               medicalOrgsInCompletedCaseFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -171,8 +171,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             options={
               referringMedicalOrgsInCompletedCaseFilterOptions?.map(
                 (option) => ({
-                  label: option.value,
-                  value: option.key,
+                  label: option.label,
+                  value: option.value,
                 }),
               ) ?? []
             }
@@ -218,8 +218,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             }
             options={
               diseaseOutcomeFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -239,8 +239,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             }
             options={
               screeningResultFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -259,8 +259,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             }
             options={
               hospitalizationOutcomeFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -277,8 +277,8 @@ export const CompletedCaseDetailsFiltersSubgroup = ({
             }
             options={
               paymentMethodFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />

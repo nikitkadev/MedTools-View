@@ -1,6 +1,8 @@
 import type { OncologyCaseFiltersSubgroupDraft } from "../../../../../model/types/FiltersDraft";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
 import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
+import { MedViewAutocompleteInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewAutocompleteInput/MedViewAutocompleteInput";
+import { useState } from "react";
 import styles from "../styles.module.scss";
 
 interface OncologyCaseFiltersSubgroupProps {
@@ -14,6 +16,9 @@ export const OncologyCaseFiltersSubgroup = ({
   oncologyCaseFiltersSubgroupDraft,
   setOncologyCaseFiltersSubgroupDraft,
 }: OncologyCaseFiltersSubgroupProps) => {
+
+  const [inputStageValue, setInputStageValue] = useState("");
+
   const { data: referralReasonFilterOptions } = useFilterOptionsQuery(
     "/med-view/filter-options/referral-reasons",
     "referral-reason",
@@ -37,26 +42,25 @@ export const OncologyCaseFiltersSubgroup = ({
             }
             options={
               referralReasonFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
         </div>
+
         <div className={styles.span6}>
-          <div className={styles.span6}>
-            <MedViewMultipleSelectInput
-              label="Стадия заболевания"
-              values={oncologyCaseFiltersSubgroupDraft.stages}
-              onChange={(newValue: string[]) =>
-                setOncologyCaseFiltersSubgroupDraft({
-                  ...oncologyCaseFiltersSubgroupDraft,
-                  stages: newValue,
-                })
-              }
-              options={[{ label: "N002_NAME", value: "N002_VALUES" }]}
-            />
-          </div>
+          <MedViewMultipleSelectInput
+            label="Стадия заболевания"
+            values={oncologyCaseFiltersSubgroupDraft.stages}
+            onChange={(newValue: string[]) =>
+              setOncologyCaseFiltersSubgroupDraft({
+                ...oncologyCaseFiltersSubgroupDraft,
+                stages: newValue,
+              })
+            }
+            options={[{ label: "N002_NAME", value: "N002_VALUES" }]}
+          />
         </div>
       </div>
     </div>

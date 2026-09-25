@@ -57,8 +57,8 @@ export const OncologyServiceFiltersSubgroup = ({
             }
             options={
               oncologyServiceTypeFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -75,8 +75,8 @@ export const OncologyServiceFiltersSubgroup = ({
             }
             options={
               surgicalTreatmentTypeFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -93,8 +93,8 @@ export const OncologyServiceFiltersSubgroup = ({
             }
             options={
               radioTherapyTypeFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -113,8 +113,8 @@ export const OncologyServiceFiltersSubgroup = ({
             }
             options={
               drugTherapyLineFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -131,8 +131,8 @@ export const OncologyServiceFiltersSubgroup = ({
             }
             options={
               drugTherapyCycleFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />

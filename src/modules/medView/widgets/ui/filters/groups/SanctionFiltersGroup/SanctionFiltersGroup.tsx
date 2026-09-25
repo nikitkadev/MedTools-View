@@ -49,8 +49,8 @@ const SanctionFiltersGroup = ({
               }
               options={
                 controlTypeFilterOptions?.map((option) => ({
-                  label: option.value,
-                  value: option.key,
+                  label: option.label,
+                  value: option.value,
                 })) ?? []
               }
             />

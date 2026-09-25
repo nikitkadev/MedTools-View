@@ -36,8 +36,8 @@ export const InsuranceFiltersSubgroup = ({
               })
             }
             options={insuranceFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
+              label: option.label,
+              value: option.value,
             }))}
           />
         </div>
@@ -54,8 +54,8 @@ export const InsuranceFiltersSubgroup = ({
               })
             }
             options={insurancePolicyTypeFilterOptions.map((option) => ({
-              label: option.value,
-              value: option.key,
+              label: option.label,
+              value: option.value,
             }))}
           />
         </div>

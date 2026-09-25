@@ -2,9 +2,9 @@ import type { ReferralFiltersSubgroupDraft } from "../../../../../model/types/Fi
 import type { Dayjs } from "dayjs";
 import { MedViewDateInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewDateInput/MedViewDateInput";
 import { MedViewMultipleSelectInput } from "../../../../../../../../shared/ui/medView/inputs/MedViewMultipleSelectInput/MedViewMultipleSelectInput";
-import styles from "../styles.module.scss";
 import { useFilterOptionsQuery } from "../../../../../model/queries/useFilterOptionsQuery";
 import { useMedicalOrganizationFilterOptionsQuery } from "../../../../../model/queries/useMedicalOrganizationFilterOptions";
+import styles from "../styles.module.scss";
 
 interface ReferralFiltersSubgroupProps {
   referralsFiltersSubgroupDraft: ReferralFiltersSubgroupDraft;
@@ -53,8 +53,8 @@ export const ReferralFiltersSubgroup = ({
             }
             options={
               referralTypeFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -71,8 +71,8 @@ export const ReferralFiltersSubgroup = ({
             }
             options={
               diagnosticMethodFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
@@ -106,8 +106,8 @@ export const ReferralFiltersSubgroup = ({
             }
             options={
               referralMedicalOrganizationFilterOptions?.map((option) => ({
-                label: option.value,
-                value: option.key,
+                label: option.label,
+                value: option.value,
               })) ?? []
             }
           />
